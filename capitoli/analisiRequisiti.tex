@@ -7,7 +7,7 @@
 \label{cap:analisi-requisiti}
 %**************************************************************
 
-Questo capitolo descrive i casi d'uso e i requisiti della piattaforma moviORDER, individuati e classificati per definire nel dettaglio obiettivi e funzionalità del sistema. I casi d'uso e i requisiti sono stati dedotti da un'analisi preliminare eseguita dal tutor aziendale, la quale è stata perfezionata dallo stagista per perseguire massima efficienza ed efficacia del sistema. Le convenzioni adottate per la stesura di casi d'uso e requisiti sono presenti in Appendice §\ref{}.
+Questo capitolo descrive i casi d'uso e i requisiti della piattaforma moviORDER, individuati e classificati per definire nel dettaglio obiettivi e funzionalità del sistema. I casi d'uso e i requisiti sono stati dedotti da un'analisi preliminare eseguita dal tutor aziendale, la quale è stata perfezionata dallo stagista per perseguire massima efficienza ed efficacia del sistema. Le convenzioni adottate per il codice univoco di casi d'uso e requisiti sono presenti in Appendice §\ref{}.
 
 \section{Casi d'uso}
 
@@ -418,35 +418,230 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 	\item \textbf{Scenario principale}: L'attore visualizza un messaggio d'errore relativo all'impossibilità di rimuovere gli articoli selezionati o inviare un ordine composto dagli articoli selezionati.
 \end{itemize}
 
-\section{Tracciamento dei requisiti}
+\section{Requisiti}
 
-Da un'attenta analisi dei requisiti e degli use case effettuata sul progetto è stata stilata la tabella che traccia i requisiti in rapporto agli use case.\\
-Sono stati individuati diversi tipi di requisiti e si è quindi fatto utilizzo di un codice identificativo per distinguerli.\\
-Il codice dei requisiti è così strutturato R(F/Q/V)(N/D/O) dove:
+In questa sezione sono presentati i requisiti della piattaforma moviORDER, dedotti dai diagrammi dei casi d'uso, dall'analisi preliminare fornita dal tutor aziendale e da raffinamenti di questa, ottenuti in seguito a brevi interazioni avvenute con il tutor aziendale. I requisiti sono stati classificati dallo stagista in base alla loro tipologia e importanza strategica. Sono stati individuati:
 \begin{enumerate}
-	\item[R =] requisito
-    \item[F =] funzionale
-    \item[Q =] qualitativo
-    \item[V =] di vincolo
-    \item[N =] obbligatorio (necessario)
-    \item[D =] desiderabile
-    \item[Z =] opzionale
+	\item \textbf{requisiti funzionali}: descrivono funzionalità del sistema;
+	\item \textbf{requisiti qualitativi}: descrivono qualità del prodotto finale;
+	\item \textbf{requisiti di vincolo}: descrivono vincoli imposti dal tutor aziendale o dal dominio del problema.
 \end{enumerate}
-Nelle tabelle \ref{tab:requisiti-funzionali}, \ref{tab:requisiti-qualitativi} e \ref{tab:requisiti-vincolo} sono riassunti i requisiti e il loro tracciamento con gli use case delineati in fase di analisi.
+
+L'importanza strategica dei requisiti individuati è stata negoziata con il tutor aziendale e si è deciso che ciascun requisito deve appartenere ad una delle seguenti categorie:
+\begin{itemize}
+	\item \textbf{obbligatorio}: non più negoziabile e irrinunciabile per il tutor aziendale;
+	\item \textbf{desiderabile}: rappresenta un valore aggiunto d'interesse riconosciuto da parte del tutor aziendale;
+	\item \textbf{facoltativo}: relativamente utile per gli scopi dell'applicazione.
+\end{itemize}
+
+Nelle seguenti sezioni vengono dettagliati i requisiti di moviORDER. In ogni sezione è presente una tabella contenente per ogni requisito:
+\begin{itemize}
+	\item \textbf{codice identificativo}: codice che identifica univocamente il requisito, a fini di tracciabilità;
+	\item \textbf{descrizione}: breve descrizione testuale del requisito;
+	\item \textbf{fonte}: fonte da cui è stato dedotto il requisito, sempre a fini di tracciabilità.
+\end{itemize}
 
 \newpage
+
+\subsection{Requisiti funzionali}
 
 \begin{table}%
 \caption{Tabella del tracciamento dei requisti funzionali}
 \label{tab:requisiti-funzionali}
 \begin{tabularx}{\textwidth}{lXl}
 \hline\hline
-\textbf{Requisito} & \textbf{Descrizione} & \textbf{Use Case}\\
+\textbf{Requisito} & \textbf{Descrizione} & \textbf{Fonte}\\
 \hline
-RFN-1     & L'interfaccia permette di configurare il tipo di sonde del test & UC1 \\
+RFO & Se l'applicazione viene lanciata in assenza di connettività, deve essere visualizzato un messaggio d'errore di connettività assente e l'applicazione deve essere chiusa & UC \\
+RFO1 & L'utente non autenticato deve poter accedere all'applicazione & UC1.1 \\
+RFO1.1 & Per accedere, l'utente non autenticato deve poter inserire una username & UC1.1.1 \\
+RFO1.2 & Per accedere, l'utente non autenticato deve poter inserire una password & UC1.1.2 \\
+RFO & L'utente autenticato deve poter tentare l'accesso premendo su un bottone di login & \\
+RFO & Se l'utente non autenticato inserisce una username non esistente e preme sul bottone di login, deve essere visualizzato un messaggio d'errore di username inesistente & UC \\
+RFO & Se l'utente non autenticato inserisce una password non corrispondente alla username inserita e preme sul bottone di login, deve essere visualizzato un messaggio d'errore di password errata & UC \\
+RFO & Se l'utente non autenticato preme sul bottone di login senza aver inserito le credenziali di accesso, deve essere visualizzato un messaggio che inviti l'utente ad inserire delle credenziali & UC \\
+RFO & Se il server non risponde in fase di login, deve essere visualizzato un messaggio d'errore che notifichi che il server è down & UC \\
+RFO & Se l'utente non autenticato riesce ad accedere, deve essere visualizzata la home page dell'applicazione & UC \\
+RFO & L'utente autenticato deve visualizzare la propria ragione sociale nella home page & UC \\
+RFO & L'utente autenticato deve poter visualizzare il tutorial dell'applicazione nella home page & UC \\
+RFO & L'utente autenticato deve poter effettuare il logout dall'applicazione premendo su un bottone sulla home page& UC \\
+RFO & L'utente autenticato deve poter visualizzare i propri articoli nel carrello nella home page & UC \\
+RFO & Se l'utente autenticato non presenta articoli in carrello deve essere visualizzata una frase che notifichi che il carrello è vuoto & UC \\
+RFO & La visualizzazione di un articolo in carrello deve comprendere una check-box per la selezione dell'articolo & UC \\
+RFO & La visualizzazione di un articolo in carrello deve comprendere la quantità dell'articolo & UC \\
+RFO & La visualizzazione di un articolo in carrello deve comprendere il codice dell'articolo & UC \\
+RFO & La visualizzazione di un articolo in carrello deve comprendere la descrizione dell'articolo & UC \\
+RFO & L'utente autenticato deve poter aggiungere un nuovo articolo al carrello dalla home page & UC \\
+RFO & Per aggiungere un nuovo articolo al carrello, l'utente autenticato deve inserire un codice articolo & UC \\
+RFO & L'utente autenticato deve poter decidere se inserire il codice articolo con la scansione di un codice a barre o manualmente & UC \\
+RFO & Se l'utente autenticato decide di inserire il codice articolo con la scansione di un codice a barre, l'applicazione deve accedere alla fotocamera e permettere la cattura del codice a barre & UC \\
+RFO & L'applicazione deve permettere la cattura del codice a barre di tipo ... & UC \\
+RFO & L'utente autenticato deve poter annullare la scansione del codice a barre con il tasto indietro & UC \\
+RFO & Se l'utente autenticato annulla la scansione del codice a barre deve essere visualizzato un messaggio di annullamento della scansione da parte dell'utente & UC \\
+RFO & Se la scansione del codice a barre fallisce, la fotocamera deve essere chiusa e deve essere visualizzato un messaggio d'errore di scansione fallita & UC \\
+RFO & Se la scansione del codice a barre va a buon fine ma il codice ottenuto non corrisponde ad un articolo venduto dall'azienda deve essere visualizzato un messaggio d'errore che notifichi il problema & UC \\
+RFO & Se la scansione del codice a barre va a buon fine e il codice ottenuto corrisponde ad un articolo venduto dall'azienda ma l'articolo è già presente in carrello, deve essere visualizzato un messaggio che inviti l'utente a cambiare la quantità dell'articolo in carrello & UC \\
+RFO & Se la scansione del codice a barre va a buon fine e il codice ottenuto corrisponde ad un articolo venduto dall'azienda deve essere visualizzata la pagina di aggiunta articolo & UC \\
+RFO & Se l'utente autenticato decide di inserire il codice articolo manualmente deve essere visualizzata una text box per l'inserimento del codice & UC \\
+RFO & Se l'utente autenticato inserisce un codice articolo che non corrisponde ad un articolo venduto dall'azienda, deve essere visualizzato un messaggio d'errore che notifichi il problema & UC \\
+RFO & Se l'utente autenticato inserisce un codice articolo che corrisponde ad un articolo venduto dall'azienda ma l'articolo è già presente in carrello, deve essere visualizzato un messaggio che inviti l'utente a cambiare la quantità dell'articolo in carrello & UC \\
+RFO & Se l'utente autenticato inserisce un codice articolo che corrisponde ad un articolo venduto dall'azienda, deve essere visualizzata la pagina di aggiunta articolo & UC \\
+RFO & L'utente autenticato deve poter visualizzare il codice articolo nella pagina di aggiunta articolo & UC \\
+RFO & L'utente autenticato deve poter visualizzare la descrizione dell'articolo nella pagina di aggiunta articolo & UC \\
+RFO & L'utente autenticato deve poter visualizzare le informazioni dell'articolo nella pagina di aggiunta articolo & UC \\
+RFO & La pagina di aggiunta articolo deve proporre all'utente autenticato una quantità minima per l'articolo da ordinare & UC \\
+RFO & L'utente autenticato deve poter inserire una quantità per l'articolo da ordinare nella pagina di aggiunta articolo & UC \\
+RFO & L'utente autenticato deve poter inserire delle note per l'articolo da ordine nella pagina di aggiunta articolo & \\
+RFO & L'utente autenticato deve poter annullare l'inserimento dell'articolo nella pagina di aggiunta articolo & \\
+RFO & L'utente autenticato deve poter confermare l'inserimento dell'articolo nella pagina di aggiunta articolo & \\
+RFO & Se l'utente autenticato conferma l'inserimento dell'articolo ed ha inserito una quantità errata (troppo bassa, troppo alta o che non soddisfa uno step impostato dall'azienda) deve essere visualizzato un messaggio d'errore di errata quantità inserita & \\
+RFO & Se l'utente autenticato conferma l'inserimento dell'articolo e i dati inseriti sono corretti, deve essere visualizzata la home page e il nuovo articolo deve essere presente in carrello & \\
+RFO & Se l'utente autenticato annulla l'inserimento dell'articolo, deve essere visualizzata la home page e il carrello non deve essere cambiato & \\
+RFO & L'utente autenticato deve poter selezionare un articolo in carrello premendo sulla relativa check-box & \\
+RFO & L'utente autenticato deve poter deselezionare un articolo in carrello selezionato premendo sulla relativa check-box & \\
+RFO & L'utente autenticato deve poter selezionare tutti gli articoli in carrello premendo su un bottone di seleziona tutti/deseleziona tutti presente nella home page & \\
+RFO & L'utente autenticato deve poter deselezionare tutti gli articoli in carrello premendo su un bottone di seleziona tutti/deseleziona tutti presente nella home page & \\
+RFO & L'utente autenticato deve poter modificare un articolo in carrello premendo sopra l'articolo direttamente sul carrello & \\
+RFO & Se l'utente autenticato preme su un articolo in carrello deve essere visualizzato un dialog che chiede all'utente se vuole modificare l'articolo & \\
+RFO & Se l'utente autenticato accetta di modificare l'articolo sul dialog di conferma, deve essere aperta la pagina di modifica articolo & \\
+RFO & Se l'utente autenticato rifiuta di modificare l'articolo sul dialog di conferma, deve essere visualizzata la home page senza cambiamenti sul carrello & \\
+RFO & L'utente autenticato deve poter visualizzare il codice articolo dell'articolo selezionato nella pagina di modifica articolo & UC \\
+RFO & L'utente autenticato deve poter visualizzare la descrizione dell'articolo dell'articolo selezionato nella pagina di modifica articolo & UC \\
+RFO & L'utente autenticato deve poter visualizzare le informazioni dell'articolo dell'articolo selezionato nella pagina di modifica articolo & UC \\
+RFO & La pagina di modifica articolo deve proporre all'utente autenticato la quantità precedentemente inserita per l'articolo selezionato & UC \\
+RFO & L'utente autenticato deve poter cambiare la quantità per l'articolo selezionato nella pagina di modifica articolo & UC \\
+RFO & La pagina di modifica articolo deve proporre all'utente autenticato le note precedentemente inserite per l'articolo selezionato & UC \\
+RFO & L'utente autenticato deve poter modificare le note per l'articolo selezionato nella pagina di modifica articolo & \\
+RFO & L'utente autenticato deve poter annullare la modifica dell'articolo nella pagina di modifica articolo & \\
+RFO & L'utente autenticato deve poter confermare la modifica dell'articolo nella pagina di modifica articolo & \\
+RFO & Se l'utente autenticato conferma la modifica dell'articolo ed ha inserito una quantità errata (troppo bassa, troppo alta o che non soddisfa uno step impostato dall'azienda) deve essere visualizzato un messaggio d'errore di errata quantità inserita & \\
+RFO & Se l'utente autenticato conferma la modifica dell'articolo e i dati modificati sono corretti, deve essere visualizzata la home page e l'articolo modificato deve essere presente in carrello con le modifiche apportate & \\
+RFO & Se l'utente autenticato annulla la modifica dell'articolo, deve essere visualizzata la home page e l'articolo selezionato non deve essere stato modificato & \\
+RFO & L'utente autenticato deve poter rimuovere gli articoli selezionati sul carrello premendo su un bottone presente sulla home page & \\
+RFO & Se l'utente autenticato preme sul bottone di rimozione articoli senza aver selezionato alcun articolo, deve essere visualizzato un messaggio che inviti l'utente a selezionare degli articoli & \\
+RFO & Se l'utente autenticato preme sul bottone di rimozione articoli avendo selezionato degli articoli sul carrello deve essere richiesta la conferma di eliminazione tramite un dialog & \\
+RFO & Se l'utente autenticato conferma l'eliminazione sul dialog di conferma, gli articoli precedentemente selezionati devono essere rimossi dal carrello & \\
+RFO & Se l'utente autenticato rifiuta l'eliminazione sul dialog di conferma, il carrello non deve subire cambiamenti & \\
+RFO & L'utente autenticato deve poter inviare un ordine composto dagli articoli selezionati sul carrello premendo su un bottone di invio ordine & \\
+RFO & Se l'utente autenticato preme sul bottone di invio ordine senza aver selezionato alcun articolo, deve essere visualizzato un messaggio che inviti l'utente a selezionare degli articoli & \\
+RFO & Se l'utente autenticato preme sul bottone di invio ordine avendo selezionato degli articoli sul carrello deve essere visualizzato il modal di invio ordine & \\
+RFO & L'utente autenticato deve poter visualizzare il codice cliente nel modal di invio ordine & \\
+RFO & L'utente autenticato deve poter visualizzare la descrizione cliente nel modal di invio ordine & \\
+RFO & L'utente autenticato deve poter visualizzare il codice del documento da generare per l'ordine nel modal di invio ordine & \\
+RFO & L'utente autenticato deve poter visualizzare la descrizione del documento da generare per l'ordine nel modal di invio ordine & \\
+RFO & Il modal di invio ordine deve proporre all'utente autenticato la data corrente come data d'ordine & \\
+RFO & L'utente autenticato deve poter modificare la data d'ordine proposta nel modal di invio ordine & \\
+RFO & L'utente autenticato deve poter inserire delle note per l'ordine nel modal di invio ordine & \\
+RFO & L'utente autenticato deve poter confermare l'invio dell'ordine nel modal di invio ordine & \\
+RFO & L'utente autenticato deve poter annullare l'invio dell'ordine nel modal di invio ordine & \\
+RFO & Se l'utente autenticato decide di annullare l'invio dell'ordine, il modal di invio ordine deve essere chiuso & \\
+RFO & Se l'utente autenticato decide di confermare l'invio dell'ordine, deve essere richiesta la conferma di invio ordine tramite un dialog & \\
+RFO & Se l'utente autenticato conferma l'invio dell'ordine nel dialog di conferma e l'ordine è andato a buon fine, deve essere visualizzato un messaggio di ordine inviato con successo e una mail di conferma deve essere inviata sia all'utente che all'azienda & \\
+RFO & Se l'utente autenticato conferma l'invio dell'ordine nel dialog di conferma e l'ordine non è andato a buon fine, deve essere visualizzato un messaggio d'errore di mancato invio dell'ordine & \\
+RFO & Se l'utente autenticato annulla l'invio dell'ordine nel dialog di conferma, il dialog di conferma deve essere chiuso & \\
+RFO & Se viene persa la connettività nella home page, deve essere visualizzato un messaggio che invita l'utente a chiudere l'applicazione per connettività assente & \\
+RFO & Se viene persa la connettività nella pagina di aggiunta articolo, deve essere visualizzato un messaggio che invita l'utente a chiudere l'applicazione per connettività assente & \\
+RFO & Se viene persa la connettività nella pagina di modifica, deve essere visualizzato un messaggio che invita l'utente a chiudere l'applicazione per connettività assente & \\
+RFO & La mail inviata dal sistema al momento dell'invio dell'ordine deve contenere in oggetto la data di registrazione dell'ordine & \\
+RFO & La mail inviata dal sistema al momento dell'invio dell'ordine deve contenere in oggetto il codice azienda dell'utente che ha effettuato l'ordine & \\
+RFO & La mail inviata dal sistema al momento dell'invio dell'ordine deve contenere in oggetto la tipologia di documento generato con l'ordine & \\
+RFO & La mail inviata dal sistema al momento dell'invio dell'ordine deve contenere nel corpo il codice cliente del cliente che ha effettuato l'ordine & \\
+RFO & La mail inviata dal sistema al momento dell'invio dell'ordine deve contenere nel corpo una tabella contenente i dati degli articoli inviati & \\
+RFO & Per ogni articolo in tabella deve essere indicata la quantità ordinata & \\
+RFO & Per ogni articolo in tabella deve essere indicato il codice articolo & \\
+RFO & Per ogni articolo in tabella deve essere indicata la descrizione dell'articolo & \\
+RFO & RFO & La mail inviata dal sistema al momento dell'invio dell'ordine deve contenere nel corpo l'avviso di non rispondere alla mail & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
+RFO &  & \\
 \hline
 \end{tabularx}
 \end{table}%
+
+\subsection{Requisiti qualitativi}
 
 \begin{table}%
 \caption{Tabella del tracciamento dei requisiti qualitativi}
@@ -460,6 +655,8 @@ RQD-1    & Le prestazioni del simulatore hardware deve garantire la giusta esecu
 \end{tabularx}
 \end{table}%
 
+\subsection{Requisiti di vincolo}
+
 \begin{table}%
 \caption{Tabella del tracciamento dei requisiti di vincolo}
 \label{tab:requisiti-vincolo}
@@ -471,3 +668,5 @@ RVO-1    & La libreria per l'esecuzione dei test automatici deve essere riutiliz
 \hline
 \end{tabularx}
 \end{table}%
+
+\subsection{Validazione dei requisiti}
