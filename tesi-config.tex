@@ -10,6 +10,16 @@
 
 \setcounter{secnumdepth}{4}
 
+% comando per i termini di Glossario
+
+\newcommand{\glossaryItem}[1]{%
+    \lowercase{\ifcsname @glsterms@\detokenize{#1}\endcsname}%
+        #1%
+    \else%
+        \lowercase{\expandafter\gdef\csname @glsterms@\detokenize{#1}\endcsname{x}}%
+        \emph{#1}\ped{G}%
+    \fi%
+}
 
 % Comando per nuovo paragrafo
 

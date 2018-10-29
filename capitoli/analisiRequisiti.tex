@@ -13,24 +13,24 @@ Questo capitolo descrive i casi d'uso e i requisiti della piattaforma moviORDER,
 
 La descrizione di ogni caso d'uso si compone dei seguenti punti:
 \begin{enumerate}
-	\item \textbf{attori}: lista di attori (glossario, ci va tutto ciò che la gente può non sapere leggendo la tesi) principali e secondari coinvolti nel caso d'uso;
+	\item \textbf{attori}: lista di attori principali e secondari coinvolti nel caso d'uso;
     \item \textbf{descrizione}: breve descrizione del caso d'uso;
     \item \textbf{pre-condizioni}: condizioni che devono essere verificate prima dell'esecuzione del caso d'uso;
     \item \textbf{post-condizioni}: condizioni che devono essere verificate dopo dell'esecuzione del caso d'uso;
-    \item \textbf{scenario principale}: descrizione composta dal flusso dei sottocasi d'uso del caso d'uso;
+    \item \textbf{scenario principale}: descrizione composta dal flusso dei sottocasi d'uso del caso d'uso principale;
     \item \textbf{scenari alternativi}: descrizione composta dai casi d'uso che non appartengono al flusso
-    principale di esecuzione del caso d'uso (estensioni), se presenti; incerto
+    principale di esecuzione del caso d'uso (estensioni), se presenti;
     \item \textbf{specializzazioni}: indica quali sono tutte le specializzazioni del caso d'uso, se presenti;
     \item \textbf{generalizzazioni}: indica quali sono tutte le generalizzazioni del caso d'uso, se presenti.
 \end{enumerate}
-Per lo studio dei casi di utilizzo più complessi della piattaforma sono stati creati dei diagrammi dei casi d'uso che meglio descrivono funzioni e/o servizi offerti dal sistema, così come sono percepiti e utilizzati dagli attori che interagiscono con il sistema stesso. Per la definizione dei diagrammi UML dei casi d'uso è stato utilizzato lo standard UML 2.0. 
+Per lo studio dei casi di utilizzo più complessi della piattaforma, sono stati creati dei diagrammi dei casi d'uso che meglio descrivono funzioni e/o servizi offerti dal sistema, così come sono percepiti e utilizzati dagli attori che interagiscono con lo stesso. Per la definizione dei diagrammi UML dei casi d'uso è stato utilizzato lo standard \glossaryItem{UML 2.0}. 
 
 \subsection{Attori del sistema}
 
-Lo scopo di moviORDER è permettere alle aziende che forniscono dei prodotti di vendere gli stessi ai propri clienti tramite un'applicazione multipiattaforma. Quindi moviORDER viene distribuita da VISIONEIMPRESA alle aziende che forniscono prodotti, la quale viene distribuita dalle aziende stesse ai propri clienti. Gli utilizzatori finali di moviORDER sono quindi i clienti delle singole aziende che sono clienti di VISIONEIMPRESA.
+Lo scopo di moviORDER è permettere alle aziende che forniscono prodotti di vendere gli stessi ai propri clienti tramite un'applicazione multipiattaforma. MoviORDER viene distribuita da VISIONEIMPRESA alle aziende che forniscono prodotti, la quale viene distribuita dalle aziende stesse ai propri clienti. Gli utilizzatori finali di moviORDER sono quindi i clienti delle singole aziende clienti di VISIONEIMPRESA.
 L'accesso all'applicazione è consentito solamente agli utenti provvisti di credenziali di accesso, le quali vengono distribuite, insieme all'applicazione, dal fornitore. Non è prevista quindi una funzionalità di registrazione. Nel contesto di moviORDER vi sono quindi due tipologie di attori:
 \begin{enumerate}
-	\item \textbf{Utente non autenticato}: è un utente che non ha effettuato l'accesso al sistema al quale viene offerta la sola funzionalità di autenticazione. Una volta che un utente non autenticato viene riconosciuto accedendo al sistema, diventa un utente autenticato;
+	\item \textbf{Utente non autenticato}: è un utente che non ha effettuato l'accesso al sistema, al quale viene offerta la sola funzionalità di autenticazione. Una volta che un utente non autenticato viene riconosciuto accedendo al sistema, diventa un utente autenticato;
 	\item \textbf{Utente autenticato}: è un utente che ha effettuato l'accesso al sistema e che può usufruire di tutte le sue funzionalità. Le funzionalità offerte all'utente autenticato sono:
 	\begin{itemize}
 		\item possibilità di effettuare il logout;
@@ -45,7 +45,7 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 
 \begin{figure}[!h] 
     \centering 
-    \includegraphics[width=0.9\columnwidth]{usecase/generaleNonAutenticato} 
+    \includegraphics[width=\columnwidth]{usecase/generaleNonAutenticato} 
     \caption{Use Case - UC1: Azioni utente non autenticato}
 \end{figure}
 
@@ -62,14 +62,14 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 
 \begin{figure}[!h] 
     \centering 
-    \includegraphics[width=0.9\columnwidth]{usecase/autenticazione} 
+    \includegraphics[width=\columnwidth]{usecase/autenticazione} 
     \caption{Use Case - UC1.1: Autenticazione}
 \end{figure}
 
 \begin{itemize}
 	\item \textbf{Attore}: Utente non autenticato;
 	\item \textbf{Descrizione}: L'attore può eseguire l'operazione di autenticazione;
-	\item \textbf{Pre-condizioni}: L'attore ha avviato l'applicazione, non è ancora riconosciuto dal sistema e ha espresso la volontà di eﬀettuare l’autenticazione a moviORDER;
+	\item \textbf{Pre-condizioni}: L'attore ha avviato l'applicazione, non è ancora riconosciuto dal sistema e ha espresso la volontà di effettuare l’autenticazione a moviORDER;
 	\item \textbf{Post-condizioni}: L'attore ha eseguito l'operazione di accesso al sistema ed è quindi ora riconosciuto come utente autenticato;
 	\item \textbf{Scenario principale}: 
 		\begin{enumerate}
@@ -108,12 +108,14 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 	\item \textbf{Scenario principale}: L'attore visualizza un messaggio d'errore relativo all'impossibilità di eseguire l'autenticazione per inserimento di credenziali errate o perché è stato bloccato.
 \end{itemize}
 
+\newpage
+
 \subsection{UC2 - Azioni utente autenticato}
 
 \begin{figure}[!h] 
     \centering 
-    \includegraphics[width=0.9\columnwidth]{usecase/generaleAutenticato} 
-    \caption{UC2 - Azioni utente autenticato}
+    \includegraphics[width=\columnwidth]{usecase/generaleAutenticato} 
+    \caption{Use Case - UC2: Azioni utente autenticato}
 \end{figure}
 
 \begin{itemize}
@@ -122,7 +124,6 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 	\begin{enumerate}
 		\item eseguire l'operazione di logout;
 		\item visualizzare il tutorial dell'applicazione;
-		\item visualizzare la lista degli articoli in carrello;
 		\item gestire il proprio carrello. 
 	\end{enumerate}
 	\item \textbf{Pre-condizioni}: L'attore ha avviato l'applicazione ed è riconosciuto dal sistema;
@@ -131,8 +132,7 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 		\begin{enumerate}
 			\item UC2.1 - Logout;
 			\item UC2.2 - Visualizzazione tutorial applicazione;
-			\item UC2.3 - Visualizzazione lista articoli in carrello;
-			\item UC2.4 - Gestione carrello.
+			\item UC2.3 - Gestione carrello.
 		\end{enumerate}
 \end{itemize}
 
@@ -156,12 +156,14 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 	\item \textbf{Scenario principale}: L'attore visualizza il tutorial dell'applicazione premendo sul relativo bottone.
 \end{itemize}
 
+\newpage
+
 \subsection{UC2.3 - Gestione carrello}
 
 \begin{figure}[!h] 
     \centering 
-    \includegraphics[width=0.9\columnwidth]{usecase/gestioneCarrello} 
-    \caption{Use Case - UC1: Azioni utente non autenticato}
+    \includegraphics[width=\columnwidth]{usecase/gestioneCarrello} 
+    \caption{Use Case - UC2.3: Gestione carrello}
 \end{figure}
 
 \begin{itemize}
@@ -199,12 +201,14 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 		\end{itemize}
 \end{itemize}
 
+\newpage
+
 \subsection{UC2.3.1 - Aggiunta articolo}
 
 \begin{figure}[!h] 
     \centering 
-    \includegraphics[width=0.9\columnwidth]{usecase/dettaglioAggiunta} 
-    \caption{Use Case - UC1: Azioni utente non autenticato}
+    \includegraphics[width=\columnwidth]{usecase/dettaglioAggiunta} 
+    \caption{Use Case - UC2.3.1: Aggiunta articolo}
 \end{figure}
 
 \begin{itemize}
@@ -241,7 +245,7 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 	\item \textbf{Attore}: Utente autenticato;
 	\item \textbf{Descrizione}: L'attore deve inserire un codice articolo per l'operazione di aggiunta articolo;
 	\item \textbf{Pre-condizioni}: L'attore ha avviato l'applicazione, è riconosciuto dal sistema, ha richiesto di aggiungere un articolo in carrello e quando il sistema richiede l'inserimento di un codice articolo per l'operazione di aggiunta articolo, l'attore esprime la volontà di voler inserire il codice articolo manualmente;
-	\item \textbf{Post-condizioni}: L'attore ha inserito manualmente il codice articolo;
+	\item \textbf{Post-condizioni}: L'attore ha inserito il codice articolo manualmente;
 	\item \textbf{Scenario principale}: L'attore inserisce il codice articolo manualmente tramite una text box;
 	\item \textbf{Generalizzazione}: UC2.3.1.1 - Inserimento codice articolo.
 \end{itemize}
@@ -287,12 +291,14 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 	\item \textbf{Scenario principale}: L'attore visualizza un messaggio d'errore relativo all'impossibilità di aggiungere l'articolo in carrello.
 \end{itemize}
 
+\newpage
+
 \subsection{UC2.3.3 - Modifica articolo}
 
 \begin{figure}[!h] 
     \centering 
-    \includegraphics[width=0.9\columnwidth]{usecase/dettaglioModifica} 
-    \caption{Use Case - UC1: Azioni utente non autenticato}
+    \includegraphics[width=\columnwidth]{usecase/dettaglioModifica} 
+    \caption{Use Case - UC2.3.3: Modifica articolo}
 \end{figure}
 
 \begin{itemize}
@@ -387,12 +393,14 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 	\item \textbf{Scenario principale}: L'attore rimuove gli articoli selezionati dal carrello premendo su un bottone.
 \end{itemize}
 
+\newpage
+
 \subsection{UC2.3.10 - Invio ordine}
 
 \begin{figure}[!h] 
     \centering 
-    \includegraphics[width=0.9\columnwidth]{usecase/dettaglioInvioOrdine} 
-    \caption{Use Case - UC1: Azioni utente non autenticato}
+    \includegraphics[width=\columnwidth]{usecase/dettaglioInvioOrdine} 
+    \caption{Use Case - UC2.3.10: Invio ordine}
 \end{figure}
 
 \begin{itemize}
@@ -424,7 +432,7 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 	\item \textbf{Descrizione}: L'attore può delle note per l'ordine;
 	\item \textbf{Pre-condizioni}: L'attore ha avviato l'applicazione, è riconosciuto dal sistema, ha richiesto di inviare un ordine e il sistema permette l'inserimento di note per l'ordine;
 	\item \textbf{Post-condizioni}: L'attore ha inserito le note per l'ordine;
-	\item \textbf{Scenario principale}: L'attore le note per l'ordine tramite una text area.
+	\item \textbf{Scenario principale}: L'attore inserisce le note per l'ordine tramite una text area.
 \end{itemize}
 
 \subsection{UC2.3.11 - Visualizzazione errore di mancata selezione di articoli}
@@ -464,7 +472,7 @@ Nelle seguenti sezioni vengono dettagliati i requisiti di moviORDER. In ogni sez
 			\item \textbf{caso d'uso}: se il requisito è stato dedotto da un caso d'uso specifico;
 			\item \textbf{capitolato}: se il requisito è stato dedotto dal capitolato d'appalto;
 			\item \textbf{stagista}: se il requisito è stato introdotto dallo stagista durante il periodo di stage;
-			\item \textbf{tutor}: se il requisito è stato introdotto dal tutor durante il periodo di stage.
+			\item \textbf{tutor}: se il requisito è stato introdotto dal tutor aziendale durante il periodo di stage.
 		\end{itemize}
 \end{itemize}
 
@@ -474,7 +482,7 @@ Nelle seguenti sezioni vengono dettagliati i requisiti di moviORDER. In ogni sez
 
 {\renewcommand{\arraystretch}{2}
 \begin{center}
-\begin{longtable}{ | >{\centering\arraybackslash}p{2.5cm} | >{\arraybackslash}p{8cm} | >{\centering\arraybackslash}p{2.5cm} | }
+\begin{longtable}{ | >{\centering\arraybackslash}p{2.5cm} | >{\arraybackslash}p{7cm} | >{\centering\arraybackslash}p{2cm} | }
         
 \hline
 \textbf{Id Requisito} & \textbf{Descrizione} & \textbf{Fonti} \\ \hline
@@ -593,7 +601,7 @@ RFO3.13 & Se viene persa la connettività nella home page, deve essere visualizz
 
 {\renewcommand{\arraystretch}{2}
 \begin{center}
-\begin{longtable}{ | >{\centering\arraybackslash}p{2.5cm} | >{\arraybackslash}p{8cm} | >{\centering\arraybackslash}p{2.5cm} | }
+\begin{longtable}{ | >{\centering\arraybackslash}p{2.5cm} | >{\arraybackslash}p{7cm} | >{\centering\arraybackslash}p{2cm} | }
 \hline
 \textbf{Id Requisito} & \textbf{Descrizione} & \textbf{Fonti} \\ \hline
 \endhead
@@ -609,29 +617,53 @@ RQD2 & L'applicazione deve essere fornita di manuale sviluppatore & Tutor \\ \hl
 
 {\renewcommand{\arraystretch}{2}
 \begin{center}
-\begin{longtable}{ | >{\centering\arraybackslash}p{2.5cm} | >{\arraybackslash}p{8cm} | >{\centering\arraybackslash}p{2.5cm} | }
+\begin{longtable}{ | >{\centering\arraybackslash}p{2.5cm} | >{\arraybackslash}p{7cm} | >{\centering\arraybackslash}p{2cm} | }
 \hline
 \textbf{Id Requisito} & \textbf{Descrizione} & \textbf{Fonti} \\ \hline
 \endhead
 RVO1 & L'applicazione deve essere sviluppata con ambiente multipiattaforma (preferibilmente PhoneGap o Xamarin) & Capitolato \\ \hline
-RVO2 & L'applicazione deve utilizzare il database standard di Vision Enterprise (glossario), senza modifica alla sua struttura & Capitolato \\ \hline
+RVO2 & L'applicazione deve utilizzare il database standard di \glossaryItem{Vision Enterprise}, senza modifica alla sua struttura & Capitolato \\ \hline
 RVO3 & L'applicazione deve interfacciarsi con la fotocamera per la lettura di codici a barre & Capitolato \\ \hline
 RVO4 & L'applicazione deve funzionare completamente online, nessun dato deve essere memorizzato in locale e nessun database deve essere sincronizzato & Capitolato \\ \hline
 RVD5 & L'applicazione deve utilizzare un database SQL Server lato web & Capitolato \\ \hline
 RVD6 & L'applicazione deve supportare codici a barre bidimensionali (QRcode) & Capitolato \\ \hline
-RVF7 & L'applicazione deve condividere i dati di login con l'applicazione moviDOC (glossario) & Capitolato \\ \hline
-RVF8 & L'applicazione deve avere lo stesso stile di interfaccia di moviDOC & Capitolato \\ \hline
+RVF7 & L'applicazione deve condividere i dati di login con l'applicazione \glossaryItem{moviDOC} & Capitolato \\ \hline
+RVF8 & L'applicazione deve avere lo stesso stile di interfaccia di \glossaryItem{moviDOC} & Capitolato \\ \hline
 RVF9 & L'applicazione deve permettere la firma digitale del cliente a fine ordine & Capitolato \\ \hline
 \caption{Tabella del tracciamento dei requisiti di vincolo}
 \end{longtable}
 \end{center}}
 
+\newpage
+
 \subsection{Riepilogo requisiti}
 
-mettere la tabella di riepilogo
+I requisiti sono di seguito raggruppati in una tabella riepilogativa, in modo da comprendere la grandezza del progetto in termini di requisiti.
 
-\newpage
+{\renewcommand{\arraystretch}{2}
+\begin{center}
+\begin{longtable}{ | >{\arraybackslash}p{2.2cm} | >{\centering\arraybackslash}p{2.2cm} | >{\centering\arraybackslash}p{2.2cm} | >{\centering\arraybackslash}p{2.2cm} | >{\centering\arraybackslash}p{2.2cm} | }
+\hline
+\textbf{Tipologia} & \textbf{Obbligatorio} & \textbf{Desiderabile} & \textbf{Facoltativo} & \textbf{Totale} \\ \hline
+\endhead
+\textbf{Funzionale} & 102 & 0 & 0 & 102 \\ \hline
+\textbf{Qualitativo} & 1 & 1 & 0 & 2 \\ \hline
+\textbf{Di vincolo} & 4 & 2 & 3 & 9 \\ \hline
+\textbf{Totale} & 107 & 3 & 3 & 113 \\ \hline
+\caption{Riepilogo requisiti}
+\end{longtable}
+\end{center}}
 
 \subsection{Validazione dei requisiti}
 
-scrivere due cavolate su come sono stati validati e sulle loro 8 qualità in base allo standard
+Al termine dell'analisi dei requisiti, lo stagista ha validato i requisiti tramite delle interazioni con il tutor aziendale. Nello specifico ci si è assicurati che i requisiti individuati rappresentassero il sistema richiesto dal tutor aziendale. Lo stagista ha fatto in modo aderire allo standard IEEE 830-1998 per la scrittura dei requisiti. Lo standard IEEE 830-1998 individua otto qualità essenziali per i requisiti:
+\begin{itemize}
+	\item assenza di ambiguità;
+	\item correttezza;
+	\item completezza;
+	\item verificabilità;
+	\item consistenza;
+	\item modificabilità;
+	\item tracciabilità;
+	\item ordinamento per rilevanza.
+\end{itemize}
