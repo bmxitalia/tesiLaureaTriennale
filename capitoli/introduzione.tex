@@ -7,16 +7,16 @@
 \label{cap:introduzione}
 %**************************************************************
 
-Al giorno d'oggi la tecnologia sta ricoprendo un ruolo importante nei task di tutti i giorni. In particolare, è indispensabile che un'azienda venditrice di un qualsiasi tipo di prodotti abbia una propria piattaforma online per la gestione degli ordini. Questo perché le persone si stanno abituando sempre di più ad effetturare ordini online. Infatti acquistare online risulta vantaggioso per molteplici motivi, quali il risparmio di tempo e di denaro e soprattutto la comodità di non doversi muovere da casa per acquistare un prodotto. Per molte aziende non cogliere questo cambiamento potrebbe essere fallimentare, infatti, in futuro, la maggior parte degli acquisti avverrà principalmente online per ogni tipologia di prodotto.
+Al giorno d'oggi la tecnologia sta ricoprendo un ruolo importante nei task di tutti i giorni. In particolare, è indispensabile che un'azienda venditrice di un qualsiasi tipo di prodotti, abbia una propria piattaforma online per la gestione degli ordini. Questo perché le persone sono sempre più abituate ad effetturare ordini online. Infatti acquistare online risulta vantaggioso per molteplici motivi, quali il risparmio di tempo e di denaro e soprattutto la comodità di non doversi muovere da casa per acquistare un prodotto. Per molte aziende non cogliere questo cambiamento potrebbe essere fallimentare, infatti, in futuro, la maggior parte degli acquisti avverrà principalmente online per ogni tipologia di prodotto.
 
 MoviORDER nasce per rispondere a questa necessità, proponendosi come piattaforma universale per la registrazione e l'invio di ordini online. Una qualsiasi azienda interessata a vendere i propri prodotti online può contattare \visione{} per ricevere moviORDER. Dopo un breve periodo di scambio di informazioni riguardati clienti e prodotti, moviORDER sarà pronta a ricevere ordini online dagli utenti registrati. 
-I vantaggi di moviORDER sono:
+MoviORDER risulta vantaggiosa per i seguenti motivi:
 \begin{itemize}
 	\item per i clienti:
 	\begin{itemize}
 		\item possibilità di trovare i prodotti online e non solo nel negozio fisico;
 		\item possibilità di risparmiare tempo e denaro dovuto al raggiungimento del negozio fisico;
-		\item possibilità di avere controllo della disponibilità dei prodotti in tempo reale.
+		\item possibilità di controllare in tempo reale la disponibilità dei prodotti.
 	\end{itemize}
 	\item per le aziende:
 	\begin{itemize}
@@ -58,7 +58,7 @@ Movidat è un marchio di \visione{} che progetta e sviluppa applicazioni per dis
     \caption{Logo del marchio movidat}
 \end{figure}
 
-MoviORDER rientra tra le applicazioni del marchio movidat andando a soddisfare i bisogni del cliente finale dell'azienda. Infatti, moviORDER permette ai clienti di un'azienda di acquistare i prodotti della stessa direttamente dall'applicazione, installata sugli smartphone degli stessi.
+MoviORDER rientra tra le applicazioni del marchio movidat andando a soddisfare i bisogni del cliente finale dell'azienda. Infatti, moviORDER permette ai clienti di un'azienda di acquistare i prodotti della stessa direttamente da un'applicazione, installata sugli smartphone degli stessi.
 
 %**************************************************************
 \section{Offerta di stage}
@@ -78,9 +78,123 @@ Le aziende sono state scelte dallo studente per ambito e tecnologie di sviluppo 
 \end{itemize}
 Tra le varie offerte di stage, \visione{} rientrava in entrambe le preferenze, infatti proponeva un progetto di sviluppo di un'applicazione mobile tramite l'utilizzo di un framework cross-platfom. Nonostante lo stage non prevedesse lo sviluppo in codice nativo Android, permetteva comunque lo sviluppo di un'applicazione mobile. Inoltre, richiedendo l'utilizzo di un framework corss-platform per lo sviluppo era pressoché implicito l'utilizzo di tecnologie web, tra le quali anche Javascript. Per cui, il buon compromesso tra tecnologie conosciute e tecnologie ritenute interessanti ha favorito \visione{} tra le varie offerte analizzate.
 
+\newpage
+
 \section{Obiettivi e pianificazione}
 
+Il progetto prevedeva la realizzazione di un'applicazione mobile, principalmente Android e iOS, che consentisse ad un utente registrato, tramite la lettura di codici a barre o l'inserimento manuale di codici articolo, di inviare ordini di acquisto al proprio fornitore. L'azienda ha richiesto lo sviluppo delle seguenti funzionalità:
+\begin{itemize}
+	\item \textbf{login}: permette ad un utente di essere riconosciuto come cliente dell'azienda. Le credenziali di accesso vengono distribuite dall'azienda insieme all'applicazione;
+	\item \textbf{gestione del carrello}:
+	\begin{itemize}
+		\item \textbf{aggiunta di un nuovo articolo}: permette all'utente autenticato di aggiungere un nuovo articolo al carrello. L'aggiunta di un nuovo articolo prevede l'inserimento di un codice articolo, tramite scansione di un codice a barre o inserimento manuale e, successivamente, l'inserimento di una quantità da ordinare;
+		\item \textbf{modifica di un articolo}: permette all'utente autenticato di modificare la quantità di un articolo in carrello;
+		\item \textbf{selezione articoli}: permette all'utente autenticato di selezionare uno specifico articolo in carrello oppure tutti gli articoli;
+		\item \textbf{deselezione articoli}: permette all'utente autenticato di deselezionare uno specidico articolo in carrello oppure tutti gli articoli
+		\item \textbf{rimozione articoli}: permette all'utente autenticato di rimuovere gli articoli selezionati dal carrello;
+		\item \textbf{invio ordine}: permette all'utente autenticato di inviare un ordine composto dagli articoli selezionati in carrello.
+	\end{itemize}
+	\item \textbf{invio di e-mail di conferma}: nel caso in cui un ordine venga inviato con successo, il sistema deve inviare all'azienda e all'utente autenticato una mail di conferma contenente un riepilogo dell'ordine.
+\end{itemize}
+
+I prodotti attesi per il termine dello stage erano:
+\begin{itemize}
+	\item \textbf{analisi dei requisiti} per l'applicazione da realizzare: partendo dalle specifiche e dalla microanalisi ricevuta, lo stagista doveva definire le funzionalità offerte dall'applicazione, i dettagli dei \glossaryItem{web services} di comunicazione tra database e front-end, e l'interfaccia grafica dell'applicazione;
+	\item \textbf{applicazione moviORDER}: sviluppo dell'applicazione in ambiente multipiattaforma in seguito alla scelta del framework ritenuto più opportuno;
+	\item \textbf{manuali} utente e sviluppatore. 
+\end{itemize}
+
+Per adempiere a questi obblighi lo stagista ha pianificato delle attività che sono state concordate con il tutor aziendale. Lo stage prevedeva 320 ore di lavoro che sono state distribuite nel periodo tra l'inizio e la fine dello stage, 2 Luglio 2018 e 7 Settembre 2018 rispettivamente. La pianificazione oraria delle attività all'inizio dello stage è indicata nella seguente tabella.
+
+{\renewcommand{\arraystretch}{2}
+\begin{center}
+\begin{longtable}{ | >{\arraybackslash}p{11cm} | >{\centering\arraybackslash}p{1cm} | }
+        
+\hline
+\textbf{Attività} & \textbf{Ore} \\ \hline
+\endhead
+Formazione assistita sui software gestionali di \visione{} e sulle applicazioni analoghe a moviORDER & 40 \\ \hline
+Formazione individuale sui framework cross-platform e scelta del framework ritenuto più opportuno & 40 \\ \hline
+Ridefinizione delle specifiche comprendente delle soluzioni da realizzare e delle metodologie per implementarle & 40 \\ \hline
+Realizzazione dei \glossaryItem{web services} per l'interazione con il database: servizio di autenticazione, servizio di lettura dati, servizio di scrittura dati e servizio di invio e-mail & 40 \\ \hline
+Realizzazione della business logic dell'applicazione & 40 \\ \hline
+Realizzazione delle interfacce grafiche dell'applicazione: login, gestione carrello, aggiunta/modifica articolo e invio ordine & 40 \\ \hline
+Test di scambio dati tra VisionENTERPRISE e moviORDER & 40 \\ \hline
+Documentazione del codice e stesura del manuale utente e sviluppatore & 40 \\
+\hline
+\caption{Pianificazione oraria del periodo di stage}
+\end{longtable}
+\end{center}}
+
+Viene di seguito riportato un \glossaryItem{diagramma di Gantt} che illustra come le attività di stage sono state allocate nel tempo di calendario da parte dello stagista. Il diagramma mostra le dipendenze temporali tra le varie attività e il periodo di ferie che l'azienda ha concesso allo stagista, indicato in viola.
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=\columnwidth]{diagrammi/pianificazione} 
+    \caption{Diagramma di Gantt della pianificazione delle attività di stage}
+\end{figure}
+
+\newpage
+
 \section{Rischi}
+
+Parallelamente allo studio dei documenti forniti dal tutor aziendale, è stata sviluppata un'analisi preventiva dei rischi che sarebbero potuti verificarsi durante lo svolgimento delle attività di progetto. Al fine di attuare una corretta e quindi utile gestione dei rischi essi sono stati identificati nel contesto di processo e di prodotto. In seguito all'identificazione dei rischi sono state analizzate le probabilità di occorrenza e imminenza e l'impatto di ciasun rischio, pianificando come evitarne o mitigarne gli effetti. Durante lo svolgimento del progetto è stato costantemente eseguito un controllo per rilevare eventuali indicatori di rischio e ogni nuovo rischio rilevato è stato aggiunto alla seguente tabella insieme alle azioni atte a mitigarne gli effetti.
+
+\begin{small}
+    \begin{center}
+        \renewcommand{\arraystretch}{2}
+        \begin{longtable}{| >{\centering\arraybackslash}p{1.5cm} | >{\arraybackslash}p{4cm} | >{\centering\arraybackslash} p{2cm} | >{\arraybackslash} p{3.75cm}|}
+        	\hline
+            \textbf{Rischio} & \textbf{Descrizione} & \textbf{Grado} & \textbf{Mitigazione} \\
+            \hline
+            \endhead
+            
+            Tecnologie non conosciute
+            &
+            Il tempo richiesto per l'apprendimento delle nuove tecnologie da parte dello stagista
+            potrebbe causare ritardi nello sviluppo
+            &
+            Occorrenza: \textbf{Media} Pericolosità: \textbf{Media}
+            &
+            Effettuare una buona analisi iniziale delle tecnologie richieste ed usufruire del tempo di formazione per prendere dimestichezza con le tecnologie non conosciute
+         	\\
+            \hline
+            
+            Modifica dei requisiti
+            &
+            Nonostante i requisiti esposti inizialmente siano chiari, vi è la possibilità
+            che questi vengano modificati dal tutor aziendale
+            &
+            Occorrenza: \textbf{Bassa} Pericolosità: \textbf{Alta}
+            & 
+            Negoziare la modifica ai requisiti nel caso in cui siano richiesti cambiamenti eccessivi da parte del tutor aziendale
+            \\
+            \hline
+            
+            Stima dei tempi
+            &
+            Può accadere che lo stagista abbia pianificato erroneamente alcune attività e che durante lo sviluppo si sforino i tempi concordati
+            &
+            Occorrenza: \textbf{Media} Pericolosità: \textbf{Alta}
+            & 
+            Agire tempestivamente sulla pianificazione, ove possibile, nei casi più gravi. Pianificare in maniera intelligente inserendo dei \glossaryItem{periodi di slack} tra le attività ritenute più critiche
+            \\
+            \hline
+            
+            Difficoltà nelle interazioni
+            &
+            Durante lo stage le interazioni avvengono spesso tramite scambio di e-mail tra lo stagista e il tutor aziendale. Può succedere che alcune risposte arrivino in tempi prolungati causando tempi morti nello sviluppo dell'applicazione
+            &
+            Occorrenza: \textbf{Bassa} Pericolosità: \textbf{Media}
+            & 
+            Se il problema dovesse diventare ingestibile proporre al tutor aziendale l'utilizzo di uno strumento di comunicazione alternativo, altrimenti presentarsi fisicamente in ufficio del tutor aziendale per discutere delle problematiche di maggiore entità
+            \\
+            \hline
+            \caption{Analisi dei rischi}
+        \end{longtable}
+    \end{center}
+\end{small}
+
 
 %**************************************************************
 \section{Organizzazione del testo}
