@@ -1,0 +1,104 @@
+% !TEX encoding = UTF-8
+% !TEX TS-program = pdflatex
+% !TEX root = ../tesi.tex
+
+%**************************************************************
+\chapter{Background tecnologico}
+%**************************************************************
+
+Lo scopo di questo capitolo è la presentazione delle tecnologie utilizzate durante lo sviluppo di moviORDER. La realizzazione dell'applicazione ha permesso l'apprendimento di nuove tecnologie e l'approfondimento di tecnologie già in parte conosciute. Alcune delle tecnologie sono state scelte dallo stagista in seguito al completamento dell'analisi dei requisiti mentre la maggior parte sono state imposte dal tutor aziendale e dal dominio del problema. Le tecnologie scelte dallo stagista sono state concordate con il tutor aziendale e con i programmatori di \visione{}. Le prossime sezioni presentano le tecnologie in base al contesto in cui sono state utilizzate.
+
+\section{Framework}	
+
+La presentazione delle tecnologie utilizzate per lo sviluppo di moviORDER inizia dalla scelta del framework, in quanto la scelta del framework ha determinato la scelta dei linguaggi di programmazione atti al suo sviluppo. Per lo sviluppo del progetto è stato imposto l'utilizzo di un framework cross-platform in quanto è stata richiesta la realizzazione di un'applicazione che funzionasse in ambiente Android e iOS. Data la diversità delle tecnologie richieste per lo sviluppo di codice nativo Android e iOS, e la limitata quantità di tempo a disposizione per la realizzazione del progetto, un framework cross-platform era l'unica possibilità per portare a termine il progetto in maniera soddisfacente. Allo stagista era permesso di scegliere tra due \glossaryItem{framework cross-platform}: Xamarin e PhoneGap. Vengono di seguito descritti:
+\begin{enumerate}
+	\item le motivazioni alla base dei framework cross-platform;
+	\item gli approcci alla base dei framework cross-platform;
+	\item il framework Xamarin;
+	\item il framework PhoneGap;
+	\item le motivazioni che hanno portato PhoneGap a prevalere su Xamarin.
+\end{enumerate}
+
+\subsection{Motivazioni alla base dei framework cross-platform}
+
+Al giorno d'oggi è inpensabile realizzare un'applicazione mobile per una sola piattaforma perché il mercato è purtroppo eccessivamente frammentato. Quindi se si dovesse scegliere di sviluppare un'applicazione per una sola piattaforma si perderebbe una potenziale fetta di mercato e quindi di clienti. La seguente figura mostra, a scopi illustrativi, la frammentazione del mercato italiano nel 2016.
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=\columnwidth]{tecnologie/mercato} 
+    \caption{Frammentazione SO del mercato italiano nel 2016}
+\end{figure}
+
+Compresa la necessità di sviluppare più versioni della medesima applicazione in diverse piattaforme, il problema si sposta sulle risorse economiche e sul tempo che si ha a disposizione per lo sviluppo. Infatti lo sviluppo in differenti piattaforme comporta l'utilizzo di differenti linguaggi di programmazione e quindi la necessità di più programmatori esperti, precisamente almeno uno per piattaforma. Altre variabili di cui tener conto sono inoltre gli strumenti di sviluppo necessari, le API che si hanno a disposizione e fattori quali i sensori disponibili sui dispositivi, la dimensione degli schermi e le capacità di calcolo differenti.
+
+L'obiettivo che i framework cross-platform cercano di raggiungere è la risoluzione di tutti questi problemi in maniera efficiente ed efficace in termini di risorse utilizzate, quindi, più precisamente, di ridurre gli effetti negativi della frammentazione del mercato.
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=\columnwidth]{tecnologie/framework} 
+    \caption{Possibilità dei framework cross-platform}
+\end{figure}
+
+Per raggiungere questo obiettivo i framework cross-platform permettono l'utilizzo di un solo linguaggio di programmazione, o di un insieme ristretto di linguaggi, per lo sviluppo di un unico codice sorgente che poi viene in secondo luogo convertito nel codice nativo delle piattaforme sulle quali si desidera distribuire l'applicazione. 
+
+Infine, dati oggettivi dimostrano che l'utilizzo di framework cross-platform ha portato ad un risparmio di risorse economiche nell'80\% dei casi e ad un risparmio di tempo nell'83\% dei casi.
+
+\subsection{Approcci alla base dei framework cross-platform}
+
+Per la scelta del framework cross-platform più idoneo per un determinato problema è necessario studiare gli approcci secondo i quali i framework permettono la distribuzione su varie piattaforme. Esistono principalmente quattro approcci secondo i quali i framework possono essere classificati:
+\begin{itemize}
+	\item approccio web;
+	\item approccio ibrido;
+	\item approccio interpretato;
+	\item approccio cross-compiled.
+\end{itemize}
+
+In questa tesi vengono presentati solamente l'approccio ibrido e quello interpretato, poiché utilizzati dai framework proposti dal tutor aziendale.
+
+L'approccio ibrido si interpone tra la realizzazione di un'applicazione web e lo sviluppo di un'applicazione mobile in codice nativo. In questo tipo di approccio l'applicazione viene sviluppata utilizzando tecnologie web ed eseguita all'interno di un container nativo sul dispositivo mobile. Per eseguire l'applicazione viene utilizzato il motore di rendering del browser del dispositivo mobile che si occupa di interpretare e visualizzare il contenuto HTML dell'applicazione tramite una visualizzazione web a schermo intero. L'accesso alle funzionalità native offerte dal dispositivo mobile è permesso grazie ad un livello astratto che si interpone tra l'applicazione ibrida e tali funzionalità. Questo livello astratto espone le funzionalità tramite API Javascript. 
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=\columnwidth]{tecnologie/ibrido} 
+    \caption{Architettura di un'applicazione ibrida}
+\end{figure}
+
+Nel caso delle applicazioni interpretate il codice sorgente dell'applicazione viene distribuito sul dispositivo mobile e in seguito interpretato da un interprete che si occupa di eseguire il codice a run-time. Anche in questo caso le funzionalità native vengono rese disponibili da un livello astratto. La caratteristica principale dell'interprete è che eseguendo il codice sorgente su differenti piattaforme, esso supporta lo sviluppo cross-platform delle applicazioni. L'applicazione interpretata interagisce con il livello astratto per accedere alle API native. Uno dei vantaggi dell'approccio interpretato è che utilizza elementi delle specifiche interfacce utente native per l'interazione utente. Infine, la logica applicativa è catturata in maniera del tutto indipendente dalla piattaforma sulla quale l'applicazione viene eseguita.
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=\columnwidth]{tecnologie/interpretato} 
+    \caption{Architettura di un'applicazione interpretata}
+\end{figure}
+
+\subsection{Xamarin}
+
+Si tratta di un framework cross-platform di proprietà dell'azienda Microsoft che utilizza due approcci differenti, l'approccio interpretato per l'ambiente Android e Windows, e l'approccio compilato per l'ambiente iOS. Più precisamente, per le piattaforme Android e Windows è possibile generare l'applicazione direttamente tramite i tool messi a disposizione dal framework e successivamente distribuirla sui rispettivi store, mentre per la piattaforma iOS è necessario un passo aggiuntivo. È richiesto, infatti, il passaggio per una macchina Apple che abbia installato XCode per eseguire la compilazione dell'applicazione. Infine, Xamarin richiede che venga utilizzato il linguaggio C\# per lo sviluppo dell'applicazione. Nella figura sottostante viene presentata l'architettura di Xamarin.
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=\columnwidth]{tecnologie/xamarinArchitecture} 
+    \caption{Architettura del framework Xamarin}
+\end{figure}
+
+\subsection{PhoneGap}
+
+Si tratta di un framework cross-platform di proprietà dell'azienda Apache che utilizza un approccio di tipo ibrido. Quindi permette la realizzazione di applicazioni mobile tramite l'utilizzo di tecnologie web, che sono al giorno d'oggi strumenti conosciuti da tutti gli sviluppatori. L'accesso ai componenti hardware dei dispositivi mobile è permesso grazie all'utilizzo di plug-in scaricabili dalla pagina ufficiale del framework. Vantaggi importanti del framework sono la presenza di documentazione completa i plugin e la presenza di una community grande e sempre disponibile. Infine PhoneGap rende disponibili degli strumenti che facilitano lo sviluppo dell'applicazione: PhoneGap Desktop App, PhoneGap CLI, PhoneGap App e PhoneGap Build. I primi tre strumenti fanno parte dell'ambiente di sviluppo utilizzato durante lo stage e verranno descritti successivamente. PhoneGap Build è uno strumento che permette la build dell'applicazione direttamente su un server cloud Adobe a partire da un file zip contenente la cartella con il codice sorgente dell'applicazione. In seguito alla build è possibile generare e scaricare automaticamente l'applicazione per Windows o per Android. Per quanto riguarda iOS è necessario fornire i certificati richiesti da Apple per la distribuzione dell'applicazione. Nella figura sottostante viene presentata l'architettura di PhoneGap.
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=\columnwidth]{tecnologie/phonegapArchitecture} 
+    \caption{Architettura del framework PhoneGap}
+\end{figure}
+
+\subsection{La scelta di PhoneGap}
+
+Lo stagista ha optato per il framework PhoneGap per tre motivi sostanziali:
+\begin{enumerate}
+	\item \textbf{linguaggio di programmazione}: PhoneGap richiedeva l'utilizzo di tecnologie web, già conosciute e apprese dallo stagista all'Università. Lo studio del linguaggio C\#, utilizzato da Xamarin, avrebbe richiesto un periodo di formazione che avrebbe sforato le 40 ore messe a disposizione per la formazione sulle tecnologie;
+	\item \textbf{linguaggio Javascript}: come detto precedentemente lo stagista era interessato ad approfondire il linguaggio Javascript, richiesto al giorno d'oggi dalla maggior parte delle aziende che si occupano della realizzazione di applicazioni web;
+	\item \textbf{facilità nello sviluppo dell'interfaccia grafica}: utilizzando tecnologie web risultava semplice progettare e sviluppare un'interfaccia grafica \glossaryItem{responsive}, e quindi in grado di adattarsi alla maggior parte dei dispositivi mobile presenti sul mercato.
+\end{enumerate}
+
+
+
