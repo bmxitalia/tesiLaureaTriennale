@@ -6,11 +6,11 @@
 \chapter{Background tecnologico}
 %**************************************************************
 
-Lo scopo di questo capitolo è la presentazione delle tecnologie utilizzate durante lo sviluppo di moviORDER. La realizzazione dell'applicazione ha permesso l'apprendimento di nuove tecnologie e l'approfondimento di tecnologie già in parte conosciute. Alcune delle tecnologie sono state scelte dallo stagista in seguito al completamento dell'analisi dei requisiti mentre la maggior parte sono state imposte dal tutor aziendale e dal dominio del problema. Le tecnologie scelte dallo stagista sono state concordate con il tutor aziendale e con i programmatori di \visione{}. Le prossime sezioni presentano le tecnologie in base al contesto in cui sono state utilizzate.
+Lo scopo di questo capitolo è la presentazione delle tecnologie utilizzate durante lo sviluppo di moviORDER. La realizzazione dell'applicazione ha permesso l'apprendimento di nuove tecnologie e l'approfondimento di alcune già in parte conosciute. Parte delle tecnologie sono state scelte dallo stagista in seguito al completamento dell'analisi dei requisiti, mentre la maggior parte sono state imposte dal tutor aziendale o dal dominio del problema. Le tecnologie scelte dallo stagista sono state concordate con il team di sviluppo di \visione{}. Le prossime sezioni presentano le tecnologie in base al contesto in cui sono state utilizzate.
 
 \section{Framework}	
 
-La presentazione delle tecnologie utilizzate per lo sviluppo di moviORDER inizia dalla scelta del framework, in quanto la scelta del framework ha determinato la scelta dei linguaggi di programmazione atti al suo sviluppo. Per lo sviluppo del progetto è stato imposto l'utilizzo di un framework cross-platform in quanto è stata richiesta la realizzazione di un'applicazione che funzionasse in ambiente Android e iOS. Data la diversità delle tecnologie richieste per lo sviluppo di codice nativo Android e iOS, e la limitata quantità di tempo a disposizione per la realizzazione del progetto, un framework cross-platform era l'unica possibilità per portare a termine il progetto in maniera soddisfacente. Allo stagista era permesso di scegliere tra due \glossaryItem{framework cross-platform}: Xamarin e PhoneGap. Vengono di seguito descritti:
+La presentazione delle tecnologie utilizzate per lo sviluppo di moviORDER inizia dalla scelta del framework, in quanto la scelta del framework ha importo l'utilizzo di parte dei linguaggi di programmazione usati durante il periodo di stage. Per lo sviluppo del progetto è stato imposto l'utilizzo di un framework cross-platform in quanto è stata richiesta la realizzazione di un'applicazione che funzionasse in ambiente Android e iOS. Data la diversità delle tecnologie richieste per lo sviluppo di codice nativo Android e iOS, e la limitata quantità di tempo a disposizione per la realizzazione del progetto, l'utilizzo di un framework cross-platform era migliore soluzione per portare a termine il progetto nei tempi richiesti. Allo stagista era permesso di scegliere tra due \glossaryItem{framework cross-platform}: Xamarin e PhoneGap.\\ Vengono di seguito descritti:
 \begin{enumerate}
 	\item le motivazioni alla base dei framework cross-platform;
 	\item gli approcci alla base dei framework cross-platform;
@@ -21,7 +21,7 @@ La presentazione delle tecnologie utilizzate per lo sviluppo di moviORDER inizia
 
 \subsection{Motivazioni alla base dei framework cross-platform}
 
-Al giorno d'oggi è inpensabile realizzare un'applicazione mobile per una sola piattaforma perché il mercato è purtroppo eccessivamente frammentato. Quindi se si dovesse scegliere di sviluppare un'applicazione per una sola piattaforma si perderebbe una potenziale fetta di mercato e quindi di clienti. La seguente figura mostra, a scopi illustrativi, la frammentazione del mercato italiano nel 2016.
+Al giorno d'oggi è inpensabile realizzare un'applicazione mobile per una sola piattaforma perché il mercato è eccessivamente frammentato. Quindi se si dovesse scegliere di sviluppare un'applicazione per una sola piattaforma si perderebbe una potenziale parte di mercato e quindi di clienti. La seguente figura mostra, a scopi illustrativi, la frammentazione del mercato italiano nel 2016.
 
 \begin{figure}[!h] 
     \centering 
@@ -29,23 +29,23 @@ Al giorno d'oggi è inpensabile realizzare un'applicazione mobile per una sola p
     \caption{Frammentazione SO del mercato italiano nel 2016}
 \end{figure}
 
-Compresa la necessità di sviluppare più versioni della medesima applicazione in diverse piattaforme, il problema si sposta sulle risorse economiche e sul tempo che si ha a disposizione per lo sviluppo. Infatti lo sviluppo in differenti piattaforme comporta l'utilizzo di differenti linguaggi di programmazione e quindi la necessità di più programmatori esperti, precisamente almeno uno per piattaforma. Altre variabili di cui tener conto sono inoltre gli strumenti di sviluppo necessari, le API che si hanno a disposizione e fattori quali i sensori disponibili sui dispositivi, la dimensione degli schermi e le capacità di calcolo differenti.
+Compresa la necessità di sviluppare più versioni della medesima applicazione in diverse piattaforme, il problema si sposta sulle risorse economiche e sul tempo che si ha a disposizione per lo sviluppo. Infatti lo sviluppo in differenti piattaforme comporta l'utilizzo di differenti linguaggi di programmazione e quindi la necessità di più programmatori esperti, precisamente almeno uno per piattaforma. Altre variabili di cui tener conto sono gli strumenti di sviluppo necessari, le API che si hanno a disposizione e fattori quali i sensori disponibili sui dispositivi, la dimensione degli schermi e le capacità di calcolo differenti.
 
 L'obiettivo che i framework cross-platform cercano di raggiungere è la risoluzione di tutti questi problemi in maniera efficiente ed efficace in termini di risorse utilizzate, quindi, più precisamente, di ridurre gli effetti negativi della frammentazione del mercato.
 
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=\columnwidth]{tecnologie/framework} 
-    \caption{Possibilità dei framework cross-platform}
+    \caption{L'obiettivo dei framework cross-platform}
 \end{figure}
 
-Per raggiungere questo obiettivo i framework cross-platform permettono l'utilizzo di un solo linguaggio di programmazione, o di un insieme ristretto di linguaggi, per lo sviluppo di un unico codice sorgente che poi viene in secondo luogo convertito nel codice nativo delle piattaforme sulle quali si desidera distribuire l'applicazione. 
+Per raggiungere questo obiettivo i framework cross-platform permettono l'utilizzo di un solo linguaggio di programmazione, o di un insieme ristretto di linguaggi, per lo sviluppo di un unico codice sorgente che viene poi in secondo luogo convertito nel codice nativo delle piattaforme sulle quali si desidera distribuire l'applicazione. 
 
-Infine, dati oggettivi dimostrano che l'utilizzo di framework cross-platform ha portato ad un risparmio di risorse economiche nell'80\% dei casi e ad un risparmio di tempo nell'83\% dei casi.
+Per concludere, dati oggettivi dimostrano che durante il 2016 l'utilizzo dei framework cross-platform ha portato ad un risparmio in termini di risorse economiche nell'80\% dei casi e ad un risparmio di tempo nell'83\% dei casi.
 
 \subsection{Approcci alla base dei framework cross-platform}
 
-Per la scelta del framework cross-platform più idoneo per un determinato problema è necessario studiare gli approcci secondo i quali i framework permettono la distribuzione su varie piattaforme. Esistono principalmente quattro approcci secondo i quali i framework possono essere classificati:
+Per la scelta del framework cross-platform più idoneo al problema è stato richiesto di studiare gli approcci secondo i quali i framework permettono la distribuzione su varie piattaforme. Esistono principalmente quattro approcci in base ai quali i framework possono essere classificati:
 \begin{itemize}
 	\item approccio web;
 	\item approccio ibrido;
@@ -59,7 +59,7 @@ L'approccio ibrido si interpone tra la realizzazione di un'applicazione web e lo
 
 \begin{figure}[!h] 
     \centering 
-    \includegraphics[width=\columnwidth]{tecnologie/ibrido} 
+    \includegraphics[width=0.9\columnwidth]{tecnologie/ibrido} 
     \caption{Architettura di un'applicazione ibrida}
 \end{figure}
 
@@ -67,9 +67,11 @@ Nel caso delle applicazioni interpretate il codice sorgente dell'applicazione vi
 
 \begin{figure}[!h] 
     \centering 
-    \includegraphics[width=\columnwidth]{tecnologie/interpretato} 
+    \includegraphics[height=8cm,width=0.6\columnwidth]{tecnologie/interpretato} 
     \caption{Architettura di un'applicazione interpretata}
 \end{figure}
+
+\newpage
 
 \subsection{Xamarin}
 
@@ -77,19 +79,28 @@ Si tratta di un framework cross-platform di proprietà dell'azienda Microsoft ch
 
 \begin{figure}[!h] 
     \centering 
-    \includegraphics[width=\columnwidth]{tecnologie/xamarinArchitecture} 
+    \includegraphics[width=0.9\columnwidth]{tecnologie/xamarinArchitecture} 
     \caption{Architettura del framework Xamarin}
 \end{figure}
 
 \subsection{PhoneGap}
 
-Si tratta di un framework cross-platform di proprietà dell'azienda Apache che utilizza un approccio di tipo ibrido. Quindi permette la realizzazione di applicazioni mobile tramite l'utilizzo di tecnologie web, che sono al giorno d'oggi strumenti conosciuti da tutti gli sviluppatori. L'accesso ai componenti hardware dei dispositivi mobile è permesso grazie all'utilizzo di plug-in scaricabili dalla pagina ufficiale del framework. Vantaggi importanti del framework sono la presenza di documentazione completa i plugin e la presenza di una community grande e sempre disponibile. Infine PhoneGap rende disponibili degli strumenti che facilitano lo sviluppo dell'applicazione: PhoneGap Desktop App, PhoneGap CLI, PhoneGap App e PhoneGap Build. I primi tre strumenti fanno parte dell'ambiente di sviluppo utilizzato durante lo stage e verranno descritti successivamente. PhoneGap Build è uno strumento che permette la build dell'applicazione direttamente su un server cloud Adobe a partire da un file zip contenente la cartella con il codice sorgente dell'applicazione. In seguito alla build è possibile generare e scaricare automaticamente l'applicazione per Windows o per Android. Per quanto riguarda iOS è necessario fornire i certificati richiesti da Apple per la distribuzione dell'applicazione. Nella figura sottostante viene presentata l'architettura di PhoneGap.
+Si tratta di un framework cross-platform di proprietà dell'azienda Apache che utilizza un approccio di tipo ibrido. Quindi permette la realizzazione di applicazioni mobile tramite l'utilizzo di tecnologie web, che sono al giorno d'oggi strumenti conosciuti da tutti gli sviluppatori. L'accesso ai componenti hardware dei dispositivi mobile è permesso grazie all'utilizzo di plug-in scaricabili dalla pagina ufficiale del framework. Vantaggi importanti del framework sono la presenza di documentazione completa i plugin e la presenza di una community grande e sempre disponibile. Infine PhoneGap rende disponibili degli strumenti che facilitano lo sviluppo dell'applicazione: PhoneGap Desktop App, PhoneGap CLI, PhoneGap App e PhoneGap Build. I primi tre strumenti fanno parte dell'ambiente di sviluppo utilizzato durante lo stage e verranno descritti successivamente. PhoneGap Build è uno strumento che permette la build dell'applicazione direttamente su un server cloud Adobe a partire da un file zip contenente la cartella con il codice sorgente dell'applicazione. In seguito alla build è possibile generare e scaricare automaticamente l'applicazione per Windows o per Android. Per quanto riguarda iOS è necessario fornire i certificati richiesti da Apple per la distribuzione dell'applicazione. Nelle figure nella pagina successiva vengono presentate l'architettura di PhoneGap e una figura illustrativa di PhoneGap Build.
 
 \begin{figure}[!h] 
     \centering 
-    \includegraphics[width=\columnwidth]{tecnologie/phonegapArchitecture} 
+    \includegraphics[width=0.8\columnwidth]{tecnologie/phonegapArchitecture} 
     \caption{Architettura del framework PhoneGap}
 \end{figure}
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=\columnwidth]{tecnologie/phonegapBuild} 
+    \caption{Figura illustrativa di PhoneGap Build}
+\end{figure}
+
+\newpage
+
 
 \subsection{La scelta di PhoneGap}
 
@@ -99,6 +110,108 @@ Lo stagista ha optato per il framework PhoneGap per tre motivi sostanziali:
 	\item \textbf{linguaggio Javascript}: come detto precedentemente lo stagista era interessato ad approfondire il linguaggio Javascript, richiesto al giorno d'oggi dalla maggior parte delle aziende che si occupano della realizzazione di applicazioni web;
 	\item \textbf{facilità nello sviluppo dell'interfaccia grafica}: utilizzando tecnologie web risultava semplice progettare e sviluppare un'interfaccia grafica \glossaryItem{responsive}, e quindi in grado di adattarsi alla maggior parte dei dispositivi mobile presenti sul mercato.
 \end{enumerate}
+
+\section{Ambiente di sviluppo}
+
+Durante il periodo di stage è stato utilizzato uno specifico ambiente di lavoro, comprendente tecnologie in parte imposte dal tutor aziendale e in parte scelte dallo stagista. La qualità di queste tecnologie ha impatto diretto sulla qualità di processo e quindi sulla qualità di prodotto, per cui è importante tenere l'ambiente di lavoro costantemente completo, ordinato e aggiornato. Per ottenere questo, lo stagista ha dovuto analizzare le tecnologie scelte per assicurarsi che fossero le più adatte per il dominio del problema.
+
+\subsection{Suite di PhoneGap}
+
+La suite di PhoneGap ha costituito parte fondamentale dell'ambiente di lavoro. Sono stati utilizzati i seguenti software della suite:
+\begin{itemize}
+	\item PhoneGap Desktop App: utilizzata inizialmente per prendere dimestichezza con il framework;
+	\item PhoneGap CLI: utilizzata dopo aver preso dimestichezza con il framework;
+	\item PhoeGap App: utilizzata inizialmente per testare l'applicazione generata dal framework.
+\end{itemize}
+
+PhoneGap Desktop App è un'applicazione installabile su Windows o Mac con la quale è possibile iniziare ad utilizzare il framework con estrema facilità. Essa fornisce un'interfaccia grafica per la creazione, la gestione e il testing di progetti PhoneGap. Per testare l'applicazione è sufficiente essere in possesso di un dispositivo Android con installata l'applicazione PhoneGap App. L'applicazione in versione iOS è stata rimossa dall'App Store per non aver passato i controlli di qualità Apple.
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.8\columnwidth]{tecnologie/phonegapDesktop} 
+    \caption{PhoneGap Desktop App}
+\end{figure}
+
+PhoneGap CLI estende le funzionalità offerte da PhoneGap Desktop App tramite un'interfaccia a riga di comando. Tale applicazione era lo strumento principale per l'utilizzo di PhoneGap prima della creazione dell'app desktop. PhoneGap CLI può essere utilizzata singolarmente o insieme a PhoneGap Desktop App e/o PhoneGap Build.
+
+PhoneGap App è un'applicazione mobile, installabile solamente su dispositivi Android, con la quale è possibile testare l'applicazione PhoneGap senza generare ed installare nessun file applicazione. Per testare l'applicazione è sufficiente avviare l'esecuzione del progetto su PhoneGap Desktop App e collegare il computer di sviluppo e il dispositivo su cui è installata PhoneGap App alla stessa rete Wi-Fi. Dopo aver completato questi semplici passaggi viene richiesto di inserire su PhoneGap App l'indirizzo di rete su cui il progetto è stato messo in esecuzione da PhoneGap Desktop App. Dopo aver inserito questo indirizzo la reale applicazione verrà visualizzata sullo smartphone e sarà possibile testarla completamente.
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.8\columnwidth]{tecnologie/phonegapCLIApp} 
+    \caption{PhoneGap CLI e PhoneGap App}
+\end{figure}
+
+\subsection{Editor e IDE}
+
+\subsubsection{Sublime Text 3.0}
+
+Per lo sviluppo del progetto PhoneGap è stato utilizzato l'editor Sublime Text 3.0, ritenuto dallo stagista il più semplice e leggero per la realizzazione di applicazioni web. 
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.8\columnwidth]{tecnologie/sublime} 
+    \caption{Logo di Sublime Text 3.0}
+\end{figure}
+
+\subsubsection{Android Studio}
+
+Durante lo stage l'applicazione Android generata tramite i tool offerti dal framework PhoneGap non era soddisfacente, spesso non funzionava o l'interfaccia grafica non rispecchiava quella desiderata. Per cui è stato necessario installare Android Studio per applicare gli accorgimenti in codice nativo necessari a rendere l'app usabile. Android Studio è un ambiente di sviluppo integrato (IDE) basato sul software di JetBrains IntelliJ IDEA e progettato specificamente per lo sviluppo di applicazioni Android.
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.8\columnwidth]{tecnologie/androidStudio} 
+    \caption{Logo di Android Studio}
+\end{figure}
+
+\subsubsection{XCode}
+
+Durante lo stage l'applicazione iOS generata tramite i tool offerti dal framework PhoneGap non era soddisfacente, spesso non funzionava o l'interfaccia grafica non rispecchiava quella desiderata. Per cui è stato necessario installare XCode per applicare gli accorgimenti in codice nativo necessari a rendere l'app usabile. Xcode è un ambiente di sviluppo integrato (IDE) contenente una suite di strumenti utili allo sviluppo di software per i sistemi macOS, iOS, watchOS e tvOS. È completamente sviluppato e mantenuto da Apple.
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.8\columnwidth]{tecnologie/xCode} 
+    \caption{Logo di XCode}
+\end{figure}
+
+\subsubsection{Eclipse JEE}
+
+Durante lo stage è stata richiesta la realizzazione di un servizio web che si interponesse tra la logica applicativa di moviORDER e il database presente sul server Azure di \visione{}. Il servizio web è stato realizzato in linguaggio Java tramite l'utilizzo di oggetti servlet. Per la realizzazione degli oggetti servlet è stato utilizzato l'IDE Eclipse JEE che offre buoni strumenti per lo sviluppo di applicazioni web Java. Eclipse è un ambiente di sviluppo integrato multi-linguaggio e multipiattaforma, ideato da un consorzio di grandi società quali Ericsson, HP, IBM, Intel, MontaVista Software, QNX, SAP e Serena Software, chiamato Eclipse Foundation.
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.8\columnwidth]{tecnologie/eclipse} 
+    \caption{Logo di Eclipse}
+\end{figure}
+
+\subsection{Gestione DBMS}
+parlare di server management studio
+
+\subsection{Server web}
+scrivere di apache tomcat
+
+\subsection{Cloud computing}
+scrivere di azure e accesso remoto windows
+
+\subsection{Strumenti di testing}
+parlare di postman e della console di chrome
+
+\subsection{Strumenti di versioning e ticketing}
+asana e github
+
+\subsection{Strumenti di modellazione e documentazione}
+astah e texmaker, gantt project
+
+\subsection{Linguaggi di programmazione, murkup}
+
+\subsubsection{HTML5, CSS3 e JavaScript}
+
+\subsubsection{Java}
+
+\subsubsection{\LaTeX{}}
+
+\subsection{DBMS}
+scrivere di sql server
 
 
 
