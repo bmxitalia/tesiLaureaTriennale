@@ -185,16 +185,52 @@ Durante lo stage è stata richiesta la realizzazione di un servizio web che si i
 \end{figure}
 
 \subsection{Gestione DBMS}
-parlare di server management studio
+
+Durante il progetto è stato utilizzato il DBMS Microsoft SQL Server. Per una gestione veloce ed ottimale dello stesso si è deciso di usare il software SQL Server Management Studio. SQL Server Management Studio (SSMS) è un'applicazione software usata per configurare, gestire e amministrare database, in locale o su un server cloud, con il DBMS Microsoft SQL Server. 
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.8\columnwidth]{tecnologie/ssms} 
+    \caption{Screenshot di SQL Server Management Studio}
+\end{figure}
 
 \subsection{Server web}
-scrivere di apache tomcat
+
+Per lo sviluppo del progetto è stato realizzato un servizio web che fornisce una API all'applicazione per poter accedere ai dati contenuti nel database sul server cloud di \visione{}. Per permettere l'esecuzione del servizio web sul server cloud si è utilizzato Apache Tomcat. Apache Tomcat (o semplicemente Tomcat) è un web server (nella forma di contenitore servlet) open source sviluppato dalla Apache Software Foundation. Implementa le specifiche JavaServer Pages (JSP) e servlet, fornendo quindi una piattaforma software per l'esecuzione di applicazioni Web sviluppate in linguaggio Java.
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.8\columnwidth]{tecnologie/tomcat} 
+    \caption{Logo di Apache Tomcat}
+\end{figure}
 
 \subsection{Cloud computing}
-scrivere di azure e accesso remoto windows
+
+Il database con il quale l'applicazione interagisce per offrire le funzionalità all'utente risiede su un server cloud di \visione{}. Tale server è di proprietà di Microsoft Azure. Microsoft Azure (precedentemente nota come Windows Azure) è la piattaforma cloud pubblica di Microsoft, che offre servizi di cloud computing. Tramite Azure vengono erogati servizi appartenenti a diverse categorie quali: risorse di elaborazione, archiviazione e memorizzazione dati, trasmissione dati e interconnessione di reti, analisi, intelligence, apprendimento automatico, sicurezza e gestione delle identità, monitoraggio e gestione, nonché servizi per lo sviluppo di applicazioni.
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.8\columnwidth]{tecnologie/azure} 
+    \caption{Logo di Microsoft Azure}
+\end{figure}
 
 \subsection{Strumenti di testing}
-parlare di postman e della console di chrome
+
+Durante lo sviluppo di moviORDER sono stati eseguiti dei test per verificare il corretto funzionamento del servizio web e dell'applicazione. Per il test delle API del servizio web si è utilizzato Postman. Postman è uno strumento di API testing che permette di testare API direttamente, o come parte di test d'integrazione, per determinare se soddisfano criteri di funzionalità, affidabilità, performance e sicurezza. Nel caso di moviORDER, il test avviene tramite l'invio di una richiesta HTTP POST, con parametri impostabili, alla API sul server cloud. In seguito alla richiesta il software visualizza il JSON restituito dalla API e lo sviluppatore può verificare se la risposta del servizio è quella attesa.
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.8\columnwidth]{tecnologie/postman} 
+    \caption{Logo di Postman}
+\end{figure}
+
+Per testare il corretto funzionamento dell'applicazione si è utilizzata la console del browser Google Chrome facente parte degli strumenti offerti dallo stesso per gli sviluppatori web. Tramite la console è stato possibile verificare la logica applicativa di moviORDER, poiché scritta in JavaScript.
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.8\columnwidth]{tecnologie/console} 
+    \caption{Screenshot della console di Google Chrome}
+\end{figure}
 
 \subsection{Strumenti di versioning e ticketing}
 asana e github
@@ -202,7 +238,7 @@ asana e github
 \subsection{Strumenti di modellazione e documentazione}
 astah e texmaker, gantt project
 
-\subsection{Linguaggi di programmazione, murkup}
+\subsection{Linguaggi di programmazione e murkup}
 
 \subsubsection{HTML5, CSS3 e JavaScript}
 
