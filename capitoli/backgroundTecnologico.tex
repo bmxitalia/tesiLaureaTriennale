@@ -233,14 +233,65 @@ Per testare il corretto funzionamento dell'applicazione si è utilizzata la cons
 \end{figure}
 
 \subsection{Strumenti di versioning e ticketing}
-asana e github
+
+Per scelta dello stagista il progetto è stato sottoposto a controllo di versione in ogni sua parte: applicazione, servizio web e documentazione. Questo ha permesso, principalmente nel caso dell'applicazione, di tornare a \glossaryItem{baseline} sicure nel caso di sovrascritture o perdite accidentali, o commit di codice con errori di programmazione. Per il controllo di versione si è utilizzato lo strumento Git e in particolare il servizio di hosting GitHub. Lo stagista ha scelto tali software perché già utilizzati in progetti didattici durante l'Università.
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.8\columnwidth]{tecnologie/git} 
+    \caption{Logo di GitHub}
+\end{figure}
+
+Lo stagista ha scelto inoltre di utilizzare uno strumento di ticketing per facilitare la pianificazione del progetto. Lo strumento scelto è Asana. Asana è un'applicazione web e mobile progettata per aiutare i team ad organizzare, tracciare e gestire il loro lavoro. In particolare lo strumento è stato utilizzato per dare una scadenza ai ticket in base alla pianificazione decisa insieme al tutor aziendale all'inizio del periodo di stage.
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.8\columnwidth]{tecnologie/asana} 
+    \caption{Logo di Asana}
+\end{figure}
 
 \subsection{Strumenti di modellazione e documentazione}
-astah e texmaker, gantt project
+
+Il progetto ha richiesto lo sviluppo di diagrammi di Gantt in fase di pianificazione e di diagrammi UML in fase di analisi dei requisiti e di progettazione. Per la costruzione dei diagrammi di Gantt è stato utilizzato il software Gantt Project, mentre per la costruzione dei diagrammi UML dei casi d'uso e delle classi è stato utilizzato il software Astah UML. I software sono stati scelti perché già appresi durante il progetto di Ingegneria del Software.
+
+\begin{figure}[!h] 
+    \centering 
+    	\subfloat{\includegraphics[width=0.3\columnwidth]{tecnologie/gantt}}
+    	\subfloat{\includegraphics[width=0.3\columnwidth]{tecnologie/astah}} 
+    \caption{Logo di Gantt Project e Astah}
+\end{figure}
+
+Per la stesura della documentazione si è utilizzato l'editor TexMaker, anch'esso utilizzato durante il progetto di Ingegneria del Software. TexMaker permette l'inserimento veloce dei comandi \LaTeX{} più utilizzati tramite la pressione di pulsanti sull'interfaccia grafica, l'integrazione con un dizionario per il controllo ortografico e la compilazione e visione del pdf prodotto.
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.8\columnwidth]{tecnologie/tex} 
+    \caption{Logo di TexMaker}
+\end{figure}
 
 \subsection{Linguaggi di programmazione e murkup}
 
 \subsubsection{HTML5, CSS3 e JavaScript}
+
+Lo stagista ha dovuto utilizzare i linguaggi HTML5, CSS3 e JavaScript in quanto ha scelto il framework cross-platform PhoneGap, il quale richiede l'utilizzo di tecnologie web per lo sviluppo dell'applicazione mobile. In particolare, HTML5 è stato scelto perché include un insieme di funzionalità che permettono di valorizzare le interfacce mobile. Alcune di queste evidenziano come HTML5 sia già per sua natura orientato al mobile. In particolare HTML5 fornisce API per:
+\begin{itemize}
+	\item \textbf{geolocalizzazione}: con la scrittura di poco codice, forniscono la posizione del dispositivo in coordinate terrestri. Quindi, la stessa funzionalità su uno smartphone o un tablet fornisce la posizione dell'utente stesso;
+	\item \textbf{eventi touch}: mentre i meccanismi di input nei PC consistono per lo più nella tastiera e nel mouse, nei dispositivi mobili quasi tutto passa per il touch screen, e avere funzionalità comode per gestire questo strumento consente un’interazione più ricca e senza limitazioni per l’utente. Le gestualità da attuare su un display, nel mondo mobile, costituiscono un vero e proprio linguaggio fondamentale nella user experience;
+	\item \textbf{controllo batteria}: considerata l’importanza rivestita dalle risorse energetiche, l’esistenza stessa di questa libreria nel linguaggio dimostra come il suo impiego sia particolarmente mirato al panorama mobile.
+\end{itemize}
+
+Ciò che ha favorito la scelta di CSS3 sono le media queries. Esse permettono di definire regole stilistiche in base alla tipologia del mezzo di visualizzazione, delle sue dimensioni nonchè della sua attuale disposizione (portrait o landscape). Ciò influisce non solo sull’aspetto esteriore degli elementi ma anche sul loro posizionamento e quindi sulla struttura stessa dell’interfaccia.
+
+\begin{figure}[!h] 
+    \centering 
+    	\subfloat{\includegraphics[width=0.3\columnwidth]{tecnologie/html}}
+    	\subfloat{\includegraphics[width=0.3\columnwidth]{tecnologie/css}} 
+    \caption{Logo di HTML5 e CSS3}
+\end{figure}
+
+Per quanto riguarda il linguaggio JavaScript è stato utilizzato JavaScript puro senza l'utilizzo di framework o \glossaryItem{JQuery}.
+
+I linguaggi scelti, grazie alle loro caratteristiche che li rendono orientati al mobile, insieme ai meccanismi che il framework PhoneGap utilizza per convertire la web application in applicazione mobile, permettono di dover effettuare meno modifiche in seguito per perfezionare l'applicazione su Android e iOS.
 
 \subsubsection{Java}
 
