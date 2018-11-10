@@ -10,7 +10,7 @@ Lo scopo di questo capitolo è la presentazione delle tecnologie utilizzate dura
 
 \section{Framework}	
 
-La presentazione delle tecnologie utilizzate per lo sviluppo di moviORDER inizia dalla scelta del framework, in quanto la scelta del framework ha importo l'utilizzo di parte dei linguaggi di programmazione usati durante il periodo di stage. Per lo sviluppo del progetto è stato imposto l'utilizzo di un framework cross-platform in quanto è stata richiesta la realizzazione di un'applicazione che funzionasse in ambiente Android e iOS. Data la diversità delle tecnologie richieste per lo sviluppo di codice nativo Android e iOS, e la limitata quantità di tempo a disposizione per la realizzazione del progetto, l'utilizzo di un framework cross-platform era migliore soluzione per portare a termine il progetto nei tempi richiesti. Allo stagista era permesso di scegliere tra due \glossaryItem{framework cross-platform}: Xamarin e PhoneGap.\\ Vengono di seguito descritti:
+La presentazione delle tecnologie utilizzate per lo sviluppo di moviORDER inizia dalla scelta del framework, in quanto la scelta del framework ha imposto l'utilizzo di parte dei linguaggi di programmazione usati durante il periodo di stage. Per lo sviluppo del progetto è stato proposto l'utilizzo di un framework cross-platform in quanto è stata richiesta la realizzazione di un'applicazione che funzionasse in ambiente Android e iOS. Data la diversità delle tecnologie richieste per lo sviluppo di codice nativo Android e iOS, e la limitata quantità di tempo a disposizione per la realizzazione del progetto, l'utilizzo di un framework cross-platform era la migliore soluzione per portare a termine il progetto nei tempi richiesti. Allo stagista era permesso di scegliere tra due \glossaryItem{framework cross-platform}: Xamarin e PhoneGap.\\ Vengono di seguito descritti:
 \begin{enumerate}
 	\item le motivazioni alla base dei framework cross-platform;
 	\item gli approcci alla base dei framework cross-platform;
@@ -85,7 +85,7 @@ Si tratta di un framework cross-platform di proprietà dell'azienda Microsoft ch
 
 \subsection{PhoneGap}
 
-Si tratta di un framework cross-platform di proprietà dell'azienda Apache che utilizza un approccio di tipo ibrido. Quindi permette la realizzazione di applicazioni mobile tramite l'utilizzo di tecnologie web, che sono al giorno d'oggi strumenti conosciuti da tutti gli sviluppatori. L'accesso ai componenti hardware dei dispositivi mobile è permesso grazie all'utilizzo di plug-in scaricabili dalla pagina ufficiale del framework. Vantaggi importanti del framework sono la presenza di documentazione completa i plugin e la presenza di una community grande e sempre disponibile. Infine PhoneGap rende disponibili degli strumenti che facilitano lo sviluppo dell'applicazione: PhoneGap Desktop App, PhoneGap CLI, PhoneGap App e PhoneGap Build. I primi tre strumenti fanno parte dell'ambiente di sviluppo utilizzato durante lo stage e verranno descritti successivamente. PhoneGap Build è uno strumento che permette la build dell'applicazione direttamente su un server cloud Adobe a partire da un file zip contenente la cartella con il codice sorgente dell'applicazione. In seguito alla build è possibile generare e scaricare automaticamente l'applicazione per Windows o per Android. Per quanto riguarda iOS è necessario fornire i certificati richiesti da Apple per la distribuzione dell'applicazione. Nelle figure nella pagina successiva vengono presentate l'architettura di PhoneGap e una figura illustrativa di PhoneGap Build.
+Si tratta di un framework cross-platform di proprietà dell'azienda Apache che utilizza un approccio di tipo ibrido. Quindi permette la realizzazione di applicazioni mobile tramite l'utilizzo di tecnologie web, che sono al giorno d'oggi strumenti conosciuti da tutti gli sviluppatori. L'accesso ai componenti hardware dei dispositivi mobile è permesso grazie all'utilizzo di plugin scaricabili dalla pagina ufficiale del framework. Vantaggi importanti del framework sono la presenza di documentazione completa per i plugin e la presenza di una community grande e sempre disponibile. Infine PhoneGap rende disponibili degli strumenti che facilitano lo sviluppo dell'applicazione: PhoneGap Desktop App, PhoneGap CLI, PhoneGap App e PhoneGap Build. I primi tre strumenti fanno parte dell'ambiente di sviluppo utilizzato durante lo stage e verranno descritti successivamente. PhoneGap Build è uno strumento che permette la build dell'applicazione direttamente su un server cloud Adobe a partire da un file zip contenente la cartella con il codice sorgente dell'applicazione. In seguito alla build è possibile generare e scaricare automaticamente l'applicazione per Windows o per Android. Per quanto riguarda iOS, è necessario fornire i certificati richiesti da Apple per la distribuzione dell'applicazione. Nella pagina successiva vengono presentate l'architettura di PhoneGap e una figura illustrativa di PhoneGap Build.
 
 \begin{figure}[!h] 
     \centering 
@@ -107,7 +107,7 @@ Si tratta di un framework cross-platform di proprietà dell'azienda Apache che u
 Lo stagista ha optato per il framework PhoneGap per tre motivi sostanziali:
 \begin{enumerate}
 	\item \textbf{linguaggio di programmazione}: PhoneGap richiedeva l'utilizzo di tecnologie web, già conosciute e apprese dallo stagista all'Università. Lo studio del linguaggio C\#, utilizzato da Xamarin, avrebbe richiesto un periodo di formazione che avrebbe sforato le 40 ore messe a disposizione per la formazione sulle tecnologie;
-	\item \textbf{linguaggio Javascript}: come detto precedentemente lo stagista era interessato ad approfondire il linguaggio Javascript, richiesto al giorno d'oggi dalla maggior parte delle aziende che si occupano della realizzazione di applicazioni web;
+	\item \textbf{linguaggio Javascript}: come detto precedentemente, lo stagista era interessato ad approfondire il linguaggio Javascript, richiesto al giorno d'oggi dalla maggior parte delle aziende che si occupano della realizzazione di applicazioni web;
 	\item \textbf{facilità nello sviluppo dell'interfaccia grafica}: utilizzando tecnologie web risultava semplice progettare e sviluppare un'interfaccia grafica \glossaryItem{responsive}, e quindi in grado di adattarsi alla maggior parte dei dispositivi mobile presenti sul mercato.
 \end{enumerate}
 
@@ -119,12 +119,12 @@ Durante il periodo di stage è stato utilizzato uno specifico ambiente di lavoro
 
 La suite di PhoneGap ha costituito parte fondamentale dell'ambiente di lavoro. Sono stati utilizzati i seguenti software della suite:
 \begin{itemize}
-	\item PhoneGap Desktop App: utilizzata inizialmente per prendere dimestichezza con il framework;
-	\item PhoneGap CLI: utilizzata dopo aver preso dimestichezza con il framework;
-	\item PhoeGap App: utilizzata inizialmente per testare l'applicazione generata dal framework.
+	\item \textbf{PhoneGap Desktop App}: utilizzata inizialmente per prendere dimestichezza con il framework;
+	\item \textbf{PhoneGap CLI}: utilizzata dopo aver preso dimestichezza con il framework;
+	\item \textbf{PhoneGap App}: utilizzata inizialmente per testare l'applicazione generata dal framework.
 \end{itemize}
 
-PhoneGap Desktop App è un'applicazione installabile su Windows o Mac con la quale è possibile iniziare ad utilizzare il framework con estrema facilità. Essa fornisce un'interfaccia grafica per la creazione, la gestione e il testing di progetti PhoneGap. Per testare l'applicazione è sufficiente essere in possesso di un dispositivo Android con installata l'applicazione PhoneGap App. L'applicazione in versione iOS è stata rimossa dall'App Store per non aver passato i controlli di qualità Apple.
+PhoneGap Desktop App è un'applicazione installabile su Windows o Mac con la quale è possibile iniziare ad utilizzare il framework con estrema facilità. Essa fornisce un'interfaccia grafica per la creazione, la gestione e il testing di progetti PhoneGap. Per testare l'applicazione è sufficiente essere in possesso di un dispositivo Android con installata l'applicazione PhoneGap App. L'applicazione in versione iOS è stata rimossa dall'App Store per non aver passato i controlli di qualità Apple. Nella pagina successiva viene presentata una figura che mostra l'interfaccia grafica di PhoneGap Desktop App.
 
 \begin{figure}[!h] 
     \centering 
@@ -134,9 +134,9 @@ PhoneGap Desktop App è un'applicazione installabile su Windows o Mac con la qua
 
 \newpage
 
-PhoneGap CLI estende le funzionalità offerte da PhoneGap Desktop App tramite un'interfaccia a riga di comando. Tale applicazione era lo strumento principale per l'utilizzo di PhoneGap prima della creazione dell'app desktop. PhoneGap CLI può essere utilizzata singolarmente o insieme a PhoneGap Desktop App e/o PhoneGap Build.
+PhoneGap CLI estende le funzionalità offerte da PhoneGap Desktop App tramite un'interfaccia a riga di comando. Tale applicazione era lo strumento principale per l'utilizzo di PhoneGap prima della creazione dell'app desktop. PhoneGap CLI può essere utilizzata singolarmente o assieme a PhoneGap Desktop App e/o PhoneGap Build.
 
-PhoneGap App è un'applicazione mobile, installabile solamente su dispositivi Android, con la quale è possibile testare l'applicazione PhoneGap senza generare ed installare nessun file applicazione. Per testare l'applicazione è sufficiente avviare l'esecuzione del progetto su PhoneGap Desktop App e collegare il computer di sviluppo e il dispositivo su cui è installata PhoneGap App alla stessa rete Wi-Fi. Dopo aver completato questi semplici passaggi viene richiesto di inserire su PhoneGap App l'indirizzo di rete su cui il progetto è stato messo in esecuzione da PhoneGap Desktop App. Dopo aver inserito questo indirizzo la reale applicazione verrà visualizzata sullo smartphone e sarà possibile testarla completamente.
+PhoneGap App è un'applicazione mobile, installabile solamente su dispositivi Android, con la quale è possibile testare l'applicazione PhoneGap senza generare ed installare nessun file applicazione. Per testare l'applicazione è sufficiente avviare l'esecuzione del progetto su PhoneGap Desktop App e collegare il computer di sviluppo e il dispositivo su cui è installata PhoneGap App alla stessa rete Wi-Fi. Dopo aver completato questi semplici passaggi, viene richiesto di inserire su PhoneGap App l'indirizzo di rete su cui il progetto è stato messo in esecuzione da PhoneGap Desktop App. Dopo aver inserito questo indirizzo, la reale applicazione verrà visualizzata sullo smartphone e sarà possibile testarla completamente.
 
 \begin{figure}[!h] 
     \centering 
@@ -158,7 +158,7 @@ Per lo sviluppo del progetto PhoneGap è stato utilizzato l'editor Sublime Text 
 
 \subsubsection{Android Studio}
 
-Durante lo stage l'applicazione Android generata tramite i tool offerti dal framework PhoneGap non era soddisfacente, spesso non funzionava o l'interfaccia grafica non rispecchiava quella desiderata. Per cui è stato necessario installare Android Studio per applicare gli accorgimenti in codice nativo necessari a rendere l'app usabile. Android Studio è un ambiente di sviluppo integrato (IDE) basato sul software di JetBrains IntelliJ IDEA e progettato specificamente per lo sviluppo di applicazioni Android.
+Durante lo stage, l'applicazione Android generata tramite i tool offerti dal framework PhoneGap non era soddisfacente: spesso non funzionava o l'interfaccia grafica non rispecchiava quella desiderata. Per cui è stato necessario installare Android Studio per applicare gli accorgimenti in codice nativo necessari a rendere l'app usabile. Android Studio è un ambiente di sviluppo integrato (IDE) basato sul software di JetBrains IntelliJ IDEA e progettato specificamente per lo sviluppo di applicazioni Android.
 
 \begin{figure}[!h] 
     \centering 
@@ -168,7 +168,7 @@ Durante lo stage l'applicazione Android generata tramite i tool offerti dal fram
 
 \subsubsection{XCode}
 
-Durante lo stage l'applicazione iOS generata tramite i tool offerti dal framework PhoneGap non era soddisfacente, spesso non funzionava o l'interfaccia grafica non rispecchiava quella desiderata. Per cui è stato necessario installare XCode per applicare gli accorgimenti in codice nativo necessari a rendere l'app usabile. Xcode è un ambiente di sviluppo integrato (IDE) contenente una suite di strumenti utili allo sviluppo di software per i sistemi macOS, iOS, watchOS e tvOS. È completamente sviluppato e mantenuto da Apple.
+Durante lo stage, l'applicazione iOS generata tramite i tool offerti dal framework PhoneGap non era soddisfacente: spesso non funzionava o l'interfaccia grafica non rispecchiava quella desiderata. Per cui è stato necessario installare XCode per applicare gli accorgimenti in codice nativo necessari a rendere l'app usabile. Xcode è un ambiente di sviluppo integrato (IDE) contenente una suite di strumenti utili allo sviluppo di software per i sistemi macOS, iOS, watchOS e tvOS. È completamente sviluppato e mantenuto da Apple.
 
 \begin{figure}[!h] 
     \centering 
@@ -188,7 +188,7 @@ Durante lo stage è stata richiesta la realizzazione di un servizio web che si i
 
 \subsection{Gestione DBMS}
 
-Durante il progetto, per la gestione del database di moviORDER, è stato utilizzato il DBMS Microsoft SQL Server. Per una gestione veloce ed ottimale dello stesso si è deciso di usare il software SQL Server Management Studio. SQL Server Management Studio (SSMS) è un'applicazione software usata per configurare, gestire e amministrare database, in locale o su un server cloud, con il DBMS Microsoft SQL Server. 
+Durante il progetto, per la gestione del database di moviORDER è stato utilizzato il DBMS Microsoft SQL Server. Per una gestione veloce ed ottimale dello stesso si è deciso di usare il software SQL Server Management Studio. SQL Server Management Studio (SSMS) è un'applicazione software usata per configurare, gestire e amministrare database, in locale o su un server cloud, con il DBMS Microsoft SQL Server. 
 
 \begin{figure}[!h] 
     \centering 
@@ -248,7 +248,7 @@ Per scelta dello stagista il progetto è stato sottoposto a controllo di version
     \caption{Logo di GitHub}
 \end{figure}
 
-Lo stagista ha scelto inoltre di utilizzare uno strumento di ticketing per facilitare la pianificazione del progetto. Lo strumento scelto è Asana. Asana è un'applicazione web e mobile progettata per aiutare i team ad organizzare, tracciare e gestire il loro lavoro. In particolare lo strumento è stato utilizzato per dare una scadenza ai ticket in base alla pianificazione decisa insieme al tutor aziendale all'inizio del periodo di stage.
+Lo stagista ha scelto inoltre di utilizzare uno strumento di ticketing per facilitare la pianificazione del progetto. Lo strumento scelto è Asana. Asana è un'applicazione web e mobile progettata per aiutare i team ad organizzare, tracciare e gestire il loro lavoro. In particolare, lo strumento è stato utilizzato per dare una scadenza ai ticket in base alla pianificazione decisa insieme al tutor aziendale all'inizio del periodo di stage.
 
 \begin{figure}[!h] 
     \centering 
@@ -258,7 +258,7 @@ Lo stagista ha scelto inoltre di utilizzare uno strumento di ticketing per facil
 
 \subsection{Strumenti di modellazione e documentazione}
 
-Il progetto ha richiesto lo sviluppo di diagrammi di Gantt in fase di pianificazione e di diagrammi UML in fase di analisi dei requisiti e di progettazione. Per la costruzione dei diagrammi di Gantt è stato utilizzato il software Gantt Project, mentre per la costruzione dei diagrammi UML dei casi d'uso e delle classi è stato utilizzato il software Astah UML. I software sono stati scelti perché già appresi durante il progetto di Ingegneria del Software.
+Il progetto ha richiesto lo sviluppo di diagrammi di Gantt in fase di pianificazione e di diagrammi UML in fase di analisi dei requisiti e di progettazione. Per la costruzione dei diagrammi di Gantt è stato utilizzato il software Gantt Project, mentre per la costruzione dei diagrammi UML dei casi d'uso e delle classi è stato utilizzato il software Astah UML. I software sono stati scelti perché già appresi durante il progetto di Ingegneria del Software all'Università.
 
 \begin{figure}[!h] 
     \centering 
@@ -300,7 +300,7 @@ I linguaggi scelti, grazie alle loro caratteristiche che li rendono orientati al
 
 \subsubsection{Java}
 
-Per la realizzazione del servizio web che permette all'applicazione di interfacciarsi con il database sul server cloud di \visione{} si è utilizzato il linguaggio Java. La scelta è stata fatta dallo stagista tra due alternative in cui rientrava anche PHP. È stato scelto Java in quanto possiede un compilatore, è più facilmente debbugabile rispetto a PHP e permette l'utilizzo di oggetti servlet.  I servlet sono oggetti scritti in linguaggio Java che operano all'interno di un server web (nel caso del progetto Tomcat) oppure un server per applicazioni permettendo la creazione di applicazione web. Nel caso del progetto i servlet hanno premesso lo sviluppo della API che costituisce il servizio web. Una descrizione della API, di come le servlet sono state utilizzate nel progetto e di come la API viene interrogata dall'applicazione è presente in sezione §\ref{api}.
+Per la realizzazione del servizio web che permette all'applicazione di interfacciarsi con il database sul server cloud di \visione{} si è utilizzato il linguaggio Java. La scelta è stata fatta dallo stagista tra due alternative in cui rientrava anche PHP. È stato scelto Java in quanto possiede un compilatore, è più facilmente debbugabile rispetto a PHP e permette l'utilizzo di oggetti servlet.  I servlet sono oggetti scritti in linguaggio Java che operano all'interno di un server web (nel caso del progetto Tomcat) oppure un server per applicazioni permettendo la creazione di applicazione web. Nel caso del progetto, i servlet hanno premesso lo sviluppo della API che costituisce il servizio web. Una descrizione della API, di come i servlet sono stati utilizzati nel progetto e di come la API viene interrogata dall'applicazione è presente in sezione §\ref{api}.
 
 \begin{figure}[!h] 
     \centering 
