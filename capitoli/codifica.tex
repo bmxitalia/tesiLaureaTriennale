@@ -1,0 +1,39 @@
+\chapter{Codifica}
+
+\section{Servizio web}
+
+Per lo sviluppo del servizio web che permette all'applicazione di accedere al database presente sul server cloud di \visione{} si è utilizzato il linguaggio Java e nello specifico gli oggetti servlet. Per permettere agli oggetti servlet di interagire con il database si sono utilizzati i driver JDBC per Microsoft SQL Server. 
+
+\subsection{Servlet}
+
+\subsubsection{Struttura oggetto servlet}
+
+Un oggetto servlet è implementato tramite una classe Java che eredita da \textit{HttpServlet} appartenenete al package \textit{javax.servlet.http}. \textit{HttpServlet} è una classe astratta che può essere estesa per creare un servlet HTTP utilizzabile per un sito web. Nel progetto realizzato, un servlet HTTP è un oggetto in grado di acquisire richieste HTTP, di elaborarle interrogando il database sul server cloud di \visione{}, e di rispondere alle richieste tramite una stringa in formato JSON. I metodi di \textit{HttpServlet} che necessitano di essere implementati da ogni servlet concreto sono:
+\begin{enumerate}
+	\item \textit{protected void doGet(HttpServletRequest req, HttpServletResponse resp)}: metodo chiamato dal server per permettere all'oggetto servlet di acquisire una richiesta GET da parte di un client;
+	\item \textit{protected void doPost(HttpServletRequest req, HttpServletResponse resp)}: metodo chiamato dal server per permettere all'oggetto servlet di acquisire una richiesta POST da parte di un client.
+\end{enumerate}
+
+\textit{HttpServletRequest} è la classe Java che rappresenta le richieste HTTP che arrivano all'oggetto servlet. Tramite opportuni metodi è possibile accedere alle informazioni contenute nella specifica richiesta. Nel caso del progetto, l'unico metodo utilizzato di \textit{HttpServletRequest} è stato \textit{String getParameter(String name)} che data una stringa rappresentante un parametro della richiesta HTTP, restituisce una stringa contente il valore associato a tale parametro oppure \textit{null} se il parametro non esiste.
+
+\textit{HttpServletResponse} è la classe Java che rappresenta la risposta che l'oggetto servlet invia al client. Tramite opportuni metodi è possibile configurare la risposta. Nel caso del progetto sono stati utilizzati i metodi:
+\begin{itemize}
+	\item \textit{void setContentType(String type)}: metodo che permette di impostare la tipologia di contenuto della risposta che deve essere inviata al client. Poiché nel caso del progetto la risposta è una stringa contenente un file JSON, il content type impostato è \textit{application/json};
+	\item \textit{PrintWriter getWriter()}: metodo che restituisce un oggetto \textit{PrintWriter} che può essere utilizzato per inviare caratteri di testo al client. Sul \textit{PrintWriter} restituito è stato scritto il file JSON di risposta sottoforma di stringa.
+\end{itemize}
+
+\subsubsection{Interrograzione servizio web}
+parlare degli indirizzi configurabili tramite eclipse e fornire un esempio di chiamata AJAX
+
+\subsubsection{API del servizio web}
+fornire la lista di tutti gli indirizzi, dei parametri che richiedono e dell'output che ognuno può restituire
+
+\subsection{JDBC}
+
+\subsubsection{Driver JDBC}
+
+Un driver JDBC è una componente software che permette ad un'applicazione Java di interagire con un database. Per supportare la connessione a singoli database, JDBC (Java Database Connectivity API) richiede i driver per ogni database. Il driver permette la connessione con il database e implementa il protocollo di trasferimento di query e risultati tra il client e il database.
+
+\subsubsection{JDBC API}
+
+fare una lista di quali metodi dell'api sono stati utilizzati
