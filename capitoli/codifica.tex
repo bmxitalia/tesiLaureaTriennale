@@ -2,33 +2,33 @@
 
 Questo capitolo tratta gli aspetti più interessanti della codifica dell'applicazione moviORDER. In particolare, il capitolo è stato diviso in sezioni che trattano la codifica di:
 \begin{enumerate}
-	\item servizio web;
-	\item logica applicativa;
-	\item interfaccia grafica.
+	\item \textbf{servizio web};
+	\item \textbf{logica applicativa};
+	\item \textbf{interfaccia grafica}.
 \end{enumerate}
 
 \section{Servizio web}
 
-Per lo sviluppo del servizio web che permette all'applicazione di accedere al database presente sul server cloud di \visione{} si è utilizzato il linguaggio Java e, nello specifico, gli oggetti servlet. Per permettere agli oggetti servlet di interagire con il database si sono utilizzati i driver JDBC per Microsoft SQL Server. 
+Per lo sviluppo del servizio web che permette all'applicazione di accedere al database presente sul server cloud di \visione{} si è utilizzato il linguaggio Java e, nello specifico, gli oggetti servlet. Per permettere agli oggetti servlet di interagire con il database si sono dovuti utilizzare i driver JDBC per Microsoft SQL Server, poiché moviORDER utilizza tale DBMS. 
 
 \subsection{Servlet}
 
 \subsubsection{Struttura di un oggetto servlet}
 
-Un oggetto servlet è implementato tramite una classe Java che eredita da \textit{HttpServlet}, appartenente al package \textit{javax.servlet.http}. \textit{HttpServlet} è una classe astratta che può essere estesa per creare un servlet HTTP utilizzabile per un sito web. Nel progetto realizzato, il servlet è stato utilizzato per acquisire richieste HTTP POST, elaborarle interrogando il database sul server cloud di \visione{}, e per rispondere ad esse tramite una stringa in formato JSON. Il metodo di \textit{HttpServlet} che è stato implementato da ogni servlet concreto è:
+Un oggetto servlet è una classe Java che eredita dalla classe \textit{HttpServlet}, appartenente al package \textit{javax.servlet.http}. \textit{HttpServlet} è una classe astratta che può essere estesa per creare un servlet HTTP utilizzabile per un sito web. Nel progetto realizzato, il servlet è stato utilizzato per acquisire richieste HTTP POST, elaborarle interrogando il database sul server cloud di \visione{}, e per rispondere ad esse tramite una stringa in formato JSON. Il metodo di \textit{HttpServlet} che è stato implementato da ogni servlet concreto è:
 \begin{enumerate}
-	\item \textit{protected void doPost(HttpServletRequest req, HttpServletResponse resp)}: metodo chiamato dal server per permettere all'oggetto servlet di acquisire una richiesta POST da parte di un client. Nel caso del progetto il client è la logica applicativa dell'applicazione moviORDER.
+	\item \textit{protected void doPost(HttpServletRequest req, HttpServletResponse resp)}: metodo chiamato dal server per permettere all'oggetto servlet di acquisire una richiesta POST da parte di un client. Nel caso del progetto, il client è la logica applicativa dell'applicazione moviORDER e il server è ApacheTomcat.
 \end{enumerate}
 
-\textit{HttpServletRequest} è la classe Java che rappresenta le richieste HTTP che arrivano all'oggetto servlet. Tramite opportuni metodi è possibile accedere alle informazioni contenute nella specifica richiesta. Nel caso del progetto, l'unico metodo utilizzato di \textit{HttpServletRequest} è stato \textit{String getParameter(String name)} che, data una stringa rappresentante un parametro della richiesta HTTP, restituisce una stringa contente il valore associato a tale parametro oppure il valore \textit{null} se il parametro non esiste.
+\textit{HttpServletRequest} è la classe Java che rappresenta le richieste HTTP che possono essere inviate all'oggetto servlet. Tramite opportuni metodi è possibile accedere alle informazioni contenute nella specifica richiesta. Nel caso del progetto, è stato utilizzato il metodo \textit{String getParameter(String name)} che, data una stringa rappresentante un parametro della richiesta HTTP, restituisce una stringa contente il valore associato a tale parametro oppure il valore \textit{null} se il parametro non esiste.
 
-\textit{HttpServletResponse} è la classe Java che rappresenta la risposta che l'oggetto servlet invia al client. Tramite opportuni metodi è possibile configurare la risposta. Nel caso del progetto sono stati utilizzati i seguenti metodi:
+\textit{HttpServletResponse} è la classe Java che rappresenta la risposta dell'oggetto servlet alla richiesta del client. Tramite opportuni metodi è possibile configurare la risposta:
 \begin{itemize}
-	\item \textit{void setContentType(String type)}: metodo che permette di impostare la tipologia di contenuto della risposta che deve essere inviata al client. Poiché nel caso del progetto la risposta è una stringa in formato JSON, il content type impostato è \textit{application/json};
-	\item \textit{PrintWriter getWriter()}: metodo che restituisce un oggetto \textit{PrintWriter} che può essere utilizzato per inviare caratteri di testo al client. Sul \textit{PrintWriter} restituito è stata scritta la risposta del servlet sottoforma di stringa in formato JSON.
+	\item \textit{void setContentType(String type)}: metodo che permette di impostare la tipologia di contenuto della risposta. Poiché nel caso del progetto la risposta è una stringa in formato JSON, il content type impostato è di tipo \textit{application/json};
+	\item \textit{PrintWriter getWriter()}: metodo che restituisce un oggetto \textit{PrintWriter} che può essere utilizzato per inviare caratteri di testo al client. Nel progetto, sul \textit{PrintWriter} restituito è stata scritta la stringa di risposta in formato JSON.
 \end{itemize}
 
-Viene di seguito fornita, a titolo d'esempio, l'implementazione del metodo \textit{doPost()} del servlet del servizio web di moviORDER che si occupa di controllare che le credenziali di autenticazione inserite dall'utente in fase di login siano corrette. Nella prossima sezione viene fornito un esempio di come la logica applicativa di moviORDER effettua una richiesta a tale servlet e di come utilizza la risposta per interagire con l'utente. Nell'esempio, la classe \textit{DatabaseConnection} fornisce un'interfaccia per l'interrogazione di database. Una spiegazione di tale classe è presente in sezione \ref{dbconnect}.
+Viene di seguito fornita, a titolo d'esempio, l'implementazione del metodo \textit{doPost()} del servlet del servizio web che si occupa di controllare che le credenziali di autenticazione inserite dall'utente in fase di login siano corrette. Nella prossima sezione viene fornito un esempio di come la logica applicativa di moviORDER effettua una richiesta a tale servlet e di come utilizza la risposta per modificare lo stato dell'applicazione. Nell'esempio, la classe \textit{DatabaseConnection} fornisce un'interfaccia per l'interrogazione di un database SQL Server. Una spiegazione di tale classe è presente in sezione \ref{dbconnect}.
 \begin{lstlisting}
 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("username");
@@ -56,34 +56,36 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 
 \subsubsection{Interrogazione del servizio web}
 
-Nel momento in cui si implementa un servlet concreto, eclipse gli associa un indirizzo in automatico. Tramite questo indirizzo è possibile raggiungere il servlet sul server per effettuare richieste HTTP. L'indirizzo associato da eclipse è della forma \textit{/NomeClasseServlet} e puo' essere cambiato dalle impostazioni dell'IDE. Per rendere possibile il raggiungimento del servizio web da parte della logica applicativa di moviORDER è necessario che venga effettuato il deploy del servizio su Apache Tomcat e che quest'ultimo venga fatto girare sul server cloud di \visione{}. Una volta che il servizio web è raggiungibile tramite la rete, è possibile iniziare ad effettuare richieste HTTP. In moviORDER, la struttura dell'URL di una richiesta HTTP al servizio web è la seguente: \textit{http://indirizzo:porta/moviORDER/NomeServlet}, dove:
+Nel momento in cui viene implementato un servlet concreto, eclipse gli associa un end-point in automatico. Tramite l'end-point è possibile raggiungere il servlet sul server per effettuare richieste HTTP. L'end-point associato da eclipse è della forma \textit{/NomeClasseServlet} e puo' essere cambiato dalle impostazioni dell'IDE. Per rendere possibile il raggiungimento del servizio web da parte della logica applicativa di moviORDER, è necessario che venga effettuato il deploy del servizio su Apache Tomcat e che quest'ultimo venga fatto girare sul server cloud di \visione{}. Una volta che il servizio web è raggiungibile tramite la rete, è possibile iniziare ad effettuare richieste HTTP. In moviORDER, la struttura dell'URL di una richiesta HTTP al servizio web è la seguente: \textit{http://indirizzo:porta/moviORDER/NomeServlet}, dove:
 \begin{itemize}
 	\item \textit{indirizzo}: è l'indirizzo del server dove il servizio web viene fatto girare:
 	\item \textit{porta}: è la porta del server dove il servizio web viene fatto girare;
-	\item \textit{NomeServlet}: è il nome del servlet a cui si vuole mandare la richiesta HTTP.
+	\item \textit{NomeServlet}: è l'end-point del servlet a cui si vuole inviare la richiesta HTTP.
 \end{itemize}
 
-MoviORDER effettua richieste HTTP al servizio tramite l'utilizzo di AJAX (Asynchronous JavaScript And XML) che permette l'invio e la ricezione asincrona di dati da un server. È importante far notare che AJAX non è un linguaggio di programmazione, bensì una tecnica per accedere ad un server web da una pagina web. Tramite AJAX è possibile leggere dati da un server web dopo che una pagina è stata caricata, aggiornare una pagina web senza il bisogno di dover ricaricare la stessa e inviare dati ad un server web in maniera del tutto trasparente all'utente. 
+MoviORDER effettua richieste HTTP al servizio tramite l'utilizzo di AJAX (Asynchronous JavaScript And XML). È importante far notare che AJAX non è un linguaggio di programmazione, bensì una tecnica per accedere ad un server web da una pagina web. Tramite AJAX è possibile leggere dati da un server web dopo che una pagina è stata caricata, aggiornare una pagina web senza il bisogno di dover ricaricare la stessa e inviare dati ad un server web in maniera del tutto trasparente all'utente. 
 
 Nel progetto, AJAX è stato implementato mediante JavaScript con l'utilizzo dell'oggetto \textit{XMLHttpRequest}. Tale oggetto è supportato da tutti i browser moderni e può essere utilizzato per scambiare dati con un server web in maniera trasparente, ovvero senza il bisogno di ricaricare la pagina web per effettuare delle modifiche alla stessa. La sintassi per creare un oggetto \textit{XMLHttpRequest} è la seguente:
 \textit{var xhttp = new XMLHttpRequest();}. 
 
-Per inviare richieste al servizio web si utilizzano i metodi \textit{open()} e \textit{send()} dell'oggetto \textit{XMLHttpRequest()}. In particolare, il metodo \textit{open()} permette di specificare la tipologia di richiesta da effettuare tramite il passaggio di tre parametri:
+Per inviare richieste al servizio web si utilizzano i metodi \textit{open()} e \textit{send()} di tale oggetto. In particolare, il metodo \textit{open()} permette di specificare la tipologia di richiesta tramite il passaggio di tre parametri:
 	\begin{itemize}
 		\item \textbf{metodo}: parametro che specifica il metodo utilizzato per inviare la richiesta HTTP: GET o POST;
-		\item \textbf{url}: parametro che specifica l'indirizzo del server a cui mandare la richiesta HTTP. Nel caso del progetto l'indirizzo comprende l'indirizzo del servlet che deve gestire la richiesta;
+		\item \textbf{url}: parametro che specifica l'indirizzo del server a cui mandare la richiesta HTTP. Nel caso del progetto l'indirizzo comprende l'end-point del servlet che deve gestire la richiesta;
 		\item \textbf{asincrona/sincrona}: parametro booleano che specifica se la richiesta è asincrona (true) o sincrona (false).
 	\end{itemize}
-Il metodo \textit{send(string)} permette invece di inviare la richiesta HTTP al servizio web, includendo una stringa contenente i parametri da inviare al server. Poiché i valori dei parametri della richiesta possono contenere caratteri accentati, è stato necessario utilizzare il metodo \textit{setRequestHeader} per specificare la codifica dei caratteri, aggiungendo header HTTP alla richiesta. Facendo questo è stato possibile evitare errori di lettura/scrittura di stringhe con caratteri accentati sul database di moviORDER da parte del servizio web. È importante far notare che tutte le richieste inviate da moviORDER al servizio web sono asincrone, questo perché:
+Il metodo \textit{send(string)} permette invece di inviare la richiesta HTTP al servizio web, includendo una stringa contenente i parametri da inviare al server. Poiché alcuni parametri possono contenere caratteri accentati, è stato necessario utilizzare il metodo \textit{setRequestHeader()} per specificare la codifica dei caratteri, aggiungendo header HTTP alla richiesta. Facendo questo, è stato possibile evitare errori di lettura/scrittura di stringhe con caratteri accentati sul database di moviORDER. 
+
+È importante far notare che tutte le richieste inviate da moviORDER al servizio web sono asincrone, questo perché:
 \begin{itemize}
-	\item il codice sincrono non è raccomandato perché JavaScript stopperebbe l'esecuzione del codice fino all'arrivo di una risposta da parte del server. Se il server è occupato o lento, l'applicazione potrebbe aspettare per un tempo molto lungo;
+	\item il codice sincrono non è raccomandato perché JavaScript stopperebbe l'esecuzione del codice fino all'arrivo di una risposta da parte del server. Se il server è occupato o lento, l'applicazione potrebbe aspettare per un tempo prolungato;
 	\item le richieste AJAX di tipo asincrono saranno rimosse dallo standard web nei prossimi anni. Scegliendo di utilizzare solamente richieste asincrone si permette a moviORDER di essere robusta a questo cambiamento futuro.
 \end{itemize} 
 
 Per la gestione della risposta ricevuta dal server si sono utilizzate le seguenti proprietà dell'oggetto \textit{XMLHttpRequest}:
 \begin{itemize}
-	\item \textit{readyState}: proprietà che contiene lo stato dell'oggetto. In particolare, nel contesto del progetto, è interessante sapere che il valore 4 corrisponde ad una richiesta terminata la cui risposta è pronta;
-	\item  \textit{status}: proprietà che contiene il messaggio sullo stato della richiesta. In particolare, nel contesto del progetto. è interessante sapere che il valore 200 corrisponde al messaggio OK, che è la risposta standard di una richiesta HTTP andata a buon fine;
+	\item \textit{readyState}: proprietà che contiene lo stato dell'oggetto. In particolare, nel contesto del progetto, è interessante sapere che il valore 4 corrisponde ad una richiesta la cui risposta è pronta;
+	\item  \textit{status}: proprietà che contiene il messaggio sullo stato della richiesta. In particolare, nel contesto del progetto. è interessante sapere che il valore 200 corrisponde al messaggio OK, che nello standard rappresenta una richiesta HTTP andata a buon fine;
 	\item \textit{onreadystatechange}: proprietà che definisce una funzione che deve essere eseguita quando la proprietà \textit{readyState} cambia valore;
 	\item \textit{responseText}: proprietà che incapsula la stringa di risposta ricevuta dal servizio web. 
 \end{itemize} 
@@ -138,10 +140,30 @@ function tryLogin(){
 }
 \end{lstlisting}
 
-
-
 \subsubsection{API del servizio web}
-fornire la lista di tutti gli indirizzi, dei parametri che richiedono e dell'output che ognuno può restituire
+
+In questa sezione viene presentata la API del servizio web di moviORDER. In particolare, per ogni end-point (servlet) vengono specificati:
+\begin{itemize}
+	\item input: costituito dai parametri inviati al servizio web tramite una richiesta HTTP;
+	\item output: costituito da una stringa in formato JSON che presenta struttura diversa a seconda dell'end-point che gestisce la richiesta;
+	\item descrizione.
+\end{itemize}
+
+\myparagraph{/AuthenticationServlet}
+
+\begin{itemize}
+	\item \textbf{input}:
+		\begin{itemize}
+			\item parametro 1...
+			\item parametro 2...
+		\end{itemize}
+	\item \textbf{output}:
+		\begin{itemize}
+			\item possibilità 1...
+			\item possibilità 2...
+		\end{itemize}
+	\item \textbf{descrizione}: descrizione di cosa la servlet fa
+\end{itemize}
 
 \subsection{JDBC}
 
