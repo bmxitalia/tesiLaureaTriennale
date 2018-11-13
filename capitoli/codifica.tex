@@ -154,15 +154,163 @@ In questa sezione viene presentata la API del servizio web di moviORDER. In part
 \begin{itemize}
 	\item \textbf{input}:
 		\begin{itemize}
-			\item parametro 1...
-			\item parametro 2...
+			\item username: è la username inserita dall'utente in fase di login;
+			\item password: è la password inserita dall'utente in fase di login.
 		\end{itemize}
-	\item \textbf{output}:
+	\item \textbf{output}: le possibili risposte del servlet sono le seguenti:
 		\begin{itemize}
-			\item possibilità 1...
-			\item possibilità 2...
+			\item codice azienda e username dell'utente nel caso in cui username e password corrispondano ad un utente in database;
+			\item un messaggio d'errore nel caso in cui username e password siano scorrette o l'utente è stato bloccato. 
 		\end{itemize}
-	\item \textbf{descrizione}: descrizione di cosa la servlet fa
+		\item \textbf{descrizione}: questo servlet rappresenta il servizio di autenticazione a moviORDER. Ricevuti i parametri, il servlet cerca la username dell'utente nel database e, nel caso questa fosse presente procede nel cercare la password corrispondente. Nel caso in cui username e password passati siano quelli corretti il servlet restituisce una stringa JSON contenente il codice azienda dell'utente che sta cercando di loggarsi e lo username dell'utente. Nel caso in cui la username o la password non siano corrette, oppure l'utente è stato bloccato, viene restituita una stringa JSON contenente un messaggio d'errore.
+\end{itemize}
+
+\myparagraph{/CheckConnectionURL}
+
+\begin{itemize}
+	\item \textbf{input}:
+		\begin{itemize}
+			\item codice azienda: è il codice azienda dell'azienda cliente di \visione{} della quale si vuole verificare la presenza del database.
+		\end{itemize}
+	\item \textbf{output}: le possibili risposte del servlet sono le seguenti:
+		\begin{itemize}
+			\item un messaggio positivo nel caso in cui il database dell'azienda corrispondente al codice inserito sia raggiungibile;
+			\item un messaggio negativo nel caso in cui il database dell'azienda corrispondente al codice inserito non sia raggiungibile.
+		\end{itemize}
+	\item \textbf{descrizione}: questo servlet controlla se un database aziendale è raggiungibile effettuando una query su tale database. Risponde positivamente nel caso in cui il database dell'azienda corrispondente al codice inserito fosse raggiungibile (query con un ritorno), mentre risponde negativamente nel caso in cui il database non fosse raggiungibile (query che ha sollevato un eccezione).
+\end{itemize}
+
+\myparagraph{/DeleteSelectedItems}
+
+\begin{itemize}
+	\item \textbf{input}:
+		\begin{itemize}
+			\item lista di codici articolo: è una lista di dei codici articolo degli articoli che devono essere eliminati;
+			\item username: è la username dell'utente che ha richiesto l'eliminazione degli articoli;
+			\item path: è la stringa di connessione al database aziendale dell'utente loggato.
+		\end{itemize}
+	\item \textbf{output}: le possibili risposte del servlet sono le seguenti:
+		\begin{itemize}
+			\item un messaggio positivo nel caso in cui la cancellazione sia andata a buon fine;
+			\item un messaggio negativo nel caso in cui la cancellazione non sia andata a buon fine.
+		\end{itemize}
+	\item \textbf{descrizione}: questo servlet si occupa di eliminare dal database aziendale dell'utente loggato gli articoli che l'utente ha richiesto di rimuovere dal carrello. Risponde positivamente nel caso in cui gli articoli sono stati rimossi correttamente dal database, mentre risponde negativamente nel caso in cui gli articoli non sono stati rimossi dal database.
+\end{itemize}
+
+\myparagraph{/FindArticleBarCode}
+
+\begin{itemize}
+	\item \textbf{input}:
+		\begin{itemize}
+			\item codice a barre: è il codice a barre di un articolo del quale si vuole conoscere il codice articolo;
+			\item path: è la stringa di connessione al database aziendale dell'utente loggato.
+		\end{itemize}
+	\item \textbf{output}: le possibili risposte del servlet sono le seguenti:
+		\begin{itemize}
+			\item codice articolo corrispondente al barcode passato come parametro nel caso in cui il barcode corrisponda a quello di un articolo venduto dall'azienda;
+			\item un messaggio negativo nel caso in cui il barcode passato come parametro non corrisponda ad un articolo venduto dall'azienda.
+		\end{itemize}
+	\item \textbf{descrizione}: questo servlet si occupa di fornire il codice articolo dell'articolo corrispondente al codice a barre ricevuto come parametro, effettuando la ricerca del barcode all'interno del database. Nel caso in cui il codice a barre sia presente all'interno del database viene restituito il codice articolo corrispondente, mentre nel caso in cui non fosse presente viene restituito un messaggio negativo.
+\end{itemize}
+
+\myparagraph{/FindArticleCode}
+
+\begin{itemize}
+	\item \textbf{input}:
+		\begin{itemize}
+			\item codice articolo: è il codice articolo o il barcode di un articolo del quale si vuole verificare la presenza in database;
+		\end{itemize}
+	\item \textbf{output}: le possibili risposte del servlet sono le seguenti:
+		\begin{itemize}
+			\item codice articolo nel caso in cui l'articolo sia presente in database;
+			\item un messaggio negativo nel caso in cui l'articolo non sia presente in database.
+		\end{itemize}
+	\item \textbf{descrizione}: questo servlet si occupa di fornire il codice articolo dell'articolo corrispondente al codice articolo o al barcode ricevuto come parametro, effettuando la ricerca del codice articolo all'interno del database. Nel caso in cui il codice articolo o il barcode passato come parametro corrisponda ad un articolo presente in database viene restituito il codice articolo dell'articolo, mentre nel caso in cui non corrisponda ad un articolo presente in database viene restituito un messaggio negativo.
+\end{itemize}
+
+\myparagraph{/GetArticleDescNote}
+
+\begin{itemize}
+	\item \textbf{input}:
+		\begin{itemize}
+			\item codice azienda: è il codice azienda della quale l'utente loggato è cliente;
+			\item codice articolo: è il codice articolo dell'articolo del quale si vogliono ottenere informazioni.
+		\end{itemize}
+	\item \textbf{output}: questo servlet può produrre un solo output perché l'applicazione è stata implementata in modo che non ci siano casi negativi:
+		\begin{itemize}
+			\item descrizione, note, quantità minima ordinabile e step di quantità permessi per l'articolo corrispondente al codice articolo passato come parametro.
+		\end{itemize}
+	\item \textbf{descrizione}: questo servlet si occupa di fornire la descrizione, le note, la minima quantità ordinabile e lo step di quantità inseribile dell'articolo corrispondente al codice articolo passato come parametro. 
+\end{itemize}
+
+\myparagraph{/GetArticlesByUsername}
+
+\begin{itemize}
+	\item \textbf{input}:
+		\begin{itemize}
+			\item
+		\end{itemize}
+	\item \textbf{output}: le possibili risposte del servlet sono le seguenti:
+		\begin{itemize}
+			\item
+		\end{itemize}
+	\item \textbf{descrizione}:
+\end{itemize}
+
+\myparagraph{/GetNameByUsername}
+
+\begin{itemize}
+	\item \textbf{input}:
+		\begin{itemize}
+			\item
+		\end{itemize}
+	\item \textbf{output}: le possibili risposte del servlet sono le seguenti:
+		\begin{itemize}
+			\item
+		\end{itemize}
+	\item \textbf{descrizione}:
+\end{itemize}
+
+\myparagraph{/GetTmpArticleData}
+
+\begin{itemize}
+	\item \textbf{input}:
+		\begin{itemize}
+			\item
+		\end{itemize}
+	\item \textbf{output}: le possibili risposte del servlet sono le seguenti:
+		\begin{itemize}
+			\item
+		\end{itemize}
+	\item \textbf{descrizione}:
+\end{itemize}
+
+\myparagraph{/InsertUpdateArticle}
+
+\begin{itemize}
+	\item \textbf{input}:
+		\begin{itemize}
+			\item
+		\end{itemize}
+	\item \textbf{output}: le possibili risposte del servlet sono le seguenti:
+		\begin{itemize}
+			\item
+		\end{itemize}
+	\item \textbf{descrizione}:
+\end{itemize}
+
+\myparagraph{/SendOrder}
+
+\begin{itemize}
+	\item \textbf{input}:
+		\begin{itemize}
+			\item
+		\end{itemize}
+	\item \textbf{output}: le possibili risposte del servlet sono le seguenti:
+		\begin{itemize}
+			\item
+		\end{itemize}
+	\item \textbf{descrizione}:
 \end{itemize}
 
 \subsection{JDBC}
