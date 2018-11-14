@@ -13,6 +13,8 @@ Per lo sviluppo del servizio web che permette all'applicazione di accedere al da
 
 \subsection{Servlet}
 
+In questa sezione viene presentato l'utilizzo degli oggetti servlet per la realizzazione del servizio web.
+
 \subsubsection{Struttura di un oggetto servlet}
 
 Un oggetto servlet è una classe Java che eredita dalla classe \textit{HttpServlet}, appartenente al package \textit{javax.servlet.http}. \textit{HttpServlet} è una classe astratta che può essere estesa per creare un servlet HTTP utilizzabile per un sito web. Nel progetto realizzato, il servlet è stato utilizzato per acquisire richieste HTTP POST, elaborarle interrogando il database sul server cloud di \visione{}, e per rispondere ad esse tramite una stringa in formato JSON. Il metodo di \textit{HttpServlet} che è stato implementato da ogni servlet concreto è:
@@ -140,7 +142,7 @@ function tryLogin(){
 }
 \end{lstlisting}
 
-\subsubsection{API del servizio web}
+\subsubsection{API del servizio web} \label{api}
 
 In questa sezione viene presentata la API del servizio web di moviORDER. In particolare, per ogni end-point (servlet) vengono specificati:
 \begin{itemize}
@@ -149,179 +151,288 @@ In questa sezione viene presentata la API del servizio web di moviORDER. In part
 	\item descrizione.
 \end{itemize}
 
-\myparagraph{/AuthenticationServlet}
+\myparagraph{Servizio di autenticazione}
 
 \begin{itemize}
-	\item \textbf{input}:
+	\item \textbf{End-point}: /AuthenticationServlet;
+	\item \textbf{Input}:
 		\begin{itemize}
 			\item username: è la username inserita dall'utente in fase di login;
 			\item password: è la password inserita dall'utente in fase di login.
 		\end{itemize}
-	\item \textbf{output}: le possibili risposte del servlet sono le seguenti:
+	\item \textbf{Output}: le possibili risposte del servlet sono le seguenti:
 		\begin{itemize}
 			\item codice azienda e username dell'utente nel caso in cui username e password corrispondano ad un utente in database;
 			\item un messaggio d'errore nel caso in cui username e password siano scorrette o l'utente è stato bloccato. 
 		\end{itemize}
-		\item \textbf{descrizione}: questo servlet rappresenta il servizio di autenticazione a moviORDER. Ricevuti i parametri, il servlet cerca la username dell'utente nel database e, nel caso questa fosse presente procede nel cercare la password corrispondente. Nel caso in cui username e password passati siano quelli corretti il servlet restituisce una stringa JSON contenente il codice azienda dell'utente che sta cercando di loggarsi e lo username dell'utente. Nel caso in cui la username o la password non siano corrette, oppure l'utente è stato bloccato, viene restituita una stringa JSON contenente un messaggio d'errore.
+		\item \textbf{Descrizione}: questo servlet rappresenta il servizio di autenticazione a moviORDER. Ricevuti i parametri, il servlet cerca la username dell'utente nel database e, nel caso questa fosse presente procede nel cercare la password corrispondente. Nel caso in cui username e password passati siano quelli corretti il servlet restituisce una stringa JSON contenente il codice azienda dell'utente che sta cercando di loggarsi e lo username dell'utente. Nel caso in cui la username o la password non siano corrette, oppure l'utente è stato bloccato, viene restituita una stringa JSON contenente un messaggio d'errore.
 \end{itemize}
 
-\myparagraph{/CheckConnectionURL}
+\myparagraph{Servizio di verifica di connessione con il database}
 
 \begin{itemize}
-	\item \textbf{input}:
+	\item \textbf{End-point}: /CheckConnectionURL;
+	\item \textbf{Input}:
 		\begin{itemize}
 			\item codice azienda: è il codice azienda dell'azienda cliente di \visione{} della quale si vuole verificare la presenza del database.
 		\end{itemize}
-	\item \textbf{output}: le possibili risposte del servlet sono le seguenti:
+	\item \textbf{Output}: le possibili risposte del servlet sono le seguenti:
 		\begin{itemize}
 			\item un messaggio positivo nel caso in cui il database dell'azienda corrispondente al codice inserito sia raggiungibile;
 			\item un messaggio negativo nel caso in cui il database dell'azienda corrispondente al codice inserito non sia raggiungibile.
 		\end{itemize}
-	\item \textbf{descrizione}: questo servlet controlla se un database aziendale è raggiungibile effettuando una query su tale database. Risponde positivamente nel caso in cui il database dell'azienda corrispondente al codice inserito fosse raggiungibile (query con un ritorno), mentre risponde negativamente nel caso in cui il database non fosse raggiungibile (query che ha sollevato un eccezione).
+	\item \textbf{Descrizione}: questo servlet controlla se un database aziendale è raggiungibile effettuando una query su tale database. Risponde positivamente nel caso in cui il database dell'azienda corrispondente al codice inserito fosse raggiungibile (query con un ritorno), mentre risponde negativamente nel caso in cui il database non fosse raggiungibile (query che ha sollevato un eccezione).
 \end{itemize}
 
-\myparagraph{/DeleteSelectedItems}
+\myparagraph{Servizio di rimozione articoli dal carrello}
 
 \begin{itemize}
-	\item \textbf{input}:
+	\item \textbf{End-point}: /DeleteSelectedItems;
+	\item \textbf{Input}:
 		\begin{itemize}
 			\item lista di codici articolo: è una lista di dei codici articolo degli articoli che devono essere eliminati;
 			\item username: è la username dell'utente che ha richiesto l'eliminazione degli articoli;
-			\item path: è la stringa di connessione al database aziendale dell'utente loggato.
+			\item path: è la stringa di connessione al database aziendale dell'utente autenticato.
 		\end{itemize}
-	\item \textbf{output}: le possibili risposte del servlet sono le seguenti:
+	\item \textbf{Output}: le possibili risposte del servlet sono le seguenti:
 		\begin{itemize}
 			\item un messaggio positivo nel caso in cui la cancellazione sia andata a buon fine;
 			\item un messaggio negativo nel caso in cui la cancellazione non sia andata a buon fine.
 		\end{itemize}
-	\item \textbf{descrizione}: questo servlet si occupa di eliminare dal database aziendale dell'utente loggato gli articoli che l'utente ha richiesto di rimuovere dal carrello. Risponde positivamente nel caso in cui gli articoli sono stati rimossi correttamente dal database, mentre risponde negativamente nel caso in cui gli articoli non sono stati rimossi dal database.
+	\item \textbf{Descrizione}: questo servlet si occupa di eliminare dal database aziendale dell'utente autenticato gli articoli che l'utente ha richiesto di rimuovere dal carrello. Risponde positivamente nel caso in cui gli articoli sono stati rimossi correttamente dal database, mentre risponde negativamente nel caso in cui gli articoli non sono stati rimossi dal database.
 \end{itemize}
 
-\myparagraph{/FindArticleBarCode}
+\myparagraph{Servizio di ricerca di un codice a barre}
 
 \begin{itemize}
-	\item \textbf{input}:
+	\item \textbf{End-point}: /FindArticleBarCode;
+	\item \textbf{Input}:
 		\begin{itemize}
 			\item codice a barre: è il codice a barre di un articolo del quale si vuole conoscere il codice articolo;
-			\item path: è la stringa di connessione al database aziendale dell'utente loggato.
+			\item path: è la stringa di connessione al database aziendale dell'utente autenticato.
 		\end{itemize}
-	\item \textbf{output}: le possibili risposte del servlet sono le seguenti:
+	\item \textbf{Output}: le possibili risposte del servlet sono le seguenti:
 		\begin{itemize}
 			\item codice articolo corrispondente al barcode passato come parametro nel caso in cui il barcode corrisponda a quello di un articolo venduto dall'azienda;
 			\item un messaggio negativo nel caso in cui il barcode passato come parametro non corrisponda ad un articolo venduto dall'azienda.
 		\end{itemize}
-	\item \textbf{descrizione}: questo servlet si occupa di fornire il codice articolo dell'articolo corrispondente al codice a barre ricevuto come parametro, effettuando la ricerca del barcode all'interno del database. Nel caso in cui il codice a barre sia presente all'interno del database viene restituito il codice articolo corrispondente, mentre nel caso in cui non fosse presente viene restituito un messaggio negativo.
+	\item \textbf{Descrizione}: questo servlet si occupa di fornire il codice articolo dell'articolo corrispondente al codice a barre ricevuto come parametro, effettuando la ricerca del barcode all'interno del database. Nel caso in cui il codice a barre sia presente all'interno del database viene restituito il codice articolo corrispondente, mentre nel caso in cui non fosse presente viene restituito un messaggio negativo.
 \end{itemize}
 
-\myparagraph{/FindArticleCode}
+\myparagraph{Servizio di ricerca di un codice articolo}
 
 \begin{itemize}
-	\item \textbf{input}:
+	\item \textbf{End-point}: /FindArticleCode;
+	\item \textbf{Input}:
 		\begin{itemize}
 			\item codice articolo: è il codice articolo o il barcode di un articolo del quale si vuole verificare la presenza in database;
 		\end{itemize}
-	\item \textbf{output}: le possibili risposte del servlet sono le seguenti:
+	\item \textbf{Output}: le possibili risposte del servlet sono le seguenti:
 		\begin{itemize}
 			\item codice articolo nel caso in cui l'articolo sia presente in database;
 			\item un messaggio negativo nel caso in cui l'articolo non sia presente in database.
 		\end{itemize}
-	\item \textbf{descrizione}: questo servlet si occupa di fornire il codice articolo dell'articolo corrispondente al codice articolo o al barcode ricevuto come parametro, effettuando la ricerca del codice articolo all'interno del database. Nel caso in cui il codice articolo o il barcode passato come parametro corrisponda ad un articolo presente in database viene restituito il codice articolo dell'articolo, mentre nel caso in cui non corrisponda ad un articolo presente in database viene restituito un messaggio negativo.
+	\item \textbf{Descrizione}: questo servlet si occupa di fornire il codice articolo dell'articolo corrispondente al codice articolo o al barcode ricevuto come parametro, effettuando la ricerca del codice articolo all'interno del database. Nel caso in cui il codice articolo o il barcode passato come parametro corrisponda ad un articolo presente in database viene restituito il codice articolo dell'articolo, mentre nel caso in cui non corrisponda ad un articolo presente in database viene restituito un messaggio negativo.
 \end{itemize}
 
-\myparagraph{/GetArticleDescNote}
+\myparagraph{Servizio di prelievo informazioni di un articolo}
 
 \begin{itemize}
-	\item \textbf{input}:
+	\item \textbf{End-point}: /GetArticleDescNote;
+	\item \textbf{Input}:
 		\begin{itemize}
-			\item codice azienda: è il codice azienda della quale l'utente loggato è cliente;
+			\item codice azienda: è il codice azienda della quale l'utente autenticato è cliente;
 			\item codice articolo: è il codice articolo dell'articolo del quale si vogliono ottenere informazioni.
 		\end{itemize}
-	\item \textbf{output}: questo servlet può produrre un solo output perché l'applicazione è stata implementata in modo che non ci siano casi negativi:
+	\item \textbf{Output}: questo servlet può produrre un solo output perché l'applicazione è stata implementata in modo che non ci siano casi negativi:
 		\begin{itemize}
 			\item descrizione, note, quantità minima ordinabile e step di quantità permessi per l'articolo corrispondente al codice articolo passato come parametro.
 		\end{itemize}
-	\item \textbf{descrizione}: questo servlet si occupa di fornire la descrizione, le note, la minima quantità ordinabile e lo step di quantità inseribile dell'articolo corrispondente al codice articolo passato come parametro. 
+	\item \textbf{Descrizione}: questo servlet si occupa di fornire informazioni sull'articolo corrispondente al codice articolo passato come parametro. 
 \end{itemize}
 
-\myparagraph{/GetArticlesByUsername}
+\myparagraph{Servizio di prelievo degli articoli nel carrello di un utente}
 
 \begin{itemize}
-	\item \textbf{input}:
+	\item \textbf{End-point}: /GetArticlesByUsername;
+	\item \textbf{Input}:
 		\begin{itemize}
-			\item
+			\item codice azienda: è il codice azienda della quale l'utente autenticato è cliente;
+			\item username: è il nome utente dell'utente autenticato.
 		\end{itemize}
-	\item \textbf{output}: le possibili risposte del servlet sono le seguenti:
+	\item \textbf{Output}: le possibili risposte del servlet sono le seguenti:
 		\begin{itemize}
-			\item
+			\item array degli articoli nel carrello dell'utente autenticato. Per ogni articolo vengono restituiti la quantità ordinata, il codice articolo e la descrizione dell'articolo;
+			\item array vuoto nel caso in cui l'utente autenticato non presenti articoli in carrello.
 		\end{itemize}
-	\item \textbf{descrizione}:
+	\item \textbf{Descrizione}: questo servlet si occupa di fornire la lista di articoli in carrello per l'utente la quale username è stata passata come parametro. Nel caso in cui l'utente presenti articoli in carrello viene restituita la lista degli articoli in carrello, mentre nel caso in cui non presenti articoli in carrello viene restituita una lista vuota.
 \end{itemize}
 
-\myparagraph{/GetNameByUsername}
+\myparagraph{Servizio di prelievo di informazioni di un utente}
 
 \begin{itemize}
-	\item \textbf{input}:
+	\item \textbf{End-point}: /GetNameByUsername;
+	\item \textbf{Input}:
 		\begin{itemize}
-			\item
+			\item path: è la stringa di connessione al database aziendale dell'utente autenticato;
+			\item username: è il nome utente dell'utente autenticato.
 		\end{itemize}
-	\item \textbf{output}: le possibili risposte del servlet sono le seguenti:
+	\item \textbf{Output}: questo servlet può produrre un solo output perché l'applicazione è stata implementata in modo che non ci siano casi negativi:
 		\begin{itemize}
-			\item
+			\item nome e ragione sociale dell'utente autenticato e codice documento e descrizione del documento da generare nel caso in cui l'utente invii un ordine.
 		\end{itemize}
-	\item \textbf{descrizione}:
+	\item \textbf{Descrizione}: questo servlet si occupa di fornire informazioni sull'utente la cui username è stata passata come parametro.
 \end{itemize}
 
-\myparagraph{/GetTmpArticleData}
+\myparagraph{Servizio di prelievo informazioni di un articolo in carrello}
 
 \begin{itemize}
-	\item \textbf{input}:
+	\item \textbf{End-point}: /GetTmpArticleData;
+	\item \textbf{Input}:
 		\begin{itemize}
-			\item
+			\item path: è la stringa di connessione al database aziendale dell'utente autenticato;
+			\item codice articolo: è il codice articolo dell'articolo del quale si vogliono ottenere informazioni;
+			\item username: è il nome utente dell'utente autenticato.
 		\end{itemize}
-	\item \textbf{output}: le possibili risposte del servlet sono le seguenti:
+	\item \textbf{Output}: questo servlet può produrre un solo output perché l'applicazione è stata implementata in modo che non ci siano casi negativi:
 		\begin{itemize}
-			\item
+			\item quantità e note dell'articolo nel carrello dell'utente autenticato corrispondente al codice articolo passato come parametro.
 		\end{itemize}
-	\item \textbf{descrizione}:
+	\item \textbf{Descrizione}: questo servlet si occupa di fornire informazioni riguardati uno specifico articolo nel carrello dell'utente la quale username è stata passata come parametro.
 \end{itemize}
 
-\myparagraph{/InsertUpdateArticle}
+\myparagraph{Servizio di inserimento/modifica articolo}
 
 \begin{itemize}
-	\item \textbf{input}:
+	\item \textbf{End-point}: /InsertUpdateArticle;
+	\item \textbf{Input}:
 		\begin{itemize}
-			\item
+			\item path: è la stringa di connessione al database aziendale dell'utente autenticato;
+			\item query: è la query di inserimento/modifica di un articolo.
 		\end{itemize}
-	\item \textbf{output}: le possibili risposte del servlet sono le seguenti:
+	\item \textbf{Output}: le possibili risposte del servlet sono le seguenti:
 		\begin{itemize}
-			\item
+			\item un messaggio positivo nel caso in cui la query di inserimento/modifica articolo sia andata a buon fine;
+			\item un messaggio negativo nel caso in cui la query di inserimento/modifica articolo non sia andata a buon fine.
 		\end{itemize}
-	\item \textbf{descrizione}:
+	\item \textbf{Descrizione}: questo servlet si occupa di inserire o modificare un articolo nel carrello dell'utente autenticato. L'inserimento e la modifica avvengono mediante l'utilizzo dello stesso servlet poiché uno dei parametri è la query da eseguire sul database, che può essere di tipo INSERT o UPDATE. Nel caso in cui la query venga eseguita in modo corretto sul database viene restituito un messaggio positivo, mentre nel caso in cui non venga eseguita viene restituito un messaggio negativo.
 \end{itemize}
 
-\myparagraph{/SendOrder}
+\myparagraph{Servizio di invio di un ordine}
 
 \begin{itemize}
-	\item \textbf{input}:
+	\item \textbf{End-point}: /SendOrder;
+	\item \textbf{Input}:
 		\begin{itemize}
-			\item
+			\item path: è la stringa di connessione al database aziendale dell'utente autenticato;
+			\item codici articolo: è la lista dei codici degli articoli che l'utente autenticato ha ordinato;
+			\item username: è il nome utente dell'utente autenticato;
+			\item ragione sociale: è la ragione sociale dell'utente autenticato;
+			\item nome: è il nome dell'utente autenticato;
+			\item codice documento: è il codice del documento che deve essere generato con l'ordine;
+			\item data: è la data d'invio dell'ordine;
+			\item note: sono le note inserite dall'utente in fase di invio dell'ordine;
+			\item codice azienda: è il codice azienda della quale l'utente autenticato è cliente.
 		\end{itemize}
-	\item \textbf{output}: le possibili risposte del servlet sono le seguenti:
+	\item \textbf{Output}: le possibili risposte del servlet sono le seguenti:
 		\begin{itemize}
-			\item
+			\item un messaggio positivo nel caso in cui l'ordine sia stato inviato con successo;
+			\item un messaggio negativo nel caso in cui l'ordine non sia stato inviato con successo.
 		\end{itemize}
-	\item \textbf{descrizione}:
+	\item \textbf{Descrizione}: questo servlet si occupa di registrare in database un ordine contenente gli articoli passati come parametro. Il resto dei parametri che vengono passati viene utilizzato per inviare una mail di conferma all'utente autenticato e all'azienda presso cui l'utente è cliente. Nel caso in cui la registrazione dell'ordine in database avvenga correttamente viene restituito un messaggio positivo, mentre nel caso in cui non avvenga correttamente viene restituito un messaggio negativo.
 \end{itemize}
 
 \subsection{JDBC}
 
+In questa sezione viene presentato l'utilizzo della Java Database Connectivity API per la realizzazione del servizio web.
+
 \subsubsection{Driver JDBC}
 
-Un driver JDBC è una componente software che permette ad un'applicazione Java di interagire con un database. Per supportare la connessione a singoli database, JDBC (Java Database Connectivity API) richiede i driver per ogni database. Il driver permette la connessione con il database e implementa il protocollo di trasferimento di query e risultati tra il client e il database.
+Un driver JDBC è una componente software che permette ad un'applicazione Java di interagire con un database. Per supportare la connessione a singoli database, JDBC (Java Database Connectivity API) richiede i driver per ogni database. Il driver permette la connessione con il database e implementa il protocollo di trasferimento di query e risultati tra il client e il database. Poiché per l'implementazione del database è stato utilizzato Microsoft SQL Server si sono dovuti utilizzare i driver JDBC per tale DBMS.
 
-\subsubsection{Classe DataBaseConnection}
+\subsubsection{Classe DatabaseConnection} \label{dbConnect}
 
-fare una lista di quali metodi dell'api sono stati utilizzati
+Per lo sviluppo del servizio web è stata realizzata la classe \textit{DatabaseConnection} appartenente al package \textit{dbConnection}. Tale classe fornisce un'interfaccia utilizzabile per gestire l'interazione con un database di tipo SQL Server. In questa sezione vengono presentati i metodi che costituiscono tale interfaccia.
+
+\myparagraph{Costruttori}
+
+La classe presenta due metodi costruttori:
+\begin{itemize}
+	\item \textit{public DatabaseConnection(String u, String user, String psw, String db)}: costruisce un oggetto \textit{DatabaseConnection} a partire  da l'URL del server in cui è presente il database, la username e la password di accesso al database, e il nome del database al quale si desidera connettesi;
+	\item \textit{public DatabaseConnection(String dbConnectionString)}: costruisce un oggetto \textit{DatabaseConnection} a partire dalla stringa di connessione ad uno specifico database.
+\end{itemize}
+La stringa di connessione ad un database è del formato seguente: \textit{indirizzoServer;databaseName=nomeDb;user=u;password=psw}, dove:
+\begin{itemize}
+	\item \textit{indirizzoServer}: è l'indirizzo IP pubblico del server contenente il database al quale si desidera connettersi. Nel caso del progetto potrebbe essere l'indirizzo del server di un'azienda esterna che desidera utilizzare il proprio database contenente i dati sugli articoli;
+	\item \textit{nomeDb}: è il nome del database al quale si desidera connettersi;
+	\item \textit{u}: è il nome utente per l'accesso al database;
+	\item \textit{psw}: è la password per l'accesso al database.
+\end{itemize}
+Viene di seguito presentato il codice Java che implementa il metodo \textit{public DatabaseConnection(String dbConnectionString)}. Il metodo si occupa di splittare la stringa di connessione passata come parametro per ottenere i dati utili per la costruzione dell'oggetto \textit{DatabaseConnection}.
+\begin{lstlisting}
+public DatabaseConnection(String dbConnectionString) {
+	String[] splitted=dbConnectionString.split(";");
+	String[] db=splitted[1].split("=");
+	String[] user2=splitted[2].split("=");
+	String[] psw2=splitted[3].split("=");
+	url=splitted[0];
+	dbName=db[1];
+	username=user2[1];
+	password=psw2[1];
+}
+\end{lstlisting}
+
+\myparagraph{Metodo \textit{connectToDb()}}
+
+Tale metodo si occupa di instaurare la connessione con il database desiderato. Per far questo, configura i driver JDBC e costruisce l'URL di connessione al database con i dati contenuti nell'oggetto d'invocazione. Il metodo potrebbe sollevare un'eccezione di tipo \textit{ClassNotFoundException} nel caso in cui la classe utilizzata per i driver JDBC sia inesistente o non sia stata importata all'interno del progetto. Viene di seguito fornito il codice del metodo \textit{connectToDb()}.
+\begin{lstlisting}
+public void connectToDB() throws SQLException{
+	try {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		String connectionUrl="jdbc:sqlserver://"+url+";databaseName="+
+				dbName+";user="+username+";password="+password;
+		connection=DriverManager.getConnection(connectionUrl);
+	}catch(ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+}
+\end{lstlisting}
+
+\myparagraph{Altri metodi}
+
+Sono stati implementati altri metodi di complessità inferiore. Per questo motivo viene presentata solamente una breve descrizione di tali metodi:
+\begin{itemize}
+	\item \textit{doQuery(query)}: questo metodo permette di eseguire una query di tipo SELECT sul database. Restituisce il \textit{ResultSet} contenente il risultato della query;
+	\item \textit{doUpdateQuery(query)}: questo metodo permette di eseguire una query di tipo INSERT, UPDATE o DELETE sul database. Restituisce il numero di righe inserite, modificate o cancellate;
+	\item \textit{closeConnection()}: questo metodo permette di eseguire il processo di disconnessione dal database.
+\end{itemize}
+
+\subsection{Classi utilità}
+
+Per lo sviluppo del servizio web è stato necessario implementare due classi utilità. In questa sezione ne viene presentata brevemente l'implementazione. Tali classi appartengono al package \textit{utility}.
+
+\subsubsection{Classe GetParam}
+
+La classe \textit{GetParam} si occupa semplicemente di restituisce un campo statico contenente la stringa di connessione al database \textit{CommonDb} dell'applicazione moviORDER. Come detto precedentemente, questo database contiene tutti i dati di autenticazione degli utenti di moviORDER. Poiché questo URL viene utilizzato frequentemente all'interno del servizio web, si è deciso di inserirlo in un unico punto del servizio, in modo da evitare la modifica di più file nel caso in cui esso cambi.
+
+\subsubsection{Classe MailUtility}
+
+La classe \textit{MailUtility} fornisce un'interfaccia per l'invio di e-mail. È stato necessario implementare tale classe poiché un requisito richiedeva che nel momento in cui un ordine veniva registrato, doveva essere inviata una mail di conferma all'utente autenticato e all'azienda presso cui l'utente è cliente. La classe presenta un costruttore che richiede i parametri per la configurazione di un server SMTP:
+\begin{itemize}
+	\item host: è l'indirizzo IP del server SMTP da utilizzare per l'invio delle mail di conferma;
+	\item post: è il numero di porta dell'host su cui è installato il server SMTP;
+	\item username: è il nome utente di accesso al server SMTP;
+	\item password: è la password di accesso al server SMTP.
+\end{itemize}
+Il metodo \textit{sendMail()} si occupa di configurare e inviare una e-mail all'utente che ha effettuato l'ordine e all'azienda presso cui l'utente è cliente. Per far questo il metodo richiede:
+\begin{itemize}
+	\item indirizzo e-mail dell'utente;
+	\item indirizzo e-mail dell'azienda;
+	\item indirizzo e-mail del mittente;
+	\item oggetto della e-mail;
+	\item testo della e-mail: è una tabella scritta in codice HTML contenente i dati degli articoli ordinati.
+\end{itemize}
+Viene di seguito fornito, a titolo d'esempio, il codice Java che implementa il metodo \textit{sendMail()}.
 
 \section{Logica applicativa}
 
@@ -330,3 +441,5 @@ Parlare dei plugin di phonegap e fare l'esempio del barcode scanner, parlare deg
 \section{Interfaccia grafica}
 
 mostrare lo screen delle varie interfacce e spiegarne le interazioni utente
+
+\textbf{per la parte di progettazione far vedere che il database potrebbe essere anche sul server di un'azienda esterna, commonDB sempre sul server vision mentre il db dell'azienda può essere su un server esterno.}
