@@ -31,30 +31,12 @@ Un oggetto servlet è una classe Java che eredita dalla classe \textit{HttpServl
 \end{itemize}
 
 Viene di seguito fornita, a titolo d'esempio, l'implementazione del metodo \textit{doPost()} del servlet del servizio web che si occupa di controllare che le credenziali di autenticazione inserite dall'utente in fase di login siano corrette. Nella prossima sezione viene fornito un esempio di come la logica applicativa di moviORDER effettua una richiesta a tale servlet e di come utilizza la risposta per modificare lo stato dell'applicazione. Nell'esempio, la classe \textit{DatabaseConnection} fornisce un'interfaccia per l'interrogazione di un database SQL Server. Una spiegazione di tale classe è presente in sezione \ref{dbconnect}.
-\begin{lstlisting}
-protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		DatabaseConnection dbConnect=new DatabaseConnection(GetParam.getUrlCommonDB());
-		try {
-			dbConnect.connectToDB();
-		}catch(SQLException e) {
-			e.printStackTrace();
-		} 
-		ResultSet rs=dbConnect.doQuery("select * from Users");
-		String json ="";
-		json = generateResponse(rs,username,password); //funzione che genera la stringa di risposta in formato JSON
-		response.setContentType("application/json");
-		response.getWriter().write(json);
-		dbConnect.closeConnection();
-		try {
-			rs.close();
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}
-\end{lstlisting}
 
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[height=10cm,width=\columnwidth]{codice/servlet} 
+    \caption{Metodo \textit{doPost()} del servlet che gestisce l'autenticazione}
+\end{figure}
 
 \subsubsection{Interrogazione del servizio web}
 
@@ -97,58 +79,19 @@ Viene di seguito fornito, a titolo d'esempio, il codice JavaScript della logica 
 
 \newpage
 
-\begin{lstlisting}[tabsize=2]
-function tryLogin(){
-	var usern = document.getElementById("username").value;
-	var password = document.getElementById("password").value;
-	var xhttp = new XMLHttpRequest();
-	if(usern!="" && password!=""){ //credenziali inserite
-	  document.getElementById("loading").style.display = "block";
-		xhttp.open("POST",host+"/moviORDER/AuthenticationServlet",true); //host e' l'indirizzo pubblico del server cloud di VisioneImpresa
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				var risp=JSON.parse(this.responseText);
-				if(risp.messaggio=="OK"){ //credenziali corrette
-				    var xhttp1 = new XMLHttpRequest();
-				    xhttp1.open("POST",host+"/moviORDER/CheckConnectionURL",true); //controllo di disponibilita' del server
-				    xhttp1.onreadystatechange = function() {
-				        if (xhttp1.readyState == 4 && xhttp1.status == 200) {
-				            var risp2 = JSON.parse(xhttp1.responseText);
-				            if(risp2.messaggio != "no"){ //server disponibile
-				                document.getElementById("loading").style.display = "none";
-				                location.replace("visualizzazioneArticoli.html?codAz="+risp.codAz+"&username="+risp.username);
-				            }else{ //server non disponibile
-				                document.getElementById("loading").style.display = "none";
-				                navigator.notification.alert("Il database di Vision e' inconsistente per l'utente "+usern+".",null,"Errore");
-				            }
-				        }
-				    };
-				    xhttp1.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=UTF-8");
-                    xhttp1.send("codAz="+risp.codAz);
-				}else{ //credenziali errate
-				    document.getElementById("loading").style.display = "none";
-					  showSomething(this); //visualizzazione errore identificato
-				}
-			}
-		};
-		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=UTF-8");
-		xhttp.send("username="+usern+"&password="+password);
-	}else{ //credenziali non inserite
-		var errore=document.getElementById("errorMessage");
-		errore.innerHTML="Inserire username e password";
-		errore.style.backgroundColor="#2196F3";
-		errore.style.display="block";
-	}
-}
-\end{lstlisting}
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=\columnwidth]{codice/ajax} 
+    \caption{Esempio di invio richiesta HTTP tramite AJAX}
+\end{figure}
 
 \subsubsection{API del servizio web} \label{api}
 
 In questa sezione viene presentata la API del servizio web di moviORDER. In particolare, per ogni end-point (servlet) vengono specificati:
 \begin{itemize}
-	\item input: costituito dai parametri inviati al servizio web tramite una richiesta HTTP;
-	\item output: costituito da una stringa in formato JSON che presenta struttura diversa a seconda dell'end-point che gestisce la richiesta;
-	\item descrizione.
+	\item \textbf{input}: costituito dai parametri inviati al servizio web tramite una richiesta HTTP;
+	\item \textbf{output}: costituito da una stringa in formato JSON che presenta struttura diversa a seconda dell'end-point che gestisce la richiesta;
+	\item \textbf{descrizione}.
 \end{itemize}
 
 \myparagraph{Servizio di autenticazione}
@@ -350,7 +293,7 @@ In questa sezione viene presentato l'utilizzo della Java Database Connectivity A
 
 Un driver JDBC è una componente software che permette ad un'applicazione Java di interagire con un database. Per supportare la connessione a singoli database, JDBC (Java Database Connectivity API) richiede i driver per ogni database. Il driver permette la connessione con il database e implementa il protocollo di trasferimento di query e risultati tra il client e il database. Poiché per l'implementazione del database è stato utilizzato Microsoft SQL Server si sono dovuti utilizzare i driver JDBC per tale DBMS.
 
-\subsubsection{Classe DatabaseConnection} \label{dbConnect}
+\subsubsection{Classe DatabaseConnection} \label{dbconnect}
 
 Per lo sviluppo del servizio web è stata realizzata la classe \textit{DatabaseConnection} appartenente al package \textit{dbConnection}. Tale classe fornisce un'interfaccia utilizzabile per gestire l'interazione con un database di tipo SQL Server. In questa sezione vengono presentati i metodi che costituiscono tale interfaccia.
 
@@ -369,34 +312,22 @@ La stringa di connessione ad un database è del formato seguente: \textit{indiri
 	\item \textit{psw}: è la password per l'accesso al database.
 \end{itemize}
 Viene di seguito presentato il codice Java che implementa il metodo \textit{public DatabaseConnection(String dbConnectionString)}. Il metodo si occupa di splittare la stringa di connessione passata come parametro per ottenere i dati utili per la costruzione dell'oggetto \textit{DatabaseConnection}.
-\begin{lstlisting}
-public DatabaseConnection(String dbConnectionString) {
-	String[] splitted=dbConnectionString.split(";");
-	String[] db=splitted[1].split("=");
-	String[] user2=splitted[2].split("=");
-	String[] psw2=splitted[3].split("=");
-	url=splitted[0];
-	dbName=db[1];
-	username=user2[1];
-	password=psw2[1];
-}
-\end{lstlisting}
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[height=8cm,width=0.8\columnwidth]{codice/databaseCostruttore} 
+    \caption{Metodo costruttore della classe \textit{DatabaseConnection}}
+\end{figure}
 
 \myparagraph{Metodo \textit{connectToDb()}}
 
 Tale metodo si occupa di instaurare la connessione con il database desiderato. Per far questo, configura i driver JDBC e costruisce l'URL di connessione al database con i dati contenuti nell'oggetto d'invocazione. Il metodo potrebbe sollevare un'eccezione di tipo \textit{ClassNotFoundException} nel caso in cui la classe utilizzata per i driver JDBC sia inesistente o non sia stata importata all'interno del progetto. Viene di seguito fornito il codice del metodo \textit{connectToDb()}.
-\begin{lstlisting}
-public void connectToDB() throws SQLException{
-	try {
-		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		String connectionUrl="jdbc:sqlserver://"+url+";databaseName="+
-				dbName+";user="+username+";password="+password;
-		connection=DriverManager.getConnection(connectionUrl);
-	}catch(ClassNotFoundException e) {
-		e.printStackTrace();
-	}
-}
-\end{lstlisting}
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=\columnwidth]{codice/connessionedb} 
+    \caption{Metodo \textit{connectToDb()} della classe \textit{DatabaseConnection}}
+\end{figure}
 
 \myparagraph{Altri metodi}
 
@@ -433,6 +364,12 @@ Il metodo \textit{sendMail()} si occupa di configurare e inviare una e-mail all'
 	\item testo della e-mail: è una tabella scritta in codice HTML contenente i dati degli articoli ordinati.
 \end{itemize}
 Viene di seguito fornito, a titolo d'esempio, il codice Java che implementa il metodo \textit{sendMail()}.
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=\columnwidth]{codice/mail} 
+    \caption{Metodo \textit{sendMail()} della classe \textit{MailUtility}}
+\end{figure}
 
 \section{Logica applicativa}
 
