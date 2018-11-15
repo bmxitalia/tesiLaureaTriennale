@@ -13,7 +13,7 @@ Per lo sviluppo del servizio web che permette all'applicazione di accedere al da
 
 \subsection{Servlet}
 
-In questa sezione viene presentato l'utilizzo degli oggetti servlet nella realizzazione del servizio web.
+In questa sezione viene presentato l'utilizzo degli oggetti servlet nella realizzazione del servizio web. Le classi che implementano gli oggetti servlet appartengono al package \textit{servlet}.
 
 \subsubsection{Struttura di un oggetto servlet}
 
@@ -363,6 +363,8 @@ Il metodo \textit{sendMail()} si occupa di configurare e inviare una mail all'ut
 \end{itemize}
 Viene di seguito fornito, a titolo d'esempio, il codice Java che implementa il metodo \textit{sendMail()}.
 
+\newpage
+
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=\columnwidth]{codice/mail} 
@@ -371,10 +373,95 @@ Viene di seguito fornito, a titolo d'esempio, il codice Java che implementa il m
 
 \section{Logica applicativa}
 
-Parlare dei plugin di phonegap e fare l'esempio del barcode scanner, parlare degli alert come permettono di essere convertiti in nativo e di tutte queste cose sui plugin. Aspetti negativi e positivi dei plugin nelle varie piattaforme, se funzionano allo stesso modo o ci sono state delle differenze sostanziali.
+In questa sezione vengono presentati gli aspetti più interessanti riguardanti la codifica della logica applicativa di moviORDER. La sezione si incentra sui meccanismi di integrazione dei plugin PhoneGap con il codice Javascript della logica applicativa.
+
+\subsection{Plugin di PhoneGap}
+
+Un plugin è un pacchetto di codice che permette al visualizzatore web di Cordova, il quale renderizza l'applicazione, di comunicare con la piattaforma nativa sulla quale viene eseguito. I plugin forniscono accesso alle funzionalità del dispositivo e della piattaforma che normalmente non sono disponibili per le applicazioni web-based. Tutte le principali API di Cordova sono implementate tramite plugin. Un aspetto interessante dei plugin è che essi sono composti da un'unica interfaccia JavaScript che astrae le differenti librerie di codice nativo delle piattaforme supportate dal plugin. Quindi, essenzialmente, i plugin nascondono le varie implementazioni di codice nativo dietro un'interfaccia JavaScript comune.
+
+\subsection{Installazione dei plugin}
+
+Tramite PhoneGap CLI, interfaccia a linea di comando precedentemente descritta, è possibile aggiungere i plugin desiderati alla configurazione del progetto PhoneGap. È sufficiente lanciare la CLI dalla cartella principale del progetto ed eseguire il comando \textit{phonegap plugin add nomePlugin}, dove \textit{nomePlugin} è il nome del plugin che si desidera scaricare e installare (es. \textit{cordova-plugin-whitelist}).
+
+\subsection{Premesse all'utilizzo dei plugin}
+
+Per poter utilizzare i plugin di PhoneGap efficacemente è necessario predisporre il codice JavaScript al loro utilizzo. In particolare sono necessari due accorgimenti che vengono di seguito presentati.
+
+\subsubsection{Inclusione di cordova.js}
+
+In ogni file della logica applicativa che utilizza dei plugin PhoneGap deve essere importato il file \textit{cordova.js}. Questo file JavaScript permette il funzionamento dei plugin utilizzati all'interno della logica di moviORDER. Se si cerca di utilizzare un plugin senza aver importato tale file, la console darà il seguente errore: ``Cordova in not available, Make sure to include cordova.js''.
+
+\subsubsection{Evento deviceready}
+
+L'evento \textit{deviceready} è essenziale in ogni applicazione poiché segnala il corretto caricamento delle API di Cordova sul dispositivo. Se l'evento non venisse atteso prima di utilizzare un plugin, si rischierebbe che l'applicazione effettui una chiamata ad una funzione JavaScript di Cordova prima che il corrispondente codice nativo per il dispositivo diventi disponibile. L'evento \textit{deviceready} viene lanciato una volta che Cordova è stato completamente caricato. Quindi nel momento in cui tale evento viene lanciato, è possibile effettuare chiamate alle API di Cordova in completa sicurezza. Per attendere l'evento è sufficiente inserire un listener nel codice JavaScript. Viene di seguito fornito, a scopo illustrativo, un esempio di codice JavaScript che implementa l'attesa di tale evento.
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=\columnwidth]{codice/deviceready} 
+    \caption{Esempio di codice JavaScript che attende l'evento \textit{deviceready}}
+\end{figure}
+
+\subsection{Plugin utilizzati}
+
+In questa sezione vengono presentati i plugin PhoneGap utilizzati nella realizzazione della logica applicativa di moviORDER. Per ogni plugin vengono messi in evidenzia vantaggi e svantaggi (se presenti) nell'utilizzo e un esempio di utilizzo.
+
+\subsubsection{Dialogs plugin}
+
+Il plugin \textit{dialogs} fornisce accesso all'interfaccia grafica nativa degli elementi dialog tramite l'utilizzo dell'oggetto \textit{navigator.notification}. Questo plugin è stato utilizzato convertire gli alert box delle pagine web in dialog nativi. Sono stati utilizzati i seguenti metodi:
+\begin{itemize}
+	\item \textit{alert()}: visualizza un dialog box nativo con un messaggio di allerta preimpostato. Il metodo richiede i seguenti parametri:
+	\begin{itemize}
+		\item \textit{message}: è il messaggio visualizzato nel dialog;
+		\item \textit{callback}: è una funzione anonima di callback da eseguire quando viene premuto il pulsante nel dialog;
+		\item \textit{title}: è il titolo del dialog;
+		\item \textit{buttonName}: è il testo che viene scritto all'interno del bottone nel dialog.
+	\end{itemize}
+	\item \textit{confirm()}: visualizza un dialog box nativo per richiedere conferma di un'azione. Il metodo richiede i seguenti parametri:
+	\begin{itemize}
+		\item \textit{message}: è il messaggio visualizzato nel dialog di conferma;
+		\item \textit{callback}: è una funzione anonima di callback da eseguire nel caso in cui il bottone di conferma viene premuto;
+		\item \textit{title}: è il titolo del dialog di conferma;
+		\item \textit{buttonLabels}: sono le etichette dei vari bottoni presenti nel dialog di conferma. Solitamente sono ``OK'' e ``Annulla''.
+	\end{itemize}
+\end{itemize}
+
+Senza l'utilizzo di questo plugin non sarebbe stato possibile modificare il titolo e i bottoni del dialog poiché per motivi di sicurezza JavaScript non permette tale modifica. Inoltre la visualizzazione del dialog non sarebbe stata la visualizzazione desiderata, ovvero quella nativa. 
+
+Vengono di seguito forniti, a scopo illustrativo, un esempio di codice JavaScript che non utilizza il plugin e un esempio che lo utilizza. Per ognuno degli esempi viene mostrato uno screenshot dell'output risultante che, nel primo caso sarà un comune alert e nel secondo un dialog nativo.
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=\columnwidth]{codice/alert} 
+    \caption{Esempio di codice JavaScript che non utilizza il plugin \textit{dialogs}}
+\end{figure}
+
+\newpage
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.4\columnwidth]{codice/imgalert} 
+    \caption{Esempio di visualizzazione scorretta - alert}
+\end{figure}
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=\columnwidth]{codice/dialog} 
+    \caption{Esempio di codice JavaScript che utilizza il plugin \textit{dialogs}}
+\end{figure}
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.4\columnwidth]{codice/imgDialog} 
+    \caption{Esempio di visualizzazione corretta - dialog}
+\end{figure}
+
+\subsubsection{Netowork information plugin}
+
+\subsubsection{Barcode scanner plugin}
+parlare anche delle modifiche effettuate in nativo per correggere questo plugin in iOS
 
 \section{Interfaccia grafica}
 
-mostrare lo screen delle varie interfacce e spiegarne le interazioni utente
+mostrare lo screen delle varie interfacce e spiegarne le interazioni utente, parlare delle media query
 
 \textbf{per la parte di progettazione far vedere che il database potrebbe essere anche sul server di un'azienda esterna, commonDB sempre sul server vision mentre il db dell'azienda può essere su un server esterno.}

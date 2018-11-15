@@ -4,3 +4,4 @@ i wikipedia di tutte le tecnologie
 html5 e il mobile https://www.html.it/pag/54877/html5-e-il-mobile/
 servlet 
 ajax
+docs di cordova per i plugin
