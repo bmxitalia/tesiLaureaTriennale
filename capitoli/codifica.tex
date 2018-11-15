@@ -96,15 +96,15 @@ In questa sezione viene presentata la API del servizio web di moviORDER. In part
 
 \begin{itemize}
 	\item \textbf{Indirizzo}: /AuthenticationServlet;
-	\item \textbf{Input}:
+	\item \textbf{Input}: il servlet richiede i seguenti parametri:
 		\begin{itemize}
 			\item \textit{username}: è la username inserita dall'utente in fase di login;
 			\item \textit{password}: è la password inserita dall'utente in fase di login.
 		\end{itemize}
 	\item \textbf{Output}: le possibili risposte del servlet sono le seguenti:
 		\begin{itemize}
-			\item codice azienda e username dell'utente nel caso in cui username e password corrispondano ad un utente presente in database;
-			\item un messaggio d'errore nel caso in cui username e password siano scorrette o l'utente è stato bloccato. 
+			\item codice azienda e username dell'utente nel caso in cui username e password passati come parametro corrispondono ad un utente presente in database;
+			\item un messaggio d'errore nel caso in cui le credenziali sono scorrette o l'utente è stato bloccato. 
 		\end{itemize}
 		\item \textbf{Descrizione}: questo servlet rappresenta il servizio di autenticazione di moviORDER. Ricevuti i parametri, il servlet cerca la username dell'utente nel database e, nel caso in cui questa fosse presente, procede nel cercare la password corrispondente. Nel caso in cui username e password passati siano quelli corretti, il servlet restituisce una stringa JSON contenente il codice azienda e la username dell'utente che ha cercando di loggarsi. Nel caso in cui le credenziali non siano corrette, oppure l'utente è stato bloccato, viene restituito un messaggio d'errore.
 \end{itemize}
@@ -113,112 +113,112 @@ In questa sezione viene presentata la API del servizio web di moviORDER. In part
 
 \begin{itemize}
 	\item \textbf{Indirizzo}: /CheckConnectionURL;
-	\item \textbf{Input}:
+	\item \textbf{Input}: il servlet richiede i seguenti parametri:
 		\begin{itemize}
-			\item codice azienda: è il codice azienda dell'azienda cliente di \visione{} della quale si vuole verificare la presenza del database.
+			\item \textit{codice azienda}: è il codice azienda dell'azienda cliente di \visione{} della quale si vuole verificare la presenza del database.
 		\end{itemize}
 	\item \textbf{Output}: le possibili risposte del servlet sono le seguenti:
 		\begin{itemize}
-			\item un messaggio positivo nel caso in cui il database dell'azienda corrispondente al codice inserito sia raggiungibile;
-			\item un messaggio negativo nel caso in cui il database dell'azienda corrispondente al codice inserito non sia raggiungibile.
+			\item un messaggio positivo nel caso in cui il database dell'azienda corrispondente al codice inserito è raggiungibile;
+			\item un messaggio negativo nel caso in cui il database dell'azienda corrispondente al codice inserito non è raggiungibile.
 		\end{itemize}
-	\item \textbf{Descrizione}: questo servlet si occupa di controllare se un database aziendale è raggiungibile effettuando una query su tale database. Risponde positivamente nel caso in cui il database dell'azienda corrispondente al codice inserito fosse raggiungibile (query con un ritorno), mentre risponde negativamente nel caso in cui il database non fosse raggiungibile (query che ha sollevato un eccezione).
+	\item \textbf{Descrizione}: questo servlet si occupa di controllare se un database aziendale è raggiungibile provando ad effettuare una query su tale database. Risponde positivamente nel caso in cui il database dell'azienda corrispondente al codice inserito è raggiungibile (query con un ritorno), mentre risponde negativamente nel caso in cui il database non è raggiungibile (query che ha sollevato un eccezione).
 \end{itemize}
 
 \myparagraph{Servizio di rimozione articoli dal carrello}
 
 \begin{itemize}
 	\item \textbf{Indirizzo}: /DeleteSelectedItems;
-	\item \textbf{Input}:
+	\item \textbf{Input}: il servlet richiede i seguenti parametri:
 		\begin{itemize}
-			\item lista di codici articolo: è una lista di dei codici articolo degli articoli che devono essere eliminati;
-			\item username: è la username dell'utente che ha richiesto l'eliminazione degli articoli;
-			\item path: è la stringa di connessione al database aziendale dell'utente autenticato.
+			\item \textit{lista di codici articolo}: è una lista dei codici articolo degli articoli che devono essere eliminati;
+			\item \textit{username}: è la username dell'utente che ha richiesto l'eliminazione degli articoli;
+			\item \textit{path}: è la stringa di connessione al database aziendale dell'utente autenticato.
 		\end{itemize}
 	\item \textbf{Output}: le possibili risposte del servlet sono le seguenti:
 		\begin{itemize}
-			\item un messaggio positivo nel caso in cui la cancellazione sia andata a buon fine;
-			\item un messaggio negativo nel caso in cui la cancellazione non sia andata a buon fine.
+			\item un messaggio positivo nel caso in cui la cancellazione è andata a buon fine;
+			\item un messaggio negativo nel caso in cui la cancellazione non è andata a buon fine.
 		\end{itemize}
-	\item \textbf{Descrizione}: questo servlet si occupa di eliminare dal database aziendale dell'utente autenticato gli articoli che l'utente ha richiesto di rimuovere dal carrello. Risponde positivamente nel caso in cui gli articoli sono stati rimossi correttamente dal database, mentre risponde negativamente nel caso in cui gli articoli non sono stati rimossi dal database.
+	\item \textbf{Descrizione}: questo servlet si occupa di eliminare dal database aziendale dell'utente autenticato gli articoli che quest'ultimo ha richiesto di rimuovere dal carrello. Risponde positivamente nel caso in cui gli articoli sono stati rimossi correttamente dal database, mentre risponde negativamente nel caso in cui gli articoli non sono stati rimossi dal database.
 \end{itemize}
 
 \myparagraph{Servizio di ricerca di un codice a barre}
 
 \begin{itemize}
 	\item \textbf{Indirizzo}: /FindArticleBarCode;
-	\item \textbf{Input}:
+	\item \textbf{Input}: il servlet richiede i seguenti parametri:
 		\begin{itemize}
-			\item codice a barre: è il codice a barre di un articolo del quale si vuole conoscere il codice articolo;
-			\item path: è la stringa di connessione al database aziendale dell'utente autenticato.
+			\item \textit{codice a barre}: è il codice a barre di un articolo del quale si vuole conoscere il codice articolo;
+			\item \textit{path}: è la stringa di connessione al database aziendale dell'utente autenticato.
 		\end{itemize}
 	\item \textbf{Output}: le possibili risposte del servlet sono le seguenti:
 		\begin{itemize}
-			\item codice articolo corrispondente al barcode passato come parametro nel caso in cui il barcode corrisponda a quello di un articolo venduto dall'azienda;
-			\item un messaggio negativo nel caso in cui il barcode passato come parametro non corrisponda ad un articolo venduto dall'azienda.
+			\item codice articolo corrispondente al barcode passato come parametro nel caso in cui il barcode corrisponde a quello di un articolo venduto dall'azienda;
+			\item un messaggio negativo nel caso in cui il barcode passato come parametro non corrisponde ad un articolo venduto dall'azienda.
 		\end{itemize}
-	\item \textbf{Descrizione}: questo servlet si occupa di fornire il codice articolo dell'articolo corrispondente al codice a barre ricevuto come parametro, effettuando la ricerca del barcode all'interno del database. Nel caso in cui il codice a barre sia presente all'interno del database viene restituito il codice articolo corrispondente, mentre nel caso in cui non fosse presente viene restituito un messaggio negativo.
+	\item \textbf{Descrizione}: questo servlet si occupa di fornire il codice articolo dell'articolo corrispondente al codice a barre ricevuto come parametro, effettuando la ricerca del barcode all'interno del database. Nel caso in cui il codice a barre è presente all'interno del database viene restituito il codice articolo corrispondente, mentre nel caso in cui non è presente viene restituito un messaggio negativo.
 \end{itemize}
 
 \myparagraph{Servizio di ricerca di un codice articolo}
 
 \begin{itemize}
 	\item \textbf{Indirizzo}: /FindArticleCode;
-	\item \textbf{Input}:
+	\item \textbf{Input}: il servlet richiede i seguenti parametri:
 		\begin{itemize}
-			\item codice articolo: è il codice articolo o il barcode di un articolo del quale si vuole verificare la presenza in database;
+			\item \textit{codice articolo}: è il codice articolo o il barcode di un articolo del quale si vuole verificare la presenza in database;
 		\end{itemize}
 	\item \textbf{Output}: le possibili risposte del servlet sono le seguenti:
 		\begin{itemize}
-			\item codice articolo nel caso in cui l'articolo sia presente in database;
-			\item un messaggio negativo nel caso in cui l'articolo non sia presente in database.
+			\item codice articolo nel caso in cui l'articolo è presente in database;
+			\item un messaggio negativo nel caso in cui l'articolo non è presente in database.
 		\end{itemize}
-	\item \textbf{Descrizione}: questo servlet si occupa di fornire il codice articolo dell'articolo corrispondente al codice articolo o al barcode ricevuto come parametro, effettuando la ricerca del codice articolo all'interno del database. Nel caso in cui il codice articolo o il barcode passato come parametro corrisponda ad un articolo presente in database viene restituito il codice articolo dell'articolo, mentre nel caso in cui non corrisponda ad un articolo presente in database viene restituito un messaggio negativo.
+	\item \textbf{Descrizione}: questo servlet si occupa di fornire il codice articolo dell'articolo corrispondente al codice articolo o al barcode ricevuto come parametro, effettuando la ricerca del codice articolo o del barcode all'interno del database. Nel caso in cui il codice articolo o il barcode passato come parametro corrisponde ad un articolo presente in database viene restituito il codice articolo, mentre nel caso in cui non corrisponde ad un articolo presente in database viene restituito un messaggio negativo.
 \end{itemize}
 
 \myparagraph{Servizio di prelievo informazioni di un articolo}
 
 \begin{itemize}
 	\item \textbf{Indirizzo}: /GetArticleDescNote;
-	\item \textbf{Input}:
+	\item \textbf{Input}: il servlet richiede i seguenti parametri:
 		\begin{itemize}
-			\item codice azienda: è il codice azienda della quale l'utente autenticato è cliente;
-			\item codice articolo: è il codice articolo dell'articolo del quale si vogliono ottenere informazioni.
+			\item \textit{codice azienda}: è il codice azienda della quale l'utente autenticato è cliente;
+			\item \textit{codice articolo}: è il codice articolo dell'articolo del quale si vogliono ottenere informazioni.
 		\end{itemize}
-	\item \textbf{Output}: questo servlet può produrre un solo output perché l'applicazione è stata implementata in modo che non ci siano casi negativi:
+	\item \textbf{Output}: questo servlet può produrre un solo output poiché l'applicazione è stata implementata in modo che non ci siano casi negativi:
 		\begin{itemize}
-			\item descrizione, note, quantità minima ordinabile e step di quantità permessi per l'articolo corrispondente al codice articolo passato come parametro.
+			\item descrizione, note, quantità minima ordinabile e step di incremento quantità per l'articolo corrispondente al codice articolo passato come parametro.
 		\end{itemize}
 	\item \textbf{Descrizione}: questo servlet si occupa di fornire informazioni sull'articolo corrispondente al codice articolo passato come parametro. 
 \end{itemize}
 
-\myparagraph{Servizio di prelievo degli articoli nel carrello di un utente}
+\myparagraph{Servizio di prelievo degli articoli in carrello}
 
 \begin{itemize}
 	\item \textbf{Indirizzo}: /GetArticlesByUsername;
-	\item \textbf{Input}:
+	\item \textbf{Input}: il servlet richiede i seguenti parametri:
 		\begin{itemize}
-			\item codice azienda: è il codice azienda della quale l'utente autenticato è cliente;
-			\item username: è il nome utente dell'utente autenticato.
+			\item \textit{codice azienda}: è il codice azienda della quale l'utente autenticato è cliente;
+			\item \textit{username}: è il nome utente dell'utente autenticato.
 		\end{itemize}
 	\item \textbf{Output}: le possibili risposte del servlet sono le seguenti:
 		\begin{itemize}
-			\item array degli articoli nel carrello dell'utente autenticato. Per ogni articolo vengono restituiti la quantità ordinata, il codice articolo e la descrizione dell'articolo;
-			\item array vuoto nel caso in cui l'utente autenticato non presenti articoli in carrello.
+			\item array degli articoli nel carrello dell'utente autenticato, dove per ogni articolo vengono restituiti la quantità ordinata, il codice articolo e la descrizione dell'articolo;
+			\item array vuoto nel caso in cui l'utente autenticato non presenta articoli in carrello.
 		\end{itemize}
-	\item \textbf{Descrizione}: questo servlet si occupa di fornire la lista di articoli in carrello per l'utente la quale username è stata passata come parametro. Nel caso in cui l'utente presenti articoli in carrello viene restituita la lista degli articoli in carrello, mentre nel caso in cui non presenti articoli in carrello viene restituita una lista vuota.
+	\item \textbf{Descrizione}: questo servlet si occupa di fornire la lista degli articoli in carrello per l'utente la quale username è stata passata come parametro. Nel caso in cui l'utente presenta articoli in carrello viene restituita la lista degli articoli in carrello, mentre nel caso in cui non presenta articoli in carrello viene restituita una lista vuota.
 \end{itemize}
 
 \myparagraph{Servizio di prelievo di informazioni di un utente}
 
 \begin{itemize}
 	\item \textbf{Indirizzo}: /GetNameByUsername;
-	\item \textbf{Input}:
+	\item \textbf{Input}: il servlet richiede i seguenti parametri:
 		\begin{itemize}
-			\item path: è la stringa di connessione al database aziendale dell'utente autenticato;
-			\item username: è il nome utente dell'utente autenticato.
+			\item \textit{path}: è la stringa di connessione al database aziendale dell'utente autenticato;
+			\item \textit{username}: è il nome utente dell'utente autenticato.
 		\end{itemize}
-	\item \textbf{Output}: questo servlet può produrre un solo output perché l'applicazione è stata implementata in modo che non ci siano casi negativi:
+	\item \textbf{Output}: questo servlet può produrre un solo output poiché l'applicazione è stata implementata in modo che non ci siano casi negativi:
 		\begin{itemize}
 			\item nome e ragione sociale dell'utente autenticato e codice documento e descrizione del documento da generare nel caso in cui l'utente invii un ordine.
 		\end{itemize}
@@ -229,13 +229,13 @@ In questa sezione viene presentata la API del servizio web di moviORDER. In part
 
 \begin{itemize}
 	\item \textbf{Indirizzo}: /GetTmpArticleData;
-	\item \textbf{Input}:
+	\item \textbf{Input}: il servlet richiede i seguenti parametri:
 		\begin{itemize}
-			\item path: è la stringa di connessione al database aziendale dell'utente autenticato;
-			\item codice articolo: è il codice articolo dell'articolo del quale si vogliono ottenere informazioni;
-			\item username: è il nome utente dell'utente autenticato.
+			\item \textit{path}: è la stringa di connessione al database aziendale dell'utente autenticato;
+			\item \textit{codice articolo}: è il codice articolo dell'articolo del quale si vogliono ottenere informazioni;
+			\item \textit{username}: è il nome utente dell'utente autenticato.
 		\end{itemize}
-	\item \textbf{Output}: questo servlet può produrre un solo output perché l'applicazione è stata implementata in modo che non ci siano casi negativi:
+	\item \textbf{Output}: questo servlet può produrre un solo output poiché l'applicazione è stata implementata in modo che non ci siano casi negativi:
 		\begin{itemize}
 			\item quantità e note dell'articolo nel carrello dell'utente autenticato corrispondente al codice articolo passato come parametro.
 		\end{itemize}
@@ -246,24 +246,24 @@ In questa sezione viene presentata la API del servizio web di moviORDER. In part
 
 \begin{itemize}
 	\item \textbf{Indirizzo}: /InsertUpdateArticle;
-	\item \textbf{Input}:
+	\item \textbf{Input}: il servlet richiede i seguenti parametri:
 		\begin{itemize}
-			\item path: è la stringa di connessione al database aziendale dell'utente autenticato;
-			\item query: è la query di inserimento/modifica di un articolo.
+			\item \textit{path}: è la stringa di connessione al database aziendale dell'utente autenticato;
+			\item \textit{query}: è una stringa contenente la query di inserimento/modifica di un articolo.
 		\end{itemize}
 	\item \textbf{Output}: le possibili risposte del servlet sono le seguenti:
 		\begin{itemize}
-			\item un messaggio positivo nel caso in cui la query di inserimento/modifica articolo sia andata a buon fine;
-			\item un messaggio negativo nel caso in cui la query di inserimento/modifica articolo non sia andata a buon fine.
+			\item un messaggio positivo nel caso in cui la query di inserimento/modifica articolo è andata a buon fine;
+			\item un messaggio negativo nel caso in cui la query di inserimento/modifica articolo non è andata a buon fine.
 		\end{itemize}
-	\item \textbf{Descrizione}: questo servlet si occupa di inserire o modificare un articolo nel carrello dell'utente autenticato. L'inserimento e la modifica avvengono mediante l'utilizzo dello stesso servlet poiché uno dei parametri è la query da eseguire sul database, che può essere di tipo INSERT o UPDATE. Nel caso in cui la query venga eseguita in modo corretto sul database viene restituito un messaggio positivo, mentre nel caso in cui non venga eseguita viene restituito un messaggio negativo.
+	\item \textbf{Descrizione}: questo servlet si occupa di inserire o modificare un articolo nel carrello dell'utente autenticato. L'inserimento e la modifica avvengono mediante l'utilizzo dello stesso servlet poiché la query da eseguire sul database, che può essere di tipo INSERT o UPDATE, viene passata come parametro. Nel caso in cui la query viene eseguita in modo corretto sul database viene restituito un messaggio positivo, mentre nel caso in cui non viene eseguita viene restituito un messaggio negativo.
 \end{itemize}
 
 \myparagraph{Servizio di invio di un ordine}
 
 \begin{itemize}
 	\item \textbf{Indirizzo}: /SendOrder;
-	\item \textbf{Input}:
+	\item \textbf{Input}: il servlet richiede i seguenti parametri:
 		\begin{itemize}
 			\item path: è la stringa di connessione al database aziendale dell'utente autenticato;
 			\item codici articolo: è la lista dei codici degli articoli che l'utente autenticato ha ordinato;
@@ -277,10 +277,10 @@ In questa sezione viene presentata la API del servizio web di moviORDER. In part
 		\end{itemize}
 	\item \textbf{Output}: le possibili risposte del servlet sono le seguenti:
 		\begin{itemize}
-			\item un messaggio positivo nel caso in cui l'ordine sia stato inviato con successo;
-			\item un messaggio negativo nel caso in cui l'ordine non sia stato inviato con successo.
+			\item un messaggio positivo nel caso in cui l'ordine è stato inviato con successo;
+			\item un messaggio negativo nel caso in cui l'ordine non è stato inviato con successo.
 		\end{itemize}
-	\item \textbf{Descrizione}: questo servlet si occupa di registrare in database un ordine contenente gli articoli passati come parametro. Il resto dei parametri che vengono passati viene utilizzato per inviare una mail di conferma all'utente autenticato e all'azienda presso cui l'utente è cliente. Nel caso in cui la registrazione dell'ordine in database avvenga correttamente viene restituito un messaggio positivo, mentre nel caso in cui non avvenga correttamente viene restituito un messaggio negativo.
+	\item \textbf{Descrizione}: questo servlet si occupa di registrare sul database un ordine contenente gli articoli passati come parametro. Il resto dei parametri passati viene utilizzato per inviare una mail di conferma all'utente autenticato e all'azienda presso cui l'utente è cliente. Nel caso in cui la registrazione dell'ordine sul database avvenga correttamente viene restituito un messaggio positivo, mentre nel caso in cui non avvenga correttamente viene restituito un messaggio negativo.
 \end{itemize}
 
 \subsection{JDBC}
