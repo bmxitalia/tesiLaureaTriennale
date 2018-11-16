@@ -455,10 +455,76 @@ Vengono di seguito forniti, a scopo illustrativo, un esempio di codice JavaScrip
     \caption{Esempio di visualizzazione corretta - dialog}
 \end{figure}
 
-\subsubsection{Netowork information plugin}
+\subsubsection{Network information plugin}
+
+Il plugin \textit{network information} fornisce una moderna implementazione della Network Information API. Essa fornisce informazioni riguardanti la rete cellulare e Wi-Fi del dispositivo e permette di capire se il dispositivo presenta una connessione a Internet. Più precisamente, il plugin fornisce un'interfaccia JavaScript che astrae il codice nativo utilizzato per monitorare la rete del dispositivo. L'oggetto \textit{navigator.connection} permette di acquisire le informazioni appena descritte. È stata utilizzata la proprietà \textit{type} per comprendere in modo veloce lo stato della connessione del dispositivo e la tipologia di connessione attiva. La proprietà può assumere i seguenti valori:
+\begin{itemize}
+	\item \textit{Connection.UNKNOWN}: tipologia di rete sconosciuta;
+	\item \textit{Connection.ETHERNET}: dispositivo connesso alla rete via cavo ethernet;
+	\item \textit{Connection.WIFI}: dispositivo connesso ad una rete Wi-Fi;
+	\item \textit{Connection.CELL\_2G}: dispositivo connesso ad una rete cellulare di tipo 2G;
+	\item \textit{Connection.CELL\_3G}: dispositivo connesso ad una rete cellulare di tipo 3G;
+	\item \textit{Connection.CELL\_4G}: dispositivo connesso ad una rete cellulare di tipo 4G;
+	\item \textit{Connection.CELL}: dispositivo connesso ad una rete cellulare la cui tipologia non è identificabile;
+	\item \textit{Connection.NONE}: dispositivo non connesso alla rete.
+\end{itemize}
+Un limite di questa proprietà è presente in ambiente iOS, infatti non è possibile identificare nessun tipo di rete cellulare alla quale il dispositivo è connesso. Per questo in ambiente iOS di è dovuta utilizzare la proprietà \textit{onLine} dell'oggetto \textit{navigator}.
+
+All'oggetto \textit{navigator.connection} sono collegate due tipologie di evento:
+\begin{itemize}
+	\item \textit{offline}: viene lanciato quando un dispositivo precedentemente collegato ad Internet perde la connessione e l'applicazione non è più in grado di accedere alla rete. In particolare, viene lanciato esattamente quando il valore della proprietà \textit{type} diventa \textit{Connection.NONE};
+	\item \textit{online}: viene lanciato quando un dispositivo precedentemente scollegato dalla rete riceve la connessione e permette all'applicazione di accedere ad Internet. In particolare, viene lanciato esattamente quando il valore della proprietà \textit{type} cambia da \textit{NONE} ad un altro valore.
+\end{itemize}
+Il plugin \textit{network information} è stato utilizzato per chiudere l'applicazione nel caso in cui venisse aperta mentre il dispositivo è offline. L'evento \textit{offline} ha permesso inoltre di visualizzare messaggi relativi allo stato della connessione. In particolare, nel caso in cui il dispositivo perdesse la connessione durante l'utilizzo di moviORDER viene visualizzato un messaggio che notifica all'utente che l'applicazione è inutilizzabile.
+
+Vengono di seguito forniti, a scopo illustrativo, un esempio di codice JavaScript che utilizza \textit{network.connection} ed in particolare la proprietà \textit{type} e l'evento \textit{offline}.
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=\columnwidth]{codice/type} 
+    \caption{Esempio di utilizzo della proprietà \textit{type}}
+\end{figure}
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=\columnwidth]{codice/offline} 
+    \caption{Esempio di utilizzo dell'evento \textit{offline}}
+\end{figure}
 
 \subsubsection{Barcode scanner plugin}
-parlare anche delle modifiche effettuate in nativo per correggere questo plugin in iOS
+
+Il plugin \textit{barcode scanner} fornisce un'interfaccia JavaScript che astrae il codice nativo che permette di effettuare la scansione di un codice a barre da un qualsiasi dispositivo dotato di fotocamera. Il plugin crea l'oggetto \textit{cordova.plugin.barcodeScanner} che presenta il metodo \textit{scan(success, fail, settings)}. \textit{Success} è la funzione di callback da eseguire quando la scansione del codice a barre va a buon fine. \textit{Fail} è la funzione di callback da eseguire quando la scansione del codice a barre non va a buon fine. \textit{Settings} è una variabile contenente un insieme di settaggi per l'utilizzo del plugin:
+\begin{itemize}
+	\item \textit{preferFrontCamera}: permette di preferire la fotocamera frontale alla posteriore per la scansione del codice a barre;
+	\item \textit{showFlipCameraButton}: permette di visualizzare il bottone per il cambio della fotocamera;
+	\item \textit{showTorchButton}: permette di visualizzare il bottone per l'attivazione del flash;
+	\item \textit{torchOn}: permette di attivare il flash di default;
+	\item \textit{saveHistory}: permette il salvataggio della cronologia dei codici scansionati;
+	\item \textit{prompt}: permette di visualizzare un messaggio per aiutare l'utente nell'eseguire la scansione;
+	\item \textit{resultDisplayDuration}: permette di visualizzare un testo per un determinato numero di secondi nel caso in cui un codice a barre viene captato;
+	\item \textit{formats}: permette di settare la tipologia di codici a barre che devono essere captati;
+	\item \textit{orientation}: permette di settare l'orientamento del dispositivo durante la scansione del codice a barre;
+	\item \textit{disableAnimations}: permette la disattivazione di ogni tipo di animazione durante la scansione del codice a barre;
+	\item \textit{disableSuccessBeep}: permette di disabilitare l'emissione del suono acustico nel caso in cui un codice a barre viene captato.
+\end{itemize}
+In ambiente iOS è necessario aggiungere una \textit{NSCameraUsageDescription} al file \textit{Info.plist} per poter utilizzare corettamente il plugin. \textit{NSCameraUsageDescription} descrive la ragione per la quale l'applicazione accede alla fotocamera dell'utente. Quando il sistema operativo richiede all'utente di permettere l'accesso, la stringa inserita in tale campo viene visualizzata sul dialog box. Se non viene fornita la descrizione di utilizzo l'applicazione crescerà prima della visualizzazione del dialog. Inoltre, Apple rifiuta le applicazioni che accedono a dati privati senza fornire una descrizione di utilizzo. 
+
+Il plugin ha funzionato perfettamente in ambiente Android ma non si può dire lo stesso per l'ambiente iOS. Nei dispositivi con una fotocamera mediocre le scansioni richiedevano più tempo del previsto, alcune volte anche minuti. Per risolvere il problema si è dovuto modificare il codice nativo per la piattaforma iOS. Il problema veniva riscontrato perché il codice differenziava il processo di scansione a seconda della qualità rilevata della fotocamera del dispositivo. Per telefoni con fotocamera mediocre veniva fatta una valutazione troppo ottimistica e per questo si è dovuto modificare il codice in modo da unificare il processo di scansione. Dopo vari test si è potuto osservare che la soluzione migliore era l'utilizzo del processo di scansione con fotocamera di qualità media. Viene di seguito fornito, a scopo illustrativo, il codice Objective-C++ che si occupa di settare il processo di scansione.
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=\columnwidth]{codice/scan} 
+    \caption{Codice Objective-C++ per il settaggio del processo di scansione}
+\end{figure}
+
+Viene di seguito fornito, a scopo illustrativo, il codice JavaScript della logica di moviORDER che utilizza il plugin \textit{barcode scanner}.
+\\
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=\columnwidth]{codice/scan2} 
+    \caption{Codice JavaScript che utilizza il plugin \textit{barcode scanner}}
+\end{figure}
+
 
 \section{Interfaccia grafica}
 
