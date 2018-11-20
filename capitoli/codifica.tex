@@ -377,7 +377,7 @@ In questa sezione vengono presentati gli aspetti più interessanti riguardanti l
 
 \subsection{Plugin di PhoneGap}
 
-Un plugin è un pacchetto di codice che permette al visualizzatore web di Cordova, il quale renderizza l'applicazione, di comunicare con la piattaforma nativa sulla quale viene eseguito. I plugin forniscono accesso alle funzionalità del dispositivo e della piattaforma che normalmente non sono disponibili per le applicazioni web-based. Tutte le principali API di Cordova sono implementate tramite plugin. Un aspetto interessante dei plugin è che essi sono composti da un'unica interfaccia JavaScript che astrae le differenti librerie di codice nativo delle piattaforme supportate dal plugin. Quindi, essenzialmente, i plugin nascondono le varie implementazioni di codice nativo dietro un'interfaccia JavaScript comune.
+Un plugin è un pacchetto di codice che permette al visualizzatore web di Cordova, il quale renderizza l'applicazione, di comunicare con la piattaforma nativa sulla quale viene eseguito. I plugin forniscono accesso alle funzionalità del dispositivo e della piattaforma che normalmente non sono disponibili per le applicazioni web-based. Tutte le principali API di Cordova sono implementate tramite plugin. Un aspetto interessante dei plugin è che essi sono composti da un'unica interfaccia JavaScript che astrae le differenti implementazioni in codice nativo delle funzionalità fornite dal plugin. In fase di build dell'applicazione il codice JavaScript dei plugin viene quindi convertito nel codice nativo della piattaforma sulla quale si sta distribuendo l'applicazione.
 
 \subsection{Installazione dei plugin}
 
@@ -385,7 +385,7 @@ Tramite PhoneGap CLI, interfaccia a linea di comando precedentemente descritta, 
 
 \subsection{Premesse all'utilizzo dei plugin}
 
-Per poter utilizzare i plugin di PhoneGap efficacemente è necessario predisporre il codice JavaScript al loro utilizzo. In particolare sono necessari due accorgimenti che vengono di seguito presentati.
+Per poter utilizzare efficacemente i plugin di PhoneGap è necessario predisporre il codice JavaScript al loro utilizzo. In particolare sono necessari due accorgimenti che vengono di seguito presentati.
 
 \subsubsection{Inclusione di cordova.js}
 
@@ -407,7 +407,7 @@ In questa sezione vengono presentati i plugin PhoneGap utilizzati nella realizza
 
 \subsubsection{Dialogs plugin}
 
-Il plugin \textit{dialogs} fornisce accesso all'interfaccia grafica nativa degli elementi dialog tramite l'utilizzo dell'oggetto \textit{navigator.notification}. Questo plugin è stato utilizzato convertire gli alert box delle pagine web in dialog nativi. Sono stati utilizzati i seguenti metodi:
+Il plugin \textit{dialogs} fornisce accesso all'interfaccia grafica nativa degli elementi dialog tramite l'utilizzo dell'oggetto \textit{navigator.notification}. Questo plugin è stato utilizzato per convertire gli alert box delle pagine web in dialog nativi. Sono stati utilizzati i seguenti metodi:
 \begin{itemize}
 	\item \textit{alert()}: visualizza un dialog box nativo con un messaggio di allerta preimpostato. Il metodo richiede i seguenti parametri:
 	\begin{itemize}
@@ -468,16 +468,16 @@ Il plugin \textit{network information} fornisce una moderna implementazione dell
 	\item \textit{Connection.CELL}: dispositivo connesso ad una rete cellulare la cui tipologia non è identificabile;
 	\item \textit{Connection.NONE}: dispositivo non connesso alla rete.
 \end{itemize}
-Un limite di questa proprietà è presente in ambiente iOS, infatti non è possibile identificare nessun tipo di rete cellulare alla quale il dispositivo è connesso. Per questo in ambiente iOS di è dovuta utilizzare la proprietà \textit{onLine} dell'oggetto \textit{navigator}.
+Un limite di questa proprietà è presente in ambiente iOS, infatti non è possibile identificare nessun tipo di rete cellulare alla quale il dispositivo è connesso. Per questo in ambiente iOS si è dovuta utilizzare la proprietà \textit{onLine} dell'oggetto \textit{navigator}.
 
 All'oggetto \textit{navigator.connection} sono collegate due tipologie di evento:
 \begin{itemize}
 	\item \textit{offline}: viene lanciato quando un dispositivo precedentemente collegato ad Internet perde la connessione e l'applicazione non è più in grado di accedere alla rete. In particolare, viene lanciato esattamente quando il valore della proprietà \textit{type} diventa \textit{Connection.NONE};
-	\item \textit{online}: viene lanciato quando un dispositivo precedentemente scollegato dalla rete riceve la connessione e permette all'applicazione di accedere ad Internet. In particolare, viene lanciato esattamente quando il valore della proprietà \textit{type} cambia da \textit{NONE} ad un altro valore.
+	\item \textit{online}: viene lanciato quando un dispositivo precedentemente scollegato dalla rete riceve la connessione e permettendo all'applicazione di accedere ad Internet. In particolare, viene lanciato esattamente quando il valore della proprietà \textit{type} cambia da \textit{NONE} ad un altro valore.
 \end{itemize}
 Il plugin \textit{network information} è stato utilizzato per chiudere l'applicazione nel caso in cui venisse aperta mentre il dispositivo è offline. L'evento \textit{offline} ha permesso inoltre di visualizzare messaggi relativi allo stato della connessione. In particolare, nel caso in cui il dispositivo perdesse la connessione durante l'utilizzo di moviORDER viene visualizzato un messaggio che notifica all'utente che l'applicazione è inutilizzabile.
 
-Vengono di seguito forniti, a scopo illustrativo, un esempio di codice JavaScript che utilizza \textit{network.connection} ed in particolare la proprietà \textit{type} e l'evento \textit{offline}.
+Vengono di seguito forniti, a scopo illustrativo, degli esempi di codice JavaScript che utilizzano \textit{network.connection} ed in particolare la proprietà \textit{type} e l'evento \textit{offline}.
 
 \begin{figure}[!h] 
     \centering 
