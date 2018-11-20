@@ -529,7 +529,7 @@ Viene di seguito fornito, a scopo illustrativo, il codice JavaScript della logic
 
 \section{Interfaccia grafica}
 
-In questa sezione vengono presentati gli aspetti più interessanti della codifica dell'interfaccia grafica di moviORDER. In particolare, vengono presentate le possibili interazioni dell'utente con le interfacce.
+In questa sezione vengono presentati gli aspetti più interessanti della codifica dell'interfaccia grafica di moviORDER. In particolare, vengono presentate le possibili interazioni dell'utente con le interfacce. Nell'ultima sezione vengono fatte delle considerazioni sullo sviluppo dell'interfaccia.
 
 \subsection{Schermata di login}
 
@@ -630,6 +630,22 @@ Il modal di invio ordine permette di inviare un ordine alla propria azienda. Tal
 	\item select per l'inserimento della data: questa select permette l'inserimento della data d'ordine. Di default viene proposta la data corrente;
 	\item text-area per l'inserimento delle note: questa text-area permette di inserire delle note facoltative per l'ordine che si sta inviando.
 \end{itemize}
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.4\columnwidth]{interfaccia/modalInvio} 
+    \caption{Modal di invio ordine}
+\end{figure}
+
+\subsection{Considerazioni sullo sviluppo}
+
+L'applicazione moviORDER è stata realizzata tramite un framework cross-platform e quindi tramite la realizzazione di un'applicazione web. Per rendere l'applicazione usabile su tutti gli smartphone è stato necessario implementare l'applicazione con un approccio mobile first e quindi cercando di realizzare un'interfaccia grafica che fosse più responsive possbile. Per raggiungere questo obiettivo ogni pagina di moviORDER presenta un layout elastico che utilizza unità di misura relative che dipendendono dalle preferenze utente, come \textit{em} e \textit{\%}. Grazie a questo layout, le pagine si adattano correttamente ad ogni dimensione di schermo. Viene di seguito fornito, a scopo illustrativo, un esempio di codice \textit{css} che utilizza unità di misura relative per la rappresentazione degli elementi dell'interfaccia.
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.5\columnwidth]{codice/css} 
+    \caption{Codice \textit{css} che utilizza unità di misura relative}
+\end{figure}
 
 
 \textbf{per la parte di progettazione far vedere che il database potrebbe essere anche sul server di un'azienda esterna, commonDB sempre sul server vision mentre il db dell'azienda può essere su un server esterno.}
