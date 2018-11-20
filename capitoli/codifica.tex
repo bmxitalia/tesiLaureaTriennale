@@ -525,9 +525,111 @@ Viene di seguito fornito, a scopo illustrativo, il codice JavaScript della logic
     \caption{Codice JavaScript che utilizza il plugin \textit{barcode scanner}}
 \end{figure}
 
+\newpage
 
 \section{Interfaccia grafica}
 
-mostrare lo screen delle varie interfacce e spiegarne le interazioni utente, parlare delle media query
+In questa sezione vengono presentati gli aspetti più interessanti della codifica dell'interfaccia grafica di moviORDER. In particolare, vengono presentate le possibili interazioni dell'utente con le interfacce.
+
+\subsection{Schermata di login}
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.4\columnwidth]{interfaccia/login} 
+    \caption{Schermata di login}
+\end{figure}
+
+Tramite la schermata di login, un qualsiasi utente in possesso di credenziali di accesso può accedere a moviORDER. Per tentare l'accesso, l'utente deve inserire username e password e premere sul bottone di login. Se l'utente ha inserito credenziali corrette viene aperta la home page dell'applicazione, mentre se le credenziali non dovessero essere corrette viene visualizzato un messaggio d'errore. Il messaggio d'errore è esplicativo dell'errore riscontrato. Tutti i possibili errori sono:
+\begin{itemize}
+	\item credenziali non inserite;
+	\item username inesistente;
+	\item password non corretta;
+	\item credenziali corrette ma utente bloccato.
+\end{itemize}
+
+\subsection{Home page}
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.4\columnwidth]{interfaccia/home} 
+    \caption{Home page}
+\end{figure}
+
+La home page racchiude tutte le funzionalità di moviORDER. A partire dall'alto e proseguendo verso il basso l'interfaccia presenta le seguenti parti:
+\begin{itemize}
+	\item messaggio di benvenuto per l'utente autenticato: questo messaggio visualizza la ragione sociale dell'utente;
+	\item pulsante tutorial: premendo su questo pulsante è possibile visualizzare il tutorial di moviORDER;
+	\item pulsante logout: premendo su questo pulsante è possibile effettuare il logout da moviORDER;
+	\item pulsante di aggiunta articolo: premendo su questo pulsante è possibile accedere al modal per l'aggiunta di un articolo in carrello; 
+	\item pulsante di selezione/deselezione multipla di articoli: premendo su questo pulsante è possibile selezionare/deselezionare tutti gli articoli in carrello;
+	\item pulsante di eliminazione articoli: premendo su questo pulsante è possibile rimuovere gli articoli selezionati dal carrello;
+	\item pulsante di invio ordine: premendo su questo pulsante è possibile accedere al modal di invio ordine;
+	\item carrello: ogni articolo in carrello presenta:
+	\begin{itemize}
+		\item una check-box per la selezione/deselezione dell'articolo;
+		\item un'indicazione sulla quantità di pezzi ordinati;
+		\item il codice dell'articolo;
+		\item una breve descrizione dell'articolo.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Modal di aggiunta articolo}
+
+\begin{figure}[!h] 
+    \centering 
+    	\subfloat{\includegraphics[width=0.33\columnwidth]{interfaccia/modalAggiunta}}
+    	\subfloat{\includegraphics[width=0.33\columnwidth]{interfaccia/scansione}} 
+    	\subfloat{\includegraphics[width=0.33\columnwidth]{interfaccia/manuale}} 
+    \caption{Modal di aggiunta articolo e modalità di aggiunta (scansione o inserimento manuale)}
+\end{figure}
+
+Il modal di aggiunta articolo permette di decidere la modalità di inserimento dell'articolo in carrello. Il modal presenta di seguenti pulsanti:
+\begin{itemize}
+	\item annullamento aggiunta: premendo su questo pulsante è possibile tornare alla home page di moviORDER;
+	\item scansione codice a barre: premendo su questo pulsante è possibile aggiungere un nuovo articolo scansionando il codice a barre dello stesso. Per la scansione del codice a barre viene aperta la fotocamera del dispositivo;
+	\item inserimento manuale: premendo su questo pulsante è possibile aggiungere un nuovo articolo inserendo manualmente il codice dello stesso.
+\end{itemize}
+Se la scansione del codice a barre o l'inserimento del codice articolo vanno a buon fine, viene aperta la pagina per l'aggiunta dell'articolo corrispondente.
+
+\subsection{Pagina di aggiunta articolo}
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.4\columnwidth]{interfaccia/aggiunta} 
+    \caption{Pagina di aggiunta articolo}
+\end{figure}
+
+La pagina di aggiunta articolo permette di aggiungere un nuovo articolo al carrello e presenta le seguenti parti:
+\begin{itemize}
+	\item codice e nome articolo: in base al codice precedentemente scansionato o inserito, vengono visualizzate le informazioni relative al codice articolo e al nome dell'articolo;
+	\item pulsante di visualizzazione informazioni dell'articolo: premendo questo pulsante è possibile visualizzare le informazioni dell'articolo che si sta aggiungendo al carrello. Se il pulsante presenta bordo rosso significa che per l'articolo non sono presenti informazioni. Questo permette all'utente di evitare un tap inutile;
+	\item text-box per l'inserimento della quantità: tramite questa text-box è possibile inserire la quantità da ordinare per l'articolo che si sta aggiungendo al carrello;
+	\item text-area per l'inserimento delle note: tramite questa text-area è possibile inserire delle note facoltative per l'articolo che si sta aggiungendo al carrello;
+	\item pulsante di conferma: tramite questo pulsante è possibile confermare l'aggiunta dell'articolo in carrello;
+	\item pulsante di annullamento: tramite questo pulsante è possibile annullare l'aggiunta dell'articolo in carrello e tornare alla home page di moviORDER.
+\end{itemize}
+
+\subsection{Pagina di modifica articolo}
+
+Dalla home page di moviORDER premendo su un qualsiasi articolo in carrello è possibile modificare i dati d'ordine di tale articolo. Alla pressione dell'articolo viene aperta la pagina di modifica articolo. Questa pagina è identica alla pagina di aggiunta articolo ma contiene i dati precedentemente inseriti per l'articolo. È possibile modificare i dati precedentemente inseriti eseguendo le stesse interazioni previste per la pagina di aggiunta articolo.
+
+\subsection{Modal di invio ordine}
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.4\columnwidth]{interfaccia/modalInvio} 
+    \caption{Modal di invio ordine}
+\end{figure}
+
+Il modal di invio ordine permette di inviare un ordine alla propria azienda. Tale ordine contiene tutti gli articoli precedentemente selezionati dal carrello. Il modal presenta le seguenti parti:
+\begin{itemize}
+	\item pulsante di annullamento: premendo questo pulsante è possibile annullare l'invio dell'ordine e tornare alla home page di moviORDER;
+	\item pulsante di conferma: tramite questo pulsante è possibile confermare l'invio dell'ordine;
+	\item informazioni sul cliente: questa text-box contiene il codice e la ragione sociale del cliente che sta effettuando l'ordine;
+	\item informazioni sul documento: questa text-box contiene il codice e la descrizione del documento che deve essere generato una volta inviato l'ordine;
+	\item select per l'inserimento della data: questa select permette l'inserimento della data d'ordine. Di default viene proposta la data corrente;
+	\item text-area per l'inserimento delle note: questa text-area permette di inserire delle note facoltative per l'ordine che si sta inviando.
+\end{itemize}
+
 
 \textbf{per la parte di progettazione far vedere che il database potrebbe essere anche sul server di un'azienda esterna, commonDB sempre sul server vision mentre il db dell'azienda può essere su un server esterno.}
