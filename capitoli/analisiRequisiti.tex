@@ -480,6 +480,8 @@ Nelle seguenti sezioni vengono dettagliati i requisiti di moviORDER. In ogni sez
 
 \subsection{Requisiti funzionali}
 
+Per facilitare la lettura della tabella, il codice dei requisiti macroscopici viene evidenziato con una dicitura in grassetto. Per requisiti macroscopici si intendono i requisiti che presentano sotto-requisiti.
+
 {\renewcommand{\arraystretch}{2}
 \begin{center}
 \begin{longtable}{ | >{\centering\arraybackslash}p{2.5cm} | >{\arraybackslash}p{7cm} | >{\centering\arraybackslash}p{2cm} | }
@@ -488,7 +490,7 @@ Nelle seguenti sezioni vengono dettagliati i requisiti di moviORDER. In ogni sez
 \textbf{Id Requisito} & \textbf{Descrizione} & \textbf{Fonti} \\ \hline
 \endhead
 RFO1 & Se l'applicazione viene lanciata in assenza di connettività, deve essere visualizzato un messaggio d'errore di connettività assente e l'applicazione deve essere chiusa & Stagista \\ \hline
-RFO2 & L'utente non autenticato deve poter accedere all'applicazione & Capitolato UC1.1 \\ \hline
+\textbf{RFO2} & L'utente non autenticato deve poter accedere all'applicazione & Capitolato UC1.1 \\ \hline
 RFO2.1 & Per accedere, l'utente non autenticato deve poter inserire una username & Capitolato UC1.1.1 \\ \hline
 RFO2.2 & Per accedere, l'utente non autenticato deve poter inserire una password & Capitolato UC1.1.2 \\ \hline
 RFO2.3 & L'utente autenticato deve poter tentare l'accesso premendo su un bottone di login & Capitolato\\ \hline
@@ -496,20 +498,20 @@ RFO2.4 & Se l'utente non autenticato inserisce una username non esistente e prem
 RFO2.5 & Se l'utente non autenticato inserisce una password non corrispondente alla username inserita e preme sul bottone di login, deve essere visualizzato un messaggio d'errore di password errata & UC1.2 \\ \hline
 RFO2.6 & Se l'utente non autenticato preme sul bottone di login senza aver inserito le credenziali di accesso, deve essere visualizzato un messaggio che inviti l'utente ad inserire delle credenziali & UC1.2 \\ \hline
 RFO2.7 & Se il server non risponde in fase di login, deve essere visualizzato un messaggio d'errore che notifichi l'utente autenticato che il server è down & Stagista \\ \hline
-RFO3 & Se l'utente non autenticato riesce ad accedere al sistema, deve essere visualizzata la home page dell'applicazione & Capitolato \\ \hline
+\textbf{RFO3} & Se l'utente non autenticato riesce ad accedere al sistema, deve essere visualizzata la home page dell'applicazione & Capitolato \\ \hline
 RFO3.1 & L'utente autenticato deve visualizzare sulla home page la propria ragione sociale & Capitolato \\ \hline
 RFO3.2 & L'utente autenticato deve poter visualizzare sulla home page il tutorial dell'applicazione & UC2.2 \\ \hline
 RFO3.3 & L'utente autenticato deve poter effettuare il logout dall'applicazione premendo su un bottone & UC2.1 \\ \hline
-RFO3.4 & L'utente autenticato deve poter visualizzare sulla home page i propri articoli nel carrello & Capitolato \\ \hline
+\textbf{RFO3.4} & L'utente autenticato deve poter visualizzare sulla home page i propri articoli nel carrello & Capitolato \\ \hline
 RFO3.4.1 & Se l'utente autenticato non presenta articoli in carrello, deve essere visualizzato un messaggio che notifichi l'utente che il carrello è vuoto & Stagista \\ \hline
 RFO3.4.2 & La visualizzazione di un articolo in carrello deve comprendere una check-box per la selezione dell'articolo & Capitolato \\ \hline
 RFO3.4.3 & La visualizzazione di un articolo in carrello deve comprendere la quantità dell'articolo & Capitolato \\ \hline
 RFO3.4.4 & La visualizzazione di un articolo in carrello deve comprendere il codice dell'articolo & Capitolato \\ \hline
 RFO3.4.5 & La visualizzazione di un articolo in carrello deve comprendere la descrizione dell'articolo & Capitolato \\ \hline
-RFO3.5 & L'utente autenticato deve poter aggiungere un nuovo articolo al carrello & Capitolato UC2.3.1 \\ \hline
+\textbf{RFO3.5} & L'utente autenticato deve poter aggiungere un nuovo articolo al carrello & Capitolato UC2.3.1 \\ \hline
 RFO3.5.1 & Per aggiungere un nuovo articolo al carrello, l'utente autenticato deve inserire un codice articolo & Capitolato UC2.3.1.1 \\ \hline
 RFO3.5.2 & L'utente autenticato deve poter decidere se inserire il codice articolo con la scansione di un codice a barre o manualmente & Capitolato UC2.3.1.1 \\ \hline
-RFO3.5.3 & Se l'utente autenticato decide di inserire il codice articolo con la scansione di un codice a barre, l'applicazione deve accedere alla fotocamera e permettere la cattura del codice a barre & Capitolato UC2.3.1.3 \\ \hline
+\textbf{RFO3.5.3} & Se l'utente autenticato decide di inserire il codice articolo con la scansione di un codice a barre, l'applicazione deve accedere alla fotocamera e permettere la cattura del codice a barre & Capitolato UC2.3.1.3 \\ \hline
 RFO3.5.3.1 & L'applicazione deve permettere la cattura di un codice a barre di tipo EAN13 & Capitolato \\ \hline
 RFO3.5.3.2 & L'applicazione deve permettere la cattura di un codice a barre di tipo EAN8 & Capitolato \\ \hline
 RFO3.5.3.3 & L'applicazione deve permettere la cattura di un codice a barre di tipo CODE39 & Capitolato \\ \hline
@@ -521,7 +523,7 @@ RFO3.5.3.8 & Se la scansione del codice a barre fallisce, la fotocamera deve ess
 RFO3.5.3.9 & Se la scansione del codice a barre va a buon fine ma il codice ottenuto non corrisponde ad un articolo venduto dall'azienda, deve essere visualizzato un messaggio d'errore che notifichi l'utente autenticato del problema & UC2.3.2 \\ \hline
 RFO3.5.3.10 & Se la scansione del codice a barre va a buon fine e il codice ottenuto corrisponde ad un articolo venduto dall'azienda ma l'articolo è già presente in carrello, deve essere visualizzato un messaggio che inviti l'utente autenticato a cambiare la quantità dell'articolo in carrello & UC2.3.2 \\ \hline
 RFO3.5.3.11 & Se la scansione del codice a barre va a buon fine e il codice ottenuto corrisponde ad un articolo venduto dall'azienda, deve essere visualizzata la pagina di aggiunta articolo & Capitolato \\ \hline
-RFO3.5.4 & Se l'utente autenticato decide di inserire il codice articolo manualmente, deve essere visualizzata una text box per l'inserimento del codice & Capitolato UC2.3.1.2 \\ \hline
+\textbf{RFO3.5.4} & Se l'utente autenticato decide di inserire il codice articolo manualmente, deve essere visualizzata una text box per l'inserimento del codice & Capitolato UC2.3.1.2 \\ \hline
 RFO3.5.4.1 & Se l'utente autenticato inserisce un codice articolo che non corrisponde ad un articolo venduto dall'azienda, deve essere visualizzato un messaggio d'errore che notifichi l'utente autenticato del problema & UC2.3.2 \\ \hline
 RFO3.5.4.2 & Se l'utente autenticato inserisce un codice articolo che corrisponde ad un articolo venduto dall'azienda ma l'articolo è già presente in carrello, deve essere visualizzato un messaggio che inviti l'utente autenticato a cambiare la quantità dell'articolo in carrello & UC2.3.2 \\ \hline
 RFO3.5.4.3 & Se l'utente autenticato inserisce un codice articolo che corrisponde ad un articolo venduto dall'azienda, deve essere visualizzata la pagina di aggiunta articolo & Capitolato \\ \hline
@@ -541,7 +543,7 @@ RFO3.6 & L'utente autenticato deve poter selezionare un articolo in carrello pre
 RFO3.7 & L'utente autenticato deve poter deselezionare un articolo in carrello selezionato premendo sulla relativa check-box & Capitolato UC2.3.6 \\ \hline
 RFO3.8 & L'utente autenticato deve poter selezionare tutti gli articoli in carrello premendo su un bottone di seleziona/deseleziona tutti presente sulla home page & Capitolato UC2.3.7\\ \hline
 RFO3.9 & L'utente autenticato deve poter deselezionare tutti gli articoli in carrello premendo su un bottone di seleziona/deseleziona tutti presente sulla home page & Capitolato UC2.3.8 \\ \hline
-RFO3.10 & L'utente autenticato deve poter modificare un articolo in carrello premendo sopra la visualizzazione dell'articolo sul carrello & Capitolato UC2.3.3\\ \hline
+\textbf{RFO3.10} & L'utente autenticato deve poter modificare un articolo in carrello premendo sopra la visualizzazione dell'articolo sul carrello & Capitolato UC2.3.3\\ \hline
 RFO3.10.1 & Se l'utente autenticato preme sulla visualizzazione di un articolo in carrello, deve essere richiesta la conferma di modifica tramite la visualizzazione di un dialog & Stagista \\ \hline
 RFO3.10.2 & Se l'utente autenticato accetta di modificare l'articolo sul dialog di conferma, deve essere aperta la pagina di modifica articolo & Stagista \\ \hline
 RFO3.10.3 & Se l'utente autenticato rifiuta di modificare l'articolo sul dialog di conferma, deve essere visualizzata la home page senza cambiamenti sugli articoli in carrello & Stagista \\ \hline
@@ -558,12 +560,12 @@ RFO3.10.13 & Se l'utente autenticato conferma la modifica dell'articolo ed ha in
 RFO3.10.14 & Se l'utente autenticato conferma la modifica dell'articolo e i dati modificati sono corretti, deve essere visualizzata la home page dell'applicazione e l'articolo modificato deve essere presente in carrello con le modifiche apportate & Capitolato \\ \hline
 RFO3.10.15 & Se l'utente autenticato annulla la modifica dell'articolo, deve essere visualizzata la home page dell'applicazione e l'articolo selezionato non deve essere stato modificato & Capitolato \\ \hline
 RFO3.10.16 & Se viene persa la connettività nella pagina di modifica, deve essere visualizzato un messaggio che inviti l'utente a chiudere l'applicazione per connettività assente & Stagista \\ \hline
-RFO3.11 & L'utente autenticato deve poter rimuovere gli articoli selezionati sul carrello premendo su un bottone presente sulla home page & Capitolato UC2.3.9 \\ \hline
+\textbf{RFO3.11} & L'utente autenticato deve poter rimuovere gli articoli selezionati sul carrello premendo su un bottone presente sulla home page & Capitolato UC2.3.9 \\ \hline
 RFO3.11.1 & Se l'utente autenticato preme sul bottone di rimozione articoli senza aver selezionato alcun articolo, deve essere visualizzato un messaggio che inviti l'utente a selezionare degli articoli & UC2.3.11 \\ \hline
 RFO3.11.2 & Se l'utente autenticato preme sul bottone di rimozione articoli avendo selezionato degli articoli sul carrello, deve essere richiesta la conferma di eliminazione tramite la visualizzazione di un dialog & Stagista \\ \hline
 RFO3.11.3 & Se l'utente autenticato conferma l'eliminazione sul dialog di conferma, gli articoli precedentemente selezionati devono essere rimossi dal carrello & Capitolato \\ \hline
 RFO3.11.4 & Se l'utente autenticato rifiuta l'eliminazione sul dialog di conferma, il carrello non deve subire cambiamenti & Capitolato \\ \hline
-RFO3.12 & L'utente autenticato deve poter inviare un ordine composto dagli articoli selezionati sul carrello premendo su un bottone presente sulla home page & Capitolato UC2.3.10\\ \hline
+\textbf{RFO3.12} & L'utente autenticato deve poter inviare un ordine composto dagli articoli selezionati sul carrello premendo su un bottone presente sulla home page & Capitolato UC2.3.10\\ \hline
 RFO3.12.1 & Se l'utente autenticato preme sul bottone di invio ordine senza aver selezionato alcun articolo, deve essere visualizzato un messaggio che inviti l'utente a selezionare degli articoli & UC2.3.11 \\ \hline
 RFO3.12.2 & Se l'utente autenticato preme sul bottone di invio ordine avendo selezionato degli articoli sul carrello, deve essere visualizzato il modal di invio ordine & Stagista \\ \hline
 RFO3.12.3 & Nel modal di invio ordine, l'utente autenticato deve poter visualizzare il codice cliente & Capitolato \\ \hline
@@ -577,7 +579,7 @@ RFO3.12.10 & Nel modal di invio ordine, l'utente autenticato deve poter conferma
 RFO3.12.11 & Nel modal di invio ordine, l'utente autenticato deve poter annullare l'invio dell'ordine & Capitolato \\ \hline
 RFO3.12.12 & Se l'utente autenticato decide di annullare l'invio dell'ordine, il modal di invio ordine deve essere chiuso & Stagista \\ \hline
 RFO3.12.13 & Se l'utente autenticato decide di confermare l'invio dell'ordine, deve essere richiesta la conferma di invio ordine tramite un dialog & Stagista \\ \hline
-RFO3.12.14 & Se l'utente autenticato conferma l'invio dell'ordine nel dialog di conferma e l'ordine è andato a buon fine, deve essere visualizzato un messaggio di ordine inviato con successo e una mail di conferma deve essere inviata sia all'utente che all'azienda & Capitolato \\ \hline
+\textbf{RFO3.12.14} & Se l'utente autenticato conferma l'invio dell'ordine nel dialog di conferma e l'ordine è andato a buon fine, deve essere visualizzato un messaggio di ordine inviato con successo e una mail di conferma deve essere inviata sia all'utente che all'azienda & Capitolato \\ \hline
 RFO3.12.14.1 & La mail inviata dal sistema al momento dell'invio dell'ordine deve contenere in oggetto la data di registrazione dell'ordine & Capitolato \\ \hline
 RFO3.12.14.2 & La mail inviata dal sistema al momento dell'invio dell'ordine deve contenere in oggetto il codice azienda dell'utente che ha effettuato l'ordine & Capitolato \\ \hline
 RFO3.12.14.3 & La mail inviata dal sistema al momento dell'invio dell'ordine deve contenere in oggetto la tipologia di documento generato con la registrazione dell'ordine & Capitolato \\ \hline
