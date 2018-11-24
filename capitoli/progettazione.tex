@@ -6,4 +6,62 @@
 \chapter{Progettazione e codifica}
 \label{cap:progettazione-codifica}
 
-\textbf{per la parte di progettazione far vedere che il database potrebbe essere anche sul server di un'azienda esterna, commonDB sempre sul server vision mentre il db dell'azienda può essere su un server esterno.}
+In questo capitolo vengono presentati gli aspetti più interessanti della progettazione di moviORDER. Il capitolo inizia con la descrizione dell'architettura generale della piattaforma per poi entrare nel dettaglio delle varie componenti che la costituiscono.
+
+\section{Architettura generale}
+
+L'obiettivo di una buona progettazione è il soddisfacimento dei requisiti tramite un sistema di qualità, ottenibile tramite la definizione di una buona architettura logica del prodotto, che presenti componenti dalle specifiche chiare e coese, che sia realizzabile con risorse e costi fissati e che abbia una struttura che faciliti i cambiamenti futuri. In quest'ottica moviORDER presenta un'architettura client-server, dove il client è l'applicazione installata sul dispositivo dell'utente finale e il server è un server web Apache Tomcat. L'applicazione si connette al server per la fruizione di un'API che permette l'accesso a database contenenti dati di autenticazione degli utenti e dati per la gestione degli ordini.
+
+Inserire immagine architettura generale qui!
+
+Entrando nello specifico, il client può essere l'applicazione installata su un dispositivo Apple oppure Android, la quale invia richieste HTTP al server tramite AJAX. Il server è un server web Apache Tomcat installato su di un server Azure di proprietà di \visione{}. Su Apache Tomcat è presente un servizio web che fornisce un'API per l'accesso ai dati contenuti in un database aziendale locale o remoto. Il servizio elabora le richieste ricevute dal client tramite oggetti servlet Java che rispondono a tali richieste tramite stringhe codificate in formato JSON. Sul server Azure sono presenti i seguenti database SQL Server:
+\begin{itemize}
+	\item \textit{CommonDB}: database contenente i dati di autenticazione degli utenti di moviORDER. Tale database è unico e contiene i dati di autenticazione di tutti gli utenti di ogni azienda che utilizza il servizio moviORDER;
+	\item \textit{mvo\_aziendaNomeAzienda}: database contenente i dati sugli articoli venduti dall'azienda \textit{NomeAzienda}. All'interno del server Azure è presente un database di questo tipo per ogni azienda che utilizza il servizio moviORDER e che ha deciso di affidare la gestione completa dei propri prodotti a \visione{}.
+\end{itemize}
+È possibile che un'azienda preferisca utilizzare il proprio database per la gestione degli ordini, quindi il servizio web deve poter accedere a database remoti. In tal caso, affinché l'applicazione funzioni, la struttura del database remoto deve essere la medesima del database \textit{mvo\_aziendaNomeAzienda}. La struttura di tale database viene presentata in sezione §\ref{progdb}.
+Quindi l'autenticazione avviene sempre sul server Azure di \visione{}, mentre l'accesso ai dati sugli articoli acquistabili può avvenire sia sul server Azure di \visione{} che su un server cloud di un'azienda cliente, a seconda delle scelte effettuate dall'azienda.
+
+\subsection{Architettura del client}
+
+Sul client, ovvero l'applicazione installata sul dispositivo dell'utente utilizzatore, è presente il pattern architetturale MVP (Model View Presenter). Tale pattern presenta componenti distribuite, infatti la view e il presenter si trovano sul dispositivo, mentre il model si trova sul server Azure di \visione{} o sul server cloud di un'azienda cliente. Nello specifico, la view è la GUI dell'applicazione, il presenter è la logica applicativa e il model è il database contenente i dati sugli articoli acquistabili. È stato scelto un MVP in quanto il model interagisce solamente con il presenter e non può modificare la view come invece accade per il pattern MVC (Model View Controller).
+
+inserire diagramma del pattern(view e presenter dentro un box client, servizio e model dentro box server, fare un bel disegno)
+
+Nello specifico, il flusso del pattern è il seguente:
+\begin{itemize}
+	\item l'utente interagisce con la view eseguendo delle operazioni sull'interfaccia dell'applicazione;
+	\item il presenter capta le interazioni e, sulla base di queste, può richiedere la lettura/scrittura di dati sul model tramite l'invio di richieste HTTP ad un servizio web;
+	\item il servizio web legge o scrive sul model a seconda della richiesta ricevuta e prepara ed invia una risposta al presenter;
+	\item il presenter riceve la risposta, la elabora e modifica la view di conseguenza.
+\end{itemize}
+
+inserire diagramma di sequenza che spieghi il flusso qui sopra (si trova nelle slide di cardin)
+
+Importanti vantaggi nell'utilizzo del pattern MVP sono:
+\begin{itemize}
+	\item possibilità di utilizzare lo stesso model da parte di view differenti;
+	\item semplicità nell'aggiunta di nuovi tipi di client, e quindi di applicazioni: è sufficiente scrivere un presenter e una view per ognuna delle nuove applicazioni.
+\end{itemize}
+
+\subsection{Architettura del server}
+
+Il server presenta un'architettura a strati. In questo pattern i componenti sono organizzati in strati orizzontali e ogni strato possiede specifici ruoli e responsabilità nel contesto dell'applicazione. Nel caso di moviORDER, il pattern è stato diviso nei seguenti strati:
+\begin{itemize}
+	\item \textbf{business layer}: contiene gli oggetti servlet del servizio web i quali si occupano di captare richieste HTTP dal client, di leggere o scrivere sul database di conseguenza, e di fornire risposte al client;
+	\item \textbf{persistance layer}: contiene le classi del servizio web che permettono agli oggetti servlet di accedere al database dell'applicazione;
+	\item \textbf{database layer}: contiene i database dell'applicazione.
+\end{itemize}
+
+inserire immagine del pattern
+
+Una dei vantaggi più importanti dell'architettura a strati è la separazione delle responsabilità tra i componenti. Un componente all'interno di uno specifico strato può eseguire solamente compiti che spettano a tale strato. Questo tipo di classificazione facilita lo sviluppo, il testing e la manutenzione del backend di moviORDER.
+
+\section{Progettazione del servizio web}
+
+
+
+\section{Progettazione dei database}
+
+diagrammi er del db e descrizione delle varie tabelle
+
