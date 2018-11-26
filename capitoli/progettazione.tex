@@ -41,7 +41,7 @@ inserire diagramma di sequenza che spieghi il flusso qui sopra (si trova nelle s
 Importanti vantaggi nell'utilizzo del pattern MVP sono:
 \begin{itemize}
 	\item possibilità di utilizzare lo stesso model da parte di view differenti;
-	\item semplicità nell'aggiunta di nuovi tipi di client, e quindi di applicazioni: è sufficiente scrivere un presenter e una view per ognuna delle nuove applicazioni.
+	\item semplicità nell'aggiunta di nuovi tipi di client, e quindi di applicazioni: è sufficiente scrivere un presenter e una view per ognuna delle nuove applicazioni. MVP permette quindi un disaccoppiamento tra logica applicativa e database sottostante.
 \end{itemize}
 
 \subsection{Architettura del server}
@@ -59,7 +59,23 @@ Una dei vantaggi più importanti dell'architettura a strati è la separazione de
 
 \section{Progettazione del servizio web}
 
+Il seguente diagramma dei package rappresenta la struttura del servizio web di moviORDER.
 
+Come si può vedere dal diagramma il servizio è costituito da tre package:
+\begin{itemize}
+	\item \textit{dbConnection}: contiene classi atte alla gestione della connessione con un database. Il package viene utilizzato per permettere agli oggetti servlet di connettersi a database SQL Server locali o remoti;
+	\item \textit{servlet}: contiene le classi che definiscono gli oggetti servlet del servizio. Questi oggetti si occupano di captare le richieste HTTP provenienti dal client e di rispondere tramite stringhe in formato JSON;
+	\item \textit{utility}: contiene le classi utilità del servizio. Queste classi facilitano i compiti che gli oggetti servlet devono eseguire.
+\end{itemize}
+Una descrizione più appronfondita di tali package è presente in sezione \ref{codifica}.
+
+\subsection{Package servlet}
+
+Essendo il package \textit{servlet} il più articolato, merita una descrizione più approfondita. Il seguente diagramma delle classi rappresenta la struttura del package \textit{servlet}.
+
+diagramma delle classi del package servlet
+
+Come si può vedere dal diagramma ogni classe servlet concreta eredita dalla classe astratta \textit{HttpServlet}. Ogni servlet concreto definisce il metodo \textit{doPost()} che permette di definire come il servlet debba gestire richieste HTTP POST. Una descrizione di come queste classi siano state implementate nella pratica è presente in sezione \ref{sezioneservlet}.
 
 \section{Progettazione dei database}
 
