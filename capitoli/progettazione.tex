@@ -115,5 +115,6 @@ Come si può vedere dal diagramma ogni classe servlet concreta eredita dalla cla
 
 \section{Progettazione dei database}
 
-diagrammi er del db e descrizione delle varie tabelle
+Come detto precedentemente i dati di moviORDER sono raggruppati all'interno di due database. Il database \textit{CommonDb} contiene i dati di autenticazione degli utenti di moviORDER e le stringhe di connessione ai rispettivi database aziendali (ogni azienda possiede un database), mentre il database \textit{mvo\_aziendaNomeAzienda} contiene tutti i dati utili alla gestione degli ordini inviati all'azienda \textit{NomeAzienda}. In pratica, in fase di autenticazione le credenziali dell'utente vengono cercate nel \textit{CommonDb} e, in caso di corrispondenza, viene prelevata la stringa di connessione al database dell'azienda presso cui l'utente è cliente (database del tipo \textit{mvo_aziendaNomeAzienda}). In seguito questa stringa viene utilizzata per collegare l'applicazione al database corretto e quindi permettere all'utente di visualizzare solamente i dati sugli articoli venduti dalla propria azienda.
+Il \textit{CommonDb} presenta la seguenti tabelle...
 
