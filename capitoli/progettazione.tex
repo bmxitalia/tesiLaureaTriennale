@@ -12,6 +12,8 @@ In questo capitolo vengono presentati gli aspetti più interessanti della proget
 
 L'obiettivo di una buona progettazione è il soddisfacimento dei requisiti mediante un sistema di qualità, ottenibile tramite la definizione di una buona architettura logica del prodotto, che presenti componenti dalle specifiche chiare e coese, che sia realizzabile con risorse e costi fissati e che abbia una struttura che faciliti i cambiamenti futuri. In quest'ottica moviORDER presenta un'architettura client-server, dove il client è l'applicazione installata sul dispositivo (Android o iOS) dell'utente finale, e il server è un server web Apache Tomcat installato su un server Azure di proprietà di \visione{}. L'applicazione si connette al server per la fruizione di un'API che permette l'accesso a database contenenti i dati di moviORDER. Viene di seguito fornita una figura illustrattiva dell'architettura generale di moviORDER.
 
+\newpage
+
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=\columnwidth]{progettazione/generalArchitecture} 
@@ -72,6 +74,9 @@ Il server presenta un'architettura a strati. In questo pattern i componenti sono
 	\item \textbf{persistance layer}: contiene le classi del servizio web che permettono agli oggetti servlet di accedere al database dell'applicazione;
 	\item \textbf{database layer}: contiene i database dell'applicazione.
 \end{itemize}
+
+\newpage
+
 Viene di seguito presentata una figura illustrativa di come il design pattern \textit{layered architecture} è stato istanziato nell'architettura del back end di moviORDER. 
 
 \begin{figure}[!h] 
@@ -81,6 +86,8 @@ Viene di seguito presentata una figura illustrativa di come il design pattern \t
 \end{figure}
 
 Uno dei vantaggi più importanti dell'architettura a strati è la separazione delle responsabilità tra i componenti. Un componente all'interno di uno specifico strato può eseguire solamente compiti che spettano a tale strato. Questo tipo di classificazione facilita lo sviluppo, il testing e la manutenzione del backend di moviORDER.
+
+\newpage
 
 \section{Progettazione servizio web}
 
@@ -115,7 +122,7 @@ Come si può vedere dal diagramma, ogni classe servlet concreta eredita dalla cl
 \section{Progettazione database} \label{progdb}
 
 Come detto precedentemente, i dati di moviORDER sono raggruppati all'interno di due database. Il database \textit{CommonDb} contiene i dati di autenticazione degli utenti di moviORDER e le stringhe di connessione ai rispettivi database aziendali (ogni azienda possiede un proprio database), mentre il database \textit{mvo\_aziendaNomeAzienda} contiene tutti i dati utili alla gestione degli ordini presso l'azienda \textit{NomeAzienda}. Più precisamente, in fase di autenticazione le credenziali dell'utente vengono cercate all'interno del \textit{CommonDb} e, in caso di corrispondenza, viene prelevata la stringa di connessione al database dell'azienda presso cui l'utente è cliente. In seguito questa stringa viene utilizzata per collegare l'applicazione al database corretto e quindi permettere all'utente di visualizzare solamente i dati sugli articoli venduti dalla propria azienda.
-Il \textit{CommonDb} presenta le seguenti tabelle:
+Il database \textit{CommonDb} presenta le seguenti tabelle:
 \begin{itemize}
 	\item \textbf{Users}: tabella contenente i dati di autenticazione degli utenti di moviORDER. La tabella presenta i seguenti campi:
 		\begin{itemize}
@@ -141,10 +148,12 @@ Viene di seguito presentato il diagramma Entity Relationship del database \texti
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=\columnwidth]{progettazione/erCommon} 
-    \caption{Diagramma ER di \textit{CommonDb}}
+    \caption{Diagramma ER del database \textit{CommonDb}}
 \end{figure}
 
-Il \textit{mvo\_aziendaNomeAzienda} presenta le seguenti tabelle:
+\newpage
+
+Il database \textit{mvo\_aziendaNomeAzienda} presenta le seguenti tabelle:
 \begin{itemize}
 	\item \textbf{Art}: tabella contenente i dati sugli articoli venduti dall'azienda \textit{NomeAzienda}. La tabella presenta i seguenti campi:
 		\begin{itemize}
@@ -204,6 +213,6 @@ Viene di seguito presentato il diagramma Entity Relationship del database \texti
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=\columnwidth]{progettazione/erMvoAzienda} 
-    \caption{Diagramma ER di \textit{mvo\_aziendaNomeAzienda}}
+    \caption{Diagramma ER del database \textit{mvo\_aziendaNomeAzienda}}
 \end{figure}
 
