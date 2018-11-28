@@ -14,13 +14,13 @@ L'obiettivo di una buona progettazione è il soddisfacimento dei requisiti trami
 
 \begin{figure}[!h] 
     \centering 
-    \includegraphics[height=\columnwidth]{progettazione/} 
+    \includegraphics[width=\columnwidth]{progettazione/} 
     \caption{Architettura generale di moviORDER}
 \end{figure}
 
 Entrando nello specifico, il client può essere l'applicazione installata su un dispositivo Apple oppure Android, la quale invia richieste HTTP al server tramite AJAX. Il server è un server web Apache Tomcat installato su di un server Azure di proprietà di \visione{}. Su Apache Tomcat è presente un servizio web che fornisce un'API per l'accesso ai dati contenuti in un database aziendale locale o remoto. Il servizio elabora le richieste ricevute dal client tramite oggetti servlet Java che rispondono a tali richieste tramite stringhe codificate in formato JSON. Sul server Azure sono presenti i seguenti database SQL Server:
 \begin{itemize}
-	\item \textit{CommonDB}: database contenente i dati di autenticazione degli utenti di moviORDER. Tale database è unico e contiene i dati di autenticazione di tutti gli utenti di ogni azienda che utilizza il servizio moviORDER;
+	\item \textit{CommonDb}: database contenente i dati di autenticazione degli utenti di moviORDER. Tale database è unico e contiene i dati di autenticazione di tutti gli utenti di ogni azienda che utilizza il servizio moviORDER;
 	\item \textit{mvo\_aziendaNomeAzienda}: database contenente i dati sugli articoli venduti dall'azienda \textit{NomeAzienda}. All'interno del server Azure è presente un database di questo tipo per ogni azienda che utilizza il servizio moviORDER e che ha deciso di affidare la gestione completa dei propri prodotti a \visione{}.
 \end{itemize}
 È possibile che un'azienda preferisca utilizzare il proprio database per la gestione degli ordini, quindi il servizio web deve poter accedere a database remoti. In tal caso, affinché l'applicazione funzioni, la struttura del database remoto deve essere la medesima del database \textit{mvo\_aziendaNomeAzienda}. La struttura di tale database viene presentata in sezione §\ref{progdb}.
@@ -32,7 +32,7 @@ Sul client, ovvero l'applicazione installata sul dispositivo dell'utente utilizz
 
 \begin{figure}[!h] 
     \centering 
-    \includegraphics[height=\columnwidth]{progettazione/} 
+    \includegraphics[width=\columnwidth]{progettazione/} 
     \caption{Differenze tra pattern MVC e MVP}
 \end{figure}
 
@@ -40,7 +40,7 @@ Viene di seguito presentata una figura illustrativa di come il design pattern MV
 
 \begin{figure}[!h] 
     \centering 
-    \includegraphics[height=\columnwidth]{progettazione/} 
+    \includegraphics[width=\columnwidth]{progettazione/} 
     \caption{Architettura front end}
 \end{figure}
 
@@ -55,7 +55,7 @@ Viene di seguito presentato un diagramma di sequenza esemplificativo del pattern
 
 \begin{figure}[!h] 
     \centering 
-    \includegraphics[height=\columnwidth]{progettazione/} 
+    \includegraphics[width=\columnwidth]{progettazione/} 
     \caption{Diagramma di sequenza del pattern MVP}
 \end{figure}
 
@@ -77,19 +77,19 @@ Viene di seguito presentata una figura illustrativa di come il design pattern \t
 
 \begin{figure}[!h] 
     \centering 
-    \includegraphics[height=\columnwidth]{progettazione/} 
+    \includegraphics[width=\columnwidth]{progettazione/} 
     \caption{Architettura a strati del back end}
 \end{figure}
 
 Una dei vantaggi più importanti dell'architettura a strati è la separazione delle responsabilità tra i componenti. Un componente all'interno di uno specifico strato può eseguire solamente compiti che spettano a tale strato. Questo tipo di classificazione facilita lo sviluppo, il testing e la manutenzione del backend di moviORDER.
 
-\section{Progettazione del servizio web}
+\section{Progettazione servizio web}
 
 Il seguente diagramma dei package rappresenta la struttura del servizio web di moviORDER.
 
 \begin{figure}[!h] 
     \centering 
-    \includegraphics[height=\columnwidth]{progettazione/} 
+    \includegraphics[width=\columnwidth]{progettazione/} 
     \caption{Diagramma dei package del servizio web}
 \end{figure}
 
@@ -107,14 +107,104 @@ Essendo il package \textit{servlet} il più articolato, merita una descrizione p
 
 \begin{figure}[!h] 
     \centering 
-    \includegraphics[height=\columnwidth]{progettazione/} 
+    \includegraphics[width=\columnwidth]{progettazione/} 
     \caption{Diagramma delle classi del package \textit{servlet}}
 \end{figure}
 
 Come si può vedere dal diagramma ogni classe servlet concreta eredita dalla classe astratta \textit{HttpServlet}. Ogni servlet concreto definisce il metodo \textit{doPost()} che permette di definire come il servlet debba gestire richieste HTTP POST. Una descrizione di come queste classi siano state implementate nella pratica è presente in sezione \ref{sezioneservlet}.
 
-\section{Progettazione dei database}
+\section{Progettazione database}
 
 Come detto precedentemente i dati di moviORDER sono raggruppati all'interno di due database. Il database \textit{CommonDb} contiene i dati di autenticazione degli utenti di moviORDER e le stringhe di connessione ai rispettivi database aziendali (ogni azienda possiede un database), mentre il database \textit{mvo\_aziendaNomeAzienda} contiene tutti i dati utili alla gestione degli ordini inviati all'azienda \textit{NomeAzienda}. In pratica, in fase di autenticazione le credenziali dell'utente vengono cercate nel \textit{CommonDb} e, in caso di corrispondenza, viene prelevata la stringa di connessione al database dell'azienda presso cui l'utente è cliente (database del tipo \textit{mvo_aziendaNomeAzienda}). In seguito questa stringa viene utilizzata per collegare l'applicazione al database corretto e quindi permettere all'utente di visualizzare solamente i dati sugli articoli venduti dalla propria azienda.
-Il \textit{CommonDb} presenta la seguenti tabelle...
+Il \textit{CommonDb} presenta le seguenti tabelle:
+\begin{itemize}
+	\item \textbf{Users}: tabella contenente i dati di autenticazione degli utenti di moviORDER. La tabella presenta i seguenti campi:
+		\begin{itemize}
+			\item \textit{UserName} (chiave primaria): è il nome utente per accedere all'applicazione. Viene reso univoco poiché costituito dalla concatenazione della partita IVA dell'azienda presso cui l'utente è cliente e un codice auto-incrementante assegnato al cliente al momento della consegna dell'applicazione;
+			\item \textit{Password}: è la password per accedere all'applicazione. Anche questo campo viene assegnato all'utente da parte dell'azienda al momento della consegna dell'applicazione;
+			\item \textit{CodAzienda} (chiave esterna): è l'identificativo univoco dell'azienda presso cui l'utente è cliente. Questo campo presenta un vincolo d'integrità referenziale con il campo \textit{CodAzienda} della tabella \textbf{Aziende};
+			\item \textit{EmailU}: è l'indirizzo e-mail dell'utente;
+			\item \textit{Bloccato}: è un flag che vale 1 se l'utente è stato bloccato dall'azienda oppure 0 se l'utente è operativo e quindi può utilizzare l'applicazione.
+		\end{itemize}
+	\item \textbf{Aziende}: tabella contenente le stringhe di connessione ai database aziendali di tutte le aziende registrate al servizio moviORDER. Sono presenti inoltre i parametri di configurazione del server SMTP di ogni azienda. Questo server deve essere utilizzato da moviORDER per inviare le mail di conferma dei vari ordini inviati. La tabella presenta i seguenti campi:
+	\begin{itemize}
+		\item \textit{CodAzienda} (chiave primaria): è l'identificativo univoco dell'azienda;
+		\item \textit{Path}: è la stringa di connessione al database aziendale dell'azienda;
+		\item \textit{EmailA}: è l'indirizzo e-mail aziendale dell'azienda;
+		\item \textit{Host}: è l'indirizzo IP della macchina dove è installato il server SMTP dell'azienda;
+		\item \textit{Post}: è la porta della macchina su cui è installato il server SMTP dell'azienda;
+		\item \textit{Username}: è il nome utente per accedere al server SMTP dell'azienda;
+		\item \textit{Password}: è la password per accedere al server SMTP dell'azienda.
+	\end{itemize}
+\end{itemize}
+Viene di seguito presentato il diagramma Entity Relationship del database \textit{CommonDb}. Le chiavi primarie sono state sottolineate, mentre le chiavi esterne sono state scritte in corsivo.
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=\columnwidth]{progettazione/} 
+    \caption{Diagramma ER di \textit{CommonDb}}
+\end{figure}
+
+Il \textit{mvo\_aziendaNomeAzienda} presenta le seguenti tabelle:
+\begin{itemize}
+	\item \textbf{Art}: tabella contenente i dati sugli articoli venduti dall'azienda \textit{NomeAzienda}. La tabella presenta i seguenti campi:
+		\begin{itemize}
+			\item \textit{Id\_Art}: è un codice auto-incrementante assegnato al record;
+			\item \textit{CodArt} (chiave primaria): è il codice articolo dell'articolo. Tale codice funge da identificatore univoco dell'articolo;
+			\item \textit{DesArt}: è il nome dell'articolo;
+			\item \textit{Note}: sono le note presenti in database per l'articolo;
+			\item \textit{QtaMin}: è la minima quantità ordinabile per l'articolo;
+			\item \textit{QtaMul}: è lo step di quantità ordinabile per l'articolo. Ad esempio se \textit{QtaMul} è 2, significa che è possibile ordinare 2, 4, 6 pezzi dell'articolo, e così via.
+		\end{itemize}
+	\item \textbf{ArtAlias}: tabella contenente i codici a barre corrispondenti agli articoli venduti dall'azienda. La tabella presenta i seguenti campi:
+		\begin{itemize}
+			\item \textit{Id\_ArtAlias}: è un codice auto-incrementante assegnato al record;
+			\item \textit{CodArt} (chiave primaria, chiave esterna): è il codice articolo dell'articolo. Questo codice presenta un vincolo d'integrità referenziale con il campo \textit{CodArt} della tabella \textbf{Art};
+			\item \textit{Alias} (chiave primaria): è il codice a barre dell'articolo. Fa parte della chiave primaria, insieme a \textit{CodArt}, poiché è possibile che un articolo abbia più codici a barre.
+		\end{itemize}
+	\item \textbf{DocRig}: tabella contenente i dati d'ordine degli articoli che sono stati ordinati presso l'azienda. La tabella presenta i seguenti campi:
+		\begin{itemize}
+			\item \textit{Id\_DocRig} (chiave primaria): è un codice auto-incrementante assegnato al record; 
+			\item \textit{Id\_DocTes} (chiave esterna): è il codice della fattura a cui il prodotto ordinato appartiene. Questo campo presenta un vincolo di integrità referenziale con il campo \textit{Id\_DocTes} della tabella \textbf{DocTes};
+			\item \textit{Username} (chiave esterna): è il nome utente dell'utente che ha ordinato l'articolo. Questo campo presenta un vincolo d'integrità referenziale con il campo \textit{UserID} della tabella \textbf{Users};
+			\item \textit{CodArt} (chiave esterna): è il codice articolo dell'articolo ordinato. Questo campo presenta un vincolo d'integrità referenziale con il campo \textit{CodArt} della tabella \textbf{Art};
+			\item \textit{Quantita}: è la quantità ordinata dell'articolo;
+			\item \textit{Note}: sono le note che l'utente ha inserito per l'articolo quando l'ha aggiunto al carrello.
+		\end{itemize}
+	\item \textbf{DocTes}: tabella contenente i dati delle fatture degli ordini che sono stati registrati prezzo l'azienda. La tabella presenta i seguenti campi:
+		\begin{itemize}
+			\item \textit{Id\_DocTes} (chiave primaria): è un codice auto-incrementante assegnato al record;
+			\item \textit{CodDoc} (chiave esterna): è un codice che rappresenta la tipologia di fattura emessa dall'azienda. Questo campo presenta un vincolo d'integrità referenziale con il campo \textit{CodDoc} della tabella \textbf{Users};
+			\item \textit{CodCliFor}: è il nome utente dell'utente che ha eseguito l'ordine presso l'azienda;
+			\item \textit{DataDoc}: è la data dell'ordine;
+			\item \textit{Note}: sono le note inserite dall'utente in fase di invio ordine;
+			\item \textit{Status}: è un flag che vale 0 nel momento in cui il record viene memorizzato in tabella, 1 nel momento in cui inizia l'importazione del record nel gestionale di \visione{} e 2 quando l'importazione è terminata.
+		\end{itemize}
+	\item \textbf{TmpRig}: tabella contenente i dati d'ordine degli articoli non ancora ordinati presso l'azienda. Si tratta di articoli inseriti nel carrello degli utenti, ma che non sono ancora stati ordinati. La tabella presenta i seguenti campi:
+		\begin{itemize}
+			\item \textit{Id\_TmpRig} (chiave primaria): è un codice auto-incrementante assegnato al record;
+			\item \textit{Username} (chiave esterna): è il nome utente dell'utente che l'articolo in carrello. Questo campo presenta un vincolo d'integrità referenziale con il campo \textit{UserID} della tabella \textbf{Users};
+			\item \textit{CodArt} (chiave esterna): è il codice articolo dell'articolo. Questo campo presenta un vincolo d'integrità referenziale con il campo \textit{CodArt} della tabella \textbf{Art};
+			\item \textit{Quantita}: è la quantità da ordinare inserita dall'utente;
+			\item \textit{Note}: sono le note che l'utente ha inserito per l'articolo quando l'ha aggiunto al carrello.
+		\end{itemize}
+	\item \textbf{Users}: tabella contenente le informazioni anagrafiche degli utenti clienti dell'azienda. La tabella presenta i seguenti campi:
+		\begin{itemize}
+			\item \textit{UserID} (chiave primaria): è il nome utente dell'utente;
+			\item \textit{DesCliFor}: è una breve descrizione dell'utente;
+			\item \textit{Indirizzo}: è l'indirizzo di residenza dell'utente;
+			\item \textit{Localita}: è la località di residenza dell'utente;
+			\item \textit{CodProv}: è il codice della provincia di residenza dell'utente;
+			\item \textit{CodNazione}: è il codice della nazione di residenza dell'utente;
+			\item \textit{CodDoc}: è il codice della fattura che deve essere emessa quando l'utente effettua un ordine;
+			\item \textit{DesDoc}: è una descrizione della fattura che deve essere emessa quando l'utente effettua un ordine.
+		\end{itemize}
+\end{itemize}
+Viene di seguito presentato il diagramma Entity Relationship del database \textit{mvo\_aziendaNomeAzienda}. Le chiavi primarie sono state sottolineate, mentre le chiavi esterne sono state scritte in corsivo.
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=\columnwidth]{progettazione/} 
+    \caption{Diagramma ER di \textit{mvo\_aziendaNomeAzienda}}
+\end{figure}
 
