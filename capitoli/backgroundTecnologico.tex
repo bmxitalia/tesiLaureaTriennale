@@ -29,7 +29,7 @@ Al giorno d'oggi è impensabile realizzare un'applicazione mobile per una sola p
     \caption{Frammentazione SO del mercato italiano nel 2016}
 \end{figure}
 
-Compresa la necessità di sviluppare più versioni della medesima applicazione in diverse piattaforme, il problema si sposta sulle risorse economiche e sul tempo che si ha a disposizione per lo sviluppo. Infatti lo sviluppo in differenti piattaforme comporta l'utilizzo di differenti linguaggi di programmazione e quindi la necessità di più programmatori esperti, precisamente almeno uno per piattaforma. Altre variabili di cui tener conto sono gli strumenti di sviluppo necessari, le API che si hanno a disposizione e fattori quali i sensori disponibili sui dispositivi, la dimensione degli schermi e le capacità di calcolo differenti.
+Compresa la necessità di sviluppare più versioni della medesima applicazione in diverse piattaforme, il problema si sposta sulle risorse economiche e sul tempo che si ha a disposizione per lo sviluppo. Infatti lo sviluppo in differenti piattaforme comporta l'utilizzo di differenti linguaggi di programmazione e quindi la necessità di più programmatori esperti, precisamente almeno uno per piattaforma. Altre variabili di cui tener conto sono gli strumenti di sviluppo necessari, le \textit{API} che si hanno a disposizione e fattori quali i sensori disponibili sui dispositivi, la dimensione degli schermi e le capacità di calcolo differenti.
 
 L'obiettivo che i \textit{framework cross-platform} cercano di raggiungere è la risoluzione di tutti questi problemi in maniera efficiente ed efficace in termini di risorse utilizzate, quindi, più precisamente, di ridurre gli effetti negativi della frammentazione del mercato.
 
@@ -55,7 +55,7 @@ Per la scelta del \textit{framework cross-platform} più idoneo al problema è s
 
 In questa tesi vengono presentati solamente l'approccio ibrido e quello interpretato, poiché utilizzati dai \textit{framework} proposti dal tutor aziendale.
 
-L'approccio ibrido si interpone tra la realizzazione di un'applicazione web e lo sviluppo di un'applicazione mobile in codice nativo. In questo tipo di approccio l'applicazione viene sviluppata utilizzando tecnologie web ed eseguita all'interno di un container nativo sul dispositivo mobile. Per eseguire l'applicazione viene utilizzato il motore di \textit{rendering} del browser del dispositivo mobile che si occupa di interpretare e visualizzare il contenuto \textit{HTML} dell'applicazione tramite una visualizzazione web a schermo intero. L'accesso alle funzionalità native offerte dal dispositivo mobile è permesso grazie ad un livello astratto che si interpone tra l'applicazione ibrida e tali funzionalità. Questo livello astratto espone le funzionalità tramite API \textit{Javascript}. 
+L'approccio ibrido si interpone tra la realizzazione di un'applicazione web e lo sviluppo di un'applicazione mobile in codice nativo. In questo tipo di approccio l'applicazione viene sviluppata utilizzando tecnologie web ed eseguita all'interno di un container nativo sul dispositivo mobile. Per eseguire l'applicazione viene utilizzato il motore di \textit{rendering} del browser del dispositivo mobile che si occupa di interpretare e visualizzare il contenuto \textit{HTML} dell'applicazione tramite una visualizzazione web a schermo intero. L'accesso alle funzionalità native offerte dal dispositivo mobile è permesso grazie ad un livello astratto che si interpone tra l'applicazione ibrida e tali funzionalità. Questo livello astratto espone le funzionalità tramite \textit{API} \textit{Javascript}. 
 
 \begin{figure}[!h] 
     \centering 
@@ -63,7 +63,7 @@ L'approccio ibrido si interpone tra la realizzazione di un'applicazione web e lo
     \caption{Architettura di un'applicazione ibrida}
 \end{figure}
 
-Nel caso delle applicazioni interpretate il codice sorgente dell'applicazione viene distribuito sul dispositivo mobile e in seguito interpretato da un interprete che si occupa di eseguire il codice a \textit{run-time}. Anche in questo caso le funzionalità native vengono rese disponibili da un livello astratto. La caratteristica principale dell'interprete è che eseguendo il codice sorgente su differenti piattaforme, esso supporta lo sviluppo \textit{cross-platform} delle applicazioni. L'applicazione interpretata interagisce con il livello astratto per accedere alle API native. Uno dei vantaggi dell'approccio interpretato è che utilizza elementi delle specifiche interfacce utente native per l'interazione utente. Infine, la logica applicativa è catturata in maniera del tutto indipendente dalla piattaforma sulla quale l'applicazione viene eseguita.
+Nel caso delle applicazioni interpretate il codice sorgente dell'applicazione viene distribuito sul dispositivo mobile e in seguito interpretato da un interprete che si occupa di eseguire il codice a \textit{run-time}. Anche in questo caso le funzionalità native vengono rese disponibili da un livello astratto. La caratteristica principale dell'interprete è che eseguendo il codice sorgente su differenti piattaforme, esso supporta lo sviluppo \textit{cross-platform} delle applicazioni. L'applicazione interpretata interagisce con il livello astratto per accedere alle \textit{API} native. Uno dei vantaggi dell'approccio interpretato è che utilizza elementi delle specifiche interfacce utente native per l'interazione utente. Infine, la logica applicativa è catturata in maniera del tutto indipendente dalla piattaforma sulla quale l'applicazione viene eseguita.
 
 \begin{figure}[!h] 
     \centering 
@@ -107,7 +107,7 @@ Si tratta di un \textit{framework cross-platform} di proprietà dell'azienda \te
 Lo stagista ha optato per il \textit{framework PhoneGap} per tre motivi sostanziali:
 \begin{enumerate}
 	\item \textbf{linguaggio di programmazione}: \textit{PhoneGap} richiedeva l'utilizzo di tecnologie web, già conosciute e apprese dallo stagista all'Università. Lo studio del linguaggio \textit{C\#}, utilizzato da \textit{Xamarin}, avrebbe richiesto un periodo di formazione che avrebbe sforato le 40 ore messe a disposizione per la formazione sulle tecnologie;
-	\item \textbf{linguaggio \textit{Javascript}}: come detto precedentemente, lo stagista era interessato ad approfondire il linguaggio Javascript, richiesto al giorno d'oggi dalla maggior parte delle aziende che si occupano della realizzazione di applicazioni web;
+	\item \textbf{linguaggio \textit{Javascript}}: come detto precedentemente, lo stagista era interessato ad approfondire il linguaggio \textit{Javascript}, richiesto al giorno d'oggi dalla maggior parte delle aziende che si occupano della realizzazione di applicazioni web;
 	\item \textbf{facilità nello sviluppo dell'interfaccia grafica}: utilizzando tecnologie web risultava semplice progettare e sviluppare un'interfaccia grafica \glossaryItem{responsive}, e quindi in grado di adattarsi alla maggior parte dei dispositivi mobile presenti sul mercato.
 \end{enumerate}
 
