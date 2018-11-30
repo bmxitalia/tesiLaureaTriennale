@@ -6,51 +6,51 @@
 \chapter{Progettazione}
 \label{cap:progettazione-codifica}
 
-In questo capitolo vengono presentati gli aspetti più interessanti della progettazione di moviORDER. Il capitolo inizia con la descrizione dell'architettura generale della piattaforma per poi entrare nel dettaglio delle varie componenti che la costituiscono.
+In questo capitolo vengono presentati gli aspetti più interessanti della progettazione di \textit{moviORDER}. Il capitolo inizia con la descrizione dell'architettura generale della piattaforma per poi entrare nel dettaglio delle varie componenti che la costituiscono.
 
 \section{Architettura generale}
 
-L'obiettivo di una buona progettazione è il soddisfacimento dei requisiti mediante un sistema di qualità, ottenibile tramite la definizione di una buona architettura logica del prodotto, che presenti componenti dalle specifiche chiare e coese, che sia realizzabile con risorse e costi fissati e che abbia una struttura che faciliti i cambiamenti futuri. In quest'ottica moviORDER presenta un'architettura client-server, dove il client è l'applicazione installata sul dispositivo (Android o iOS) dell'utente finale, e il server è un server web Apache Tomcat installato su un server Azure di proprietà di \visione{}. L'applicazione si connette al server per la fruizione di un'API che permette l'accesso a database contenenti i dati di moviORDER. Viene di seguito fornita una figura illustrattiva dell'architettura generale di moviORDER.
+L'obiettivo di una buona progettazione è il soddisfacimento dei requisiti mediante un sistema di qualità, ottenibile tramite la definizione di una buona architettura logica del prodotto, che presenti componenti dalle specifiche chiare e coese, che sia realizzabile con risorse e costi fissati e che abbia una struttura che faciliti i cambiamenti futuri. In quest'ottica \textit{moviORDER} presenta un'architettura \textit{client-server}, dove il \textit{client} è l'applicazione installata sul dispositivo (\textit{Android} o \textit{iOS}) dell'utente finale, e il \textit{server} è un \textit{server web} \textit{Apache Tomcat} installato su un \textit{server Azure} di proprietà di \visione{}. L'applicazione si connette al \textit{server} per la fruizione di un'\textit{API} che permette l'accesso a \textit{database} contenenti i dati di \textit{moviORDER}. Viene di seguito fornita una figura illustrativa dell'architettura generale di \textit{moviORDER}.
 
 \newpage
 
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=\columnwidth]{progettazione/generalArchitecture} 
-    \caption{Architettura generale di moviORDER}
+    \caption{Architettura generale di \textit{moviORDER}}
 \end{figure}
 
-L'applicazione comunica con il server tramite l'invio di richieste HTTP. Sul server è installato un servizio web che si occupa di elaborare tali richieste tramite oggetti servlet Java, i quali eseguono delle query sul database e rispondono, sulla base dei risultati ottenuti, tramite strighe codificate in formato JSON. Per la costuzione delle risposte, il servizio web interroga i seguenti database SQL Server:
+L'applicazione comunica con il \textit{server} tramite l'invio di richieste HTTP. Sul \textit{server} è installato un servizio web che si occupa di elaborare tali richieste tramite oggetti \textit{servlet Java}, i quali eseguono delle query sul \textit{database} e rispondono, sulla base dei risultati ottenuti, tramite stringhe codificate in formato \textit{JSON}. Per la costruzione delle risposte, il servizio web interroga i seguenti \textit{database} \textit{SQL Server}:
 \begin{itemize}
-	\item \textit{CommonDb}: database locale al server Azure di \visione{} e contenente i dati di autenticazione degli utenti di moviORDER. Ogni qualvolta che un'azienda acquista il servizio, vengono inserite nel \textit{CommonDb} le credenziali di accesso di tutti gli utenti dell'azienda che desiderano utilizzare l'applicazione;
-	\item \textit{mvo\_aziendaNomeAzienda}: database contenente i dati utili alla gestione degli ordini presso l'azienda \textit{NomeAzienda}. All'interno del server Azure è presente un database di questo tipo per ogni azienda che usufruisce del servizio e che ha deciso di affidare la gestione completa dei propri ordini a \visione{}. Per le aziende che preferiscono invece gestire internamente i propri ordini, tale database è contenuto nei server cloud delle rispettive aziende. Ne consegue che il servizio web deve essere in grado di connettersi a database locali o remoti.
+	\item \textit{CommonDb}: \textit{database} locale al \textit{server Azure} di \visione{} e contenente i dati di autenticazione degli utenti di \textit{moviORDER}. Ogni qualvolta che un'azienda acquista il servizio, vengono inserite nel \textit{CommonDb} le credenziali di accesso di tutti gli utenti dell'azienda che desiderano utilizzare l'applicazione;
+	\item \textit{mvo\_aziendaNomeAzienda}: \textit{database} contenente i dati utili alla gestione degli ordini presso l'azienda \textit{NomeAzienda}. All'interno del \textit{server Azure} è presente un \textit{database} di questo tipo per ogni azienda che usufruisce del servizio e che ha deciso di affidare la gestione completa dei propri ordini a \visione{}. Per le aziende che preferiscono invece gestire internamente i propri ordini, tale \textit{database} è contenuto nei \textit{server cloud} delle rispettive aziende. Ne consegue che il servizio web deve essere in grado di connettersi a \textit{database} locali o remoti.
 \end{itemize}
-Una descrizione più approffondita dei dati contenuti in questi database è presente in sezione \ref{progdb}.
+Una descrizione più approfondita dei dati contenuti in questi \textit{database} è presente in sezione \ref{progdb}.
 
 \subsection{Architettura front end}
 
-Sul client, ovvero l'applicazione installata sul dispositivo dell'utente utilizzatore, è presente il pattern architetturale MVP (Model View Presenter). Tale pattern presenta componenti distribuite, infatti la view e il presenter si trovano sul dispositivo, mentre il model si trova sul server Azure di \visione{} o sul server cloud di un'azienda cliente. Nello specifico, la view è la GUI dell'applicazione, il presenter è la logica applicativa della stessa e il model è il database contenente i dati utili alla gestione degli ordini. È stato scelto un MVP in quanto il model interagisce solamente con il presenter e non può modificare la view come invece accade per il pattern MVC (Model View Controller). Nella seguente figura è possibile notare le differenze concettuali tra i due pattern.
+Sul \textit{client}, ovvero l'applicazione installata sul dispositivo dell'utente utilizzatore, è presente il pattern architetturale \textit{MVP} (Model View Presenter). Tale pattern presenta componenti distribuite, infatti la \textit{view} e il \textit{presenter} si trovano sul dispositivo, mentre il \textit{model} si trova sul \textit{server Azure} di \visione{} o sul \textit{server cloud} di un'azienda cliente. Nello specifico, la \textit{view} è la \textit{GUI} dell'applicazione, il \textit{presenter} è la logica applicativa della stessa e il \textit{model} è il \textit{database} contenente i dati utili alla gestione degli ordini. È stato scelto un \textit{MVP} in quanto il \textit{model} interagisce solamente con il \textit{presenter} e non può modificare la \textit{view} come invece accade per il pattern \textit{MVC} (\textit{Model View Controller}). Nella seguente figura è possibile notare le differenze concettuali tra i due pattern.
 
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=\columnwidth]{progettazione/differenzepattern} 
-    \caption{Differenze tra pattern MVC e MVP}
+    \caption{Differenze tra pattern \textit{MVC} e \textit{MVP}}
 \end{figure}
 
-Viene di seguito presentata una figura illustrativa di come il design pattern MVP è stato istanziato nell'architettura del front end di moviORDER.
+Viene di seguito presentata una figura illustrativa di come il design pattern \textit{MVP} è stato istanziato nell'architettura del \textit{front end} di \textit{moviORDER}.
 
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=\columnwidth]{progettazione/frontendMVP} 
-    \caption{Architettura front end}
+    \caption{Architettura \textit{front end}}
 \end{figure}
 
 Nello specifico, il flusso del pattern è il seguente:
 \begin{itemize}
-	\item l'utente interagisce con la view eseguendo delle operazioni sull'interfaccia dell'applicazione;
-	\item il presenter capta le interazioni e, sulla base di queste, richiede la lettura/scrittura di dati sul model tramite l'invio di richieste HTTP ad un servizio web;
-	\item il servizio web legge/scrive sul model a seconda della richiesta ricevuta e prepara ed invia una risposta al presenter;
-	\item il presenter riceve la risposta, la elabora e modifica la view di conseguenza.
+	\item l'utente interagisce con la \textit{view} eseguendo delle operazioni sull'interfaccia dell'applicazione;
+	\item il \textit{presenter} capta le interazioni e, sulla base di queste, richiede la lettura/scrittura di dati sul \textit{model} tramite l'invio di richieste HTTP ad un servizio web;
+	\item il servizio web legge/scrive sul \textit{model} a seconda della richiesta ricevuta e prepara ed invia una risposta al presenter;
+	\item il \textit{presenter} riceve la risposta, la elabora e modifica la \textit{view} di conseguenza.
 \end{itemize}
 Viene di seguito presentato un diagramma di sequenza esemplificativo del pattern MVP istanziato nel contesto del progetto.
 
@@ -60,107 +60,107 @@ Viene di seguito presentato un diagramma di sequenza esemplificativo del pattern
     \caption{Diagramma di sequenza del pattern MVP}
 \end{figure}
 
-Importanti vantaggi nell'utilizzo del pattern MVP sono:
+Importanti vantaggi nell'utilizzo del pattern \textit{MVP} sono:
 \begin{itemize}
-	\item possibilità di utilizzare lo stesso model da parte di view differenti;
-	\item semplicità nell'aggiunta di nuovi tipi di client, e quindi di applicazioni: è sufficiente scrivere un presenter e una view per ognuna delle nuove applicazioni. MVP permette quindi un disaccoppiamento tra logica applicativa e database sottostante.
+	\item possibilità di utilizzare lo stesso \textit{model} da parte di \textit{view} differenti;
+	\item semplicità nell'aggiunta di nuovi tipi di \textit{client}, e quindi di applicazioni: è sufficiente scrivere un \textit{presenter} e una \textit{view} per ognuna delle nuove applicazioni. \textit{MVP} permette quindi un disaccoppiamento tra logica applicativa e \textit{database} sottostante.
 \end{itemize}
 
 \subsection{Architettura back end}
 
-Il server presenta un'architettura a strati. In questo pattern i componenti sono organizzati in strati orizzontali e ogni strato possiede specifici ruoli e responsabilità nel contesto dell'applicazione. Nel caso di moviORDER, il pattern è stato diviso nei seguenti strati:
+Il \textit{server} presenta un'architettura a strati. In questo pattern i componenti sono organizzati in strati orizzontali e ogni strato possiede specifici ruoli e responsabilità nel contesto dell'applicazione. Nel caso di \textit{moviORDER}, il pattern è stato diviso nei seguenti strati:
 \begin{itemize}
-	\item \textbf{business layer}: contiene gli oggetti servlet del servizio web, i quali si occupano di captare le richieste HTTP provenienti dal client, di leggere o scrivere sul database di conseguenza, e di fornire delle risposte;
-	\item \textbf{persistance layer}: contiene le classi del servizio web che permettono agli oggetti servlet di accedere al database dell'applicazione;
-	\item \textbf{database layer}: contiene i database dell'applicazione.
+	\item \textbf{\textit{business layer}}: contiene gli oggetti \textit{servlet} del servizio web, i quali si occupano di captare le richieste HTTP provenienti dal client, di leggere o scrivere sul \textit{database} di conseguenza, e di fornire delle risposte;
+	\item \textbf{\textit{persistance layer}}: contiene le classi del servizio web che permettono agli oggetti \textit{servlet} di accedere al \textit{database} dell'applicazione;
+	\item \textbf{\textit{database layer}}: contiene i \textit{database} dell'applicazione.
 \end{itemize}
 
 \newpage
 
-Viene di seguito presentata una figura illustrativa di come il design pattern \textit{layered architecture} è stato istanziato nell'architettura del back end di moviORDER. 
+Viene di seguito presentata una figura illustrativa di come il design pattern \textit{layered architecture} è stato istanziato nell'architettura del \textit{back end} di \textit{moviORDER}. 
 
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=\columnwidth]{progettazione/serverArchitecture} 
-    \caption{Architettura a strati del back end}
+    \caption{Architettura a strati del \textit{back end}}
 \end{figure}
 
-Uno dei vantaggi più importanti dell'architettura a strati è la separazione delle responsabilità tra i componenti. Un componente all'interno di uno specifico strato può eseguire solamente compiti che spettano a tale strato. Questo tipo di classificazione facilita lo sviluppo, il testing e la manutenzione del backend di moviORDER.
+Uno dei vantaggi più importanti dell'architettura a strati è la separazione delle responsabilità tra i componenti. Un componente all'interno di uno specifico strato può eseguire solamente compiti che spettano a tale strato. Questo tipo di classificazione facilita lo sviluppo, il \textit{testing} e la manutenzione del \textit{back end} di \textit{moviORDER}.
 
 \newpage
 
 \section{Progettazione servizio web}
 
-Il seguente diagramma dei package rappresenta la struttura del servizio web di moviORDER.
+Il seguente diagramma dei \textit{package} rappresenta la struttura del servizio web di \textit{moviORDER}.
 
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=\columnwidth]{progettazione/packages} 
-    \caption{Diagramma dei package del servizio web}
+    \caption{Diagramma dei \textit{package} del servizio web}
 \end{figure}
 
-Come si può vedere dal diagramma, il servizio è costituito da tre package:
+Come si può vedere dal diagramma, il servizio è costituito da tre \textit{package}:
 \begin{itemize}
-	\item \textit{dbConnection}: contiene classi atte alla gestione della connessione con un database. Il package viene utilizzato per permettere agli oggetti servlet di connettersi a database SQL Server locali o remoti;
-	\item \textit{servlet}: contiene le classi che definiscono gli oggetti servlet del servizio. Questi oggetti si occupano di captare le richieste HTTP provenienti dal client e di rispondere a queste tramite stringhe in formato JSON;
-	\item \textit{utility}: contiene le classi utilità del servizio. Queste classi facilitano i compiti che gli oggetti servlet devono eseguire.
+	\item \textit{dbConnection}: contiene classi atte alla gestione della connessione con un \textit{database}. Il \textit{package} viene utilizzato per permettere agli oggetti \textit{servlet} di connettersi a \textit{database} \textit{SQL Server} locali o remoti;
+	\item \textit{servlet}: contiene le classi che definiscono gli oggetti \textit{servlet} del servizio. Questi oggetti si occupano di captare le richieste HTTP provenienti dal \textit{client} e di rispondere a queste tramite stringhe in formato \textit{JSON};
+	\item \textit{utility}: contiene le classi utilità del servizio. Queste classi facilitano i compiti che gli oggetti \textit{servlet} devono eseguire.
 \end{itemize}
-Una descrizione più appronfondita di come tali package sono stati utilizzati nella codifica del servizio web è presente in sezione \ref{codificaservizio}.
+Una descrizione più appronfondita di come tali \textit{package} sono stati utilizzati nella codifica del servizio web è presente in sezione \ref{codificaservizio}.
 
 \subsection{Package servlet}
 
-Essendo il package \textit{servlet} il più articolato, merita una descrizione più approfondita. Il seguente diagramma delle classi rappresenta la struttura del package \textit{servlet}.
+Essendo il \textit{package} \textit{servlet} il più articolato, merita una descrizione più approfondita. Il seguente diagramma delle classi rappresenta la struttura del \textit{package} \textit{servlet}.
 
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=\columnwidth]{progettazione/servletPackage} 
-    \caption{Diagramma delle classi del package \textit{servlet}}
+    \caption{Diagramma delle classi del \textit{package} \textit{servlet}}
 \end{figure}
 
-Come si può vedere dal diagramma, ogni classe servlet concreta eredita dalla classe astratta \textit{HttpServlet}. Inoltre, ogni servlet concreto definisce il metodo \textit{doPost()}, il quale permette di definire il comportamento del servlet alla ricezione di richieste HTTP POST. Una descrizione di come queste classi sono state implementate nella pratica è presente in sezione \ref{codificaservizio}.
+Come si può vedere dal diagramma, ogni classe \textit{servlet} concreta eredita dalla classe astratta \textit{HttpServlet}. Inoltre, ogni \textit{servlet} concreto definisce il metodo \textit{doPost()}, il quale permette di definire il comportamento del \textit{servlet} alla ricezione di richieste HTTP POST. Una descrizione di come queste classi sono state implementate nella pratica è presente in sezione \ref{codificaservizio}.
 
 \section{Progettazione database} \label{progdb}
 
-Come detto precedentemente, i dati di moviORDER sono raggruppati all'interno di due database. Il database \textit{CommonDb} contiene i dati di autenticazione degli utenti di moviORDER e le stringhe di connessione ai rispettivi database aziendali (ogni azienda possiede un proprio database), mentre il database \textit{mvo\_aziendaNomeAzienda} contiene tutti i dati utili alla gestione degli ordini presso l'azienda \textit{NomeAzienda}. Più precisamente, in fase di autenticazione le credenziali dell'utente vengono cercate all'interno del \textit{CommonDb} e, in caso di corrispondenza, viene prelevata la stringa di connessione al database dell'azienda presso cui l'utente è cliente. In seguito questa stringa viene utilizzata per collegare l'applicazione al database corretto e quindi permettere all'utente di visualizzare solamente i dati sugli articoli venduti dalla propria azienda.
-Il database \textit{CommonDb} presenta le seguenti tabelle:
+Come detto precedentemente, i dati di \textit{moviORDER} sono raggruppati all'interno di due \textit{database}. Il \textit{database} \textit{CommonDb} contiene i dati di autenticazione degli utenti di \textit{moviORDER} e le stringhe di connessione ai rispettivi \textit{database} aziendali (ogni azienda possiede un proprio \textit{database}), mentre il \textit{database} \textit{mvo\_aziendaNomeAzienda} contiene tutti i dati utili alla gestione degli ordini presso l'azienda \textit{NomeAzienda}. Più precisamente, in fase di autenticazione le credenziali dell'utente vengono cercate all'interno del \textit{CommonDb} e, in caso di corrispondenza, viene prelevata la stringa di connessione al \textit{database} dell'azienda presso cui l'utente è cliente. In seguito questa stringa viene utilizzata per collegare l'applicazione al \textit{database} corretto e quindi permettere all'utente di visualizzare solamente i dati sugli articoli venduti dalla propria azienda.
+Il \textit{database} \textit{CommonDb} presenta le seguenti tabelle:
 \begin{itemize}
-	\item \textbf{Users}: tabella contenente i dati di autenticazione degli utenti di moviORDER. La tabella presenta i seguenti campi:
+	\item \textbf{Users}: tabella contenente i dati di autenticazione degli utenti di \textit{moviORDER}. La tabella presenta i seguenti campi:
 		\begin{itemize}
 			\item \textit{UserName} (chiave primaria): è il nome utente per accedere all'applicazione. Viene reso univoco poiché costituito dalla concatenazione della partita IVA dell'azienda presso cui l'utente è cliente e un codice auto-incrementante assegnato al cliente al momento della consegna dell'applicazione;
-			\item \textit{Password}: è la password per accedere all'applicazione. La coppia username/password viene assegnata all'utente al momento della consegna dell'applicazione;
+			\item \textit{Password}: è la password per accedere all'applicazione. La coppia \textit{username}/password viene assegnata all'utente al momento della consegna dell'applicazione;
 			\item \textit{CodAzienda} (chiave esterna): è l'identificativo univoco dell'azienda presso cui l'utente è cliente. Questo campo presenta un vincolo d'integrità referenziale con il campo \textit{CodAzienda} della tabella \textbf{Aziende};
 			\item \textit{EmailU}: è l'indirizzo e-mail dell'utente;
 			\item \textit{Bloccato}: è un flag che vale 1 se l'utente è stato bloccato dall'azienda, oppure 0 se l'utente è operativo e quindi può utilizzare l'applicazione.
 		\end{itemize}
-	\item \textbf{Aziende}: tabella contenente le stringhe di connessione ai database aziendali di tutte le aziende registrate al servizio moviORDER. Sono presenti inoltre i parametri di configurazione del server SMTP di ogni azienda. Questo server viene utilizzato da moviORDER per inviare le mail di conferma dei vari ordini registrati. La tabella presenta i seguenti campi:
+	\item \textbf{Aziende}: tabella contenente le stringhe di connessione ai \textit{database} aziendali di tutte le aziende registrate al servizio \textit{moviORDER}. Sono presenti inoltre i parametri di configurazione del \textit{server SMTP} di ogni azienda. Questo \textit{server} viene utilizzato da \textit{moviORDER} per inviare le mail di conferma dei vari ordini registrati. La tabella presenta i seguenti campi:
 	\begin{itemize}
 		\item \textit{CodAzienda} (chiave primaria): è l'identificativo univoco dell'azienda;
-		\item \textit{Path}: è la stringa di connessione al database aziendale dell'azienda;
+		\item \textit{Path}: è la stringa di connessione al \textit{database} aziendale dell'azienda;
 		\item \textit{EmailA}: è l'indirizzo e-mail aziendale dell'azienda;
-		\item \textit{Host}: è l'indirizzo della macchina dove è installato il server SMTP dell'azienda;
-		\item \textit{Post}: è la porta su cui è installato il server SMTP dell'azienda;
-		\item \textit{Username}: è il nome utente per accedere al server SMTP dell'azienda;
-		\item \textit{Password}: è la password per accedere al server SMTP dell'azienda.
+		\item \textit{Host}: è l'indirizzo della macchina dove è installato il \textit{server SMTP} dell'azienda;
+		\item \textit{Post}: è la porta su cui è installato il \textit{server SMTP} dell'azienda;
+		\item \textit{Username}: è il nome utente per accedere al \textit{server SMTP} dell'azienda;
+		\item \textit{Password}: è la password per accedere al \textit{server SMTP} dell'azienda.
 	\end{itemize}
 \end{itemize}
-Viene di seguito presentato il diagramma Entity Relationship del database \textit{CommonDb}. Le chiavi primarie sono state sottolineate, mentre le chiavi esterne sono state scritte in corsivo.
+Viene di seguito presentato il diagramma \textit{Entity Relationship} del \textit{database} \textit{CommonDb}. Le chiavi primarie sono state sottolineate, mentre le chiavi esterne sono state scritte in corsivo.
 
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=\columnwidth]{progettazione/erCommon} 
-    \caption{Diagramma ER del database \textit{CommonDb}}
+    \caption{Diagramma \textit{ER} del \textit{database} \textit{CommonDb}}
 \end{figure}
 
 \newpage
 
-Il database \textit{mvo\_aziendaNomeAzienda} presenta le seguenti tabelle:
+Il \textit{database} \textit{mvo\_aziendaNomeAzienda} presenta le seguenti tabelle:
 \begin{itemize}
 	\item \textbf{Art}: tabella contenente i dati sugli articoli venduti dall'azienda \textit{NomeAzienda}. La tabella presenta i seguenti campi:
 		\begin{itemize}
 			\item \textit{Id\_Art}: è un codice auto-incrementante assegnato al record;
 			\item \textit{CodArt} (chiave primaria): è il codice articolo dell'articolo;
 			\item \textit{DesArt}: è il nome dell'articolo;
-			\item \textit{Note}: sono le note presenti in database per l'articolo;
+			\item \textit{Note}: sono le note presenti in \textit{database} per l'articolo;
 			\item \textit{QtaMin}: è la minima quantità ordinabile per l'articolo;
 			\item \textit{QtaMul}: è lo step di quantità ordinabile per l'articolo. Ad esempio se \textit{QtaMul} è 2, significa che è possibile ordinare 2, 4, 6 pezzi dell'articolo, e così via.
 		\end{itemize}
@@ -208,11 +208,11 @@ Il database \textit{mvo\_aziendaNomeAzienda} presenta le seguenti tabelle:
 			\item \textit{DesDoc}: è una descrizione della fattura che deve essere emessa quando l'utente effettua un ordine.
 		\end{itemize}
 \end{itemize}
-Viene di seguito presentato il diagramma Entity Relationship del database \textit{mvo\_aziendaNomeAzienda}. Le chiavi primarie sono state sottolineate, mentre le chiavi esterne sono state scritte in corsivo.
+Viene di seguito presentato il diagramma \textit{Entity Relationship} del \textit{database} \textit{mvo\_aziendaNomeAzienda}. Le chiavi primarie sono state sottolineate, mentre le chiavi esterne sono state scritte in corsivo.
 
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=\columnwidth]{progettazione/erMvoAzienda} 
-    \caption{Diagramma ER del database \textit{mvo\_aziendaNomeAzienda}}
+    \caption{Diagramma \textit{ER} del \textit{database} \textit{mvo\_aziendaNomeAzienda}}
 \end{figure}
 
