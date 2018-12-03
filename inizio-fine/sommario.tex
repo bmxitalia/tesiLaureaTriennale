@@ -19,17 +19,17 @@ Il presente documento descrive il lavoro svolto durante il periodo di stage, del
 
 Lo scopo principale del progetto era la realizzazione di un'applicazione mobile che permettesse ai clienti di una qualsiasi azienda di acquistare, tramite il proprio \textit{smartphone}, dei prodotti venduti dalla stessa. Per raggiungere questo fine sono stati assegnati vari compiti.
 
-Lo studente ha dovuto scegliere in autonomia l'ambiente di sviluppo ritenuto più opportuno. Poiché era richiesto che l'applicazione funzionasse sia in ambiente \textit{Android} che in ambiente \textit{iOS}, si è dovuto scegliere un \glossaryItem{framework cross-platfrom} e, in particolare, il \textit{framework} \textit{PhoneGap}.
+Lo studente ha dovuto scegliere in autonomia l'ambiente di sviluppo ritenuto più opportuno. Poiché era richiesto che l'applicazione funzionasse sia in ambiente \textit{Android} che in ambiente \textit{iOS}, si è dovuto scegliere un \glossaryItem{framework cross-platfrom} e, in particolare, il \glossaryItem{framework} \textit{PhoneGap}.
 
 In seguito alla scelta del \textit{framework} vi è stato un periodo di formazione, di circa 40 ore, sui software gestionali utilizzati in azienda e sul linguaggio \textit{JavaScript}, in modo da facilitare lo sviluppo del progetto.
 
-Si è poi potuto proseguire con la progettazione delle varie componenti della piattaforma, quali \glossaryItem{servizio web}, \textit{database} sottostanti, logica applicativa e interfaccia grafica. 
-L'applicazione doveva funzionare interamente online, nessun dato doveva essere memorizzato in locale, per cui il servizio web e i \textit{database} sono stati installati su un \glossaryItem{server Azure} di proprietà dell'azienda.
-In particolare, è stato richiesto di progettare un \textit{database} che permettesse la gestione dei dati di autenticazione e un \textit{database} che contenesse i dati utili alla gestione degli ordini presso un'azienda cliente. Il \textit{database} contenente i dati proprietari dell'azienda cliente poteva essere locale al \textit{server Azure} o all'interno di un \textit{server} \textit{cloud} dell'azienda stessa, a seconda delle scelte effettuate da quest'ultima.
+Si è poi potuto proseguire con la progettazione delle varie componenti della \glossaryItem{piattaforma}, quali \glossaryItem{servizio web}, \textit{database} sottostanti, logica applicativa e interfaccia grafica. 
+L'applicazione doveva funzionare interamente online, nessun dato doveva essere memorizzato in locale, per cui il servizio web e i \textit{database} sono stati installati su un \textit{server} \glossaryItem{Azure} di proprietà dell'azienda.
+In particolare, è stato richiesto di progettare un \textit{database} che permettesse la gestione dei dati di autenticazione e un \textit{database} che contenesse i dati utili alla gestione degli ordini presso un'azienda cliente. Il \textit{database} contenente i dati proprietari dell'azienda poteva essere locale al \textit{server Azure} o all'interno di un \textit{server cloud} dell'azienda stessa, a seconda delle scelte effettuate da quest'ultima.
 
-In seguito alla progettazione delle varie parti si è iniziata l'implementazione della piattaforma. Il servizio doveva gestire le richieste \textit{HTTP} provenienti dall'applicazione tramite oggetti \glossaryItem{servlet} \textit{Java} e rispondere a queste tramite stringhe in formato \glossaryItem{JSON}.
+In seguito alla progettazione delle varie parti si è iniziata l'implementazione della piattaforma. Il servizio doveva gestire le richieste \textit{HTTP} provenienti dall'applicazione tramite oggetti \glossaryItem{servlet} \textit{Java} e rispondere a queste mediante stringhe in formato \glossaryItem{JSON}.
 La logica applicativa dell'applicazione doveva essere scritta in linguaggio \textit{JavaScript}, questo perché lo stagista ha scelto il \textit{framework PhoneGap}. Per permettere all'applicazione di comunicare con il servizio web tramite richieste \textit{HTTP}, si è dovuta utilizzare la tecnica \glossaryItem{AJAX} (\textit{Asynchronous JavaScript And XML}).
-Il design dell'interfaccia doveva essere simile al design di un'altra applicazione sviluppata dall'azienda, chiamata \glossaryItem{moviDOC}. Infine, per permettere all'applicazione di essere usabile dalla maggior parte dei dispositivi, si è dovuto rendere il design della stessa \glossaryItem{responsive}.
+Il design dell'interfaccia doveva essere simile al design di un'altra applicazione sviluppata dall'azienda, chiamata \glossaryItem{moviDOC}. Infine, per permettere all'applicazione di essere \glossaryItem{usabile} dalla maggior parte dei dispositivi, si è dovuto rendere il design della stessa \glossaryItem{responsive}.
 
 %\vfill
 %
