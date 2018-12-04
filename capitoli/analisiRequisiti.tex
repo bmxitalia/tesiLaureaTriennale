@@ -74,7 +74,7 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 	\item \textbf{Scenario principale}: 
 		\begin{enumerate}
 			\item UC1.1.1 - Inserimento \textit{username};
-			\item UC1.1.2 - Inserimento password.
+			\item UC1.1.2 - Inserimento \textit{password}.
 		\end{enumerate} 
 \end{itemize}
 
@@ -92,10 +92,10 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 
 \begin{itemize}
 	\item \textbf{Attore}: Utente non autenticato;
-	\item \textbf{Descrizione}: L'attore deve inserire una password per l'operazione di autenticazione;
-	\item \textbf{Pre-condizioni}: L'attore ha avviato l'applicazione, non è ancora riconosciuto dal sistema e il sistema richiede l'inserimento di una password per l'operazione di autenticazione;
-	\item \textbf{Post-condizioni}: L'attore ha inserito la password per l'operazione di autenticazione;
-	\item \textbf{Scenario principale}: L'attore inserisce la password tramite una text box.
+	\item \textbf{Descrizione}: L'attore deve inserire una \textit{password} per l'operazione di autenticazione;
+	\item \textbf{Pre-condizioni}: L'attore ha avviato l'applicazione, non è ancora riconosciuto dal sistema e il sistema richiede l'inserimento di una \textit{password} per l'operazione di autenticazione;
+	\item \textbf{Post-condizioni}: L'attore ha inserito la \textit{password} per l'operazione di autenticazione;
+	\item \textbf{Scenario principale}: L'attore inserisce la \textit{password} tramite una text box.
 \end{itemize}
 
 \subsection{UC1.2 - Visualizzazione errore di autenticazione}
@@ -492,10 +492,10 @@ Per facilitare la lettura della tabella, il codice dei requisiti macroscopici vi
 RFO1 & Se l'applicazione viene lanciata in assenza di connettività, deve essere visualizzato un messaggio d'errore di connettività assente e l'applicazione deve essere chiusa & Stagista \\ \hline
 \textbf{RFO2} & L'utente non autenticato deve poter accedere all'applicazione & Capitolato UC1.1 \\ \hline
 RFO2.1 & Per accedere, l'utente non autenticato deve poter inserire una \textit{username} & Capitolato UC1.1.1 \\ \hline
-RFO2.2 & Per accedere, l'utente non autenticato deve poter inserire una password & Capitolato UC1.1.2 \\ \hline
+RFO2.2 & Per accedere, l'utente non autenticato deve poter inserire una \textit{password} & Capitolato UC1.1.2 \\ \hline
 RFO2.3 & L'utente autenticato deve poter tentare l'accesso premendo su un bottone di login & Capitolato\\ \hline
 RFO2.4 & Se l'utente non autenticato inserisce una \textit{username} non esistente e preme sul bottone di login, deve essere visualizzato un messaggio d'errore di \textit{username} inesistente & UC1.2 \\ \hline
-RFO2.5 & Se l'utente non autenticato inserisce una password non corrispondente alla \textit{username} inserita e preme sul bottone di login, deve essere visualizzato un messaggio d'errore di password errata & UC1.2 \\ \hline
+RFO2.5 & Se l'utente non autenticato inserisce una \textit{password} non corrispondente alla \textit{username} inserita e preme sul bottone di login, deve essere visualizzato un messaggio d'errore di \textit{password} errata & UC1.2 \\ \hline
 RFO2.6 & Se l'utente non autenticato preme sul bottone di login senza aver inserito le credenziali di accesso, deve essere visualizzato un messaggio che inviti l'utente ad inserire delle credenziali & UC1.2 \\ \hline
 RFO2.7 & Se il \textit{server} non risponde in fase di login, deve essere visualizzato un messaggio d'errore che notifichi l'utente autenticato che il \textit{server} è down & Stagista \\ \hline
 \textbf{RFO3} & Se l'utente non autenticato riesce ad accedere al sistema, deve essere visualizzata la \textit{home page} dell'applicazione & Capitolato \\ \hline
@@ -626,8 +626,8 @@ RQD2 & L'applicazione deve essere fornita di manuale sviluppatore & \textit{Tuto
 RVO1 & L'applicazione deve essere sviluppata con ambiente multipiattaforma (preferibilmente \textit{PhoneGap} o \textit{Xamarin}) & Capitolato \\ \hline
 RVO2 & L'applicazione deve utilizzare il \textit{database} standard di \textit{VisionENTERPRISE}, senza modifica alla sua struttura & Capitolato \\ \hline
 RVO3 & L'applicazione deve interfacciarsi con la fotocamera per la lettura di codici a barre & Capitolato \\ \hline
-RVO4 & L'applicazione deve funzionare completamente online, nessun dato deve essere memorizzato in locale e nessun \textit{database} deve essere sincronizzato & Capitolato \\ \hline
-RVD5 & L'applicazione deve utilizzare un \textit{database} \textit{SQL Server} lato web & Capitolato \\ \hline
+RVO4 & L'applicazione deve funzionare completamente \textit{online}, nessun dato deve essere memorizzato in locale e nessun \textit{database} deve essere sincronizzato & Capitolato \\ \hline
+RVD5 & L'applicazione deve utilizzare un \textit{database} \textit{SQL Server} lato \textit{web} & Capitolato \\ \hline
 RVD6 & L'applicazione deve supportare codici a barre bidimensionali (\textit{QRcode}) & Capitolato \\ \hline
 RVF7 & L'applicazione deve condividere i dati di login con l'applicazione \textit{moviDOC} & Capitolato \\ \hline
 RVF8 & L'applicazione deve avere lo stesso stile di interfaccia di \textit{moviDOC} & Capitolato \\ \hline

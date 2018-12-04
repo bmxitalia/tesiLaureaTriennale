@@ -9,15 +9,15 @@ Questo capitolo tratta gli aspetti più interessanti della codifica dell'applica
 
 \section{Servizio web} \label{codificaservizio}
 
-Per lo sviluppo del servizio web che permette all'applicazione di accedere al \textit{database} presente sul \textit{server cloud} di \visione{} si è utilizzato il linguaggio \textit{Java} e, nello specifico, gli oggetti \textit{servlet}. Per permettere agli oggetti \textit{servlet} di interagire con il \textit{database} si sono dovuti utilizzare i driver \textit{JDBC} per \textit{SQL Server}, in quanto \textit{moviORDER} è basata su tale \textit{database}. 
+Per lo sviluppo del servizio \textit{web} che permette all'applicazione di accedere al \textit{database} presente sul \textit{server cloud} di \visione{} si è utilizzato il linguaggio \textit{Java} e, nello specifico, gli oggetti \textit{servlet}. Per permettere agli oggetti \textit{servlet} di interagire con il \textit{database} si sono dovuti utilizzare i driver \textit{JDBC} per \textit{SQL Server}, in quanto \textit{moviORDER} è basata su tale \textit{database}. 
 
 \subsection{Servlet}
 
-In questa sezione viene presentato l'utilizzo degli oggetti \textit{servlet} nella realizzazione del servizio web. Le classi che implementano gli oggetti \textit{servlet} appartengono al \textit{package} \textit{servlet}.
+In questa sezione viene presentato l'utilizzo degli oggetti \textit{servlet} nella realizzazione del servizio \textit{web}. Le classi che implementano gli oggetti \textit{servlet} appartengono al \textit{package} \textit{servlet}.
 
 \subsubsection{Struttura di un oggetto servlet}
 
-Un oggetto \textit{servlet} è una classe \textit{Java} che eredita dalla classe \textit{HttpServlet}, appartenente al \textit{package} \textit{javax.servlet.http}. \textit{HttpServlet} è una classe astratta che può essere estesa per creare un \textit{servlet} \textit{HTTP} utilizzabile per un sito web. Nel progetto realizzato, il servlet è stato utilizzato per acquisire richieste \textit{HTTP POST}, per elaborarle interrogando il \textit{database} sul \textit{server} cloud di \visione{}, e per rispondere ad esse tramite una stringa in formato \textit{JSON}. Ogni \textit{servlet} del servizio web implementa il metodo \textit{protected void doPost(HttpServletRequest req, HttpServletResponse resp)}. Tale metodo viene chiamato dal \textit{server} per permettere all'oggetto \textit{servlet} di acquisire una richiesta POST da parte di un \textit{client}. Nel caso del progetto, il \textit{client} è la logica applicativa dell'applicazione \textit{moviORDER} e il \textit{server} è \textit{Apache Tomcat}.
+Un oggetto \textit{servlet} è una classe \textit{Java} che eredita dalla classe \textit{HttpServlet}, appartenente al \textit{package} \textit{javax.servlet.http}. \textit{HttpServlet} è una classe astratta che può essere estesa per creare un \textit{servlet} \textit{HTTP} utilizzabile per un sito \textit{web}. Nel progetto realizzato, il servlet è stato utilizzato per acquisire richieste \textit{HTTP POST}, per elaborarle interrogando il \textit{database} sul \textit{server} cloud di \visione{}, e per rispondere ad esse tramite una stringa in formato \textit{JSON}. Ogni \textit{servlet} del servizio \textit{web} implementa il metodo \textit{protected void doPost(HttpServletRequest req, HttpServletResponse resp)}. Tale metodo viene chiamato dal \textit{server} per permettere all'oggetto \textit{servlet} di acquisire una richiesta POST da parte di un \textit{client}. Nel caso del progetto, il \textit{client} è la logica applicativa dell'applicazione \textit{moviORDER} e il \textit{server} è \textit{Apache Tomcat}.
 
 \textit{HttpServletRequest} è la classe \textit{Java} che rappresenta le richieste \textit{HTTP} che possono essere inviate all'oggetto \textit{servlet}. Tramite opportuni metodi è possibile accedere alle informazioni contenute nella specifica richiesta. Tramite il metodo \textit{String getParameter(String name)} è possibile, data una stringa rappresentante un parametro della richiesta \textit{HTTP}, ottenere una stringa contenente il valore associato a tale parametro, oppure il valore \textit{null} se il parametro non esiste.
 
@@ -27,7 +27,7 @@ Un oggetto \textit{servlet} è una classe \textit{Java} che eredita dalla classe
 	\item \textit{PrintWriter getWriter()}: restituisce un oggetto \textit{PrintWriter} che può essere utilizzato per inviare caratteri di testo al \textit{client}. Nel progetto, l'oggetto \textit{PrintWriter} è stato utilizzato per inviare la stringa di risposta in formato \textit{JSON}.
 \end{itemize}
 
-Viene di seguito fornita, a titolo d'esempio, l'implementazione del metodo \textit{doPost()} del \textit{servlet} del servizio web che si occupa di controllare che le credenziali inserite dall'utente in fase di login siano corrette. Nella prossima sezione viene fornito un esempio di come la logica applicativa di \textit{moviORDER} effettua una richiesta a tale \textit{servlet} e di come utilizza la risposta per modificare lo stato dell'applicazione. Nell'esempio, la classe \textit{DatabaseConnection} fornisce un'interfaccia per l'interrogazione di un \textit{database} \textit{SQL Server}. Una spiegazione di tale classe è presente in sezione \ref{dbconnect}.
+Viene di seguito fornita, a titolo d'esempio, l'implementazione del metodo \textit{doPost()} del \textit{servlet} del servizio \textit{web} che si occupa di controllare che le credenziali inserite dall'utente in fase di login siano corrette. Nella prossima sezione viene fornito un esempio di come la logica applicativa di \textit{moviORDER} effettua una richiesta a tale \textit{servlet} e di come utilizza la risposta per modificare lo stato dell'applicazione. Nell'esempio, la classe \textit{DatabaseConnection} fornisce un'interfaccia per l'interrogazione di un \textit{database} \textit{SQL Server}. Una spiegazione di tale classe è presente in sezione \ref{dbconnect}.
 
 \begin{figure}[!h] 
     \centering 
@@ -37,42 +37,42 @@ Viene di seguito fornita, a titolo d'esempio, l'implementazione del metodo \text
 
 \subsubsection{Interrogazione del servizio web}
 
-Nel momento in cui viene implementato un \textit{servlet} concreto, \textit{eclipse} gli associa un \textit{end-point} in automatico. Tramite l'\textit{end-point} è possibile raggiungere il \textit{servlet} sul \textit{server} per effettuare richieste \textit{HTTP}. L'\textit{end-point} associato da \textit{eclipse} è della forma \textit{/NomeClasseServlet} e può essere cambiato dalle impostazioni dell'\textit{IDE}. Per rendere possibile il raggiungimento del servizio web da parte della logica applicativa di \textit{moviORDER}, è necessario che venga effettuato il \textit{deploy} del servizio su \textit{Apache Tomcat} e che quest'ultimo venga fatto girare sul \textit{server cloud} di \visione{}. Una volta che il servizio web è raggiungibile tramite la rete, è possibile iniziare ad effettuare richieste \textit{HTTP}. In \textit{moviORDER}, la struttura dell'\textit{URL} di una richiesta \textit{HTTP} è la seguente: \textit{http://indirizzo:porta/moviORDER/NomeServlet}, dove:
+Nel momento in cui viene implementato un \textit{servlet} concreto, \textit{eclipse} gli associa un \textit{end-point} in automatico. Tramite l'\textit{end-point} è possibile raggiungere il \textit{servlet} sul \textit{server} per effettuare richieste \textit{HTTP}. L'\textit{end-point} associato da \textit{eclipse} è della forma \textit{/NomeClasseServlet} e può essere cambiato dalle impostazioni dell'\textit{IDE}. Per rendere possibile il raggiungimento del servizio \textit{web} da parte della logica applicativa di \textit{moviORDER}, è necessario che venga effettuato il \textit{deploy} del servizio su \textit{Apache Tomcat} e che quest'ultimo venga fatto girare sul \textit{server cloud} di \visione{}. Una volta che il servizio \textit{web} è raggiungibile tramite la rete, è possibile iniziare ad effettuare richieste \textit{HTTP}. In \textit{moviORDER}, la struttura dell'\textit{URL} di una richiesta \textit{HTTP} è la seguente: \textit{http://indirizzo:porta/moviORDER/NomeServlet}, dove:
 \begin{itemize}
-	\item \textit{indirizzo}: è l'indirizzo del \textit{server} dove il servizio web viene fatto girare:
-	\item \textit{porta}: è la porta del \textit{server} dove il servizio web viene fatto girare;
+	\item \textit{indirizzo}: è l'indirizzo del \textit{server} dove il servizio \textit{web} viene fatto girare:
+	\item \textit{porta}: è la porta del \textit{server} dove il servizio \textit{web} viene fatto girare;
 	\item \textit{NomeServlet}: è l'\textit{end-point} (\textit{servlet}) a cui si vuole inviare la richiesta \textit{HTTP}.
 \end{itemize}
 
-\textit{MoviORDER} effettua richieste \textit{HTTP} tramite l'utilizzo di \textit{AJAX} (\textit{Asynchronous JavaScript And XML}). È importante far notare che \textit{AJAX} non è un linguaggio di programmazione, bensì una tecnica per accedere ad un \textit{server web} da una pagina web. Tramite \textit{AJAX} è possibile leggere dati da un \textit{server web} dopo che una pagina è stata caricata, aggiornare una pagina web senza il bisogno di dover ricaricare la stessa e inviare dati ad un \textit{server web} in maniera del tutto trasparente all'utente. 
+\textit{MoviORDER} effettua richieste \textit{HTTP} tramite l'utilizzo di \textit{AJAX} (\textit{Asynchronous JavaScript And XML}). È importante far notare che \textit{AJAX} non è un linguaggio di programmazione, bensì una tecnica per accedere ad un \textit{server web} da una pagina \textit{web}. Tramite \textit{AJAX} è possibile leggere dati da un \textit{server web} dopo che una pagina è stata caricata, aggiornare una pagina \textit{web} senza il bisogno di dover ricaricare la stessa e inviare dati ad un \textit{server web} in maniera del tutto trasparente all'utente. 
 
-Nel progetto, \textit{AJAX} è stato implementato mediante \textit{JavaScript} con l'utilizzo dell'oggetto \textit{XMLHttpRequest}. Tale oggetto è supportato da tutti i browser moderni e può essere utilizzato per scambiare dati con un \textit{server web} in maniera trasparente, ovvero senza il bisogno di dover ricaricare la pagina web per cambiarne lo stato. La sintassi per la creazione di un oggetto \textit{XMLHttpRequest} è la seguente:
+Nel progetto, \textit{AJAX} è stato implementato mediante \textit{JavaScript} con l'utilizzo dell'oggetto \textit{XMLHttpRequest}. Tale oggetto è supportato da tutti i \textit{browser} moderni e può essere utilizzato per scambiare dati con un \textit{server web} in maniera trasparente, ovvero senza il bisogno di dover ricaricare la pagina \textit{web} per cambiarne lo stato. La sintassi per la creazione di un oggetto \textit{XMLHttpRequest} è la seguente:
 \textit{var xhttp = new XMLHttpRequest();}. 
 
-Per l'invio di richieste \textit{HTTP} al servizio web si utilizzano i metodi \textit{open()} e \textit{send()} di \textit{XMLHttpRequest}. In particolare, il metodo \textit{open()} permette di specificare la tipologia di richiesta tramite il passaggio di tre parametri:
+Per l'invio di richieste \textit{HTTP} al servizio \textit{web} si utilizzano i metodi \textit{open()} e \textit{send()} di \textit{XMLHttpRequest}. In particolare, il metodo \textit{open()} permette di specificare la tipologia di richiesta tramite il passaggio di tre parametri:
 	\begin{itemize}
 		\item \textbf{metodo}: specifica il metodo utilizzato per inviare la richiesta \textit{HTTP}: \textit{GET} o \textit{POST};
 		\item \textbf{url}: specifica l'indirizzo del \textit{server} a cui inviare la richiesta \textit{HTTP}. Nel caso del progetto l'indirizzo comprende l'\textit{end-point} presso il quale la richiesta deve essere gestita;
 		\item \textbf{asincrona/sincrona}: specifica se la richiesta è asincrona (\textit{true}) o sincrona (\textit{false}).
 	\end{itemize}
-Il metodo \textit{send(string)} permette invece l'invio di una richiesta \textit{HTTP} al servizio web. Esso richiede il passaggio di una stringa contenente i parametri da inviare al \textit{server}. Poiché alcuni parametri possono contenere caratteri accentati, è stato necessario utilizzare il metodo \textit{setRequestHeader()} per specificare la codifica dei caratteri, aggiungendo \textit{header HTTP} alla richiesta. Facendo questo, è stato possibile evitare errori di lettura/scrittura di stringhe con caratteri accentati sul \textit{database} di \textit{moviORDER}. 
+Il metodo \textit{send(string)} permette invece l'invio di una richiesta \textit{HTTP} al servizio \textit{web}. Esso richiede il passaggio di una stringa contenente i parametri da inviare al \textit{server}. Poiché alcuni parametri possono contenere caratteri accentati, è stato necessario utilizzare il metodo \textit{setRequestHeader()} per specificare la codifica dei caratteri, aggiungendo \textit{header HTTP} alla richiesta. Facendo questo, è stato possibile evitare errori di lettura/scrittura di stringhe con caratteri accentati sul \textit{database} di \textit{moviORDER}. 
 
-È importante far notare che tutte le richieste \textit{HTTP} inviate da \textit{moviORDER} al servizio web sono asincrone, questo perché:
+È importante far notare che tutte le richieste \textit{HTTP} inviate da \textit{moviORDER} al servizio \textit{web} sono asincrone, questo perché:
 \begin{itemize}
 	\item il codice sincrono non è raccomandato poiché \textit{JavaScript} stopperebbe l'esecuzione fino all'arrivo di una risposta da parte del \textit{server}. Se il \textit{server} è occupato o lento, l'applicazione potrebbe aspettare per un tempo prolungato;
-	\item le richieste \textit{AJAX} di tipo sincrono saranno rimosse dallo standard web nei prossimi anni. Scegliendo di utilizzare solamente richieste asincrone si permette a \textit{moviORDER} di essere robusta a questo cambiamento futuro.
+	\item le richieste \textit{AJAX} di tipo sincrono saranno rimosse dallo standard \textit{web} nei prossimi anni. Scegliendo di utilizzare solamente richieste asincrone si permette a \textit{moviORDER} di essere robusta a questo cambiamento futuro.
 \end{itemize} 
 
 Per la gestione della risposta ricevuta dal \textit{server} si sono utilizzate le seguenti proprietà dell'oggetto \textit{XMLHttpRequest}:
 \begin{itemize}
 	\item \textit{readyState}: contiene lo stato dell'oggetto. In particolare, per lo scopo del progetto, è interessante sapere che il valore 4 corrisponde ad una richiesta la cui risposta è pronta;
-	\item  \textit{status}: contiene il messaggio sullo stato della richiesta. In particolare, per lo scopo del progetto, è interessante sapere che il valore 200 corrisponde al messaggio \textit{OK}, che nello standard web rappresenta una richiesta \textit{HTTP} andata a buon fine;
+	\item  \textit{status}: contiene il messaggio sullo stato della richiesta. In particolare, per lo scopo del progetto, è interessante sapere che il valore 200 corrisponde al messaggio \textit{OK}, che nello standard \textit{web} rappresenta una richiesta \textit{HTTP} andata a buon fine;
 	\item \textit{onreadystatechange}: definisce una funzione che deve essere eseguita quando la proprietà \textit{readyState} cambia valore;
-	\item \textit{responseText}: incapsula la stringa di risposta ricevuta dal servizio web. 
+	\item \textit{responseText}: incapsula la stringa di risposta ricevuta dal servizio \textit{web}. 
 \end{itemize} 
-Poiché la risposta ricevuta dal servizio web è una stringa in formato \textit{JSON}, per effettuare il parsing di tale stringa è stato necessario convertirla in un oggetto \textit{JavaScript}, tramite l'utilizzo del metodo \textit{JSON.parse()}.
+Poiché la risposta ricevuta dal servizio \textit{web} è una stringa in formato \textit{JSON}, per effettuare il parsing di tale stringa è stato necessario convertirla in un oggetto \textit{JavaScript}, tramite l'utilizzo del metodo \textit{JSON.parse()}.
 
-Viene di seguito fornito, a titolo d'esempio, il codice \textit{JavaScript} della logica applicativa di \textit{moviORDER} che effettua una chiamata \textit{HTTP} all'\textit{end-point} (\textit{servlet}) che si occupa di gestire l'autenticazione. Il codice si occupa anche di gestire la risposta ricevuta dal servizio web. La funzione \textit{tryLogin()} viene eseguita nel momento in cui l'utente preme sul pulsante di login presente nella schermata di login dell'applicazione.
+Viene di seguito fornito, a titolo d'esempio, il codice \textit{JavaScript} della logica applicativa di \textit{moviORDER} che effettua una chiamata \textit{HTTP} all'\textit{end-point} (\textit{servlet}) che si occupa di gestire l'autenticazione. Il codice si occupa anche di gestire la risposta ricevuta dal servizio \textit{web}. La funzione \textit{tryLogin()} viene eseguita nel momento in cui l'utente preme sul pulsante di login presente nella schermata di login dell'applicazione.
 
 \newpage
 
@@ -84,10 +84,10 @@ Viene di seguito fornito, a titolo d'esempio, il codice \textit{JavaScript} dell
 
 \subsubsection{API del servizio web} \label{api}
 
-In questa sezione viene presentata la \textit{API} del servizio web di \textit{moviORDER}. In particolare, per ogni \textit{end-point} (\textit{servlet}) vengono specificati:
+In questa sezione viene presentata la \textit{API} del servizio \textit{web} di \textit{moviORDER}. In particolare, per ogni \textit{end-point} (\textit{servlet}) vengono specificati:
 \begin{itemize}
 	\item \textbf{indirizzo}: indirizzo tramite il quale è possibile raggiungere l'\textit{end-point};
-	\item \textbf{input}: costituito dai parametri inviati al servizio web tramite una richiesta \textit{HTTP};
+	\item \textbf{input}: costituito dai parametri inviati al servizio \textit{web} tramite una richiesta \textit{HTTP};
 	\item \textbf{output}: costituito da una stringa in formato \textit{JSON} che presenta struttura diversa a seconda dell'\textit{end-point} che gestisce la richiesta;
 	\item \textbf{descrizione}.
 \end{itemize}
@@ -99,14 +99,14 @@ In questa sezione viene presentata la \textit{API} del servizio web di \textit{m
 	\item \textbf{Input}: il \textit{servlet} richiede i seguenti parametri:
 		\begin{itemize}
 			\item \textit{username}: è la \textit{username} inserita dall'utente in fase di login;
-			\item \textit{password}: è la password inserita dall'utente in fase di login.
+			\item \textit{password}: è la \textit{password} inserita dall'utente in fase di login.
 		\end{itemize}
 	\item \textbf{Output}: le possibili risposte del \textit{servlet} sono le seguenti:
 		\begin{itemize}
-			\item codice azienda e \textit{username} dell'utente nel caso in cui \textit{username} e password passati come parametro corrispondono ad un utente presente in \textit{database};
+			\item codice azienda e \textit{username} dell'utente nel caso in cui \textit{username} e \textit{password} passati come parametro corrispondono ad un utente presente in \textit{database};
 			\item un messaggio d'errore nel caso in cui le credenziali sono scorrette o l'utente è stato bloccato. 
 		\end{itemize}
-		\item \textbf{Descrizione}: questo \textit{servlet} rappresenta il servizio di autenticazione di \textit{moviORDER}. Ricevuti i parametri, il \textit{servlet} cerca la \textit{username} dell'utente nel \textit{database} e, nel caso in cui questa fosse presente, procede nel cercare la password corrispondente. Nel caso in cui \textit{username} e password passati siano quelli corretti, il \textit{servlet} restituisce una stringa \textit{JSON} contenente il codice azienda e la \textit{username} dell'utente che ha cercando di loggarsi. Nel caso in cui le credenziali non siano corrette, oppure l'utente è stato bloccato, viene restituito un messaggio d'errore.
+		\item \textbf{Descrizione}: questo \textit{servlet} rappresenta il servizio di autenticazione di \textit{moviORDER}. Ricevuti i parametri, il \textit{servlet} cerca la \textit{username} dell'utente nel \textit{database} e, nel caso in cui questa fosse presente, procede nel cercare la \textit{password} corrispondente. Nel caso in cui \textit{username} e \textit{password} passati siano quelli corretti, il \textit{servlet} restituisce una stringa \textit{JSON} contenente il codice azienda e la \textit{username} dell'utente che ha cercando di loggarsi. Nel caso in cui le credenziali non siano corrette, oppure l'utente è stato bloccato, viene restituito un messaggio d'errore.
 \end{itemize}
 
 \myparagraph{Servizio di verifica di connessione con il \textit{database}}
@@ -285,21 +285,21 @@ In questa sezione viene presentata la \textit{API} del servizio web di \textit{m
 
 \subsection{JDBC}
 
-In questa sezione viene presentato l'utilizzo della \textit{Java Database Connectivity API} nella realizzazione del servizio web.
+In questa sezione viene presentato l'utilizzo della \textit{Java Database Connectivity API} nella realizzazione del servizio \textit{web}.
 
 \subsubsection{Driver JDBC}
 
-Un driver \textit{JDBC} è una componente software che permette ad un'applicazione \textit{Java} di interagire con un \textit{database}. Per supportare la connessione a singoli \textit{database}, \textit{JDBC} (\textit{Java Database Connectivity API}) richiede i driver per ogni \textit{database}. Il driver permette la connessione con il \textit{database} e implementa il protocollo di trasferimento di \textit{query} e risultati tra il \textit{client} e il \textit{database}. Poiché per l'implementazione del \textit{database} è stato utilizzato \textit{SQL Server} si sono dovuti utilizzare i driver \textit{JDBC} per tale \textit{database}.
+Un driver \textit{JDBC} è una componente \textit{software} che permette ad un'applicazione \textit{Java} di interagire con un \textit{database}. Per supportare la connessione a singoli \textit{database}, \textit{JDBC} (\textit{Java Database Connectivity API}) richiede i driver per ogni \textit{database}. Il driver permette la connessione con il \textit{database} e implementa il protocollo di trasferimento di \textit{query} e risultati tra il \textit{client} e il \textit{database}. Poiché per l'implementazione del \textit{database} è stato utilizzato \textit{SQL Server} si sono dovuti utilizzare i driver \textit{JDBC} per tale \textit{database}.
 
 \subsubsection{Classe DatabaseConnection} \label{dbconnect}
 
-Per lo sviluppo del servizio web è stata realizzata la classe \textit{DatabaseConnection} appartenente al \textit{package} \textit{dbConnection}. Tale classe fornisce un'interfaccia utilizzabile per la gestione dell'interazione con un \textit{database} di tipo \textit{SQL Server}. In questa sezione vengono presentati i metodi che costituiscono tale interfaccia.
+Per lo sviluppo del servizio \textit{web} è stata realizzata la classe \textit{DatabaseConnection} appartenente al \textit{package} \textit{dbConnection}. Tale classe fornisce un'interfaccia utilizzabile per la gestione dell'interazione con un \textit{database} di tipo \textit{SQL Server}. In questa sezione vengono presentati i metodi che costituiscono tale interfaccia.
 
 \myparagraph{Costruttori}
 
 La classe presenta due metodi costruttori:
 \begin{itemize}
-	\item \textit{public DatabaseConnection(String u, String user, String psw, String db)}: costruisce un oggetto \textit{DatabaseConnection} a partire dall'\textit{URL} del \textit{server} in cui è presente il \textit{database}, la \textit{username} e la password di accesso al \textit{database}, e il nome del \textit{database} al quale si desidera connettesi;
+	\item \textit{public DatabaseConnection(String u, String user, String psw, String db)}: costruisce un oggetto \textit{DatabaseConnection} a partire dall'\textit{URL} del \textit{server} in cui è presente il \textit{database}, la \textit{username} e la \textit{password} di accesso al \textit{database}, e il nome del \textit{database} al quale si desidera connettesi;
 	\item \textit{public DatabaseConnection(String dbConnectionString)}: costruisce un oggetto \textit{DatabaseConnection} a partire dalla stringa di connessione ad uno specifico \textit{database}.
 \end{itemize}
 Il formato della stringa di connessione ad un \textit{database} è il seguente: \textit{indirizzoServer;databaseName=nomeDb;user=u;password=psw}, dove:
@@ -307,7 +307,7 @@ Il formato della stringa di connessione ad un \textit{database} è il seguente: 
 	\item \textit{indirizzoServer}: è l'indirizzo IP pubblico del \textit{server} contenente il \textit{database} al quale si desidera connettersi. Nel caso del progetto potrebbe essere l'indirizzo del \textit{server} di un'azienda esterna che desidera utilizzare il proprio \textit{database} per l'interazione;
 	\item \textit{nomeDb}: è il nome del \textit{database} al quale si desidera connettersi;
 	\item \textit{u}: è il nome utente per l'accesso al \textit{database};
-	\item \textit{psw}: è la password per l'accesso al \textit{database}.
+	\item \textit{psw}: è la \textit{password} per l'accesso al \textit{database}.
 \end{itemize}
 Viene di seguito presentato, a titolo d'esempio, il codice \textit{Java} che implementa il metodo \textit{public DatabaseConnection(String dbConnectionString)}. Il metodo si occupa di splittare la stringa di connessione passata come parametro per ottenere i dati utili alla costruzione dell'oggetto \textit{DatabaseConnection}.
 
@@ -338,11 +338,11 @@ Sono stati implementati altri metodi di complessità inferiore. Per questo motiv
 
 \subsection{Classi utilità}
 
-Per lo sviluppo del servizio web è stato necessario implementare due classi utilità. In questa sezione ne viene presentata brevemente l'implementazione. Tali classi appartengono al \textit{package} \textit{utility}.
+Per lo sviluppo del servizio \textit{web} è stato necessario implementare due classi utilità. In questa sezione ne viene presentata brevemente l'implementazione. Tali classi appartengono al \textit{package} \textit{utility}.
 
 \subsubsection{Classe GetParam}
 
-La classe \textit{GetParam} si occupa di restituisce un campo statico contenente la stringa di connessione al \textit{database} \textit{CommonDb} dell'applicazione \textit{moviORDER}. Come detto precedentemente, questo \textit{database} contiene tutti i dati di autenticazione degli utenti di \textit{moviORDER}. Poiché tale stringa di connessione viene utilizzata frequentemente all'interno del servizio web, si è deciso di inserirla in un unico punto del servizio, in modo da evitare la modifica di più file nel caso in cui essa cambi.
+La classe \textit{GetParam} si occupa di restituisce un campo statico contenente la stringa di connessione al \textit{database} \textit{CommonDb} dell'applicazione \textit{moviORDER}. Come detto precedentemente, questo \textit{database} contiene tutti i dati di autenticazione degli utenti di \textit{moviORDER}. Poiché tale stringa di connessione viene utilizzata frequentemente all'interno del servizio \textit{web}, si è deciso di inserirla in un unico punto del servizio, in modo da evitare la modifica di più file nel caso in cui essa cambi.
 
 \subsubsection{Classe MailUtility}
 
@@ -350,8 +350,8 @@ La classe \textit{MailUtility} fornisce un'interfaccia per l'invio di e-mail. È
 \begin{itemize}
 	\item \textbf{host}: è l'indirizzo IP dell'\textit{host} su cui è installato il \textit{server SMTP};
 	\item \textbf{post}: è il numero di porta dell'\textit{host} su cui è installato il \textit{server SMTP};
-	\item \textbf{username}: è il nome utente di accesso al \textit{server SMTP};
-	\item \textbf{password}: è la password di accesso al \textit{server SMTP}.
+	\item \textbf{\textit{username}}: è il nome utente di accesso al \textit{server SMTP};
+	\item \textbf{\textit{password}}: è la \textit{password} di accesso al \textit{server SMTP}.
 \end{itemize}
 Il metodo \textit{sendMail()} si occupa di configurare e inviare una mail all'utente che ha effettuato l'ordine e all'azienda presso cui l'utente è cliente. Per far questo, il metodo richiede:
 \begin{itemize}
@@ -377,7 +377,7 @@ In questa sezione vengono presentati gli aspetti più interessanti riguardanti l
 
 \subsection{Plugin di PhoneGap}
 
-Un \textit{plugin} è un pacchetto di codice che permette al visualizzatore web di \textit{Cordova}, il quale renderizza l'applicazione, di comunicare con la piattaforma nativa sulla quale viene eseguito. I \textit{plugin} forniscono accesso alle funzionalità del dispositivo che normalmente non sono disponibili per le applicazioni \textit{web-based}. Tutte le \textit{API} di \textit{Cordova} sono implementate tramite \textit{plugin}. Essi sono composti da un'unica interfaccia \textit{JavaScript} che astrae le differenti implementazioni in codice nativo delle funzionalità fornite dal \textit{plugin}. In fase di \textit{build} dell'applicazione il codice \textit{JavaScript} dei \textit{plugin} viene quindi convertito nel codice nativo della piattaforma sulla quale si sta distribuendo l'applicazione.
+Un \textit{plugin} è un pacchetto di codice che permette al visualizzatore \textit{web} di \textit{Cordova}, il quale renderizza l'applicazione, di comunicare con la piattaforma nativa sulla quale viene eseguito. I \textit{plugin} forniscono accesso alle funzionalità del dispositivo che normalmente non sono disponibili per le applicazioni \textit{web-based}. Tutte le \textit{API} di \textit{Cordova} sono implementate tramite \textit{plugin}. Essi sono composti da un'unica interfaccia \textit{JavaScript} che astrae le differenti implementazioni in codice nativo delle funzionalità fornite dal \textit{plugin}. In fase di \textit{build} dell'applicazione il codice \textit{JavaScript} dei \textit{plugin} viene quindi convertito nel codice nativo della piattaforma sulla quale si sta distribuendo l'applicazione.
 
 \subsection{Installazione dei plugin}
 
@@ -407,7 +407,7 @@ In questa sezione vengono presentati i \textit{plugin} \textit{PhoneGap} utilizz
 
 \subsubsection{Dialogs plugin}
 
-Il \textit{plugin} \textit{dialogs} fornisce accesso all'interfaccia grafica nativa degli elementi \textit{dialog} tramite l'utilizzo dell'oggetto \textit{navigator.notification}. Questo \textit{plugin} è stato utilizzato per convertire gli \textit{alert box} delle usuali pagine web in \textit{dialog} nativi per l'ambiente mobile. Sono stati utilizzati i seguenti metodi:
+Il \textit{plugin} \textit{dialogs} fornisce accesso all'interfaccia grafica nativa degli elementi \textit{dialog} tramite l'utilizzo dell'oggetto \textit{navigator.notification}. Questo \textit{plugin} è stato utilizzato per convertire gli \textit{alert box} delle usuali pagine \textit{web} in \textit{dialog} nativi per l'ambiente \textit{mobile}. Sono stati utilizzati i seguenti metodi:
 \begin{itemize}
 	\item \textit{alert()}: visualizza un \textit{dialog} con un messaggio di allerta preimpostato. Il metodo richiede i seguenti parametri:
 	\begin{itemize}
@@ -457,7 +457,7 @@ Vengono di seguito forniti, a scopo illustrativo, un esempio di codice \textit{J
 
 \subsubsection{Network information plugin}
 
-Il \textit{plugin} \textit{network information} fornisce una moderna implementazione della \textit{Network Information API}. Essa fornisce informazioni riguardanti la rete cellulare e Wi-Fi del dispositivo e permette di capire se il dispositivo presenta una connessione ad Internet. Più precisamente, il \textit{plugin} fornisce un'interfaccia \textit{JavaScript} che astrae il codice nativo utilizzato per monitorare la rete del dispositivo. \textit{Navigator.connection} è l'oggetto che permette di acquisire le informazioni appena descritte. La proprietà \textit{type} è stata utilizzata per comprendere in modo veloce lo stato della connessione del dispositivo e la tipologia di connessione attiva. Essa può assumere i seguenti valori:
+Il \textit{plugin} \textit{network information} fornisce una moderna implementazione della \textit{Network Information API}. Essa fornisce informazioni riguardanti la rete cellulare e Wi-Fi del dispositivo e permette di capire se il dispositivo presenta una connessione ad \textit{Internet}. Più precisamente, il \textit{plugin} fornisce un'interfaccia \textit{JavaScript} che astrae il codice nativo utilizzato per monitorare la rete del dispositivo. \textit{Navigator.connection} è l'oggetto che permette di acquisire le informazioni appena descritte. La proprietà \textit{type} è stata utilizzata per comprendere in modo veloce lo stato della connessione del dispositivo e la tipologia di connessione attiva. Essa può assumere i seguenti valori:
 \begin{itemize}
 	\item \textit{Connection.UNKNOWN}: tipologia di rete sconosciuta;
 	\item \textit{Connection.ETHERNET}: dispositivo connesso alla rete via cavo \textit{ethernet};
@@ -472,10 +472,10 @@ Un limite di questa proprietà è presente in ambiente \textit{iOS}, infatti non
 
 All'oggetto \textit{navigator.connection} sono associate due tipologie di evento:
 \begin{itemize}
-	\item \textit{offline}: evento lanciato quando un dispositivo precedentemente collegato ad Internet perde la connessione e l'applicazione non è più in grado di accedere alla rete. In particolare, viene lanciato esattamente quando il valore della proprietà \textit{type} diventa \textit{Connection.NONE};
-	\item \textit{online}: evento lanciato quando un dispositivo precedentemente scollegato dalla rete riceve la connessione permettendo all'applicazione di accedere ad Internet. In particolare, viene lanciato esattamente quando il valore della proprietà \textit{type} cambia da \textit{NONE} ad un altro valore.
+	\item \textit{offline}: evento lanciato quando un dispositivo precedentemente collegato ad \textit{Internet} perde la connessione e l'applicazione non è più in grado di accedere alla rete. In particolare, viene lanciato esattamente quando il valore della proprietà \textit{type} diventa \textit{Connection.NONE};
+	\item \textit{online}: evento lanciato quando un dispositivo precedentemente scollegato dalla rete riceve la connessione permettendo all'applicazione di accedere ad \textit{Internet}. In particolare, viene lanciato esattamente quando il valore della proprietà \textit{type} cambia da \textit{NONE} ad un altro valore.
 \end{itemize}
-Il \textit{plugin} \textit{network information} è stato utilizzato per chiudere \textit{moviORDER} nel caso in cui venisse aperta mentre il dispositivo è offline. L'evento \textit{offline} ha permesso di visualizzare messaggi relativi allo stato della connessione. Più precisamente, nel caso in cui il dispositivo perdesse la connessione durante l'utilizzo dell'applicazione viene visualizzato un messaggio che notifica all'utente che l'applicazione è inutilizzabile.
+Il \textit{plugin} \textit{network information} è stato utilizzato per chiudere \textit{moviORDER} nel caso in cui venisse aperta mentre il dispositivo è \textit{offline}. L'evento \textit{offline} ha permesso di visualizzare messaggi relativi allo stato della connessione. Più precisamente, nel caso in cui il dispositivo perdesse la connessione durante l'utilizzo dell'applicazione viene visualizzato un messaggio che notifica all'utente che l'applicazione è inutilizzabile.
 
 Vengono di seguito forniti, a scopo illustrativo, degli esempi di codice \textit{JavaScript} che utilizzano l'oggetto \textit{network.connection} ed in particolare la proprietà \textit{type} e l'evento \textit{offline}.
 
@@ -497,8 +497,8 @@ Il \textit{plugin} \textit{barcode scanner} fornisce un'interfaccia \textit{Java
 \begin{itemize}
 	\item \textit{preferFrontCamera}: permette di preferire la fotocamera frontale a quella posteriore per la scansione del codice a barre;
 	\item \textit{showFlipCameraButton}: permette di visualizzare il bottone per il cambio della fotocamera;
-	\item \textit{showTorchButton}: permette di visualizzare il bottone per l'attivazione del flash;
-	\item \textit{torchOn}: permette di attivare il flash di default;
+	\item \textit{showTorchButton}: permette di visualizzare il bottone per l'attivazione del \textit{flash};
+	\item \textit{torchOn}: permette di attivare il \textit{flash} di \textit{default};
 	\item \textit{saveHistory}: permette il salvataggio della cronologia dei codici scansionati;
 	\item \textit{prompt}: permette la visualizzazione di un messaggio per aiutare l'utente nell'esecuzione della scansione;
 	\item \textit{resultDisplayDuration}: permette la visualizzare di un testo per un determinato numero di secondi nel caso in cui un codice a barre viene captato;
@@ -541,11 +541,11 @@ In questa sezione vengono presentati gli aspetti più interessanti riguardanti l
     \caption{Schermata di login}
 \end{figure}
 
-Tramite la schermata di login, un qualsiasi utente in possesso di credenziali di accesso può accedere a \textit{moviORDER}. Per tentare l'accesso, è necessario inserire \textit{username} e password e premere sul pulsante di login. Se l'utente ha inserito credenziali corrette viene aperta la \textit{home page} dell'applicazione, mentre se le credenziali non dovessero essere corrette viene visualizzato un messaggio d'errore. Il messaggio d'errore è esplicativo dell'errore riscontrato e i possibili errori sono:
+Tramite la schermata di login, un qualsiasi utente in possesso di credenziali di accesso può accedere a \textit{moviORDER}. Per tentare l'accesso, è necessario inserire \textit{username} e \textit{password} e premere sul pulsante di login. Se l'utente ha inserito credenziali corrette viene aperta la \textit{home page} dell'applicazione, mentre se le credenziali non dovessero essere corrette viene visualizzato un messaggio d'errore. Il messaggio d'errore è esplicativo dell'errore riscontrato e i possibili errori sono:
 \begin{itemize}
 	\item le credenziali non sono state inserite;
 	\item la \textit{username} inserita è inesistente;
-	\item la password inserita non è corretta;
+	\item la \textit{password} inserita non è corretta;
 	\item le credenziali inserite sono corrette ma l'utente è stato bloccato dall'azienda.
 \end{itemize}
 
@@ -629,7 +629,7 @@ Il \textit{modal} di invio ordine permette di inviare un ordine alla propria azi
 	\item pulsante di conferma: premendo su questo pulsante è possibile confermare l'invio dell'ordine;
 	\item informazioni sul cliente: \textit{text-box} contenente il codice e la ragione sociale del cliente che sta effettuando l'ordine;
 	\item informazioni sul documento: \textit{text-box} contenente il codice e la descrizione del documento che deve essere generato una volta inviato l'ordine;
-	\item \textit{select} per l'inserimento della data: questa \textit{select} permette l'inserimento della data d'ordine. Di default viene proposta la data corrente;
+	\item \textit{select} per l'inserimento della data: questa \textit{select} permette l'inserimento della data d'ordine. Di \textit{default} viene proposta la data corrente;
 	\item \textit{text-area} per l'inserimento delle note: questa \textit{text-area} permette di inserire delle note facoltative per l'ordine che si sta inviando.
 \end{itemize}
 
@@ -641,7 +641,7 @@ Il \textit{modal} di invio ordine permette di inviare un ordine alla propria azi
 
 \subsection{Considerazioni sullo sviluppo}
 
-L'applicazione \textit{moviORDER} è stata realizzata tramite un framework cross-platform e quindi tramite la realizzazione di un'applicazione web. Per rendere l'applicazione usabile su tutti gli smartphone è stato necessario progettare l'interfaccia dell'applicazione con un approccio \glossaryItem{mobile first} e quindi cercando di realizzare un'interfaccia grafica che fosse più responsive possibile. Per raggiungere questo obiettivo ogni pagina di \textit{moviORDER} presenta un layout elastico che utilizza unità di misura relative (\textit{em} e \textit{\%}) le quali dipendono dalle preferenze dell'utente. Grazie a questo layout, le pagine si adattano correttamente ad ogni dimensione di schermo. Viene di seguito fornito, a scopo illustrativo, un esempio di codice \textit{css} che utilizza unità di misura relative per la rappresentazione degli elementi dell'interfaccia.
+L'applicazione \textit{moviORDER} è stata realizzata tramite un framework cross-platform e quindi tramite la realizzazione di un'applicazione \textit{web}. Per rendere l'applicazione usabile su tutti gli smartphone è stato necessario progettare l'interfaccia dell'applicazione con un approccio \glossaryItem{mobile first} e quindi cercando di realizzare un'interfaccia grafica che fosse più responsive possibile. Per raggiungere questo obiettivo ogni pagina di \textit{moviORDER} presenta un layout elastico che utilizza unità di misura relative (\textit{em} e \textit{\%}) le quali dipendono dalle preferenze dell'utente. Grazie a questo layout, le pagine si adattano correttamente ad ogni dimensione di schermo. Viene di seguito fornito, a scopo illustrativo, un esempio di codice \textit{css} che utilizza unità di misura relative per la rappresentazione degli elementi dell'interfaccia.
 
 \begin{figure}[!h] 
     \centering 

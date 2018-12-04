@@ -20,10 +20,10 @@ L'obiettivo di una buona progettazione è il soddisfacimento dei requisiti media
     \caption{Architettura generale di \textit{moviORDER}}
 \end{figure}
 
-L'applicazione comunica con il \textit{server} tramite l'invio di richieste \textit{HTTP}. Sul \textit{server} è installato un servizio web che si occupa di elaborare tali richieste tramite oggetti \textit{servlet Java}, i quali eseguono delle query sul \textit{database} e rispondono, sulla base dei risultati ottenuti, tramite stringhe codificate in formato \textit{JSON}. Per la costruzione delle risposte, il servizio web interroga i seguenti \textit{database} \textit{SQL Server}:
+L'applicazione comunica con il \textit{server} tramite l'invio di richieste \textit{HTTP}. Sul \textit{server} è installato un servizio \textit{web} che si occupa di elaborare tali richieste tramite oggetti \textit{servlet Java}, i quali eseguono delle query sul \textit{database} e rispondono, sulla base dei risultati ottenuti, tramite stringhe codificate in formato \textit{JSON}. Per la costruzione delle risposte, il servizio \textit{web} interroga i seguenti \textit{database} \textit{SQL Server}:
 \begin{itemize}
 	\item \textit{CommonDb}: \textit{database} locale al \textit{server Azure} di \visione{} e contenente i dati di autenticazione degli utenti di \textit{moviORDER}. Ogni qualvolta che un'azienda acquista il servizio, vengono inserite nel \textit{CommonDb} le credenziali di accesso di tutti gli utenti dell'azienda che desiderano utilizzare l'applicazione;
-	\item \textit{mvo\_aziendaNomeAzienda}: \textit{database} contenente i dati utili alla gestione degli ordini presso l'azienda \textit{NomeAzienda}. All'interno del \textit{server Azure} è presente un \textit{database} di questo tipo per ogni azienda che usufruisce del servizio e che ha deciso di affidare la gestione completa dei propri ordini a \visione{}. Per le aziende che preferiscono invece gestire internamente i propri ordini, tale \textit{database} è contenuto nei \textit{server cloud} delle rispettive aziende. Ne consegue che il servizio web deve essere in grado di connettersi a \textit{database} locali o remoti.
+	\item \textit{mvo\_aziendaNomeAzienda}: \textit{database} contenente i dati utili alla gestione degli ordini presso l'azienda \textit{NomeAzienda}. All'interno del \textit{server Azure} è presente un \textit{database} di questo tipo per ogni azienda che usufruisce del servizio e che ha deciso di affidare la gestione completa dei propri ordini a \visione{}. Per le aziende che preferiscono invece gestire internamente i propri ordini, tale \textit{database} è contenuto nei \textit{server cloud} delle rispettive aziende. Ne consegue che il servizio \textit{web} deve essere in grado di connettersi a \textit{database} locali o remoti.
 \end{itemize}
 Una descrizione più approfondita dei dati contenuti in questi \textit{database} è presente in sezione \ref{progdb}.
 
@@ -48,8 +48,8 @@ Viene di seguito presentata una figura illustrativa di come il design pattern \t
 Nello specifico, il flusso del pattern è il seguente:
 \begin{itemize}
 	\item l'utente interagisce con la \textit{view} eseguendo delle operazioni sull'interfaccia dell'applicazione;
-	\item il \textit{presenter} capta le interazioni e, sulla base di queste, richiede la lettura/scrittura di dati sul \textit{model} tramite l'invio di richieste \textit{HTTP} ad un servizio web;
-	\item il servizio web legge/scrive sul \textit{model} a seconda della richiesta ricevuta e prepara ed invia una risposta al presenter;
+	\item il \textit{presenter} capta le interazioni e, sulla base di queste, richiede la lettura/scrittura di dati sul \textit{model} tramite l'invio di richieste \textit{HTTP} ad un servizio \textit{web};
+	\item il servizio \textit{web} legge/scrive sul \textit{model} a seconda della richiesta ricevuta e prepara ed invia una risposta al presenter;
 	\item il \textit{presenter} riceve la risposta, la elabora e modifica la \textit{view} di conseguenza.
 \end{itemize}
 Viene di seguito presentato un diagramma di sequenza esemplificativo del pattern MVP istanziato nel contesto del progetto.
@@ -70,8 +70,8 @@ Importanti vantaggi nell'utilizzo del pattern \textit{MVP} sono:
 
 Il \textit{server} presenta un'architettura a strati. In questo pattern i componenti sono organizzati in strati orizzontali e ogni strato possiede specifici ruoli e responsabilità nel contesto dell'applicazione. Nel caso di \textit{moviORDER}, il pattern è stato diviso nei seguenti strati:
 \begin{itemize}
-	\item \textbf{\textit{business layer}}: contiene gli oggetti \textit{servlet} del servizio web, i quali si occupano di captare le richieste \textit{HTTP} provenienti dal client, di leggere o scrivere sul \textit{database} di conseguenza, e di fornire delle risposte;
-	\item \textbf{\textit{persistance layer}}: contiene le classi del servizio web che permettono agli oggetti \textit{servlet} di accedere al \textit{database} dell'applicazione;
+	\item \textbf{\textit{business layer}}: contiene gli oggetti \textit{servlet} del servizio \textit{web}, i quali si occupano di captare le richieste \textit{HTTP} provenienti dal client, di leggere o scrivere sul \textit{database} di conseguenza, e di fornire delle risposte;
+	\item \textbf{\textit{persistance layer}}: contiene le classi del servizio \textit{web} che permettono agli oggetti \textit{servlet} di accedere al \textit{database} dell'applicazione;
 	\item \textbf{\textit{database layer}}: contiene i \textit{database} dell'applicazione.
 \end{itemize}
 
@@ -91,12 +91,12 @@ Uno dei vantaggi più importanti dell'architettura a strati è la separazione de
 
 \section{Progettazione servizio web}
 
-Il seguente diagramma dei \textit{package} rappresenta la struttura del servizio web di \textit{moviORDER}.
+Il seguente diagramma dei \textit{package} rappresenta la struttura del servizio \textit{web} di \textit{moviORDER}.
 
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=\columnwidth]{progettazione/packages} 
-    \caption{Diagramma dei \textit{package} del servizio web}
+    \caption{Diagramma dei \textit{package} del servizio \textit{web}}
 \end{figure}
 
 Come si può vedere dal diagramma, il servizio è costituito da tre \textit{package}:
@@ -105,7 +105,7 @@ Come si può vedere dal diagramma, il servizio è costituito da tre \textit{pack
 	\item \textit{servlet}: contiene le classi che definiscono gli oggetti \textit{servlet} del servizio. Questi oggetti si occupano di captare le richieste \textit{HTTP} provenienti dal \textit{client} e di rispondere a queste tramite stringhe in formato \textit{JSON};
 	\item \textit{utility}: contiene le classi utilità del servizio. Queste classi facilitano i compiti che gli oggetti \textit{servlet} devono eseguire.
 \end{itemize}
-Una descrizione più appronfondita di come tali \textit{package} sono stati utilizzati nella codifica del servizio web è presente in sezione \ref{codificaservizio}.
+Una descrizione più appronfondita di come tali \textit{package} sono stati utilizzati nella codifica del servizio \textit{web} è presente in sezione \ref{codificaservizio}.
 
 \subsection{Package servlet}
 
@@ -127,7 +127,7 @@ Il \textit{database} \textit{CommonDb} presenta le seguenti tabelle:
 	\item \textbf{Users}: tabella contenente i dati di autenticazione degli utenti di \textit{moviORDER}. La tabella presenta i seguenti campi:
 		\begin{itemize}
 			\item \textit{UserName} (chiave primaria): è il nome utente per accedere all'applicazione. Viene reso univoco poiché costituito dalla concatenazione della partita IVA dell'azienda presso cui l'utente è cliente e un codice auto-incrementante assegnato al cliente al momento della consegna dell'applicazione;
-			\item \textit{Password}: è la password per accedere all'applicazione. La coppia \textit{username}/password viene assegnata all'utente al momento della consegna dell'applicazione;
+			\item \textit{Password}: è la \textit{password} per accedere all'applicazione. La coppia \textit{username}/\textit{password} viene assegnata all'utente al momento della consegna dell'applicazione;
 			\item \textit{CodAzienda} (chiave esterna): è l'identificativo univoco dell'azienda presso cui l'utente è cliente. Questo campo presenta un vincolo d'integrità referenziale con il campo \textit{CodAzienda} della tabella \textbf{Aziende};
 			\item \textit{EmailU}: è l'indirizzo e-mail dell'utente;
 			\item \textit{Bloccato}: è un flag che vale 1 se l'utente è stato bloccato dall'azienda, oppure 0 se l'utente è operativo e quindi può utilizzare l'applicazione.
@@ -140,7 +140,7 @@ Il \textit{database} \textit{CommonDb} presenta le seguenti tabelle:
 		\item \textit{Host}: è l'indirizzo della macchina dove è installato il \textit{server SMTP} dell'azienda;
 		\item \textit{Post}: è la porta su cui è installato il \textit{server SMTP} dell'azienda;
 		\item \textit{Username}: è il nome utente per accedere al \textit{server SMTP} dell'azienda;
-		\item \textit{Password}: è la password per accedere al \textit{server SMTP} dell'azienda.
+		\item \textit{Password}: è la \textit{password} per accedere al \textit{server SMTP} dell'azienda.
 	\end{itemize}
 \end{itemize}
 Viene di seguito presentato il diagramma \textit{Entity Relationship} del \textit{database} \textit{CommonDb}. Le chiavi primarie sono state sottolineate, mentre le chiavi esterne sono state scritte in corsivo.
