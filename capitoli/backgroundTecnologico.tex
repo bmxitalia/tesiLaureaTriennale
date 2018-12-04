@@ -6,11 +6,11 @@
 \chapter{Background tecnologico} \label{background}
 %**************************************************************
 
-Lo scopo di questo capitolo è la presentazione delle tecnologie utilizzate durante lo sviluppo di \textit{moviORDER}. La realizzazione dell'applicazione ha permesso l'apprendimento di nuove tecnologie e l'approfondimento di alcune già in parte conosciute. Parte delle tecnologie sono state scelte dallo stagista in seguito al completamento dell'analisi dei requisiti, mentre la maggior parte sono state imposte dal \textit{tutor} aziendale o dal dominio del problema. Le tecnologie scelte dallo stagista sono state concordate con il team di sviluppo di \visione{}. Le prossime sezioni presentano le tecnologie in base al contesto in cui sono state utilizzate.
+In questo capitolo vengono presentate le tecnologie utilizzate durante lo sviluppo di \textit{moviORDER}. La realizzazione dell'applicazione ha permesso l'apprendimento di nuove tecnologie e l'approfondimento di alcune già in parte conosciute. Alcune di queste sono state scelte dallo stagista in seguito al completamento dell'analisi dei requisiti, mentre la maggior parte sono state imposte dal \textit{tutor} aziendale o dal dominio del problema. Le tecnologie scelte dallo stagista sono state concordate con il \textit{team} di sviluppo di \visione{}. Le prossime sezioni presentano le tecnologie in base al contesto in cui sono state utilizzate.
 
 \section{Framework}	
 
-La presentazione delle tecnologie utilizzate per lo sviluppo di \textit{moviORDER} inizia dalla scelta del \textit{framework}, in quanto la scelta del \textit{framework} ha imposto l'utilizzo di parte dei linguaggi di programmazione usati durante il periodo di \textit{stage}. Per lo sviluppo del progetto è stato proposto l'utilizzo di un \textit{framework cross-platform} in quanto è stata richiesta la realizzazione di un'applicazione che funzionasse in ambiente \textit{Android} e \textit{iOS}. Data la diversità delle tecnologie richieste per lo sviluppo di codice nativo \textit{Android} e \textit{iOS}, e la limitata quantità di tempo a disposizione per la realizzazione del progetto, l'utilizzo di un \textit{framework cross-platform} era la migliore soluzione per portare a termine il progetto nei tempi richiesti. Allo stagista era permesso di scegliere tra due \glossaryItem{framework cross-platform}: \textit{Xamarin} e \textit{PhoneGap}.\\ Vengono di seguito descritti:
+La presentazione delle tecnologie utilizzate per lo sviluppo di \textit{moviORDER} comincia dalla scelta del \textit{framework}, in quanto il \textit{framework} scelto ha imposto l'utilizzo di alcuni linguaggi di programmazione usati durante il periodo di \textit{stage}. Poiché il progetto richiedeva la realizzazione di un'applicazione che funzionasse in ambiente \textit{Android} e \textit{iOS}, il \textit{tutor} aziendale ha consigliato l'utilizzo di un \textit{framework cross-platform}. Questo perché data la diversità delle tecnologie richieste per lo sviluppo di codice nativo \textit{Android} e \textit{iOS}, e la limitata quantità di tempo a disposizione per la realizzazione del progetto, l'utilizzo di un \textit{framework cross-platform} era la migliore soluzione per portare a termine il progetto nei tempi richiesti. Allo stagista è stato richiesto di decidere tra due \glossaryItem{framework cross-platform}: \textit{Xamarin} e \textit{PhoneGap}.\\ Vengono di seguito descritti:
 \begin{enumerate}
 	\item le motivazioni alla base dei \textit{framework cross-platform};
 	\item gli approcci alla base dei \textit{framework cross-platform};
@@ -21,7 +21,7 @@ La presentazione delle tecnologie utilizzate per lo sviluppo di \textit{moviORDE
 
 \subsection{Motivazioni alla base dei framework cross-platform}
 
-Al giorno d'oggi è impensabile realizzare un'applicazione \textit{mobile} per una sola piattaforma perché il mercato è eccessivamente frammentato. Quindi se si dovesse scegliere di sviluppare un'applicazione per una sola piattaforma si perderebbe una potenziale parte di mercato e quindi di clienti. La seguente figura mostra, a scopi illustrativi, la frammentazione del mercato italiano nel 2016.
+Al giorno d'oggi è impensabile realizzare un'applicazione \textit{mobile} per una sola piattaforma perché il mercato è eccessivamente frammentato. Quindi, se si dovesse scegliere di sviluppare un'applicazione per una sola piattaforma si perderebbe una potenziale parte di clienti. La seguente figura mostra, a scopi illustrativi, la frammentazione del mercato italiano nel 2016.
 
 \begin{figure}[!h] 
     \centering 
@@ -29,33 +29,33 @@ Al giorno d'oggi è impensabile realizzare un'applicazione \textit{mobile} per u
     \caption{Frammentazione SO del mercato italiano nel 2016}
 \end{figure}
 
-Compresa la necessità di sviluppare più versioni della medesima applicazione in diverse piattaforme, il problema si sposta sulle risorse economiche e sul tempo che si ha a disposizione per lo sviluppo. Infatti lo sviluppo in differenti piattaforme comporta l'utilizzo di differenti linguaggi di programmazione e quindi la necessità di più programmatori esperti, precisamente almeno uno per piattaforma. Altre variabili di cui tener conto sono gli strumenti di sviluppo necessari, le \textit{API} che si hanno a disposizione e fattori quali i sensori disponibili sui dispositivi, la dimensione degli schermi e le capacità di calcolo differenti.
+Compresa la necessità di sviluppare più versioni della medesima applicazione in diverse piattaforme, il problema si sposta sulle risorse economiche e sul tempo che si ha a disposizione per lo sviluppo. Infatti sviluppare in diverse piattaforme comporta l'utilizzo di differenti linguaggi di programmazione e quindi la necessità di avere più programmatori esperti, precisamente almeno uno per piattaforma. Altre variabili di cui tener conto sono gli strumenti di sviluppo necessari, le \glossaryItem{API} che si hanno a disposizione e fattori quali i sensori disponibili sui dispositivi, la dimensione degli schermi e le capacità di calcolo differenti.
 
-L'obiettivo che i \textit{framework cross-platform} cercano di raggiungere è la risoluzione di tutti questi problemi in maniera efficiente ed efficace in termini di risorse utilizzate, quindi, più precisamente, di ridurre gli effetti negativi della frammentazione del mercato.
+L'obiettivo dei \textit{framework cross-platform} è la risoluzione di tutti questi problemi in maniera efficiente ed efficace in termini di risorse utilizzate, quindi, più precisamente, la riduzione degli effetti negativi della frammentazione del mercato.
 
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=\columnwidth]{tecnologie/framework} 
-    \caption{L'obiettivo dei \textit{framework cross-platform}}
+    \caption{Significato di \textit{cross-platform}}
 \end{figure}
 
-Per raggiungere questo obiettivo i \textit{framework cross-platform} permettono l'utilizzo di un solo linguaggio di programmazione, o di un insieme ristretto di linguaggi, per lo sviluppo di un unico codice sorgente che viene poi in secondo luogo convertito nel codice nativo delle piattaforme sulle quali si desidera distribuire l'applicazione. 
+Per raggiungere questo obiettivo i \textit{framework cross-platform} consentono di utilizzare un solo linguaggio di programmazione, o un insieme ristretto di linguaggi, per sviluppare un unico codice sorgente, che viene poi convertito nel codice nativo delle piattaforme sulle quali si desidera distribuire l'applicazione. 
 
-Per concludere, dati oggettivi dimostrano che durante il 2016 l'utilizzo dei \textit{framework cross-platform} ha portato ad un risparmio in termini di risorse economiche nell'80\% dei casi e ad un risparmio di tempo nell'83\% dei casi.
+Per concludere, dati oggettivi dimostrano che durante il 2016 l'utilizzo dei \textit{framework cross-platform} ha permesso un risparmio in termini di risorse economiche nell'80\% dei casi ed un risparmio di tempo nell'83\% dei casi.
 
 \subsection{Approcci alla base dei framework cross-platform}
 
-Per la scelta del \textit{framework cross-platform} più idoneo al problema è stato richiesto di studiare gli approcci secondo i quali i framework permettono la distribuzione su varie piattaforme. Esistono principalmente quattro approcci in base ai quali i \textit{framework} possono essere classificati:
+Per la scelta del \textit{framework} più idoneo è stato richiesto di studiare gli approcci secondo i quali i \textit{framework} permettono la distribuzione su varie piattaforme. Esistono principalmente quattro approcci in base ai quali è possibile classificare i \textit{framework}:
 \begin{itemize}
 	\item approccio \textit{web};
 	\item approccio ibrido;
 	\item approccio interpretato;
-	\item approccio \textit{cross-compiled}.
+	\item approccio \glossaryItem{cross-compiled}.
 \end{itemize}
 
 In questa tesi vengono presentati solamente l'approccio ibrido e quello interpretato, poiché utilizzati dai \textit{framework} proposti dal \textit{tutor} aziendale.
 
-L'approccio ibrido si interpone tra la realizzazione di un'applicazione \textit{web} e lo sviluppo di un'applicazione \textit{mobile} in codice nativo. In questo tipo di approccio l'applicazione viene sviluppata utilizzando tecnologie \textit{web} ed eseguita all'interno di un container nativo sul dispositivo \textit{mobile}. Per eseguire l'applicazione viene utilizzato il motore di \textit{rendering} del \textit{browser} del dispositivo \textit{mobile} che si occupa di interpretare e visualizzare il contenuto \textit{HTML} dell'applicazione tramite una visualizzazione \textit{web} a schermo intero. L'accesso alle funzionalità native offerte dal dispositivo \textit{mobile} è permesso grazie ad un livello astratto che si interpone tra l'applicazione ibrida e tali funzionalità. Questo livello astratto espone le funzionalità tramite \textit{API} \textit{Javascript}. 
+L'approccio ibrido si interpone tra la realizzazione di un'applicazione \textit{web} e lo sviluppo di un'applicazione \textit{mobile} in codice nativo. In questo tipo di approccio l'applicazione viene sviluppata utilizzando tecnologie \textit{web} ed eseguita all'interno di un \glossaryItem{container} nativo sul dispositivo \textit{mobile}. Per eseguire l'applicazione viene utilizzato il motore di \textit{rendering} del \textit{browser} del dispositivo, il quale si occupa di interpretare e visualizzare il contenuto \glossaryItem{HTML} (\textit{HyperText Markup Language}) dell'applicazione tramite una visualizzazione \textit{web} a schermo intero. L'accesso alle funzionalità native offerte dal dispositivo è permesso grazie ad un livello astratto che si interpone tra l'applicazione ibrida e tali funzionalità. Questo livello astratto espone le funzionalità tramite \textit{API} \textit{Javascript}. 
 
 \begin{figure}[!h] 
     \centering 
@@ -63,7 +63,9 @@ L'approccio ibrido si interpone tra la realizzazione di un'applicazione \textit{
     \caption{Architettura di un'applicazione ibrida}
 \end{figure}
 
-Nel caso delle applicazioni interpretate il codice sorgente dell'applicazione viene distribuito sul dispositivo \textit{mobile} e in seguito interpretato da un interprete che si occupa di eseguire il codice a \textit{run-time}. Anche in questo caso le funzionalità native vengono rese disponibili da un livello astratto. La caratteristica principale dell'interprete è che eseguendo il codice sorgente su differenti piattaforme, esso supporta lo sviluppo \textit{cross-platform} delle applicazioni. L'applicazione interpretata interagisce con il livello astratto per accedere alle \textit{API} native. Uno dei vantaggi dell'approccio interpretato è che utilizza elementi delle specifiche interfacce utente native per l'interazione utente. Infine, la logica applicativa è catturata in maniera del tutto indipendente dalla piattaforma sulla quale l'applicazione viene eseguita.
+\newpage
+
+Nel caso delle applicazioni interpretate il codice sorgente dell'applicazione viene distribuito sul dispositivo \textit{mobile}, dove viene successivamente interpretato da un \glossaryItem{interprete} che si occupa di eseguire il codice a \glossaryItem{run-time}. Lo sviluppo \textit{cross-platform}  è supportato dall'interprete, che permette di eseguire il codice sorgente du differenti piattaforme. L'applicazione interpretata interagisce con un livello astratto per accedere alle \textit{API} native. Un vantaggio di questo approccio è che utilizza elementi delle specifiche interfacce grafiche native per l'interazione utente. Infine, la logica applicativa viene prelevata in maniera del tutto indipendente dalla piattaforma sulla quale l'applicazione viene eseguita.
 
 \begin{figure}[!h] 
     \centering 
@@ -75,7 +77,7 @@ Nel caso delle applicazioni interpretate il codice sorgente dell'applicazione vi
 
 \subsection{Xamarin}
 
-Si tratta di un \textit{framework cross-platform} di proprietà dell'azienda \textit{Microsoft} che utilizza due approcci differenti, l'approccio interpretato per l'ambiente \textit{Android} e \textit{Windows}, e l'approccio compilato per l'ambiente \textit{iOS}. Più precisamente, per le piattaforme \textit{Android} e \textit{Windows} è possibile generare l'applicazione direttamente tramite i \textit{tool} messi a disposizione dal \textit{framework} e successivamente distribuirla sui rispettivi \textit{store}, mentre per la piattaforma \textit{iOS} è necessario un passo aggiuntivo. È richiesto, infatti, il passaggio per una macchina \textit{Apple} che abbia installato \textit{XCode} per eseguire la compilazione dell'applicazione. Infine, \textit{Xamarin} richiede che venga utilizzato il linguaggio \textit{C\#} per lo sviluppo dell'applicazione. Nella figura sottostante viene presentata l'architettura di \textit{Xamarin}.
+\textit{Xamarin} è un \textit{framework cross-platform} di proprietà dell'azienda \textit{Microsoft}, il quale utilizza due approcci differenti: l'approccio interpretato per l'ambiente \textit{Android} e \textit{Windows}, e l'approccio \textit{cross-compiled} per l'ambiente \textit{iOS}. Più precisamente, per le piattaforme \textit{Android} e \textit{Windows} è possibile generare l'applicazione direttamente tramite i \textit{tool} messi a disposizione dal \textit{framework} e successivamente distribuirla sui rispettivi \textit{store}, mentre per la piattaforma \textit{iOS} è necessario un passo aggiuntivo. Infatti, per eseguire la compilazione dell'applicazione è richiesto il passaggio per una macchina \textit{Apple} che abbia installato \textit{XCode}. Infine, \textit{Xamarin} richiede che per lo sviluppo dell'applicazione venga utilizzato il linguaggio \glossaryItem{C\#}. Nella figura sottostante viene presentata l'architettura di \textit{Xamarin}.
 
 \begin{figure}[!h] 
     \centering 
@@ -85,7 +87,7 @@ Si tratta di un \textit{framework cross-platform} di proprietà dell'azienda \te
 
 \subsection{PhoneGap}
 
-Si tratta di un \textit{framework cross-platform} di proprietà dell'azienda \textit{Apache} che utilizza un approccio di tipo ibrido. Quindi permette la realizzazione di applicazioni \textit{mobile} tramite l'utilizzo di tecnologie \textit{web}, che sono al giorno d'oggi strumenti conosciuti da tutti gli sviluppatori. L'accesso ai componenti hardware dei dispositivi \textit{mobile} è permesso grazie all'utilizzo di \textit{plugin} scaricabili dalla pagina ufficiale del \textit{framework}. Vantaggi importanti del \textit{framework} sono la presenza di documentazione completa per i \textit{plugin} e la presenza di una \textit{community} grande e sempre disponibile. Infine \textit{PhoneGap} rende disponibili degli strumenti che facilitano lo sviluppo dell'applicazione: \textit{PhoneGap Desktop App}, \textit{PhoneGap CLI}, \textit{PhoneGap App} e \textit{PhoneGap Build}. I primi tre strumenti fanno parte dell'ambiente di sviluppo utilizzato durante lo \textit{stage} e verranno descritti successivamente. \textit{PhoneGap Build} è uno strumento che permette la build dell'applicazione direttamente su un \textit{server} \textit{cloud Adobe} a partire da un file zip contenente la cartella con il codice sorgente dell'applicazione. In seguito alla \textit{build} è possibile generare e scaricare automaticamente l'applicazione per \textit{Windows} o per \textit{Android}. Per quanto riguarda \textit{iOS}, è necessario fornire i certificati richiesti da \textit{Apple} per la distribuzione dell'applicazione. Nella pagina successiva vengono presentate l'architettura di \textit{PhoneGap} e una figura illustrativa di \textit{PhoneGap Build}.
+\textit{PhoneGap} è un \textit{framework cross-platform} di proprietà dell'azienda \textit{Apache}, il quale utilizza un approccio ibrido. Quindi permette la realizzazione di applicazioni \textit{mobile} tramite l'utilizzo di tecnologie \textit{web}, che sono al giorno d'oggi strumenti conosciuti da tutti gli sviluppatori. L'accesso ai componenti \textit{hardware} dei dispositivi \textit{mobile} è permesso grazie all'utilizzo di \glossaryItem{plugin} scaricabili dalla pagina ufficiale del \textit{framework}. Vantaggi importanti del \textit{framework} sono la presenza di documentazione completa per i \textit{plugin} e l'esistenza di una \glossaryItem{community} grande e disponibile. Infine, \textit{PhoneGap} rende disponibili degli strumenti che facilitano lo sviluppo dell'applicazione: \textit{PhoneGap Desktop App}, \textit{PhoneGap CLI}, \textit{PhoneGap App} e \textit{PhoneGap Build}. I primi tre verranno descritti successivamente, in quanto fanno parte dell'ambiente di sviluppo utilizzato durante lo \textit{stage}. \textit{PhoneGap Build} è uno strumento che permette di eseguire la \textit{build} dell'applicazione direttamente su un \textit{server} \textit{cloud Adobe}, a partire da un \textit{file zip} contenente la cartella con il codice sorgente dell'applicazione. In seguito alla \textit{build} è possibile generare e scaricare automaticamente l'applicazione per \textit{Windows} o \textit{Android}. Per \textit{iOS} è necessario fornire i certificati richiesti da \textit{Apple} per la distribuzione dell'applicazione. Nella pagina successiva vengono presentate l'architettura di \textit{PhoneGap} e una figura illustrativa di \textit{PhoneGap Build}.
 
 \begin{figure}[!h] 
     \centering 
@@ -104,27 +106,27 @@ Si tratta di un \textit{framework cross-platform} di proprietà dell'azienda \te
 
 \subsection{La scelta di PhoneGap}
 
-Lo stagista ha optato per il \textit{framework PhoneGap} per tre motivi sostanziali:
+I motivi per i quali lo stagista ha optato per il \textit{framework PhoneGap} sono i seguenti:
 \begin{enumerate}
-	\item \textbf{linguaggio di programmazione}: \textit{PhoneGap} richiedeva l'utilizzo di tecnologie \textit{web}, già conosciute e apprese dallo stagista all'Università. Lo studio del linguaggio \textit{C\#}, utilizzato da \textit{Xamarin}, avrebbe richiesto un periodo di formazione che avrebbe sforato le 40 ore messe a disposizione per la formazione sulle tecnologie;
-	\item \textbf{linguaggio \textit{Javascript}}: come detto precedentemente, lo stagista era interessato ad approfondire il linguaggio \textit{Javascript}, richiesto al giorno d'oggi dalla maggior parte delle aziende che si occupano della realizzazione di applicazioni \textit{web};
-	\item \textbf{facilità nello sviluppo dell'interfaccia grafica}: utilizzando tecnologie \textit{web} risultava semplice progettare e sviluppare un'interfaccia grafica \glossaryItem{responsive}, e quindi in grado di adattarsi alla maggior parte dei dispositivi \textit{mobile} presenti sul mercato.
+	\item \textbf{linguaggio di programmazione}: \textit{PhoneGap} richiedeva l'utilizzo di tecnologie \textit{web} già conosciute e apprese dallo stagista all'Università. Lo studio del linguaggio \textit{C\#} imposto da \textit{Xamarin} avrebbe richiesto un periodo di formazione maggiore delle 40 ore messe a disposizione per lo studio delle tecnologie;
+	\item \textbf{linguaggio \textit{Javascript}}: come detto precedentemente, lo stagista era interessato ad approfondire il linguaggio \textit{Javascript}, poiché richiesto al giorno d'oggi dalla maggior parte delle aziende che si occupano della realizzazione di applicazioni \textit{web};
+	\item \textbf{facilità nello sviluppo dell'interfaccia grafica}: utilizzando tecnologie \textit{web} risultava semplice progettare e sviluppare un'interfaccia grafica \glossaryItem{responsive}, in grado di adattarsi alla maggior parte dei dispositivi \textit{mobile} presenti sul mercato.
 \end{enumerate}
 
 \section{Ambiente di sviluppo}
 
-Durante il periodo di \textit{stage} è stato utilizzato uno specifico ambiente di lavoro, comprendente tecnologie in parte imposte dal \textit{tutor} aziendale e in parte scelte dallo stagista. La qualità di queste tecnologie ha impatto diretto sulla qualità di processo e quindi sulla qualità di prodotto, per cui è importante tenere l'ambiente di lavoro costantemente completo, ordinato e aggiornato. Per ottenere questo, lo stagista ha dovuto analizzare le tecnologie scelte per assicurarsi che fossero le più adatte per il dominio del problema.
+Durante il periodo di \textit{stage} è stato utilizzato uno specifico ambiente di lavoro, comprendente tecnologie imposte dal \textit{tutor} aziendale e alcune scelte dallo stagista. La qualità delle tecnologie ha impatto diretto sulla qualità di processo e quindi su quella del prodotto, per cui è importante tenere l'ambiente di lavoro costantemente completo, ordinato e aggiornato. Per ottenere questo lo stagista ha dovuto analizzare le tecnologie scelte per assicurarsi che fossero le più adatte per il dominio del problema.
 
 \subsection{Suite di PhoneGap}
 
-La suite di \textit{PhoneGap} ha costituito parte fondamentale dell'ambiente di lavoro. Sono stati utilizzati i seguenti \textit{software} della suite:
+La suite di \textit{PhoneGap} ha costituito parte fondamentale dell'ambiente di lavoro. Sono stati utilizzati i seguenti \textit{software}:
 \begin{itemize}
-	\item \textbf{\textit{PhoneGap Desktop App}}: utilizzata inizialmente per prendere dimestichezza con il \textit{framework};
-	\item \textbf{\textit{PhoneGap CLI}}: utilizzata dopo aver preso dimestichezza con il \textit{framework};
-	\item \textbf{\textit{PhoneGap App}}: utilizzata inizialmente per testare l'applicazione generata dal \textit{framework}.
+	\item \textbf{\textit{PhoneGap Desktop App}}: applicazione utilizzata inizialmente per prendere dimestichezza con il \textit{framework};
+	\item \textbf{\textit{PhoneGap CLI}}: interfaccia a linea di comando utilizzata dopo aver preso dimestichezza con il \textit{framework};
+	\item \textbf{\textit{PhoneGap App}}: applicazione \textit{mobile} utilizzata inizialmente per testare l'applicazione generata dal \textit{framework}.
 \end{itemize}
 
-\textit{PhoneGap Desktop App} è un'applicazione installabile su \textit{Windows} o \textit{Mac} con la quale è possibile iniziare ad utilizzare il \textit{framework} con estrema facilità. Essa fornisce un'interfaccia grafica per la creazione, la gestione e il \textit{testing} di progetti \textit{PhoneGap}. Per testare l'applicazione è sufficiente essere in possesso di un dispositivo \textit{Android} con installata l'applicazione \textit{PhoneGap App}. L'applicazione in versione \textit{iOS} è stata rimossa dall'\textit{App Store} per non aver passato i controlli di qualità \textit{Apple}. Nella pagina successiva viene presentata una figura che mostra l'interfaccia grafica di \textit{PhoneGap Desktop App}.
+\textit{PhoneGap Desktop App} è disponibile su \textit{Windows} o \textit{Mac} e permette di iniziare ad utilizzare il \textit{framework} con estrema facilità. Essa fornisce un'interfaccia grafica per creare, gestire e testare progetti \textit{PhoneGap}. Nella pagina successiva viene presentata una figura che mostra l'interfaccia grafica di \textit{PhoneGap Desktop App}.
 
 \begin{figure}[!h] 
     \centering 
@@ -134,9 +136,9 @@ La suite di \textit{PhoneGap} ha costituito parte fondamentale dell'ambiente di 
 
 \newpage
 
-\textit{PhoneGap CLI} estende le funzionalità offerte da \textit{PhoneGap Desktop App} tramite un'interfaccia a riga di comando. Tale applicazione era lo strumento principale per l'utilizzo di \textit{PhoneGap} prima della creazione dell'app desktop. \textit{PhoneGap CLI} può essere utilizzata singolarmente o assieme a \textit{PhoneGap Desktop App} e/o \textit{PhoneGap Build}.
+\textit{PhoneGap CLI} estende le funzionalità offerte da \textit{PhoneGap Desktop App} tramite un'interfaccia a riga di comando. Prima del rilascio dell'app desktop, \textit{PhoneGap CLI} veniva utilizzata come strumento principale per configurare e gestire il \textit{framework}. \textit{PhoneGap CLI} può essere utilizzata singolarmente oppure assieme a \textit{PhoneGap Desktop App} e/o \textit{PhoneGap Build}.
 
-\textit{PhoneGap App} è un'applicazione \textit{mobile}, installabile solamente su dispositivi \textit{Android}, con la quale è possibile testare l'applicazione \textit{PhoneGap} senza generare ed installare nessun file applicazione. Per testare l'applicazione è sufficiente avviare l'esecuzione del progetto su \textit{PhoneGap Desktop App} e collegare il computer di sviluppo e il dispositivo su cui è installata \textit{PhoneGap App} alla stessa rete \textit{Wi-Fi}. Dopo aver completato questi semplici passaggi, viene richiesto di inserire su \textit{PhoneGap App} l'indirizzo di rete su cui il progetto è stato messo in esecuzione da \textit{PhoneGap Desktop App}. Dopo aver inserito questo indirizzo, la reale applicazione verrà visualizzata sullo \textit{smartphone} e sarà possibile testarla completamente.
+\textit{PhoneGap App} è un'applicazione \textit{mobile} che permette di testare l'applicazione \textit{PhoneGap} senza generare ed installare nessun \textit{file} applicazione. Per il test è sufficiente avviare l'esecuzione del progetto su \textit{PhoneGap Desktop App} e collegare il \textit{computer} di sviluppo con il dispositivo su cui è installata \textit{PhoneGap App}. Dopo il collegamento sarà possibile testare completamente l'applicazione.
 
 \begin{figure}[!h] 
     \centering 
@@ -148,7 +150,7 @@ La suite di \textit{PhoneGap} ha costituito parte fondamentale dell'ambiente di 
 
 \subsubsection{Sublime Text 3.0}
 
-Per lo sviluppo del progetto \textit{PhoneGap} è stato utilizzato l'editor \textit{Sublime Text 3.0}, ritenuto dallo stagista il più semplice e leggero per la realizzazione di applicazioni \textit{web}. 
+Per lo sviluppo del progetto \textit{PhoneGap} è stato utilizzato l'\glossaryItem{editor} \textit{Sublime Text 3.0}, ritenuto dallo stagista il più semplice e leggero per la realizzazione di applicazioni \textit{web}. 
 
 \begin{figure}[!h] 
     \centering 
@@ -158,7 +160,7 @@ Per lo sviluppo del progetto \textit{PhoneGap} è stato utilizzato l'editor \tex
 
 \subsubsection{Android Studio}
 
-Durante lo \textit{stage}, l'applicazione \textit{Android} generata tramite i \textit{tool} offerti dal \textit{framework PhoneGap} non era soddisfacente: spesso non funzionava o l'interfaccia grafica non rispecchiava quella desiderata. Per cui è stato necessario installare \textit{Android Studio} per applicare gli accorgimenti in codice nativo necessari a rendere l'app usabile. \textit{Android Studio} è un ambiente di sviluppo integrato (\textit{IDE}) basato sul \textit{software} di \textit{JetBrains IntelliJ IDEA} e progettato specificamente per lo sviluppo di applicazioni \textit{Android}.
+Durante lo \textit{stage} l'applicazione \textit{Android} generata tramite i \textit{tool} offerti dal \textit{framework PhoneGap} non era soddisfacente: spesso non funzionava o l'interfaccia grafica non rispecchiava quella desiderata. Per rendere l'\textit{app} usabile è stato necessario installare \textit{Android Studio}, il quale ha permesso di mettere mano sul codice nativo. \textit{Android Studio} è un ambiente di sviluppo integrato (\glossaryItem{IDE}) basato sul \textit{software} di \textit{JetBrains IntelliJ IDEA} e progettato specificamente per lo sviluppo di applicazioni \textit{Android}.
 
 \begin{figure}[!h] 
     \centering 
@@ -168,7 +170,7 @@ Durante lo \textit{stage}, l'applicazione \textit{Android} generata tramite i \t
 
 \subsubsection{XCode}
 
-Durante lo \textit{stage}, l'applicazione iOS generata tramite i \textit{tool} offerti dal \textit{framework PhoneGap} non era soddisfacente: spesso non funzionava o l'interfaccia grafica non rispecchiava quella desiderata. Per cui è stato necessario installare \textit{XCode} per applicare gli accorgimenti in codice nativo necessari a rendere l'app usabile. \textit{Xcode} è un ambiente di sviluppo integrato (\textit{IDE}) contenente una suite di strumenti utili allo sviluppo di \textit{software} per i sistemi \textit{macOS}, \textit{iOS}, \textit{watchOS} e \textit{tvOS}. È completamente sviluppato e mantenuto da \textit{Apple}.
+Durante lo \textit{stage} l'applicazione \textit{iOS} generata tramite i \textit{tool} offerti dal \textit{framework PhoneGap} non era soddisfacente: spesso non funzionava o l'interfaccia grafica non rispecchiava quella desiderata. Per rendere l'\textit{app} usabile è stato necessario installare \textit{XCode}, il quale ha permesso di mettere mano sul codice nativo. \textit{Xcode} è un ambiente di sviluppo integrato (\textit{IDE}), sviluppato e mantenuto da \textit{Apple}, che contiene una suite di strumenti utili allo sviluppo di \textit{software} per i sistemi \textit{macOS}, \textit{iOS}, \textit{watchOS} e \textit{tvOS}.
 
 \begin{figure}[!h] 
     \centering 
@@ -178,7 +180,7 @@ Durante lo \textit{stage}, l'applicazione iOS generata tramite i \textit{tool} o
 
 \subsubsection{Eclipse JEE}
 
-Durante lo \textit{stage} è stata richiesta la realizzazione di un servizio \textit{web} che si interponesse tra la logica applicativa di \textit{moviORDER} e il \textit{database} presente sul \textit{server Azure} di \visione{}. Il servizio \textit{web} è stato realizzato in linguaggio \textit{Java} tramite l'utilizzo di oggetti \textit{servlet}. Per la realizzazione degli oggetti \textit{servlet} è stato utilizzato l'\textit{IDE Eclipse JEE} che offre buoni strumenti per lo sviluppo di applicazioni \textit{web} \textit{Java}. \textit{Eclipse} è un ambiente di sviluppo integrato multi-linguaggio e multipiattaforma, ideato da un consorzio di grandi società quali \textit{Ericsson}, \textit{HP}, \textit{IBM}, \textit{Intel}, \textit{MontaVista Software}, \textit{QNX}, \textit{SAP} e \textit{Serena Software}, chiamato \textit{Eclipse Foundation}.
+Durante lo \textit{stage} è stata richiesta la realizzazione di un servizio \textit{web} che si interponesse tra la logica applicativa di \textit{moviORDER} e un \textit{database} presente sul \textit{server Azure} di \visione{}. Il servizio \textit{web} è stato realizzato in linguaggio \textit{Java} tramite l'utilizzo di oggetti \textit{servlet}. Per lo sviluppo degli oggetti \textit{servlet} è stato utilizzato l'\textit{IDE Eclipse JEE}, il quale offre buoni strumenti per lo sviluppo di applicazioni \textit{web} \textit{Java}. \textit{Eclipse} è un ambiente di sviluppo integrato multi-linguaggio e multipiattaforma, ideato da un consorzio di grandi società quali \textit{Ericsson}, \textit{HP}, \textit{IBM}, \textit{Intel}, \textit{MontaVista Software}, \textit{QNX}, \textit{SAP} e \textit{Serena Software}, chiamato \textit{Eclipse Foundation}.
 
 \begin{figure}[!h] 
     \centering 
@@ -186,9 +188,11 @@ Durante lo \textit{stage} è stata richiesta la realizzazione di un servizio \te
     \caption{Logo di \textit{Eclipse}}
 \end{figure}
 
+\newpage
+
 \subsection{Gestione DBMS}
 
-Durante il progetto, per la gestione del \textit{database} di \textit{moviORDER} è stato utilizzato il \glossaryItem{DBMS} \textit{Microsoft SQL Server}. Per una gestione veloce ed ottimale dello stesso si è deciso di usare il \textit{software} \textit{SQL Server Management Studio}. \textit{SQL Server Management Studio} (\textit{SSMS}) è un'applicazione \textit{software} usata per configurare, gestire e amministrare \textit{database}, in locale o su un \textit{server} \textit{cloud}, con il \textit{DBMS Microsoft SQL Server}. 
+Durante il progetto è stato utilizzato il \glossaryItem{DBMS} \textit{Microsoft SQL Server} per gestire il \textit{database} di \textit{moviORDER}. Per una gestione veloce ed ottimale dello stesso si è deciso di usare il \textit{software} \textit{SQL Server Management Studio}. \textit{SQL Server Management Studio} (\textit{SSMS}) è un'applicazione \textit{software} usata per configurare, gestire e amministrare \textit{database}, in locale o su un \textit{server cloud}, con il \textit{DBMS Microsoft SQL Server}. 
 
 \begin{figure}[!h] 
     \centering 
@@ -200,7 +204,7 @@ Durante il progetto, per la gestione del \textit{database} di \textit{moviORDER}
 
 \subsection{Server web}
 
-Per lo sviluppo del progetto è stato realizzato un servizio \textit{web} che fornisce una \textit{API} all'applicazione per poter accedere ai dati contenuti nel \textit{database} sul \textit{server} \textit{cloud} di \visione{}. Per permettere l'esecuzione del servizio \textit{web} sul \textit{server} \textit{cloud} si è utilizzato \textit{Apache Tomcat}. \textit{Apache Tomcat} (o semplicemente \textit{Tomcat}) è un \textit{web} \textit{server} (nella forma di contenitore \textit{servlet}) \textit{open source} sviluppato dalla \textit{Apache Software Foundation}. Implementa le specifiche \textit{JavaServer Pages} (\textit{JSP}) e \textit{servlet}, fornendo quindi una piattaforma \textit{software} per l'esecuzione di applicazioni \textit{web} sviluppate in linguaggio \textit{Java}.
+Per permettere l'esecuzione del servizio \textit{web} sul \textit{server cloud} di \visione{} si è utilizzato \textit{Apache Tomcat}. \textit{Apache Tomcat} (o semplicemente \textit{Tomcat}) è un \glossaryItem{server web} (nella forma di contenitore \textit{servlet}) \textit{open source} sviluppato dalla \textit{Apache Software Foundation}. Implementa le specifiche \glossaryItem{JavaServer Pages} (\textit{JSP}) e \textit{servlet}, fornendo quindi una piattaforma \textit{software} per l'esecuzione di applicazioni \textit{web} sviluppate in linguaggio \textit{Java}.
 
 \begin{figure}[!h] 
     \centering 
@@ -210,7 +214,7 @@ Per lo sviluppo del progetto è stato realizzato un servizio \textit{web} che fo
 
 \subsection{Cloud computing}
 
-Il servizio \textit{web} e il \textit{database} con il quale l'applicazione interagisce per offrire le funzionalità all'utente risiedono su un \textit{server} cloud di \visione{}. Tale \textit{server} è di proprietà di \textit{Microsoft Azure}. \textit{Microsoft Azure} (precedentemente nota come \textit{Windows Azure}) è la piattaforma \textit{cloud} pubblica di \textit{Microsoft}, che offre servizi di \textit{cloud computing}. Tramite Azure vengono erogati servizi appartenenti a diverse categorie quali: risorse di elaborazione, archiviazione e memorizzazione dati, trasmissione dati e interconnessione di reti, analisi, \textit{intelligence}, apprendimento automatico, sicurezza e gestione delle identità, monitoraggio e gestione, nonché servizi per lo sviluppo di applicazioni. Per accedere al \textit{server} da remoto è stato utilizzato il \textit{software} Connessione Desktop Remoto di \textit{Windows}.
+Il servizio \textit{web} e il \textit{database} con il quale l'applicazione interagisce risiedono su un \textit{server Azure} di \visione{}. \textit{Microsoft Azure} (precedentemente nota come \textit{Windows Azure}) è la piattaforma \textit{cloud} pubblica di \textit{Microsoft}, che offre servizi di \glossaryItem{cloud computing}. Tramite Azure vengono erogati servizi appartenenti a diverse categorie, quali: risorse di elaborazione, archiviazione e memorizzazione dati, trasmissione dati e interconnessione di reti, analisi, \textit{intelligence}, apprendimento automatico, sicurezza e gestione delle identità, monitoraggio e gestione, nonché servizi per lo sviluppo di applicazioni. Per accedere al \textit{server} da remoto è stato utilizzato il \textit{software} ``Connessione \textit{Desktop} Remoto di \textit{Windows}''.
 
 \begin{figure}[!h] 
     \centering 
@@ -218,9 +222,11 @@ Il servizio \textit{web} e il \textit{database} con il quale l'applicazione inte
     \caption{Logo di \textit{Microsoft Azure}}
 \end{figure}
 
+\newpage
+
 \subsection{Strumenti di testing}
 
-Durante lo sviluppo di \textit{moviORDER} sono stati eseguiti dei test per verificare il corretto funzionamento del servizio \textit{web} e dell'applicazione. Per il test delle \textit{API} del servizio \textit{web} si è utilizzato \textit{Postman}. \textit{Postman} è uno strumento di \textit{API testing} che permette di testare \textit{API} direttamente, o come parte di test d'integrazione, per determinare se soddisfano criteri di funzionalità, affidabilità, performance e sicurezza. Nel caso di \textit{moviORDER}, il test avviene tramite l'invio di una richiesta \textit{HTTP POST}, con parametri impostabili, alla \textit{API} sul \textit{server} \textit{cloud}. In seguito alla richiesta il \textit{software} visualizza il \textit{JSON} restituito dalla \textit{API} e lo sviluppatore può verificare se la risposta del servizio è quella attesa.
+Durante lo sviluppo di \textit{moviORDER} sono stati eseguiti dei test per verificare il corretto funzionamento del servizio \textit{web} e dell'applicazione. Per il test dell'\textit{API} del servizio \textit{web} si è utilizzato \textit{Postman}. \textit{Postman} è uno strumento di \glossaryItem{API testing} che permette di testare \textit{API} direttamente, o come parte di test d'integrazione, per determinare se soddisfano criteri di funzionalità, affidabilità, performance e sicurezza. Nel caso di \textit{moviORDER}, il test avviene tramite l'invio di una richiesta \textit{HTTP POST} all'\textit{API} sul \textit{server cloud}. Successivamente il \textit{software} visualizza la stringa in formato \textit{JSON} restituita dal \textit{server} e lo sviluppatore può verificare se la risposta del servizio è quella attesa.
 
 \begin{figure}[!h] 
     \centering 
@@ -228,7 +234,7 @@ Durante lo sviluppo di \textit{moviORDER} sono stati eseguiti dei test per verif
     \caption{Logo di \textit{Postman}}
 \end{figure}
 
-Per testare il corretto funzionamento dell'applicazione si è utilizzata la console del \textit{browser} \textit{Google Chrome} facente parte degli strumenti offerti dallo stesso per gli sviluppatori \textit{web}. Tramite la console è stato possibile verificare la logica applicativa di \textit{moviORDER}, poiché scritta in \textit{JavaScript}.
+Per testare il corretto funzionamento dell'applicazione si è utilizzata la \textit{console} del \textit{browser Google Chrome}, facente parte degli strumenti offerti dallo stesso per gli sviluppatori \textit{web}. Tramite la \textit{console} è stato possibile verificare il codice \textit{JavaScript} che costituisce la logica applicativa di \textit{moviORDER}.
 
 \begin{figure}[!h] 
     \centering 
@@ -240,7 +246,7 @@ Per testare il corretto funzionamento dell'applicazione si è utilizzata la cons
 
 \subsection{Strumenti di versioning e ticketing}
 
-Per scelta dello stagista il progetto è stato sottoposto a controllo di versione in ogni sua parte: applicazione, servizio \textit{web} e documentazione. Questo ha permesso, principalmente nel caso dell'applicazione, di tornare a \glossaryItem{baseline} sicure nel caso di sovrascritture o perdite accidentali, o \textit{commit} di codice con errori di programmazione. Per il controllo di versione si è utilizzato lo strumento \textit{Git} e in particolare il servizio di hosting \textit{GitHub}. Lo stagista ha scelto tali \textit{software} perché già utilizzati in progetti didattici durante l'Università.
+Per scelta dello stagista il progetto è stato sottoposto a controllo di versione in ogni sua parte: applicazione, servizio \textit{web} e documentazione. Questo ha permesso, principalmente nel caso dell'applicazione, di tornare a \glossaryItem{baseline} sicure nel caso di sovrascritture, perdite accidentali e \glossaryItem{commit} di codice con errori di programmazione. Per il controllo di versione si è utilizzato lo strumento \textit{Git} e in particolare il servizio di hosting \textit{GitHub}. Lo stagista ha scelto tali \textit{software} poiché già utilizzati in progetti didattici durante l'Università.
 
 \begin{figure}[!h] 
     \centering 
@@ -248,7 +254,7 @@ Per scelta dello stagista il progetto è stato sottoposto a controllo di version
     \caption{Logo di \textit{GitHub}}
 \end{figure}
 
-Lo stagista ha scelto inoltre di utilizzare uno strumento di \textit{ticketing} per facilitare la pianificazione del progetto. Lo strumento scelto è \textit{Asana}. \textit{Asana} è un'applicazione \textit{web} e \textit{mobile} progettata per aiutare i team ad organizzare, tracciare e gestire il loro lavoro. In particolare, lo strumento è stato utilizzato per dare una scadenza ai ticket in base alla pianificazione decisa insieme al \textit{tutor} aziendale all'inizio del periodo di \textit{stage}.
+Lo stagista ha scelto inoltre di utilizzare lo strumento di \glossaryItem{ticketing} \textit{Asana}, in modo da facilitare la pianificazione del progetto. \textit{Asana} è un'applicazione \textit{web} e \textit{mobile} progettata per aiutare i \textit{team} ad organizzare, tracciare e gestire il loro lavoro. In particolare, lo strumento è stato utilizzato per dare una scadenza ai \textit{task} assegnati dal \textit{tutor} aziendale.
 
 \begin{figure}[!h] 
     \centering 
@@ -258,7 +264,7 @@ Lo stagista ha scelto inoltre di utilizzare uno strumento di \textit{ticketing} 
 
 \subsection{Strumenti di modellazione e documentazione}
 
-Il progetto ha richiesto lo sviluppo di diagrammi di \textit{Gantt} in fase di pianificazione e di diagrammi \textit{UML} in fase di analisi dei requisiti e di progettazione. Per la realizzazione dei diagrammi di \textit{Gantt} si è utilizzato il \textit{software} \textit{Gantt Project}, per i diagrammi \textit{UML} dei casi d'uso si è utilizzato il \textit{software} \textit{Astah UML}, mentre per i diagrammi \textit{UML} dei \textit{package} e delle classi si è utilizzato il \textit{software} \textit{Visual Paradigm CE}. I \textit{software} sono stati scelti perché già appresi durante il progetto di Ingegneria del \textit{Software} all'Università.
+Il progetto ha richiesto lo sviluppo di diagrammi di \textit{Gantt} in fase di pianificazione e di diagrammi \glossaryItem{UML} (\textit{Unified Modeling Language}) in fase di analisi dei requisiti e progettazione. Per la realizzazione dei diagrammi di \textit{Gantt} si è utilizzato \textit{Gantt Project}, per i diagrammi \textit{UML} dei casi d'uso si è utilizzato \textit{Astah UML}, mentre per i diagrammi \textit{UML} dei \textit{package} e delle classi si è utilizzato \textit{Visual Paradigm CE}. I \textit{software} sono stati scelti perché già appresi durante il progetto di Ingegneria del \textit{Software} all'Università.
 
 \begin{figure}[!h] 
     \centering 
@@ -268,7 +274,7 @@ Il progetto ha richiesto lo sviluppo di diagrammi di \textit{Gantt} in fase di p
     \caption{Loghi di \textit{Gantt Project}, \textit{Astah UML} e \textit{Visual Paradigm CE}}
 \end{figure}
 
-Per la realizzazione dei diagrammi \textit{ER} e delle figure illustrative dell'architettura del prodotto si è utilizzato il \textit{software} \textit{Lucidchart}. Per la stesura della documentazione si è utilizzato l'editor \textit{TexMaker}, anch'esso utilizzato durante il progetto di Ingegneria del \textit{Software}. \textit{TexMaker} permette l'inserimento veloce dei comandi \LaTeX{} più utilizzati tramite la pressione di pulsanti sull'interfaccia grafica, l'integrazione con un dizionario per il controllo ortografico e la compilazione e visione del pdf prodotto.
+Per la realizzazione dei diagrammi \glossaryItem{ER} (\textit{Entity Relationship}) e delle figure illustrative dell'architettura del prodotto si è utilizzato il \textit{software} \textit{Lucidchart}. Per la stesura della documentazione si è utilizzato l'\textit{editor} \textit{TexMaker}, anch'esso appreso durante il progetto di Ingegneria del \textit{Software}. \textit{TexMaker} permette l'integrazione con un dizionario per il controllo ortografico e la compilazione e visione del \textit{pdf} prodotto.
 
 \begin{figure}[!h] 
     \centering 
@@ -281,16 +287,16 @@ Per la realizzazione dei diagrammi \textit{ER} e delle figure illustrative dell'
 
 \subsubsection{HTML5, CSS3 e JavaScript}
 
-Lo stagista ha dovuto utilizzare i linguaggi \textit{HTML5}, \textit{CSS3} e \textit{JavaScript} in quanto ha scelto il \textit{framework cross-platform PhoneGap}, il quale richiede l'utilizzo di tecnologie \textit{web} per lo sviluppo dell'applicazione \textit{mobile}. In particolare, \textit{HTML5} è stato scelto perché include un insieme di funzionalità che permettono di valorizzare le interfacce \textit{mobile}. Alcune di queste evidenziano come \textit{HTML5} sia già per sua natura orientato al \textit{mobile}. In particolare \textit{HTML5} fornisce \textit{API} per:
+Siccome è stato scelto il \textit{framework PhoneGap}, lo stagista ha dovuto utilizzare i linguaggi \textit{HTML5}, \glossaryItem{CSS3} e \textit{JavaScript}, in quanto \textit{PhoneGap} richiede di sviluppare l'applicazione tramite l'utilizzo di tecnologie \textit{web}. In particolare, \textit{HTML5} è stato scelto perché include un insieme di funzionalità che permettono di valorizzare le interfacce \textit{mobile}. Alcune di queste evidenziano come \textit{HTML5} sia già per sua natura orientato al \textit{mobile}. In particolare \textit{HTML5} fornisce \textit{API} per:
 \begin{itemize}
 	\item \textbf{geolocalizzazione}: con la scrittura di poco codice, forniscono la posizione del dispositivo in coordinate terrestri. Quindi, la stessa funzionalità su uno \textit{smartphone} o un \textit{tablet} fornisce la posizione dell'utente stesso;
-	\item \textbf{eventi \textit{touch}}: mentre i meccanismi di input nei PC consistono per lo più nella tastiera e nel mouse, nei dispositivi mobili quasi tutto passa per il \textit{touch screen}, e avere funzionalità comode per gestire questo strumento consente un'interazione più ricca e senza limitazioni per l'utente. Le gestualità da attuare su un display, nel mondo \textit{mobile}, costituiscono un vero e proprio linguaggio fondamentale nella \textit{user experience};
+	\item \textbf{eventi \textit{touch}}: mentre i meccanismi di input nei PC consistono per lo più nella tastiera e nel mouse, nei dispositivi mobili quasi tutto passa per il \textit{touch screen}, e avere funzionalità comode per gestire questo strumento consente un'interazione più ricca e senza limitazioni per l'utente. Le gestualità da attuare su un \textit{display}, nel mondo \textit{mobile}, costituiscono un vero e proprio linguaggio fondamentale nella \textit{user experience};
 	\item \textbf{controllo batteria}: considerata l'importanza rivestita dalle risorse energetiche, l'esistenza stessa di questa libreria nel linguaggio dimostra come il suo impiego sia particolarmente mirato al panorama \textit{mobile}.
 \end{itemize}
 
-Ciò che ha favorito la scelta di \textit{CSS3} sono le \glossaryItem{media queries}. Esse permettono di definire regole stilistiche in base alla tipologia del mezzo di visualizzazione, delle sue dimensioni nonchè della sua attuale disposizione (\textit{portrait} o \textit{landscape}). Ciò influisce non solo sull'aspetto esteriore degli elementi ma anche sul loro posizionamento e quindi sulla struttura stessa dell'interfaccia.
+Ciò che ha favorito la scelta di \textit{CSS3} sono state le \glossaryItem{media queries}. Esse permettono di definire regole stilistiche in base alla tipologia del mezzo di visualizzazione, delle sue dimensioni e della sua attuale disposizione (\textit{portrait} o \textit{landscape}). Ciò influisce non solo sull'aspetto esteriore degli elementi ma anche sul loro posizionamento e quindi sulla struttura stessa dell'interfaccia.
 
-Per quanto riguarda il linguaggio \textit{JavaScript} è stato utilizzato \textit{JavaScript} puro senza l'utilizzo di \textit{framework} o \glossaryItem{JQuery}. Una particolarità del linguaggio, detta \textit{AJAX}, ha reso possibile eseguire chiamate alla \textit{API} del servizio \textit{web} di \textit{moviORDER} e modificare la pagina \textit{HTML} di conseguenza in base alla risposta. \textit{AJAX}, acronimo di \textit{Asynchronous JavaScript and XML}, è una tecnica di sviluppo \textit{software} per la realizzazione di applicazioni \textit{web} interattive (\textit{Rich Internet Application}). Lo sviluppo di applicazioni \textit{HTML} con \textit{AJAX} si basa su uno scambio di dati in background fra \textit{web browser} e \textit{server}, che consente l'aggiornamento dinamico di una pagina \textit{web} senza esplicito ricaricamento da parte dell'utente.
+Per quanto riguarda il linguaggio \textit{JavaScript} si è utilizzato \textit{JavaScript} puro, senza l'utilizzo di \textit{framework} o \glossaryItem{JQuery}. Una particolarità del linguaggio, detta \textit{AJAX}, ha reso possibile eseguire chiamate all'\textit{API} del servizio \textit{web} di \textit{moviORDER}. \textit{AJAX}, acronimo di \textit{\textit{Asynchronous JavaScript and XML}}, è una tecnica di sviluppo \textit{software} per la realizzazione di applicazioni \textit{web} interattive (\textit{Rich Internet Application}). Lo sviluppo di applicazioni \textit{HTML} con \textit{AJAX} si basa su uno scambio di dati in \textit{background} fra \textit{web browser} e \textit{server}, che consente l'aggiornamento dinamico di una pagina \textit{web} senza esplicito ricaricamento da parte dell'utente.
 
 \begin{figure}[!h] 
     \centering 
@@ -298,11 +304,11 @@ Per quanto riguarda il linguaggio \textit{JavaScript} è stato utilizzato \texti
     \caption{Loghi di \textit{HTML5}, \textit{CSS3} e \textit{JavaScript}}
 \end{figure}
 
-I linguaggi scelti, grazie alle loro caratteristiche che li rendono orientati al \textit{mobile}, insieme ai meccanismi che il \textit{framework PhoneGap} utilizza per convertire la \textit{web application} in applicazione \textit{mobile}, permettono di dover effettuare meno modifiche in seguito per perfezionare l'applicazione su \textit{Android} e \textit{iOS}.
+I linguaggi scelti, grazie alle loro caratteristiche che li rendono orientati allo sviluppo \textit{mobile}, insieme ai meccanismi che il \textit{framework PhoneGap} utilizza per convertire una \textit{web application} in un'applicazione \textit{mobile}, permettono di effettuare meno modifiche in seguito per perfezionare l'applicazione su \textit{Android} e \textit{iOS}.
 
 \subsubsection{Java}
 
-Per la realizzazione del servizio \textit{web} che permette all'applicazione di interfacciarsi con il \textit{database} sul \textit{server} \textit{cloud} di \visione{} si è utilizzato il linguaggio \textit{Java}. La scelta è stata fatta dallo stagista tra due alternative in cui rientrava anche \textit{PHP}. È stato scelto \textit{Java} in quanto possiede un compilatore, è più facilmente \textit{debbugabile} rispetto a \textit{PHP} e permette l'utilizzo di oggetti \textit{servlet}.  I \textit{servlet} sono oggetti scritti in linguaggio \textit{Java} che operano all'interno di un \textit{server web} (nel caso del progetto Tomcat) oppure un \textit{server} per applicazioni permettendo la creazione di applicazione \textit{web}. Nel caso del progetto, i \textit{servlet} hanno premesso lo sviluppo della \textit{API} che costituisce il servizio \textit{web}. Una descrizione della \textit{API}, di come i \textit{servlet} sono stati utilizzati nel progetto e di come la \textit{API} viene interrogata dall'applicazione è presente in sezione §\ref{api}.
+Per la realizzazione del servizio \textit{web} si è utilizzato il linguaggio \textit{Java}. La scelta poteva ricadere su \textit{Java} o \glossaryItem{PHP} (\textit{HyperText Preprocessor}). È stato scelto \textit{Java} in quanto possiede un compilatore, risulta più facilmente ``\textit{debuggabile}'' rispetto a \textit{PHP} e permette l'utilizzo di oggetti \textit{servlet}. I \textit{servlet} sono oggetti \textit{Java} che operano all'interno di un \textit{server web}, oppure un \textit{server} per applicazioni, che permettono la creazione di un'applicazione \textit{web}. Nel caso del progetto, i \textit{servlet} hanno permesso lo sviluppo dell'\textit{API} che costituisce il servizio \textit{web}. Una descrizione dell'\textit{API}, di come i \textit{servlet} sono stati utilizzati nel progetto e di come l'\textit{API} viene interrogata dall'applicazione, è presente in sezione §\ref{api}.
 
 \begin{figure}[!h] 
     \centering 
@@ -312,7 +318,7 @@ Per la realizzazione del servizio \textit{web} che permette all'applicazione di 
 
 \subsubsection{\LaTeX{}}
 
-Per lo sviluppo della documentazione annessa a \textit{moviORDER} è stato utilizzato il linguaggio \LaTeX{}. La scelta è ricaduta su \LaTeX{} perché già appreso e utilizzato durante il progetto di Ingegneria del \textit{Software}. \LaTeX{} è un linguaggio di \textit{markup} usato per la preparazione di testi basato sul programma di composizione tipografica TEX. Fornisce funzioni di \textit{desktop publishing} programmabili e mezzi per l'automazione della maggior parte della composizione tipografica, inclusa la numerazione, i riferimenti incrociati, tabelle e figure, organizzazione delle pagine, bibliografie e molto altro. Infine la particolarità più utile del linguaggio è l'esistenza di \textit{community} che rendono disponibili \glossaryItem{template} riutilizzabili come quello che è stato utilizzato per la stesura di questa tesi.
+Per la stesura della documentazione annessa a \textit{moviORDER} è stato utilizzato il linguaggio \LaTeX{}. La scelta è ricaduta su \LaTeX{} poiché già appreso e utilizzato durante il progetto di Ingegneria del \textit{Software}. \LaTeX{} è un linguaggio di \textit{markup} usato per la preparazione di testi, basato sul programma di composizione tipografica \TeX{}. Fornisce funzioni di \glossaryItem{desktop publishing} programmabili e mezzi per l'automazione della composizione tipografica, inclusa la numerazione, i riferimenti incrociati, tabelle e figure, organizzazione delle pagine, bibliografie e molto altro. Infine la particolarità più utile del linguaggio è l'esistenza di \textit{community} che rendono disponibili \glossaryItem{template} riutilizzabili, come quello che è stato utilizzato per la stesura di questa tesi.
 
 \begin{figure}[!h] 
     \centering 
@@ -322,7 +328,7 @@ Per lo sviluppo della documentazione annessa a \textit{moviORDER} è stato utili
 
 \subsection{DBMS}
 
-Per la creazione, gestione e amministrazione di \textit{database} è stato utilizzato il \textit{DBMS Microsoft SQL Server}. È stato scelto questo \textit{software} perché già ampiamente utilizzato all'interno dell'azienda. Questo permetterà agli sviluppatori di \visione{} di lavorare sul \textit{database} di \textit{moviORDER} con un linguaggio già pienamente conosciuto. \textit{Microsoft SQL Server} usa una variante del linguaggio \textit{SQL} standard chiamata \textit{Transact-SQL} (\textit{T-SQL}). \textit{Transact-SQL} espande le prestazioni di \textit{SQL} aggiungendo:
+Per la creazione, gestione e amministrazione di \textit{database} è stato utilizzato il \textit{DBMS Microsoft SQL Server}. È stato scelto questo \textit{software} poiché già ampiamente utilizzato all'interno di \visione{}. In questo modo gli sviluppatori dell'azienda potranno occuparsi della manutenzione del \textit{database} di \textit{moviORDER} con un \textit{DBMS} conosciuto. \textit{Microsoft SQL Server} usa una variante del linguaggio \glossaryItem{SQL} (\textit{Structured Query Language}) standard chiamata \glossaryItem{Transact-SQL} (\textit{T-SQL}). \textit{Transact-SQL} espande le prestazioni di \textit{SQL} aggiungendo:
 \begin{itemize}
 	\item funzioni per controllo di flusso;
 	\item possibilità di definire variabili locali;
