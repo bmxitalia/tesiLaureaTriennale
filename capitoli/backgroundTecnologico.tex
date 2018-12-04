@@ -6,11 +6,11 @@
 \chapter{Background tecnologico} \label{background}
 %**************************************************************
 
-Lo scopo di questo capitolo è la presentazione delle tecnologie utilizzate durante lo sviluppo di \textit{moviORDER}. La realizzazione dell'applicazione ha permesso l'apprendimento di nuove tecnologie e l'approfondimento di alcune già in parte conosciute. Parte delle tecnologie sono state scelte dallo stagista in seguito al completamento dell'analisi dei requisiti, mentre la maggior parte sono state imposte dal tutor aziendale o dal dominio del problema. Le tecnologie scelte dallo stagista sono state concordate con il team di sviluppo di \visione{}. Le prossime sezioni presentano le tecnologie in base al contesto in cui sono state utilizzate.
+Lo scopo di questo capitolo è la presentazione delle tecnologie utilizzate durante lo sviluppo di \textit{moviORDER}. La realizzazione dell'applicazione ha permesso l'apprendimento di nuove tecnologie e l'approfondimento di alcune già in parte conosciute. Parte delle tecnologie sono state scelte dallo stagista in seguito al completamento dell'analisi dei requisiti, mentre la maggior parte sono state imposte dal \textit{tutor} aziendale o dal dominio del problema. Le tecnologie scelte dallo stagista sono state concordate con il team di sviluppo di \visione{}. Le prossime sezioni presentano le tecnologie in base al contesto in cui sono state utilizzate.
 
 \section{Framework}	
 
-La presentazione delle tecnologie utilizzate per lo sviluppo di \textit{moviORDER} inizia dalla scelta del \textit{framework}, in quanto la scelta del \textit{framework} ha imposto l'utilizzo di parte dei linguaggi di programmazione usati durante il periodo di stage. Per lo sviluppo del progetto è stato proposto l'utilizzo di un \textit{framework cross-platform} in quanto è stata richiesta la realizzazione di un'applicazione che funzionasse in ambiente \textit{Android} e \textit{iOS}. Data la diversità delle tecnologie richieste per lo sviluppo di codice nativo \textit{Android} e \textit{iOS}, e la limitata quantità di tempo a disposizione per la realizzazione del progetto, l'utilizzo di un \textit{framework cross-platform} era la migliore soluzione per portare a termine il progetto nei tempi richiesti. Allo stagista era permesso di scegliere tra due \glossaryItem{framework cross-platform}: \textit{Xamarin} e \textit{PhoneGap}.\\ Vengono di seguito descritti:
+La presentazione delle tecnologie utilizzate per lo sviluppo di \textit{moviORDER} inizia dalla scelta del \textit{framework}, in quanto la scelta del \textit{framework} ha imposto l'utilizzo di parte dei linguaggi di programmazione usati durante il periodo di \textit{stage}. Per lo sviluppo del progetto è stato proposto l'utilizzo di un \textit{framework cross-platform} in quanto è stata richiesta la realizzazione di un'applicazione che funzionasse in ambiente \textit{Android} e \textit{iOS}. Data la diversità delle tecnologie richieste per lo sviluppo di codice nativo \textit{Android} e \textit{iOS}, e la limitata quantità di tempo a disposizione per la realizzazione del progetto, l'utilizzo di un \textit{framework cross-platform} era la migliore soluzione per portare a termine il progetto nei tempi richiesti. Allo stagista era permesso di scegliere tra due \glossaryItem{framework cross-platform}: \textit{Xamarin} e \textit{PhoneGap}.\\ Vengono di seguito descritti:
 \begin{enumerate}
 	\item le motivazioni alla base dei \textit{framework cross-platform};
 	\item gli approcci alla base dei \textit{framework cross-platform};
@@ -53,7 +53,7 @@ Per la scelta del \textit{framework cross-platform} più idoneo al problema è s
 	\item approccio \textit{cross-compiled}.
 \end{itemize}
 
-In questa tesi vengono presentati solamente l'approccio ibrido e quello interpretato, poiché utilizzati dai \textit{framework} proposti dal tutor aziendale.
+In questa tesi vengono presentati solamente l'approccio ibrido e quello interpretato, poiché utilizzati dai \textit{framework} proposti dal \textit{tutor} aziendale.
 
 L'approccio ibrido si interpone tra la realizzazione di un'applicazione web e lo sviluppo di un'applicazione mobile in codice nativo. In questo tipo di approccio l'applicazione viene sviluppata utilizzando tecnologie web ed eseguita all'interno di un container nativo sul dispositivo mobile. Per eseguire l'applicazione viene utilizzato il motore di \textit{rendering} del browser del dispositivo mobile che si occupa di interpretare e visualizzare il contenuto \textit{HTML} dell'applicazione tramite una visualizzazione web a schermo intero. L'accesso alle funzionalità native offerte dal dispositivo mobile è permesso grazie ad un livello astratto che si interpone tra l'applicazione ibrida e tali funzionalità. Questo livello astratto espone le funzionalità tramite \textit{API} \textit{Javascript}. 
 
@@ -85,7 +85,7 @@ Si tratta di un \textit{framework cross-platform} di proprietà dell'azienda \te
 
 \subsection{PhoneGap}
 
-Si tratta di un \textit{framework cross-platform} di proprietà dell'azienda \textit{Apache} che utilizza un approccio di tipo ibrido. Quindi permette la realizzazione di applicazioni mobile tramite l'utilizzo di tecnologie web, che sono al giorno d'oggi strumenti conosciuti da tutti gli sviluppatori. L'accesso ai componenti hardware dei dispositivi mobile è permesso grazie all'utilizzo di \textit{plugin} scaricabili dalla pagina ufficiale del \textit{framework}. Vantaggi importanti del \textit{framework} sono la presenza di documentazione completa per i \textit{plugin} e la presenza di una \textit{community} grande e sempre disponibile. Infine \textit{PhoneGap} rende disponibili degli strumenti che facilitano lo sviluppo dell'applicazione: \textit{PhoneGap Desktop App}, \textit{PhoneGap CLI}, \textit{PhoneGap App} e \textit{PhoneGap Build}. I primi tre strumenti fanno parte dell'ambiente di sviluppo utilizzato durante lo stage e verranno descritti successivamente. \textit{PhoneGap Build} è uno strumento che permette la build dell'applicazione direttamente su un \textit{server} \textit{cloud Adobe} a partire da un file zip contenente la cartella con il codice sorgente dell'applicazione. In seguito alla \textit{build} è possibile generare e scaricare automaticamente l'applicazione per \textit{Windows} o per \textit{Android}. Per quanto riguarda \textit{iOS}, è necessario fornire i certificati richiesti da \textit{Apple} per la distribuzione dell'applicazione. Nella pagina successiva vengono presentate l'architettura di \textit{PhoneGap} e una figura illustrativa di \textit{PhoneGap Build}.
+Si tratta di un \textit{framework cross-platform} di proprietà dell'azienda \textit{Apache} che utilizza un approccio di tipo ibrido. Quindi permette la realizzazione di applicazioni mobile tramite l'utilizzo di tecnologie web, che sono al giorno d'oggi strumenti conosciuti da tutti gli sviluppatori. L'accesso ai componenti hardware dei dispositivi mobile è permesso grazie all'utilizzo di \textit{plugin} scaricabili dalla pagina ufficiale del \textit{framework}. Vantaggi importanti del \textit{framework} sono la presenza di documentazione completa per i \textit{plugin} e la presenza di una \textit{community} grande e sempre disponibile. Infine \textit{PhoneGap} rende disponibili degli strumenti che facilitano lo sviluppo dell'applicazione: \textit{PhoneGap Desktop App}, \textit{PhoneGap CLI}, \textit{PhoneGap App} e \textit{PhoneGap Build}. I primi tre strumenti fanno parte dell'ambiente di sviluppo utilizzato durante lo \textit{stage} e verranno descritti successivamente. \textit{PhoneGap Build} è uno strumento che permette la build dell'applicazione direttamente su un \textit{server} \textit{cloud Adobe} a partire da un file zip contenente la cartella con il codice sorgente dell'applicazione. In seguito alla \textit{build} è possibile generare e scaricare automaticamente l'applicazione per \textit{Windows} o per \textit{Android}. Per quanto riguarda \textit{iOS}, è necessario fornire i certificati richiesti da \textit{Apple} per la distribuzione dell'applicazione. Nella pagina successiva vengono presentate l'architettura di \textit{PhoneGap} e una figura illustrativa di \textit{PhoneGap Build}.
 
 \begin{figure}[!h] 
     \centering 
@@ -113,7 +113,7 @@ Lo stagista ha optato per il \textit{framework PhoneGap} per tre motivi sostanzi
 
 \section{Ambiente di sviluppo}
 
-Durante il periodo di stage è stato utilizzato uno specifico ambiente di lavoro, comprendente tecnologie in parte imposte dal tutor aziendale e in parte scelte dallo stagista. La qualità di queste tecnologie ha impatto diretto sulla qualità di processo e quindi sulla qualità di prodotto, per cui è importante tenere l'ambiente di lavoro costantemente completo, ordinato e aggiornato. Per ottenere questo, lo stagista ha dovuto analizzare le tecnologie scelte per assicurarsi che fossero le più adatte per il dominio del problema.
+Durante il periodo di \textit{stage} è stato utilizzato uno specifico ambiente di lavoro, comprendente tecnologie in parte imposte dal \textit{tutor} aziendale e in parte scelte dallo stagista. La qualità di queste tecnologie ha impatto diretto sulla qualità di processo e quindi sulla qualità di prodotto, per cui è importante tenere l'ambiente di lavoro costantemente completo, ordinato e aggiornato. Per ottenere questo, lo stagista ha dovuto analizzare le tecnologie scelte per assicurarsi che fossero le più adatte per il dominio del problema.
 
 \subsection{Suite di PhoneGap}
 
@@ -158,7 +158,7 @@ Per lo sviluppo del progetto \textit{PhoneGap} è stato utilizzato l'editor \tex
 
 \subsubsection{Android Studio}
 
-Durante lo stage, l'applicazione \textit{Android} generata tramite i \textit{tool} offerti dal \textit{framework PhoneGap} non era soddisfacente: spesso non funzionava o l'interfaccia grafica non rispecchiava quella desiderata. Per cui è stato necessario installare \textit{Android Studio} per applicare gli accorgimenti in codice nativo necessari a rendere l'app usabile. \textit{Android Studio} è un ambiente di sviluppo integrato (\textit{IDE}) basato sul software di \textit{JetBrains IntelliJ IDEA} e progettato specificamente per lo sviluppo di applicazioni \textit{Android}.
+Durante lo \textit{stage}, l'applicazione \textit{Android} generata tramite i \textit{tool} offerti dal \textit{framework PhoneGap} non era soddisfacente: spesso non funzionava o l'interfaccia grafica non rispecchiava quella desiderata. Per cui è stato necessario installare \textit{Android Studio} per applicare gli accorgimenti in codice nativo necessari a rendere l'app usabile. \textit{Android Studio} è un ambiente di sviluppo integrato (\textit{IDE}) basato sul software di \textit{JetBrains IntelliJ IDEA} e progettato specificamente per lo sviluppo di applicazioni \textit{Android}.
 
 \begin{figure}[!h] 
     \centering 
@@ -168,7 +168,7 @@ Durante lo stage, l'applicazione \textit{Android} generata tramite i \textit{too
 
 \subsubsection{XCode}
 
-Durante lo stage, l'applicazione iOS generata tramite i \textit{tool} offerti dal \textit{framework PhoneGap} non era soddisfacente: spesso non funzionava o l'interfaccia grafica non rispecchiava quella desiderata. Per cui è stato necessario installare \textit{XCode} per applicare gli accorgimenti in codice nativo necessari a rendere l'app usabile. \textit{Xcode} è un ambiente di sviluppo integrato (\textit{IDE}) contenente una suite di strumenti utili allo sviluppo di software per i sistemi \textit{macOS}, \textit{iOS}, \textit{watchOS} e \textit{tvOS}. È completamente sviluppato e mantenuto da \textit{Apple}.
+Durante lo \textit{stage}, l'applicazione iOS generata tramite i \textit{tool} offerti dal \textit{framework PhoneGap} non era soddisfacente: spesso non funzionava o l'interfaccia grafica non rispecchiava quella desiderata. Per cui è stato necessario installare \textit{XCode} per applicare gli accorgimenti in codice nativo necessari a rendere l'app usabile. \textit{Xcode} è un ambiente di sviluppo integrato (\textit{IDE}) contenente una suite di strumenti utili allo sviluppo di software per i sistemi \textit{macOS}, \textit{iOS}, \textit{watchOS} e \textit{tvOS}. È completamente sviluppato e mantenuto da \textit{Apple}.
 
 \begin{figure}[!h] 
     \centering 
@@ -178,7 +178,7 @@ Durante lo stage, l'applicazione iOS generata tramite i \textit{tool} offerti da
 
 \subsubsection{Eclipse JEE}
 
-Durante lo stage è stata richiesta la realizzazione di un servizio web che si interponesse tra la logica applicativa di \textit{moviORDER} e il \textit{database} presente sul \textit{server Azure} di \visione{}. Il servizio web è stato realizzato in linguaggio \textit{Java} tramite l'utilizzo di oggetti \textit{servlet}. Per la realizzazione degli oggetti \textit{servlet} è stato utilizzato l'\textit{IDE Eclipse JEE} che offre buoni strumenti per lo sviluppo di applicazioni web \textit{Java}. \textit{Eclipse} è un ambiente di sviluppo integrato multi-linguaggio e multipiattaforma, ideato da un consorzio di grandi società quali \textit{Ericsson}, \textit{HP}, \textit{IBM}, \textit{Intel}, \textit{MontaVista Software}, \textit{QNX}, \textit{SAP} e \textit{Serena Software}, chiamato \textit{Eclipse Foundation}.
+Durante lo \textit{stage} è stata richiesta la realizzazione di un servizio web che si interponesse tra la logica applicativa di \textit{moviORDER} e il \textit{database} presente sul \textit{server Azure} di \visione{}. Il servizio web è stato realizzato in linguaggio \textit{Java} tramite l'utilizzo di oggetti \textit{servlet}. Per la realizzazione degli oggetti \textit{servlet} è stato utilizzato l'\textit{IDE Eclipse JEE} che offre buoni strumenti per lo sviluppo di applicazioni web \textit{Java}. \textit{Eclipse} è un ambiente di sviluppo integrato multi-linguaggio e multipiattaforma, ideato da un consorzio di grandi società quali \textit{Ericsson}, \textit{HP}, \textit{IBM}, \textit{Intel}, \textit{MontaVista Software}, \textit{QNX}, \textit{SAP} e \textit{Serena Software}, chiamato \textit{Eclipse Foundation}.
 
 \begin{figure}[!h] 
     \centering 
@@ -248,7 +248,7 @@ Per scelta dello stagista il progetto è stato sottoposto a controllo di version
     \caption{Logo di \textit{GitHub}}
 \end{figure}
 
-Lo stagista ha scelto inoltre di utilizzare uno strumento di \textit{ticketing} per facilitare la pianificazione del progetto. Lo strumento scelto è \textit{Asana}. \textit{Asana} è un'applicazione web e mobile progettata per aiutare i team ad organizzare, tracciare e gestire il loro lavoro. In particolare, lo strumento è stato utilizzato per dare una scadenza ai ticket in base alla pianificazione decisa insieme al tutor aziendale all'inizio del periodo di stage.
+Lo stagista ha scelto inoltre di utilizzare uno strumento di \textit{ticketing} per facilitare la pianificazione del progetto. Lo strumento scelto è \textit{Asana}. \textit{Asana} è un'applicazione web e mobile progettata per aiutare i team ad organizzare, tracciare e gestire il loro lavoro. In particolare, lo strumento è stato utilizzato per dare una scadenza ai ticket in base alla pianificazione decisa insieme al \textit{tutor} aziendale all'inizio del periodo di \textit{stage}.
 
 \begin{figure}[!h] 
     \centering 
