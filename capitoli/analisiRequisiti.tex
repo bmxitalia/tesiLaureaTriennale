@@ -17,27 +17,27 @@ La descrizione di ogni caso d'uso si compone dei seguenti punti:
     \item \textbf{descrizione}: breve descrizione del caso d'uso;
     \item \textbf{pre-condizioni}: condizioni che devono essere verificate prima dell'esecuzione del caso d'uso;
     \item \textbf{post-condizioni}: condizioni che devono essere verificate dopo dell'esecuzione del caso d'uso;
-    \item \textbf{scenario principale}: descrizione composta dal flusso dei sottocasi d'uso del caso d'uso principale;
+    \item \textbf{scenario principale}: descrizione composta dal flusso dei sottocasi del caso d'uso principale;
     \item \textbf{scenari alternativi}: descrizione composta dai casi d'uso che non appartengono al flusso
-    principale di esecuzione del caso d'uso (estensioni), se presenti;
-    \item \textbf{specializzazioni}: indica quali sono tutte le specializzazioni del caso d'uso, se presenti;
-    \item \textbf{generalizzazioni}: indica quali sono tutte le generalizzazioni del caso d'uso, se presenti.
+    principale di esecuzione del caso d'uso. Questo punto può essere omesso se non vi sono scenari alternativi;
+    \item \textbf{specializzazioni}: indica quali sono tutte le specializzazioni del caso d'uso. Questo punto può essere omesso se non vi sono specializzazioni;
+    \item \textbf{generalizzazioni}: indica quali sono tutte le generalizzazioni del caso d'uso. Questo punto può essere omesso se non vi sono generalizzaioni.
 \end{enumerate}
-Per lo studio dei casi di utilizzo più complessi della piattaforma, sono stati creati dei diagrammi dei casi d'uso che meglio descrivono funzioni e/o servizi offerti dal sistema, così come sono percepiti e utilizzati dagli attori che interagiscono con lo stesso. Per la definizione dei diagrammi \textit{UML} dei casi d'uso è stato utilizzato lo standard \glossaryItem{UML 2.0}. 
+Per lo studio dei casi di utilizzo più complessi della piattaforma sono stati creati dei diagrammi dei casi d'uso, che descrivono funzioni e/o servizi offerti dal sistema, così come sono percepiti e utilizzati dagli attori che interagiscono con lo stesso. Per la definizione dei diagrammi \textit{UML} dei casi d'uso è stato utilizzato lo standard \textit{UML 2.0}. 
 
 \subsection{Attori del sistema}
 
-Lo scopo di \textit{moviORDER} è permettere alle aziende che forniscono prodotti di vendere gli stessi ai propri clienti tramite un'applicazione multipiattaforma. \textit{MoviORDER} viene distribuita da \visione{} alle aziende che forniscono prodotti, la quale viene distribuita dalle aziende stesse ai propri clienti. Gli utilizzatori finali di \textit{moviORDER} sono quindi i clienti delle singole aziende clienti di \visione{}.
-L'accesso all'applicazione è consentito solamente agli utenti provvisti di credenziali di accesso, le quali vengono distribuite, insieme all'applicazione, dal fornitore. Non è prevista quindi una funzionalità di registrazione. Nel contesto di \textit{moviORDER} vi sono quindi due tipologie di attori:
+Lo scopo di \textit{moviORDER} è fornire un'applicazione multipiattaforma per la vendita di prodotti. \textit{MoviORDER} viene distribuita da \visione{} alle aziende che forniscono prodotti, le quali la distribuiscono successivamente ai propri clienti. Gli utilizzatori finali di \textit{moviORDER} sono quindi gli utenti delle singole aziende clienti di \visione{}.
+L'accesso all'applicazione è consentito solamente agli utenti provvisti di credenziali di accesso, le quali vengono distribuite insieme all'applicazione dal fornitore. Non è prevista quindi una funzionalità di registrazione. Nel contesto di \textit{moviORDER} vi sono per cui due tipologie di \glossaryItem{attori}:
 \begin{enumerate}
-	\item \textbf{Utente non autenticato}: è un utente che non ha effettuato l'accesso al sistema, al quale viene offerta la sola funzionalità di autenticazione. Una volta che un utente non autenticato viene riconosciuto accedendo al sistema, diventa un utente autenticato;
-	\item \textbf{Utente autenticato}: è un utente che ha effettuato l'accesso al sistema e che può usufruire di tutte le sue funzionalità. Le funzionalità offerte all'utente autenticato sono:
+	\item \textbf{Utente non autenticato}: è un utente che non ha effettuato l'accesso al sistema, al quale viene offerta la sola funzionalità di autenticazione. Una volta che un utente non autenticato accede al sistema, diventa un utente autenticato;
+	\item \textbf{Utente autenticato}: è un utente che ha effettuato l'accesso al sistema e che può usufruire di tutte le sue funzionalità. All'utente autenticato è permesso di:
 	\begin{itemize}
-		\item possibilità di effettuare il \textit{logout};
-		\item possibilità di aggiungere articoli al proprio carrello;
-		\item possibilità di modificare gli articoli nel proprio carrello;
-		\item possibilità di rimuovere articoli dal proprio carrello;
-		\item possibilità di inviare un ordine alla propria azienda.
+		\item effettuare il \textit{logout};
+		\item aggiungere articoli al proprio carrello;
+		\item modificare gli articoli nel proprio carrello;
+		\item rimuovere articoli dal proprio carrello;
+		\item inviare un ordine alla propria azienda.
 	\end{itemize}
 \end{enumerate}
 
@@ -46,7 +46,7 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=\columnwidth]{usecase/generaleNonAutenticato} 
-    \caption{Use Case - UC1: Azioni utente non autenticato}
+    \caption{\textit{Use Case} - UC1: Azioni utente non autenticato}
 \end{figure}
 
 \begin{itemize}
@@ -63,7 +63,7 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=\columnwidth]{usecase/autenticazione} 
-    \caption{Use Case - UC1.1: Autenticazione}
+    \caption{\textit{Use Case} - UC1.1: Autenticazione}
 \end{figure}
 
 \begin{itemize}
@@ -85,7 +85,7 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 	\item \textbf{Descrizione}: L'attore deve inserire una \textit{username} per l'operazione di autenticazione;
 	\item \textbf{Pre-condizioni}: L'attore ha avviato l'applicazione, non è ancora riconosciuto dal sistema e il sistema richiede l'inserimento di una \textit{username} per l'operazione di autenticazione;
 	\item \textbf{Post-condizioni}: L'attore ha inserito la \textit{username} per l'operazione di autenticazione;
-	\item \textbf{Scenario principale}: L'attore inserisce la \textit{username} tramite una text box.
+	\item \textbf{Scenario principale}: L'attore inserisce la \textit{username} tramite una \textit{text box}.
 \end{itemize}
 
 \subsection{UC1.1.2 - Inserimento password}
@@ -95,7 +95,7 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 	\item \textbf{Descrizione}: L'attore deve inserire una \textit{password} per l'operazione di autenticazione;
 	\item \textbf{Pre-condizioni}: L'attore ha avviato l'applicazione, non è ancora riconosciuto dal sistema e il sistema richiede l'inserimento di una \textit{password} per l'operazione di autenticazione;
 	\item \textbf{Post-condizioni}: L'attore ha inserito la \textit{password} per l'operazione di autenticazione;
-	\item \textbf{Scenario principale}: L'attore inserisce la \textit{password} tramite una text box.
+	\item \textbf{Scenario principale}: L'attore inserisce la \textit{password} tramite una \textit{text box}.
 \end{itemize}
 
 \subsection{UC1.2 - Visualizzazione errore di autenticazione}
@@ -115,7 +115,7 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=\columnwidth]{usecase/generaleAutenticato} 
-    \caption{Use Case - UC2: Azioni utente autenticato}
+    \caption{\textit{Use Case} - UC2: Azioni utente autenticato}
 \end{figure}
 
 \begin{itemize}
@@ -163,7 +163,7 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=\columnwidth]{usecase/gestioneCarrello} 
-    \caption{Use Case - UC2.3: Gestione carrello}
+    \caption{\textit{Use Case} - UC2.3: Gestione carrello}
 \end{figure}
 
 \begin{itemize}
@@ -208,7 +208,7 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=\columnwidth]{usecase/dettaglioAggiunta} 
-    \caption{Use Case - UC2.3.1: Aggiunta articolo}
+    \caption{\textit{Use Case} - UC2.3.1: Aggiunta articolo}
 \end{figure}
 
 \begin{itemize}
@@ -246,7 +246,7 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 	\item \textbf{Descrizione}: L'attore deve inserire un codice articolo per l'operazione di aggiunta articolo;
 	\item \textbf{Pre-condizioni}: L'attore ha avviato l'applicazione, è riconosciuto dal sistema, ha richiesto di aggiungere un articolo in carrello e quando il sistema richiede l'inserimento di un codice articolo per l'operazione di aggiunta articolo, l'attore esprime la volontà di voler inserire il codice articolo manualmente;
 	\item \textbf{Post-condizioni}: L'attore ha inserito il codice articolo manualmente;
-	\item \textbf{Scenario principale}: L'attore inserisce il codice articolo manualmente tramite una text box;
+	\item \textbf{Scenario principale}: L'attore inserisce il codice articolo manualmente tramite una \textit{text box};
 	\item \textbf{Generalizzazione}: UC2.3.1.1 - Inserimento codice articolo.
 \end{itemize}
 
@@ -268,7 +268,7 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 	\item \textbf{Descrizione}: L'attore deve inserire una quantità per l'operazione di aggiunta articolo;
 	\item \textbf{Pre-condizioni}: L'attore ha avviato l'applicazione, è riconosciuto dal sistema, ha richiesto di aggiungere un articolo in carrello e il sistema richiede l'inserimento di una quantità per l'operazione di aggiunta articolo;
 	\item \textbf{Post-condizioni}: L'attore ha inserito la quantità dell'articolo;
-	\item \textbf{Scenario principale}: L'attore inserisce la quantità dell'articolo tramite una text box.
+	\item \textbf{Scenario principale}: L'attore inserisce la quantità dell'articolo tramite una \textit{text box}.
 \end{itemize}
 
 \subsection{UC2.3.1.5 - Inserimento note articolo}
@@ -278,7 +278,7 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 	\item \textbf{Descrizione}: L'attore può inserire delle note durante l'operazione di aggiunta articolo;
 	\item \textbf{Pre-condizioni}: L'attore ha avviato l'applicazione, è riconosciuto dal sistema, ha richiesto di aggiungere un articolo in carrello e il sistema permette l'inserimento di note durante l'operazione di aggiunta articolo;
 	\item \textbf{Post-condizioni}: L'attore ha inserito delle note per l'articolo;
-	\item \textbf{Scenario principale}: L'attore inserisce delle note per l'articolo tramite una text area.
+	\item \textbf{Scenario principale}: L'attore inserisce delle note per l'articolo tramite una \textit{text area}.
 \end{itemize}
 
 \subsection{UC2.3.2 - Visualizzazione errore di inserimento articolo}
@@ -298,7 +298,7 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=\columnwidth]{usecase/dettaglioModifica} 
-    \caption{Use Case - UC2.3.3: Modifica articolo}
+    \caption{\textit{Use Case} - UC2.3.3: Modifica articolo}
 \end{figure}
 
 \begin{itemize}
@@ -320,7 +320,7 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 	\item \textbf{Descrizione}: L'attore può modificare la quantità dell'articolo selezionato;
 	\item \textbf{Pre-condizioni}: L'attore ha avviato l'applicazione, è riconosciuto dal sistema, ha richiesto di modificare un articolo in carrello e il sistema permette la modifica della quantità dell'articolo selezionato;
 	\item \textbf{Post-condizioni}: L'attore ha modificato la quantità dell'articolo selezionato;
-	\item \textbf{Scenario principale}: L'attore modifica la quantità dell'articolo selezionato tramite una text box.
+	\item \textbf{Scenario principale}: L'attore modifica la quantità dell'articolo selezionato tramite una \textit{text box}.
 \end{itemize}
 
 \subsection{UC2.3.3.2 - Modifica note articolo}
@@ -330,7 +330,7 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 	\item \textbf{Descrizione}: L'attore può modificare le note dell'articolo selezionato;
 	\item \textbf{Pre-condizioni}: L'attore ha avviato l'applicazione, è riconosciuto dal sistema, ha richiesto di modificare un articolo in carrello e il sistema permette la modifica della note dell'articolo selezionato;
 	\item \textbf{Post-condizioni}: L'attore ha modificato le note dell'articolo selezionato;
-	\item \textbf{Scenario principale}: L'attore modifica le note dell'articolo selezionato tramite una text box.
+	\item \textbf{Scenario principale}: L'attore modifica le note dell'articolo selezionato tramite una \textit{text box}.
 \end{itemize}
 
 \subsection{UC2.3.4 - Visualizzazione errore di modifica articolo}
@@ -350,7 +350,7 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 	\item \textbf{Descrizione}: L'attore può selezionare un articolo non ancora selezionato in carrello;
 	\item \textbf{Pre-condizioni}: L'attore ha avviato l'applicazione, è riconosciuto dal sistema e ha richiesto di selezionare un articolo non ancora selezionato in carrello;
 	\item \textbf{Post-condizioni}: L'attore ha selezionato l'articolo in carrello;
-	\item \textbf{Scenario principale}: L'attore seleziona l'articolo in carrello tramite una check-box.
+	\item \textbf{Scenario principale}: L'attore seleziona l'articolo in carrello tramite una \textit{checkbox}.
 \end{itemize}
 
 \subsection{UC2.3.6 - Deselezione singolo articolo}
@@ -360,7 +360,7 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 	\item \textbf{Descrizione}: L'attore può deselezionare un articolo selezionato in carrello;
 	\item \textbf{Pre-condizioni}: L'attore ha avviato l'applicazione, è riconosciuto dal sistema e ha richiesto di deselezionare un articolo selezionato in carrello;
 	\item \textbf{Post-condizioni}: L'attore ha deselezionato l'articolo in carrello;
-	\item \textbf{Scenario principale}: L'attore deseleziona l'articolo in carrello tramite una check-box.
+	\item \textbf{Scenario principale}: L'attore deseleziona l'articolo in carrello tramite una \textit{checkbox}.
 \end{itemize}
 
 \subsection{UC2.3.7 - Selezione totale di articoli}
@@ -378,9 +378,9 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 \begin{itemize}
 	\item \textbf{Attore}: Utente autenticato;
 	\item \textbf{Descrizione}: L'attore può deselezionare tutti gli articoli in carrello;
-	\item \textbf{Pre-condizioni}: L'attore ha avviato l'applicazione, è riconosciuto dal sistema e ha richiesto di deselezionare tutti gli articoli in carrello;
-	\item \textbf{Post-condizioni}: L'attore ha deselezionato tutti gli articoli in carrello;
-	\item \textbf{Scenario principale}: L'attore deseleziona tutti gli articoli in carrello premendo su un bottone.
+	\item \textbf{Pre-condizioni}: L'attore ha avviato l'applicazione, è riconosciuto dal sistema e ha richiesto di deselezionare tutti gli articoli selezionati in carrello;
+	\item \textbf{Post-condizioni}: L'attore ha deselezionato tutti gli articoli selezionati in carrello;
+	\item \textbf{Scenario principale}: L'attore deseleziona tutti gli articoli selezionati in carrello premendo su un bottone.
 \end{itemize}
 
 \subsection{UC2.3.9 - Rimozione articoli selezionati}
@@ -400,7 +400,7 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=\columnwidth]{usecase/dettaglioInvioOrdine} 
-    \caption{Use Case - UC2.3.10: Invio ordine}
+    \caption{\textit{Use Case} - UC2.3.10: Invio ordine}
 \end{figure}
 
 \begin{itemize}
@@ -422,34 +422,34 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 	\item \textbf{Descrizione}: L'attore può modificare la data d'ordine proposta;
 	\item \textbf{Pre-condizioni}: L'attore ha avviato l'applicazione, è riconosciuto dal sistema, ha richiesto di inviare un ordine e il sistema permette la modifica della data d'ordine proposta;
 	\item \textbf{Post-condizioni}: L'attore ha modificato la data d'ordine proposta;
-	\item \textbf{Scenario principale}: L'attore modifica la data d'ordine proposta tramite una text box.
+	\item \textbf{Scenario principale}: L'attore modifica la data d'ordine proposta tramite una \textit{text box}.
 \end{itemize}
 
 \subsection{UC2.3.10.2 - Inserimento note ordine}
 
 \begin{itemize}
 	\item \textbf{Attore}: Utente autenticato;
-	\item \textbf{Descrizione}: L'attore può delle note per l'ordine;
+	\item \textbf{Descrizione}: L'attore può inserire delle note per l'ordine;
 	\item \textbf{Pre-condizioni}: L'attore ha avviato l'applicazione, è riconosciuto dal sistema, ha richiesto di inviare un ordine e il sistema permette l'inserimento di note per l'ordine;
-	\item \textbf{Post-condizioni}: L'attore ha inserito le note per l'ordine;
-	\item \textbf{Scenario principale}: L'attore inserisce le note per l'ordine tramite una text area.
+	\item \textbf{Post-condizioni}: L'attore ha inserito delle note per l'ordine;
+	\item \textbf{Scenario principale}: L'attore inserisce delle note per l'ordine tramite una \textit{text area}.
 \end{itemize}
 
 \subsection{UC2.3.11 - Visualizzazione errore di mancata selezione di articoli}
 
 \begin{itemize}
 	\item \textbf{Attore}: Utente autenticato;
-	\item \textbf{Descrizione}: L'attore preme sul bottone di rimozione articoli o invio ordine senza aver selezionato degli articoli in carrello;
+	\item \textbf{Descrizione}: L'attore preme sul bottone di rimozione articoli o di invio ordine, senza aver selezionato degli articoli in carrello;
 	\item \textbf{Pre-condizioni}: L'attore ha avviato l'applicazione, è riconosciuto dal sistema, ha richiesto di rimuovere degli articoli dal carrello o di inviare un ordine, senza aver effettivamente selezionato degli articoli in carrello;
-	\item \textbf{Post-condizioni}: L'attore ha visualizzato un messaggio d'errore relativo all'impossibilità di rimuovere gli articoli selezionati o inviare un ordine composto dagli articoli selezionati;
-	\item \textbf{Scenario principale}: L'attore visualizza un messaggio d'errore relativo all'impossibilità di rimuovere gli articoli selezionati o inviare un ordine composto dagli articoli selezionati.
+	\item \textbf{Post-condizioni}: L'attore ha visualizzato un messaggio d'errore relativo all'impossibilità di rimuovere gli articoli selezionati o di inviare un ordine composto dagli articoli selezionati;
+	\item \textbf{Scenario principale}: L'attore visualizza un messaggio d'errore relativo all'impossibilità di rimuovere gli articoli selezionati o di inviare un ordine composto dagli articoli selezionati.
 \end{itemize}
 
 \newpage
 
 \section{Requisiti}
 
-In questa sezione sono presentati i requisiti della piattaforma \textit{moviORDER}, dedotti dai diagrammi dei casi d'uso, dal capitolato fornito dal \textit{tutor} aziendale e da raffinamenti di questo, ottenuti in seguito a brevi interazioni avvenute con il \textit{tutor} aziendale. I requisiti sono stati classificati dallo stagista in base alla loro tipologia e importanza strategica. Sono stati individuati:
+In questa sezione vengono presentati i requisiti della piattaforma \textit{moviORDER}, dedotti dai diagrammi dei casi d'uso, dal capitolato fornito da \visione{} e da raffinamenti di questo, ottenuti in seguito a brevi interazioni avvenute con il \textit{tutor} aziendale. I requisiti sono stati classificati dallo stagista in base alla loro tipologia ed importanza strategica. Sono stati individuati:
 \begin{enumerate}
 	\item \textbf{requisiti funzionali}: descrivono funzionalità del sistema;
 	\item \textbf{requisiti qualitativi}: descrivono qualità del prodotto finale;
@@ -465,7 +465,7 @@ L'importanza strategica dei requisiti individuati è stata negoziata con il \tex
 
 Nelle seguenti sezioni vengono dettagliati i requisiti di \textit{moviORDER}. In ogni sezione è presente una tabella contenente per ogni requisito:
 \begin{itemize}
-	\item \textbf{codice identificativo}: codice che identifica univocamente il requisito, utile a fini di tracciabilità;
+	\item \textbf{codice identificativo}: codice che identifica univocamente il requisito, utile a fini di \glossaryItem{tracciabilità};
 	\item \textbf{descrizione}: breve descrizione testuale del requisito;
 	\item \textbf{fonte}: fonte da cui è stato dedotto il requisito, utile a fini di tracciabilità. La fonte di un requisito può essere:
 		\begin{itemize}
@@ -480,7 +480,7 @@ Nelle seguenti sezioni vengono dettagliati i requisiti di \textit{moviORDER}. In
 
 \subsection{Requisiti funzionali}
 
-Per facilitare la lettura della tabella, il codice dei requisiti macroscopici viene evidenziato con una dicitura in grassetto. Per requisiti macroscopici si intendono i requisiti che presentano sotto-requisiti.
+Per facilitare la lettura della tabella il codice dei requisiti macroscopici viene evidenziato con una dicitura in grassetto. Per requisiti macroscopici si intendono i requisiti che presentano sotto-requisiti.
 
 {\renewcommand{\arraystretch}{2}
 \begin{center}
@@ -489,22 +489,22 @@ Per facilitare la lettura della tabella, il codice dei requisiti macroscopici vi
 \hline
 \textbf{Id Requisito} & \textbf{Descrizione} & \textbf{Fonti} \\ \hline
 \endhead
-RFO1 & Se l'applicazione viene lanciata in assenza di connettività, deve essere visualizzato un messaggio d'errore di connettività assente e l'applicazione deve essere chiusa & Stagista \\ \hline
+RFO1 & Se l'applicazione viene lanciata in assenza di connettività, deve essere visualizzato un messaggio d'errore di connettività assente e deve essere chiusa & Stagista \\ \hline
 \textbf{RFO2} & L'utente non autenticato deve poter accedere all'applicazione & Capitolato UC1.1 \\ \hline
 RFO2.1 & Per accedere, l'utente non autenticato deve poter inserire una \textit{username} & Capitolato UC1.1.1 \\ \hline
 RFO2.2 & Per accedere, l'utente non autenticato deve poter inserire una \textit{password} & Capitolato UC1.1.2 \\ \hline
-RFO2.3 & L'utente autenticato deve poter tentare l'accesso premendo su un bottone di login & Capitolato\\ \hline
-RFO2.4 & Se l'utente non autenticato inserisce una \textit{username} non esistente e preme sul bottone di login, deve essere visualizzato un messaggio d'errore di \textit{username} inesistente & UC1.2 \\ \hline
-RFO2.5 & Se l'utente non autenticato inserisce una \textit{password} non corrispondente alla \textit{username} inserita e preme sul bottone di login, deve essere visualizzato un messaggio d'errore di \textit{password} errata & UC1.2 \\ \hline
-RFO2.6 & Se l'utente non autenticato preme sul bottone di login senza aver inserito le credenziali di accesso, deve essere visualizzato un messaggio che inviti l'utente ad inserire delle credenziali & UC1.2 \\ \hline
-RFO2.7 & Se il \textit{server} non risponde in fase di login, deve essere visualizzato un messaggio d'errore che notifichi l'utente autenticato che il \textit{server} è down & Stagista \\ \hline
+RFO2.3 & L'utente non autenticato deve poter tentare l'accesso premendo su un bottone di \textit{login} & Capitolato\\ \hline
+RFO2.4 & Se l'utente non autenticato inserisce una \textit{username} non esistente e preme sul bottone di \textit{login}, deve essere visualizzato un messaggio d'errore di \textit{username} inesistente & UC1.2 \\ \hline
+RFO2.5 & Se l'utente non autenticato inserisce una \textit{password} non corrispondente alla \textit{username} inserita e preme sul bottone di \textit{login}, deve essere visualizzato un messaggio d'errore di \textit{password} errata & UC1.2 \\ \hline
+RFO2.6 & Se l'utente non autenticato preme sul bottone di \textit{login} senza aver inserito le credenziali di accesso, deve essere visualizzato un messaggio che inviti l'utente ad inserire delle credenziali & UC1.2 \\ \hline
+RFO2.7 & Se in fase di \textit{login} il \textit{server} non risponde, deve essere visualizzato un messaggio d'errore che notifichi l'utente che il \textit{server} è \textit{down} & Stagista \\ \hline
 \textbf{RFO3} & Se l'utente non autenticato riesce ad accedere al sistema, deve essere visualizzata la \textit{home page} dell'applicazione & Capitolato \\ \hline
 RFO3.1 & L'utente autenticato deve visualizzare sulla \textit{home page} la propria ragione sociale & Capitolato \\ \hline
 RFO3.2 & L'utente autenticato deve poter visualizzare sulla \textit{home page} il \textit{tutorial} dell'applicazione & UC2.2 \\ \hline
 RFO3.3 & L'utente autenticato deve poter effettuare il \textit{logout} dall'applicazione premendo su un bottone & UC2.1 \\ \hline
 \textbf{RFO3.4} & L'utente autenticato deve poter visualizzare sulla \textit{home page} i propri articoli nel carrello & Capitolato \\ \hline
 RFO3.4.1 & Se l'utente autenticato non presenta articoli in carrello, deve essere visualizzato un messaggio che notifichi l'utente che il carrello è vuoto & Stagista \\ \hline
-RFO3.4.2 & La visualizzazione di un articolo in carrello deve comprendere una check-box per la selezione dell'articolo & Capitolato \\ \hline
+RFO3.4.2 & La visualizzazione di un articolo in carrello deve comprendere una \textit{checkbox} per la selezione dell'articolo & Capitolato \\ \hline
 RFO3.4.3 & La visualizzazione di un articolo in carrello deve comprendere la quantità dell'articolo & Capitolato \\ \hline
 RFO3.4.4 & La visualizzazione di un articolo in carrello deve comprendere il codice dell'articolo & Capitolato \\ \hline
 RFO3.4.5 & La visualizzazione di un articolo in carrello deve comprendere la descrizione dell'articolo & Capitolato \\ \hline
@@ -523,40 +523,40 @@ RFO3.5.3.8 & Se la scansione del codice a barre fallisce, la fotocamera deve ess
 RFO3.5.3.9 & Se la scansione del codice a barre va a buon fine ma il codice ottenuto non corrisponde ad un articolo venduto dall'azienda, deve essere visualizzato un messaggio d'errore che notifichi l'utente autenticato del problema & UC2.3.2 \\ \hline
 RFO3.5.3.10 & Se la scansione del codice a barre va a buon fine e il codice ottenuto corrisponde ad un articolo venduto dall'azienda ma l'articolo è già presente in carrello, deve essere visualizzato un messaggio che inviti l'utente autenticato a cambiare la quantità dell'articolo in carrello & UC2.3.2 \\ \hline
 RFO3.5.3.11 & Se la scansione del codice a barre va a buon fine e il codice ottenuto corrisponde ad un articolo venduto dall'azienda, deve essere visualizzata la pagina di aggiunta articolo & Capitolato \\ \hline
-\textbf{RFO3.5.4} & Se l'utente autenticato decide di inserire il codice articolo manualmente, deve essere visualizzata una text box per l'inserimento del codice & Capitolato UC2.3.1.2 \\ \hline
-RFO3.5.4.1 & Se l'utente autenticato inserisce un codice articolo che non corrisponde ad un articolo venduto dall'azienda, deve essere visualizzato un messaggio d'errore che notifichi l'utente autenticato del problema & UC2.3.2 \\ \hline
-RFO3.5.4.2 & Se l'utente autenticato inserisce un codice articolo che corrisponde ad un articolo venduto dall'azienda ma l'articolo è già presente in carrello, deve essere visualizzato un messaggio che inviti l'utente autenticato a cambiare la quantità dell'articolo in carrello & UC2.3.2 \\ \hline
+\textbf{RFO3.5.4} & Se l'utente autenticato decide di inserire il codice articolo manualmente, deve essere visualizzata una \textit{text box} per l'inserimento del codice & Capitolato UC2.3.1.2 \\ \hline
+RFO3.5.4.1 & Se l'utente autenticato inserisce un codice articolo che non corrisponde ad un articolo venduto dall'azienda, deve essere visualizzato un messaggio d'errore che notifichi l'utente del problema & UC2.3.2 \\ \hline
+RFO3.5.4.2 & Se l'utente autenticato inserisce un codice articolo che corrisponde ad un articolo venduto dall'azienda ma l'articolo è già presente in carrello, deve essere visualizzato un messaggio che inviti l'utente a cambiare la quantità dell'articolo in carrello & UC2.3.2 \\ \hline
 RFO3.5.4.3 & Se l'utente autenticato inserisce un codice articolo che corrisponde ad un articolo venduto dall'azienda, deve essere visualizzata la pagina di aggiunta articolo & Capitolato \\ \hline
-RFO3.5.5 & Nella pagina di aggiunta articolo, l'utente autenticato deve poter visualizzare il codice articolo & Capitolato \\ \hline
-RFO3.5.6 & Nella pagina di aggiunta articolo, l'utente autenticato deve poter visualizzare la descrizione dell'articolo & Capitolato \\ \hline
-RFO3.5.7 & Nella pagina di aggiunta articolo, l'utente autenticato deve poter visualizzare le informazioni dell'articolo & Capitolato \\ \hline
+RFO3.5.5 & Nella pagina di aggiunta articolo l'utente autenticato deve poter visualizzare il codice articolo & Capitolato \\ \hline
+RFO3.5.6 & Nella pagina di aggiunta articolo l'utente autenticato deve poter visualizzare la descrizione dell'articolo & Capitolato \\ \hline
+RFO3.5.7 & Nella pagina di aggiunta articolo l'utente autenticato deve poter visualizzare le informazioni dell'articolo & Capitolato \\ \hline
 RFO3.5.8 & La pagina di aggiunta articolo deve proporre all'utente autenticato una quantità minima per l'articolo da ordinare & Capitolato \\ \hline
-RFO3.5.9 & Nella pagina di aggiunta articolo, l'utente autenticato deve poter inserire una quantità per l'articolo da ordinare & Capitolato UC2.3.1.4 \\ \hline
-RFO3.5.10 & Nella pagina di aggiunta articolo, l'utente autenticato deve poter inserire delle note per l'articolo da ordine & Capitolato UC2.3.1.5\\ \hline
-RFO3.5.11 & Nella pagina di aggiunta articolo, l'utente autenticato deve poter annullare l'inserimento dell'articolo & Capitolato \\ \hline
-RFO3.5.12 & Nella pagina di aggiunta articolo, l'utente autenticato deve poter confermare l'inserimento dell'articolo & Capitolato \\ \hline
-RFO3.5.13 & Se l'utente autenticato conferma l'inserimento dell'articolo ed ha inserito una quantità errata (troppo bassa, troppo alta o che non soddisfa uno step impostato dall'azienda), deve essere visualizzato un messaggio d'errore di errata quantità inserita & UC2.3.2 \\ \hline
+RFO3.5.9 & Nella pagina di aggiunta articolo l'utente autenticato deve poter inserire una quantità per l'articolo da ordinare & Capitolato UC2.3.1.4 \\ \hline
+RFO3.5.10 & Nella pagina di aggiunta articolo l'utente autenticato deve poter inserire delle note per l'articolo da ordine & Capitolato UC2.3.1.5\\ \hline
+RFO3.5.11 & Nella pagina di aggiunta articolo l'utente autenticato deve poter annullare l'inserimento dell'articolo & Capitolato \\ \hline
+RFO3.5.12 & Nella pagina di aggiunta articolo l'utente autenticato deve poter confermare l'inserimento dell'articolo & Capitolato \\ \hline
+RFO3.5.13 & Se l'utente autenticato conferma l'inserimento dell'articolo e ha inserito una quantità errata (troppo bassa, troppo alta o che non soddisfa uno step impostato dall'azienda), deve essere visualizzato un messaggio d'errore di errata quantità inserita & UC2.3.2 \\ \hline
 RFO3.5.14 & Se l'utente autenticato conferma l'inserimento dell'articolo e i dati inseriti sono corretti, deve essere visualizzata la \textit{home page} dell'applicazione e il nuovo articolo deve essere presente in carrello & Capitolato \\ \hline
 RFO3.5.15 & Se l'utente autenticato annulla l'inserimento dell'articolo, deve essere visualizzata la \textit{home page} dell'applicazione e il carrello non deve aver subito cambiamenti & Capitolato \\ \hline
 RFO3.5.16 & Se viene persa la connettività nella pagina di aggiunta articolo, deve essere visualizzato un messaggio che inviti l'utente a chiudere l'applicazione per connettività assente & Stagista \\ \hline
-RFO3.6 & L'utente autenticato deve poter selezionare un articolo in carrello premendo sulla relativa check-box & Capitolato UC2.3.5\\ \hline
-RFO3.7 & L'utente autenticato deve poter deselezionare un articolo in carrello selezionato premendo sulla relativa check-box & Capitolato UC2.3.6 \\ \hline
-RFO3.8 & L'utente autenticato deve poter selezionare tutti gli articoli in carrello premendo su un bottone di seleziona/deseleziona tutti presente sulla \textit{home page} & Capitolato UC2.3.7\\ \hline
-RFO3.9 & L'utente autenticato deve poter deselezionare tutti gli articoli in carrello premendo su un bottone di seleziona/deseleziona tutti presente sulla \textit{home page} & Capitolato UC2.3.8 \\ \hline
+RFO3.6 & L'utente autenticato deve poter selezionare un articolo in carrello premendo sulla relativa \textit{checkbox} & Capitolato UC2.3.5\\ \hline
+RFO3.7 & L'utente autenticato deve poter deselezionare un articolo selezionato in carrello premendo sulla relativa \textit{checkbox} & Capitolato UC2.3.6 \\ \hline
+RFO3.8 & L'utente autenticato deve poter selezionare tutti gli articoli in carrello premendo su un bottone ``seleziona/deseleziona tutti'' presente sulla \textit{home page} & Capitolato UC2.3.7\\ \hline
+RFO3.9 & L'utente autenticato deve poter deselezionare tutti gli articoli selezionati in carrello premendo su un bottone di ``seleziona/deseleziona tutti'' presente sulla \textit{home page} & Capitolato UC2.3.8 \\ \hline
 \textbf{RFO3.10} & L'utente autenticato deve poter modificare un articolo in carrello premendo sopra la visualizzazione dell'articolo sul carrello & Capitolato UC2.3.3\\ \hline
 RFO3.10.1 & Se l'utente autenticato preme sulla visualizzazione di un articolo in carrello, deve essere richiesta la conferma di modifica tramite la visualizzazione di un \textit{dialog} & Stagista \\ \hline
 RFO3.10.2 & Se l'utente autenticato accetta di modificare l'articolo sul \textit{dialog} di conferma, deve essere aperta la pagina di modifica articolo & Stagista \\ \hline
 RFO3.10.3 & Se l'utente autenticato rifiuta di modificare l'articolo sul \textit{dialog} di conferma, deve essere visualizzata la \textit{home page} senza cambiamenti sugli articoli in carrello & Stagista \\ \hline
-RFO3.10.4 & Nella pagina di modifica articolo, l'utente autenticato deve poter visualizzare il codice articolo dell'articolo selezionato & Capitolato \\ \hline
-RFO3.10.5 & Nella pagina di modifica articolo, l'utente autenticato deve poter visualizzare la descrizione dell'articolo selezionato & Capitolato \\ \hline
-RFO3.10.6 & Nella pagina di modifica articolo, l'utente autenticato deve poter visualizzare le informazioni dell'articolo selezionato & Capitolato \\ \hline
+RFO3.10.4 & Nella pagina di modifica articolo l'utente autenticato deve poter visualizzare il codice articolo dell'articolo selezionato & Capitolato \\ \hline
+RFO3.10.5 & Nella pagina di modifica articolo l'utente autenticato deve poter visualizzare la descrizione dell'articolo selezionato & Capitolato \\ \hline
+RFO3.10.6 & Nella pagina di modifica articolo l'utente autenticato deve poter visualizzare le informazioni dell'articolo selezionato & Capitolato \\ \hline
 RFO3.10.7 & La pagina di modifica articolo deve proporre all'utente autenticato la quantità precedentemente inserita per l'articolo selezionato & Capitolato \\ \hline
-RFO3.10.8 & Nella pagina di modifica articolo, l'utente autenticato deve poter cambiare la quantità per l'articolo selezionato & Capitolato UC2.3.3.1 \\ \hline
+RFO3.10.8 & Nella pagina di modifica articolo l'utente autenticato deve poter cambiare la quantità per l'articolo selezionato & Capitolato UC2.3.3.1 \\ \hline
 RFO3.10.9 & La pagina di modifica articolo deve proporre all'utente autenticato le note precedentemente inserite per l'articolo selezionato & Capitolato \\ \hline
-RFO3.10.10 & Nella pagina di modifica articolo, l'utente autenticato deve poter modificare le note per l'articolo selezionato & Capitolato UC2.3.3.1 \\ \hline
-RFO3.10.11 & Nella pagina di modifica articolo, l'utente autenticato deve poter annullare la modifica dell'articolo & Capitolato \\ \hline
-RFO3.10.12 & Nella pagina di modifica articolo, l'utente autenticato deve poter confermare la modifica dell'articolo & Capitolato \\ \hline
-RFO3.10.13 & Se l'utente autenticato conferma la modifica dell'articolo ed ha inserito una quantità errata (troppo bassa, troppo alta o che non soddisfa uno step impostato dall'azienda), deve essere visualizzato un messaggio d'errore di errata quantità inserita & UC2.3.4 \\ \hline
+RFO3.10.10 & Nella pagina di modifica articolo l'utente autenticato deve poter modificare le note per l'articolo selezionato & Capitolato UC2.3.3.1 \\ \hline
+RFO3.10.11 & Nella pagina di modifica articolo l'utente autenticato deve poter annullare la modifica dell'articolo & Capitolato \\ \hline
+RFO3.10.12 & Nella pagina di modifica articolo l'utente autenticato deve poter confermare la modifica dell'articolo & Capitolato \\ \hline
+RFO3.10.13 & Se l'utente autenticato conferma la modifica dell'articolo e ha inserito una quantità errata (troppo bassa, troppo alta o che non soddisfa uno step impostato dall'azienda), deve essere visualizzato un messaggio d'errore di errata quantità inserita & UC2.3.4 \\ \hline
 RFO3.10.14 & Se l'utente autenticato conferma la modifica dell'articolo e i dati modificati sono corretti, deve essere visualizzata la \textit{home page} dell'applicazione e l'articolo modificato deve essere presente in carrello con le modifiche apportate & Capitolato \\ \hline
 RFO3.10.15 & Se l'utente autenticato annulla la modifica dell'articolo, deve essere visualizzata la \textit{home page} dell'applicazione e l'articolo selezionato non deve essere stato modificato & Capitolato \\ \hline
 RFO3.10.16 & Se viene persa la connettività nella pagina di modifica, deve essere visualizzato un messaggio che inviti l'utente a chiudere l'applicazione per connettività assente & Stagista \\ \hline
@@ -565,30 +565,30 @@ RFO3.11.1 & Se l'utente autenticato preme sul bottone di rimozione articoli senz
 RFO3.11.2 & Se l'utente autenticato preme sul bottone di rimozione articoli avendo selezionato degli articoli sul carrello, deve essere richiesta la conferma di eliminazione tramite la visualizzazione di un \textit{dialog} & Stagista \\ \hline
 RFO3.11.3 & Se l'utente autenticato conferma l'eliminazione sul \textit{dialog} di conferma, gli articoli precedentemente selezionati devono essere rimossi dal carrello & Capitolato \\ \hline
 RFO3.11.4 & Se l'utente autenticato rifiuta l'eliminazione sul \textit{dialog} di conferma, il carrello non deve subire cambiamenti & Capitolato \\ \hline
-\textbf{RFO3.12} & L'utente autenticato deve poter inviare un ordine composto dagli articoli selezionati sul carrello premendo su un bottone presente sulla \textit{home page} & Capitolato UC2.3.10\\ \hline
+\textbf{RFO3.12} & L'utente autenticato deve poter inviare un ordine composto dagli articoli selezionati in carrello premendo su un bottone presente sulla \textit{home page} & Capitolato UC2.3.10\\ \hline
 RFO3.12.1 & Se l'utente autenticato preme sul bottone di invio ordine senza aver selezionato alcun articolo, deve essere visualizzato un messaggio che inviti l'utente a selezionare degli articoli & UC2.3.11 \\ \hline
-RFO3.12.2 & Se l'utente autenticato preme sul bottone di invio ordine avendo selezionato degli articoli sul carrello, deve essere visualizzato il \textit{modal} di invio ordine & Stagista \\ \hline
-RFO3.12.3 & Nel \textit{modal} di invio ordine, l'utente autenticato deve poter visualizzare il codice cliente & Capitolato \\ \hline
-RFO3.12.4 & Nel \textit{modal} di invio ordine, l'utente autenticato deve poter visualizzare la descrizione cliente & Capitolato \\ \hline
-RFO3.12.5 & Nel \textit{modal} di invio ordine, l'utente autenticato deve poter visualizzare il codice del documento da generare per l'ordine & Capitolato \\ \hline
-RFO3.12.6 & Nel \textit{modal} di invio ordine, l'utente autenticato deve poter visualizzare la descrizione del documento da generare per l'ordine & Capitolato \\ \hline
-RFO3.12.7 & Il \textit{modal} di invio ordine deve proporre all'utente autenticato la data corrente come data d'ordine & Capitolato \\ \hline
-RFO3.12.8 & Nel \textit{modal} di invio ordine, l'utente autenticato deve poter modificare la data d'ordine proposta & Capitolato UC2.3.10.1\\ \hline
-RFO3.12.9 & Nel \textit{modal} di invio ordine, l'utente autenticato deve poter inserire delle note per l'ordine & Capitolato UC2.3.10.2\\ \hline
-RFO3.12.10 & Nel \textit{modal} di invio ordine, l'utente autenticato deve poter confermare l'invio dell'ordine & Capitolato \\ \hline
-RFO3.12.11 & Nel \textit{modal} di invio ordine, l'utente autenticato deve poter annullare l'invio dell'ordine & Capitolato \\ \hline
+RFO3.12.2 & Se l'utente autenticato preme sul bottone di invio ordine avendo selezionato degli articoli in carrello, deve essere visualizzato il \textit{modal} di invio ordine & Stagista \\ \hline
+RFO3.12.3 & Nel \textit{modal} di invio ordine l'utente autenticato deve poter visualizzare il codice cliente & Capitolato \\ \hline
+RFO3.12.4 & Nel \textit{modal} di invio ordine l'utente autenticato deve poter visualizzare la descrizione cliente & Capitolato \\ \hline
+RFO3.12.5 & Nel \textit{modal} di invio ordine l'utente autenticato deve poter visualizzare il codice del documento da generare per l'ordine & Capitolato \\ \hline
+RFO3.12.6 & Nel \textit{modal} di invio ordine l'utente autenticato deve poter visualizzare la descrizione del documento da generare per l'ordine & Capitolato \\ \hline
+RFO3.12.7 & Il \textit{modal} di invio ordine deve proporre all'utente autenticato una data d'ordine, precisamente quella corrente & Capitolato \\ \hline
+RFO3.12.8 & Nel \textit{modal} di invio ordine l'utente autenticato deve poter modificare la data d'ordine proposta & Capitolato UC2.3.10.1\\ \hline
+RFO3.12.9 & Nel \textit{modal} di invio ordine l'utente autenticato deve poter inserire delle note per l'ordine & Capitolato UC2.3.10.2\\ \hline
+RFO3.12.10 & Nel \textit{modal} di invio ordin, l'utente autenticato deve poter confermare l'invio dell'ordine & Capitolato \\ \hline
+RFO3.12.11 & Nel \textit{modal} di invio ordine l'utente autenticato deve poter annullare l'invio dell'ordine & Capitolato \\ \hline
 RFO3.12.12 & Se l'utente autenticato decide di annullare l'invio dell'ordine, il \textit{modal} di invio ordine deve essere chiuso & Stagista \\ \hline
 RFO3.12.13 & Se l'utente autenticato decide di confermare l'invio dell'ordine, deve essere richiesta la conferma di invio ordine tramite un \textit{dialog} & Stagista \\ \hline
-\textbf{RFO3.12.14} & Se l'utente autenticato conferma l'invio dell'ordine nel \textit{dialog} di conferma e l'ordine è andato a buon fine, deve essere visualizzato un messaggio di ordine inviato con successo e una mail di conferma deve essere inviata sia all'utente che all'azienda & Capitolato \\ \hline
-RFO3.12.14.1 & La mail inviata dal sistema al momento dell'invio dell'ordine deve contenere in oggetto la data di registrazione dell'ordine & Capitolato \\ \hline
-RFO3.12.14.2 & La mail inviata dal sistema al momento dell'invio dell'ordine deve contenere in oggetto il codice azienda dell'utente che ha effettuato l'ordine & Capitolato \\ \hline
-RFO3.12.14.3 & La mail inviata dal sistema al momento dell'invio dell'ordine deve contenere in oggetto la tipologia di documento generato con la registrazione dell'ordine & Capitolato \\ \hline
-RFO3.12.14.4 & La mail inviata dal sistema al momento dell'invio dell'ordine deve contenere nel corpo il codice cliente del cliente che ha effettuato l'ordine & Capitolato \\ \hline
-RFO3.12.14.5 & La mail inviata dal sistema al momento dell'invio dell'ordine deve contenere nel corpo una tabella contenente i dati degli articoli ordinati & Capitolato \\ \hline
+\textbf{RFO3.12.14} & Se l'utente autenticato conferma l'invio dell'ordine nel \textit{dialog} di conferma e l'ordine è andato a buon fine, deve essere visualizzato un messaggio di ordine inviato con successo e una \textit{mail} di conferma deve essere inviata sia all'utente che all'azienda & Capitolato \\ \hline
+RFO3.12.14.1 & La \textit{mail} inviata dal sistema al momento dell'invio dell'ordine deve contenere in oggetto la data di registrazione dell'ordine & Capitolato \\ \hline
+RFO3.12.14.2 & La \textit{mail} inviata dal sistema al momento dell'invio dell'ordine deve contenere in oggetto il codice azienda dell'utente che ha effettuato l'ordine & Capitolato \\ \hline
+RFO3.12.14.3 & La \textit{mail} inviata dal sistema al momento dell'invio dell'ordine deve contenere in oggetto la tipologia di documento generato con la registrazione dell'ordine & Capitolato \\ \hline
+RFO3.12.14.4 & La \textit{mail} inviata dal sistema al momento dell'invio dell'ordine deve contenere nel corpo il codice cliente del cliente che ha effettuato l'ordine & Capitolato \\ \hline
+RFO3.12.14.5 & La \textit{mail} inviata dal sistema al momento dell'invio dell'ordine deve contenere nel corpo una tabella contenente i dati degli articoli ordinati & Capitolato \\ \hline
 RFO3.12.14.6 & Per ogni articolo in tabella deve essere indicata la quantità ordinata & Capitolato \\ \hline
 RFO3.12.14.7 & Per ogni articolo in tabella deve essere indicato il codice articolo & Capitolato \\ \hline
 RFO3.12.14.8 & Per ogni articolo in tabella deve essere indicata la descrizione dell'articolo & Capitolato \\ \hline
-RFO3.12.14.9 & La mail inviata dal sistema al momento dell'invio dell'ordine deve contenere nel corpo l'avviso di non rispondere alla mail & Capitolato \\ \hline
+RFO3.12.14.9 & La \textit{mail} inviata dal sistema al momento dell'invio dell'ordine deve contenere nel corpo l'avviso di non rispondere alla \textit{mail} & Capitolato \\ \hline
 RFO3.12.15 & Se l'utente autenticato conferma l'invio dell'ordine nel \textit{dialog} di conferma e l'ordine non è andato a buon fine, deve essere visualizzato un messaggio d'errore di mancato invio dell'ordine & Capitolato \\ \hline
 RFO3.12.16 & Se l'utente autenticato annulla l'invio dell'ordine nel \textit{dialog} di conferma, il \textit{dialog} di conferma deve essere chiuso & Stagista \\ \hline
 RFO3.13 & Se viene persa la connettività nella \textit{home page}, deve essere visualizzato un messaggio che inviti l'utente a chiudere l'applicazione per connettività assente & Stagista \\
@@ -623,13 +623,13 @@ RQD2 & L'applicazione deve essere fornita di manuale sviluppatore & \textit{Tuto
 \hline
 \textbf{Id Requisito} & \textbf{Descrizione} & \textbf{Fonti} \\ \hline
 \endhead
-RVO1 & L'applicazione deve essere sviluppata con ambiente multipiattaforma (preferibilmente \textit{PhoneGap} o \textit{Xamarin}) & Capitolato \\ \hline
+RVO1 & L'applicazione deve essere sviluppata con un ambiente multipiattaforma (preferibilmente \textit{PhoneGap} o \textit{Xamarin}) & Capitolato \\ \hline
 RVO2 & L'applicazione deve utilizzare il \textit{database} standard di \textit{VisionENTERPRISE}, senza modifica alla sua struttura & Capitolato \\ \hline
 RVO3 & L'applicazione deve interfacciarsi con la fotocamera per la lettura di codici a barre & Capitolato \\ \hline
 RVO4 & L'applicazione deve funzionare completamente \textit{online}, nessun dato deve essere memorizzato in locale e nessun \textit{database} deve essere sincronizzato & Capitolato \\ \hline
 RVD5 & L'applicazione deve utilizzare un \textit{database} \textit{SQL Server} lato \textit{web} & Capitolato \\ \hline
 RVD6 & L'applicazione deve supportare codici a barre bidimensionali (\textit{QRcode}) & Capitolato \\ \hline
-RVF7 & L'applicazione deve condividere i dati di login con l'applicazione \textit{moviDOC} & Capitolato \\ \hline
+RVF7 & L'applicazione deve condividere i dati di \textit{login} con l'applicazione \textit{moviDOC} & Capitolato \\ \hline
 RVF8 & L'applicazione deve avere lo stesso stile di interfaccia di \textit{moviDOC} & Capitolato \\ \hline
 RVF9 & L'applicazione deve permettere la firma digitale del cliente a fine ordine & Capitolato \\ \hline
 \caption{Tabella del tracciamento dei requisiti di vincolo}
@@ -658,7 +658,7 @@ I requisiti sono di seguito raggruppati in una tabella riepilogativa, in modo da
 
 \subsection{Validazione dei requisiti}
 
-Al termine dell'analisi dei requisiti, lo stagista ha validato i requisiti tramite delle interazioni con il \textit{tutor} aziendale. Nello specifico ci si è assicurati che i requisiti individuati rappresentassero il sistema richiesto dal \textit{tutor} aziendale. Lo stagista ha fatto in modo aderire allo standard \textit{IEEE} 830-1998 per la scrittura dei requisiti. Lo standard \textit{IEEE} 830-1998 individua otto qualità essenziali per i requisiti:
+Al termine dell'analisi dei requisiti lo stagista ha validato i requisiti tramite delle interazioni con il \textit{tutor} aziendale. Nello specifico, ci si è assicurati che i requisiti individuati rappresentassero il sistema richiesto dal capitolato. Per la scrittura dei requisiti lo stagista ha cercato di aderire allo standard \textit{IEEE} 830-1998, il quale individua otto qualità essenziali per i requisiti:
 \begin{itemize}
 	\item assenza di ambiguità;
 	\item correttezza;
