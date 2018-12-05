@@ -1,13 +1,9 @@
-slide del corso ingegneria del sw
+slide del corso ingegneria del sw, progettazione, casi uso, diagrammi package, diagrammi classe, design pattern architetturali
 slide del corso di mobile programming e multimedia sui framework cross- platform
-i wikipedia di tutte le tecnologie
 wiki di mvc
 sito layered architecture
-slide di cardin su mvp e pattern architetturali
-slide di tullio su progettazione
 html5 e il mobile https://www.html.it/pag/54877/html5-e-il-mobile/
-servlet 
-ajax
 docs di cordova per i plugin
-guardare bene tutti i termini di glossario
 sito web di visione impresa
+
+web app def https://en.wikipedia.org/wiki/Web_application
