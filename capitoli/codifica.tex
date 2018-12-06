@@ -9,7 +9,7 @@ In questo capitolo vengono trattati gli aspetti più interessanti della codifica
 
 \section{Servizio web} \label{codificaservizio}
 
-Per lo sviluppo del servizio \textit{web} si è utilizzato il linguaggio \textit{Java} e, nello specifico, gli oggetti \textit{servlet}. Per permettere a questi di interagire con il \textit{database}, si sono dovuti utilizzare i \textit{driver} \textit{JDBC} per \textit{SQL Server}, in quanto \textit{moviORDER} utilizza tale tipologia di \textit{database}. 
+Per lo sviluppo del servizio \textit{web} si è utilizzato il linguaggio \textit{Java} e, nello specifico, gli oggetti \textit{servlet}. Per permettere a questi di interagire con il \textit{database}, si sono dovuti utilizzare i \textit{driver} \glossaryItem{JDBC} (\textit{Java Database Connectivity API}) per \textit{SQL Server}, in quanto \textit{moviORDER} utilizza tale tipologia di \textit{database}. 
 
 \subsection{Servlet}
 
@@ -106,7 +106,7 @@ In questa sezione viene presentata l'\textit{API} del servizio \textit{web}. In 
 			\item codice azienda e \textit{username} dell'utente se \textit{username} e \textit{password} passati come parametro corrispondono ad un utente presente in \textit{database};
 			\item un messaggio d'errore se le credenziali sono scorrette o l'utente è stato bloccato. 
 		\end{itemize}
-		\item \textbf{Descrizione}: questo \textit{servlet} rappresenta il servizio di autenticazione. Ricevuti i parametri, effettua la ricerca della \textit{username} nel \textit{database} e, nel caso in cui questa fosse presente, procede nel cercare la \textit{password} corrispondente. Se \textit{username} e \textit{password} passati sono corretti, il \textit{servlet} restituisce una stringa in formato \textit{JSON} contenente il codice azienda e la \textit{username} dell'utente che ha cercato di effettuare il \textit{login}. Se le credenziali non sono corrette oppure l'utente è stato bloccato, viene restituito un messaggio d'errore.
+		\item \textbf{Descrizione}: questo \textit{servlet} rappresenta il servizio di autenticazione. Ricevuti i parametri, effettua la ricerca della \textit{username} nel \textit{database} e, nel caso in cui questa fosse presente, procede nel cercare la \textit{password} corrispondente.
 \end{itemize}
 % arrivato qui = sostituire tutti i "nel caso" in "se" e mettere tutto al presente
 \myparagraph{Servizio di verifica di connessione con il \textit{database}}
@@ -115,32 +115,32 @@ In questa sezione viene presentata l'\textit{API} del servizio \textit{web}. In 
 	\item \textbf{Indirizzo}: /CheckConnectionURL;
 	\item \textbf{Input}: il \textit{servlet} richiede i seguenti parametri:
 		\begin{itemize}
-			\item \textit{codice azienda}: è il codice azienda dell'azienda cliente di \visione{} della quale si vuole verificare la presenza del \textit{database}.
+			\item \textit{codice azienda}: è il codice dell'azienda di cui si vuole verificare la presenza del \textit{database}.
 		\end{itemize}
 	\item \textbf{Output}: le possibili risposte del \textit{servlet} sono le seguenti:
 		\begin{itemize}
-			\item un messaggio positivo nel caso in cui il \textit{database} dell'azienda corrispondente al codice inserito è raggiungibile;
-			\item un messaggio negativo nel caso in cui il \textit{database} dell'azienda corrispondente al codice inserito non è raggiungibile.
+			\item un messaggio positivo se il \textit{database} dell'azienda corrispondente al codice passato come parametro è raggiungibile;
+			\item un messaggio negativo se il \textit{database} dell'azienda corrispondente al codice passato come parametro non è raggiungibile.
 		\end{itemize}
-	\item \textbf{Descrizione}: questo \textit{servlet} si occupa di controllare se un \textit{database} aziendale è raggiungibile provando ad effettuare una \textit{query} su tale \textit{database}. Risponde positivamente nel caso in cui il \textit{database} dell'azienda corrispondente al codice inserito è raggiungibile (\textit{query} con un ritorno), mentre risponde negativamente nel caso in cui il \textit{database} non è raggiungibile (\textit{query} che ha sollevato un eccezione).
+	\item \textbf{Descrizione}: questo \textit{servlet} si occupa di controllare se un \textit{database} aziendale è raggiungibile effettuando una \textit{query} su di esso.
 \end{itemize}
 
-\myparagraph{Servizio di rimozione articoli dal carrello}
+\myparagraph{Servizio di rimozione articoli in carrello}
 
 \begin{itemize}
 	\item \textbf{Indirizzo}: /DeleteSelectedItems;
 	\item \textbf{Input}: il \textit{servlet} richiede i seguenti parametri:
 		\begin{itemize}
-			\item \textit{lista di codici articolo}: è una lista dei codici articolo degli articoli che devono essere eliminati;
+			\item \textit{lista di codici articolo}: è la lista dei codici degli articoli che devono essere eliminati;
 			\item \textit{username}: è la \textit{username} dell'utente che ha richiesto l'eliminazione degli articoli;
 			\item \textit{path}: è la stringa di connessione al \textit{database} aziendale dell'utente autenticato.
 		\end{itemize}
 	\item \textbf{Output}: le possibili risposte del \textit{servlet} sono le seguenti:
 		\begin{itemize}
-			\item un messaggio positivo nel caso in cui la cancellazione è andata a buon fine;
-			\item un messaggio negativo nel caso in cui la cancellazione non è andata a buon fine.
+			\item un messaggio positivo se la cancellazione è andata a buon fine;
+			\item un messaggio negativo se la cancellazione non è andata a buon fine.
 		\end{itemize}
-	\item \textbf{Descrizione}: questo \textit{servlet} si occupa di eliminare dal \textit{database} aziendale dell'utente autenticato gli articoli che quest'ultimo ha richiesto di rimuovere dal carrello. Risponde positivamente nel caso in cui gli articoli sono stati rimossi correttamente dal \textit{database}, mentre risponde negativamente nel caso in cui gli articoli non sono stati rimossi dal \textit{database}.
+	\item \textbf{Descrizione}: questo \textit{servlet} si occupa di eliminare dal \textit{database} aziendale dell'utente autenticato gli articoli che quest'ultimo ha richiesto di rimuovere dal carrello.
 \end{itemize}
 
 \myparagraph{Servizio di ricerca di un codice a barre}
@@ -149,15 +149,15 @@ In questa sezione viene presentata l'\textit{API} del servizio \textit{web}. In 
 	\item \textbf{Indirizzo}: /FindArticleBarCode;
 	\item \textbf{Input}: il \textit{servlet} richiede i seguenti parametri:
 		\begin{itemize}
-			\item \textit{codice a barre}: è il codice a barre di un articolo del quale si vuole conoscere il codice articolo;
+			\item \textit{codice a barre}: è il \textit{barcode} di un articolo del quale si vuole conoscere il codice;
 			\item \textit{path}: è la stringa di connessione al \textit{database} aziendale dell'utente autenticato.
 		\end{itemize}
 	\item \textbf{Output}: le possibili risposte del \textit{servlet} sono le seguenti:
 		\begin{itemize}
-			\item codice articolo corrispondente al \textit{barcode} passato come parametro nel caso in cui il \textit{barcode} corrisponde a quello di un articolo venduto dall'azienda;
+			\item codice articolo corrispondente al \textit{barcode} passato come parametro nel caso in cui il codice a barre corrisponde a quello di un articolo venduto dall'azienda;
 			\item un messaggio negativo nel caso in cui il \textit{barcode} passato come parametro non corrisponde ad un articolo venduto dall'azienda.
 		\end{itemize}
-	\item \textbf{Descrizione}: questo \textit{servlet} si occupa di fornire il codice articolo dell'articolo corrispondente al codice a barre ricevuto come parametro, effettuando la ricerca del \textit{barcode} all'interno del \textit{database}. Nel caso in cui il codice a barre è presente all'interno del \textit{database} viene restituito il codice articolo corrispondente, mentre nel caso in cui non è presente viene restituito un messaggio negativo.
+	\item \textbf{Descrizione}: questo \textit{servlet} si occupa di fornire il codice dell'articolo corrispondente al \textit{barcode} passato come parametro, effettuando la ricerca del codice a barre all'interno del \textit{database}.
 \end{itemize}
 
 \myparagraph{Servizio di ricerca di un codice articolo}
@@ -166,30 +166,30 @@ In questa sezione viene presentata l'\textit{API} del servizio \textit{web}. In 
 	\item \textbf{Indirizzo}: /FindArticleCode;
 	\item \textbf{Input}: il \textit{servlet} richiede i seguenti parametri:
 		\begin{itemize}
-			\item \textit{codice articolo}: è il codice articolo o il \textit{barcode} di un articolo del quale si vuole verificare la presenza in \textit{database};
+			\item \textit{codice articolo}: è il codice o il \textit{barcode} di un articolo del quale si vuole verificare la presenza in \textit{database};
 		\end{itemize}
 	\item \textbf{Output}: le possibili risposte del \textit{servlet} sono le seguenti:
 		\begin{itemize}
-			\item codice articolo nel caso in cui l'articolo è presente in \textit{database};
+			\item codice dell'articolo nel caso in cui l'articolo è presente in \textit{database};
 			\item un messaggio negativo nel caso in cui l'articolo non è presente in \textit{database}.
 		\end{itemize}
-	\item \textbf{Descrizione}: questo \textit{servlet} si occupa di fornire il codice articolo dell'articolo corrispondente al codice articolo o al \textit{barcode} ricevuto come parametro, effettuando la ricerca del codice articolo o del \textit{barcode} all'interno del \textit{database}. Nel caso in cui il codice articolo o il \textit{barcode} passato come parametro corrisponde ad un articolo presente in \textit{database} viene restituito il codice articolo, mentre nel caso in cui non corrisponde ad un articolo presente in \textit{database} viene restituito un messaggio negativo.
+	\item \textbf{Descrizione}: questo \textit{servlet} si occupa di fornire il codice dell'articolo corrispondente al codice o al \textit{barcode} ricevuto come parametro, effettuando la ricerca del codice articolo o del \textit{barcode} all'interno del \textit{database}.
 \end{itemize}
 
-\myparagraph{Servizio di prelievo informazioni di un articolo}
+\myparagraph{Servizio di prelievo delle informazioni di un articolo}
 
 \begin{itemize}
 	\item \textbf{Indirizzo}: /GetArticleDescNote;
 	\item \textbf{Input}: il \textit{servlet} richiede i seguenti parametri:
 		\begin{itemize}
-			\item \textit{codice azienda}: è il codice azienda della quale l'utente autenticato è cliente;
-			\item \textit{codice articolo}: è il codice articolo dell'articolo del quale si vogliono ottenere informazioni.
+			\item \textit{codice azienda}: è il codice dell'azienda di cui l'utente autenticato è cliente;
+			\item \textit{codice articolo}: è il codice dell'articolo di cui si vogliono ottenere informazioni.
 		\end{itemize}
-	\item \textbf{Output}: questo \textit{servlet} può produrre un solo output poiché l'applicazione è stata implementata in modo che non ci siano casi negativi:
+	\item \textbf{Output}: questo \textit{servlet} può produrre un solo \textit{output}:
 		\begin{itemize}
-			\item descrizione, note, quantità minima ordinabile e step di incremento quantità per l'articolo corrispondente al codice articolo passato come parametro.
+			\item descrizione, note, quantità minima ordinabile e \textit{step} di incremento quantità per l'articolo corrispondente al codice passato come parametro.
 		\end{itemize}
-	\item \textbf{Descrizione}: questo \textit{servlet} si occupa di fornire informazioni sull'articolo corrispondente al codice articolo passato come parametro. 
+	\item \textbf{Descrizione}: questo \textit{servlet} si occupa di fornire informazioni sull'articolo corrispondente al codice passato come parametro. 
 \end{itemize}
 
 \myparagraph{Servizio di prelievo degli articoli in carrello}
@@ -198,18 +198,18 @@ In questa sezione viene presentata l'\textit{API} del servizio \textit{web}. In 
 	\item \textbf{Indirizzo}: /GetArticlesByUsername;
 	\item \textbf{Input}: il \textit{servlet} richiede i seguenti parametri:
 		\begin{itemize}
-			\item \textit{codice azienda}: è il codice azienda della quale l'utente autenticato è cliente;
+			\item \textit{codice azienda}: è il codice dell'azienda di cui l'utente autenticato è cliente;
 			\item \textit{username}: è il nome utente dell'utente autenticato.
 		\end{itemize}
 	\item \textbf{Output}: le possibili risposte del \textit{servlet} sono le seguenti:
 		\begin{itemize}
-			\item array degli articoli nel carrello dell'utente autenticato, dove per ogni articolo vengono restituiti la quantità ordinata, il codice articolo e la descrizione dell'articolo;
-			\item array vuoto nel caso in cui l'utente autenticato non presenta articoli in carrello.
+			\item lista degli articoli nel carrello dell'utente autenticato, dove per ogni articolo vengono restituiti la quantità ordinata, il codice e la descrizione;
+			\item lista vuota nel caso in cui l'utente autenticato non presenta articoli in carrello.
 		\end{itemize}
-	\item \textbf{Descrizione}: questo \textit{servlet} si occupa di fornire la lista degli articoli in carrello per l'utente la quale \textit{username} è stata passata come parametro. Nel caso in cui l'utente presenta articoli in carrello viene restituita la lista degli articoli in carrello, mentre nel caso in cui non presenta articoli in carrello viene restituita una lista vuota.
+	\item \textbf{Descrizione}: questo \textit{servlet} si occupa di fornire la lista degli articoli in carrello delll'utente la quale \textit{username} è stata passata come parametro.
 \end{itemize}
 
-\myparagraph{Servizio di prelievo di informazioni di un utente}
+\myparagraph{Servizio di prelievo delle informazioni di un utente}
 
 \begin{itemize}
 	\item \textbf{Indirizzo}: /GetNameByUsername;
@@ -218,26 +218,26 @@ In questa sezione viene presentata l'\textit{API} del servizio \textit{web}. In 
 			\item \textit{path}: è la stringa di connessione al \textit{database} aziendale dell'utente autenticato;
 			\item \textit{username}: è il nome utente dell'utente autenticato.
 		\end{itemize}
-	\item \textbf{Output}: questo \textit{servlet} può produrre un solo output poiché l'applicazione è stata implementata in modo che non ci siano casi negativi:
+	\item \textbf{Output}: questo \textit{servlet} può produrre un solo \textit{output}:
 		\begin{itemize}
-			\item nome e ragione sociale dell'utente autenticato e codice documento e descrizione del documento da generare nel caso in cui l'utente invii un ordine.
+			\item nome e ragione sociale dell'utente autenticato e codice e descrizione del documento da generare se l'utente invia un ordine.
 		\end{itemize}
 	\item \textbf{Descrizione}: questo \textit{servlet} si occupa di fornire informazioni sull'utente la cui \textit{username} è stata passata come parametro.
 \end{itemize}
 
-\myparagraph{Servizio di prelievo informazioni di un articolo in carrello}
+\myparagraph{Servizio di prelievo delle informazioni di un articolo in carrello}
 
 \begin{itemize}
 	\item \textbf{Indirizzo}: /GetTmpArticleData;
 	\item \textbf{Input}: il \textit{servlet} richiede i seguenti parametri:
 		\begin{itemize}
 			\item \textit{path}: è la stringa di connessione al \textit{database} aziendale dell'utente autenticato;
-			\item \textit{codice articolo}: è il codice articolo dell'articolo del quale si vogliono ottenere informazioni;
+			\item \textit{codice articolo}: è il codice dell'articolo di cui si vogliono ottenere informazioni;
 			\item \textit{username}: è il nome utente dell'utente autenticato.
 		\end{itemize}
-	\item \textbf{Output}: questo \textit{servlet} può produrre un solo output poiché l'applicazione è stata implementata in modo che non ci siano casi negativi:
+	\item \textbf{Output}: questo \textit{servlet} può produrre un solo \textit{output}:
 		\begin{itemize}
-			\item quantità e note dell'articolo nel carrello dell'utente autenticato corrispondente al codice articolo passato come parametro.
+			\item quantità e note dell'articolo in carrello corrispondente al codice articolo e all'utente passati come parametri.
 		\end{itemize}
 	\item \textbf{Descrizione}: questo \textit{servlet} si occupa di fornire informazioni riguardati uno specifico articolo nel carrello dell'utente la quale \textit{username} è stata passata come parametro.
 \end{itemize}
@@ -253,10 +253,10 @@ In questa sezione viene presentata l'\textit{API} del servizio \textit{web}. In 
 		\end{itemize}
 	\item \textbf{Output}: le possibili risposte del \textit{servlet} sono le seguenti:
 		\begin{itemize}
-			\item un messaggio positivo nel caso in cui la \textit{query} di inserimento/modifica articolo è andata a buon fine;
-			\item un messaggio negativo nel caso in cui la \textit{query} di inserimento/modifica articolo non è andata a buon fine.
+			\item un messaggio positivo se la \textit{query} va a buon fine;
+			\item un messaggio negativo se la \textit{query} non va a buon fine.
 		\end{itemize}
-	\item \textbf{Descrizione}: questo \textit{servlet} si occupa di inserire o modificare un articolo nel carrello dell'utente autenticato. L'inserimento e la modifica avvengono mediante l'utilizzo dello stesso \textit{servlet} poiché la \textit{query} da eseguire sul \textit{database}, che può essere di tipo \textit{INSERT} o \textit{UPDATE}, viene passata come parametro. Nel caso in cui la \textit{query} viene eseguita in modo corretto sul \textit{database} viene restituito un messaggio positivo, mentre nel caso in cui non viene eseguita viene restituito un messaggio negativo.
+	\item \textbf{Descrizione}: questo \textit{servlet} si occupa di inserire o modificare un articolo nel carrello dell'utente autenticato. L'inserimento e la modifica avvengono mediante l'utilizzo dello stesso \textit{servlet} poiché la \textit{query} da eseguire sul \textit{database}, che può essere di tipo \textit{INSERT} o \textit{UPDATE}, viene passata come parametro.
 \end{itemize}
 
 \myparagraph{Servizio di invio di un ordine}
@@ -265,51 +265,51 @@ In questa sezione viene presentata l'\textit{API} del servizio \textit{web}. In 
 	\item \textbf{Indirizzo}: /SendOrder;
 	\item \textbf{Input}: il \textit{servlet} richiede i seguenti parametri:
 		\begin{itemize}
-			\item path: è la stringa di connessione al \textit{database} aziendale dell'utente autenticato;
-			\item codici articolo: è la lista dei codici degli articoli che l'utente autenticato ha ordinato;
+			\item \textit{path}: è la stringa di connessione al \textit{database} aziendale dell'utente autenticato;
+			\item \textit{codici articolo}: è la lista dei codici degli articoli che l'utente autenticato ha ordinato;
 			\item \textit{username}: è il nome utente dell'utente autenticato;
-			\item ragione sociale: è la ragione sociale dell'utente autenticato;
-			\item nome: è il nome dell'utente autenticato;
-			\item codice documento: è il codice del documento che deve essere generato con l'ordine;
-			\item data: è la data d'invio dell'ordine;
-			\item note: sono le note inserite dall'utente in fase di invio dell'ordine;
-			\item codice azienda: è il codice azienda della quale l'utente autenticato è cliente.
+			\item \textit{ragione sociale}: è la ragione sociale dell'utente autenticato;
+			\item \textit{nome}: è il nome dell'utente autenticato;
+			\item \textit{codice documento}: è il codice del documento che deve essere generato con l'ordine;
+			\item \textit{data}: è la data d'invio dell'ordine;
+			\item \textit{note}: sono le note inserite dall'utente in fase di invio ordine;
+			\item \textit{codice azienda}: è il codice dell'azienda di cui l'utente autenticato è cliente.
 		\end{itemize}
 	\item \textbf{Output}: le possibili risposte del \textit{servlet} sono le seguenti:
 		\begin{itemize}
-			\item un messaggio positivo nel caso in cui l'ordine è stato inviato con successo;
-			\item un messaggio negativo nel caso in cui l'ordine non è stato inviato con successo.
+			\item un messaggio positivo se l'ordine è stato inviato con successo;
+			\item un messaggio negativo se l'ordine non è stato inviato con successo.
 		\end{itemize}
-	\item \textbf{Descrizione}: questo \textit{servlet} si occupa di registrare sul \textit{database} un ordine contenente gli articoli passati come parametro. Il resto dei parametri passati viene utilizzato per inviare una mail di conferma all'utente autenticato e all'azienda presso cui l'utente è cliente. Nel caso in cui la registrazione dell'ordine sul \textit{database} avvenga correttamente viene restituito un messaggio positivo, mentre nel caso in cui non avvenga correttamente viene restituito un messaggio negativo.
+	\item \textbf{Descrizione}: questo \textit{servlet} si occupa di registrare sul \textit{database} un ordine contenente gli articoli passati come parametro. Il resto dei parametri viene utilizzato per inviare una \textit{mail} di conferma all'utente autenticato e all'azienda presso cui l'utente ha ordinato.
 \end{itemize}
-
+%qui
 \subsection{JDBC}
 
 In questa sezione viene presentato l'utilizzo della \textit{Java Database Connectivity API} nella realizzazione del servizio \textit{web}.
 
 \subsubsection{Driver JDBC}
 
-Un driver \textit{JDBC} è una componente \textit{software} che permette ad un'applicazione \textit{Java} di interagire con un \textit{database}. Per supportare la connessione a singoli \textit{database}, \textit{JDBC} (\textit{Java Database Connectivity API}) richiede i driver per ogni \textit{database}. Il driver permette la connessione con il \textit{database} e implementa il protocollo di trasferimento di \textit{query} e risultati tra il \textit{client} e il \textit{database}. Poiché per l'implementazione del \textit{database} è stato utilizzato \textit{SQL Server} si sono dovuti utilizzare i driver \textit{JDBC} per tale \textit{database}.
+Un \textit{driver} \textit{JDBC} è una componente \textit{software} che permette ad un'applicazione \textit{Java} di interagire con un \textit{database}. Per supportare la connessione a singoli \textit{database}, \textit{JDBC} richiede i \textit{driver} per ogni \textit{database}. Il \textit{driver} permette la connessione con il \textit{database} e implementa il protocollo di trasferimento di \textit{query} e risultati tra \textit{client} e \textit{database}. Poiché nel progetto si è utilizzato \textit{SQL Server}, si sono dovuti utilizzare i \textit{driver} \textit{JDBC} per tale \textit{database}.
 
 \subsubsection{Classe DatabaseConnection} \label{dbconnect}
 
-Per lo sviluppo del servizio \textit{web} è stata realizzata la classe \textit{DatabaseConnection} appartenente al \textit{package} \textit{dbConnection}. Tale classe fornisce un'interfaccia utilizzabile per la gestione dell'interazione con un \textit{database} di tipo \textit{SQL Server}. In questa sezione vengono presentati i metodi che costituiscono tale interfaccia.
+Per lo sviluppo del servizio \textit{web} è stata realizzata la classe \textit{DatabaseConnection}, appartenente al \textit{package} \textit{dbConnection}. Questa fornisce un'interfaccia utilizzabile per gestire l'interazione con un \textit{database} di tipo \textit{SQL Server}. In questa sezione vengono presentati i metodi di \textit{DatabaseConnection}.
 
 \myparagraph{Costruttori}
 
-La classe presenta due metodi costruttori:
+La classe presenta i seguenti \glossaryItem{costruttori}:
 \begin{itemize}
-	\item \textit{public DatabaseConnection(String u, String user, String psw, String db)}: costruisce un oggetto \textit{DatabaseConnection} a partire dall'\textit{URL} del \textit{server} in cui è presente il \textit{database}, la \textit{username} e la \textit{password} di accesso al \textit{database}, e il nome del \textit{database} al quale si desidera connettesi;
-	\item \textit{public DatabaseConnection(String dbConnectionString)}: costruisce un oggetto \textit{DatabaseConnection} a partire dalla stringa di connessione ad uno specifico \textit{database}.
+	\item \textit{public DatabaseConnection(String u, String user, String psw, String db)}: costruisce un oggetto \textit{DatabaseConnection} a partire dall'\textit{URL} del \textit{server} in cui è presente il \textit{database}, la \textit{username} e la \textit{password} di accesso, e il nome del \textit{database} al quale ci si desidera connettere;
+	\item \textit{public DatabaseConnection(String dbConnectionString)}: costruisce un oggetto \textit{DatabaseConnection} a partire dalla stringa di connessione al \textit{database}.
 \end{itemize}
-Il formato della stringa di connessione ad un \textit{database} è il seguente: \textit{indirizzoServer;databaseName=nomeDb;user=u;password=psw}, dove:
+Il formato di una stringa di connessione ad un \textit{database} è il seguente: \textit{indirizzoServer;databaseName=nomeDb;user=u;password=psw}, dove:
 \begin{itemize}
-	\item \textit{indirizzoServer}: è l'indirizzo IP pubblico del \textit{server} contenente il \textit{database} al quale si desidera connettersi. Nel caso del progetto potrebbe essere l'indirizzo del \textit{server} di un'azienda esterna che desidera utilizzare il proprio \textit{database} per l'interazione;
-	\item \textit{nomeDb}: è il nome del \textit{database} al quale si desidera connettersi;
+	\item \textit{indirizzoServer}: è l'indirizzo pubblico del \textit{server} contenente il \textit{database} al quale ci si desidera connettere;
+	\item \textit{nomeDb}: è il nome del \textit{database} al quale ci si desidera connettere;
 	\item \textit{u}: è il nome utente per l'accesso al \textit{database};
 	\item \textit{psw}: è la \textit{password} per l'accesso al \textit{database}.
 \end{itemize}
-Viene di seguito presentato, a titolo d'esempio, il codice \textit{Java} che implementa il metodo \textit{public DatabaseConnection(String dbConnectionString)}. Il metodo si occupa di splittare la stringa di connessione passata come parametro per ottenere i dati utili alla costruzione dell'oggetto \textit{DatabaseConnection}.
+Viene di seguito presentato, a titolo d'esempio, il codice \textit{Java} che implementa il metodo \textit{public DatabaseConnection(String dbConnectionString)}. Esso si occupa di \textit{splittare} la stringa di connessione passata come parametro per ottenere i dati utili alla costruzione dell'oggetto \textit{DatabaseConnection}.
 
 \begin{figure}[!h] 
     \centering 
@@ -319,47 +319,47 @@ Viene di seguito presentato, a titolo d'esempio, il codice \textit{Java} che imp
 
 \myparagraph{Metodo \textit{connectToDb()}}
 
-Tale metodo si occupa di instaurare la connessione con il \textit{database} desiderato. Per far questo, configura i driver \textit{JDBC} e costruisce l'\textit{URL} di connessione al \textit{database} tramite i dati contenuti nell'oggetto d'invocazione. Il metodo potrebbe sollevare un'eccezione di tipo \textit{ClassNotFoundException} nel caso in cui la classe utilizzata per i driver \textit{JDBC} sia inesistente o non sia stata importata all'interno del progetto. Viene di seguito fornito, a titolo d'esempio, il codice del metodo \textit{connectToDb()}.
+Tale metodo si occupa di instaurare la connessione con il \textit{database} desiderato. Per far questo, configura i \textit{driver} \textit{JDBC} e costruisce l'\textit{URL} di connessione al \textit{database}. Il metodo solleva un'eccezione di tipo \textit{ClassNotFoundException} se classe utilizzata per i \textit{driver} \textit{JDBC} è inesistente o non è stata importata all'interno del progetto. Viene di seguito fornito, a titolo d'esempio, il codice del metodo \textit{connectToDb()}.
 
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=\columnwidth]{codice/connessionedb} 
     \caption{Metodo \textit{connectToDb()} della classe \textit{DatabaseConnection}}
 \end{figure}
-
+%qui
 \myparagraph{Altri metodi}
 
-Sono stati implementati altri metodi di complessità inferiore. Per questo motivo ne viene presentata solamente una breve descrizione:
+La classe \textit{DatabaseConnection} presenta altri metodi di complessità inferiore, per i quali viene presentata solamente una breve descrizione:
 \begin{itemize}
-	\item \textit{doQuery(query)}: questo metodo permette di eseguire una \textit{query} di tipo \textit{SELECT} sul \textit{database}. Restituisce il \textit{ResultSet} contenente il risultato della \textit{query};
-	\item \textit{doUpdateQuery(query)}: questo metodo permette di eseguire una \textit{query} di tipo \textit{INSERT}, \textit{UPDATE} o \textit{DELETE} sul \textit{database}. Restituisce il numero di righe inserite, modificate o cancellate;
-	\item \textit{closeConnection()}: questo metodo permette di eseguire il processo di disconnessione dal \textit{database}.
+	\item \textit{doQuery(query)}: permette di eseguire una \textit{query} di tipo \textit{SELECT} sul \textit{database}. Restituisce un \textit{ResultSet} contenente il risultato della \textit{query};
+	\item \textit{doUpdateQuery(query)}: permette di eseguire una \textit{query} di tipo \textit{INSERT}, \textit{UPDATE} o \textit{DELETE} sul \textit{database}. Restituisce il numero di righe inserite, modificate o cancellate;
+	\item \textit{closeConnection()}: permette di eseguire il processo di disconnessione dal \textit{database}.
 \end{itemize}
 
 \subsection{Classi utilità}
 
-Per lo sviluppo del servizio \textit{web} è stato necessario implementare due classi utilità. In questa sezione ne viene presentata brevemente l'implementazione. Tali classi appartengono al \textit{package} \textit{utility}.
+Per lo sviluppo del servizio \textit{web} è stato necessario scrivere due classi utilità, che appartengono al \textit{package} \textit{utility}. Viene di seguito fornita una breve descrizione della loro implementazione.
 
 \subsubsection{Classe GetParam}
 
-La classe \textit{GetParam} si occupa di restituisce un campo statico contenente la stringa di connessione al \textit{database} \textit{CommonDb} dell'applicazione \textit{moviORDER}. Come detto precedentemente, questo \textit{database} contiene tutti i dati di autenticazione degli utenti di \textit{moviORDER}. Poiché tale stringa di connessione viene utilizzata frequentemente all'interno del servizio \textit{web}, si è deciso di inserirla in un unico punto del servizio, in modo da evitare la modifica di più file nel caso in cui essa cambi.
+La classe \textit{GetParam} si occupa di restituire un \glossaryItem{campo statico} contenente la stringa di connessione al \textit{database} \textit{CommonDb}. Questa viene frequentemente utilizzata all'interno del servizio \textit{web}, quindi si è deciso di inserirla in un unico punto del codice, in modo da evitare la modifica di più \textit{file} nel caso in cui venga modificata.
 
 \subsubsection{Classe MailUtility}
 
-La classe \textit{MailUtility} fornisce un'interfaccia per l'invio di e-mail. È stato necessario implementare tale classe poiché è stato richiesto di inviare una mail di conferma all'utente autenticato e all'azienda presso cui l'utente è cliente nel momento in cui un ordine viene registrato. La classe presenta un costruttore che richiede i parametri per la configurazione di un \textit{server SMTP}:
+La classe \textit{MailUtility} fornisce un'interfaccia per l'invio di \textit{e-mail}. È stata implementata per inviare una \textit{mail} di conferma all'utente autenticato e alla sua azienda quando un ordine viene registrato. La classe presenta un costruttore che richiede i parametri per la configurazione di un \glossaryItem{server SMTP}:
 \begin{itemize}
-	\item \textbf{host}: è l'indirizzo IP dell'\textit{host} su cui è installato il \textit{server SMTP};
-	\item \textbf{post}: è il numero di porta dell'\textit{host} su cui è installato il \textit{server SMTP};
+	\item \textbf{host}: è l'indirizzo dell'\textit{host} su cui è installato il \textit{server SMTP};
+	\item \textbf{post}: è la porta dell'\textit{host} su cui è installato il \textit{server SMTP};
 	\item \textbf{\textit{username}}: è il nome utente di accesso al \textit{server SMTP};
 	\item \textbf{\textit{password}}: è la \textit{password} di accesso al \textit{server SMTP}.
 \end{itemize}
-Il metodo \textit{sendMail()} si occupa di configurare e inviare una mail all'utente che ha effettuato l'ordine e all'azienda presso cui l'utente è cliente. Per far questo, il metodo richiede:
+Il metodo \textit{sendMail()} si occupa di configurare e inviare una \textit{mail} all'utente che ha effettuato l'ordine e alla sua azienda. Per far questo, il metodo richiede:
 \begin{itemize}
-	\item indirizzo e-mail dell'utente;
-	\item indirizzo e-mail dell'azienda;
-	\item indirizzo e-mail del mittente;
-	\item oggetto della e-mail;
-	\item testo della e-mail: è una tabella scritta in codice \textit{HTML} contenente i dati degli articoli ordinati.
+	\item indirizzo \textit{e-mail} dell'utente;
+	\item indirizzo \textit{e-mail} dell'azienda;
+	\item indirizzo \textit{e-mail} del mittente;
+	\item oggetto dell'\textit{e-mail};
+	\item testo dell'\textit{e-mail}: è una tabella scritta in codice \textit{HTML} contenente i dati degli articoli ordinati.
 \end{itemize}
 Viene di seguito fornito, a titolo d'esempio, il codice \textit{Java} che implementa il metodo \textit{sendMail()}.
 
@@ -370,30 +370,30 @@ Viene di seguito fornito, a titolo d'esempio, il codice \textit{Java} che implem
     \includegraphics[width=\columnwidth]{codice/mail} 
     \caption{Metodo \textit{sendMail()} della classe \textit{MailUtility}}
 \end{figure}
-
+%qui
 \section{Logica applicativa}
 
 In questa sezione vengono presentati gli aspetti più interessanti riguardanti la codifica della logica applicativa di \textit{moviORDER}. La sezione si incentra sui meccanismi di integrazione dei \textit{plugin} \textit{PhoneGap} con il codice \textit{Javascript} della logica applicativa.
 
 \subsection{Plugin di PhoneGap}
 
-Un \textit{plugin} è un pacchetto di codice che permette al visualizzatore \textit{web} di \textit{Cordova}, il quale renderizza l'applicazione, di comunicare con la piattaforma nativa sulla quale viene eseguito. I \textit{plugin} forniscono accesso alle funzionalità del dispositivo che normalmente non sono disponibili per le applicazioni \textit{web-based}. Tutte le \textit{API} di \textit{Cordova} sono implementate tramite \textit{plugin}. Essi sono composti da un'unica interfaccia \textit{JavaScript} che astrae le differenti implementazioni in codice nativo delle funzionalità fornite dal \textit{plugin}. In fase di \textit{build} dell'applicazione il codice \textit{JavaScript} dei \textit{plugin} viene quindi convertito nel codice nativo della piattaforma sulla quale si sta distribuendo l'applicazione.
+Un \textit{plugin} è un pacchetto di codice che permette al visualizzatore \textit{web} di \textit{Cordova}, il quale renderizza l'applicazione, di comunicare con la piattaforma nativa sulla quale viene eseguito. I \textit{plugin} forniscono accesso alle funzionalità del dispositivo che normalmente non sono disponibili per le applicazioni \textit{web-based}. Tutte le \textit{API} di \textit{Cordova} sono implementate tramite \textit{plugin}. Essi sono composti da un'unica interfaccia \textit{JavaScript} che astrae le differenti implementazioni in codice nativo delle funzionalità fornite dal \textit{plugin}. In fase di \textit{build} dell'applicazione, il codice \textit{JavaScript} dei \textit{plugin} viene convertito nel codice nativo della piattaforma sulla quale si sta distribuendo l'applicazione.
 
 \subsection{Installazione dei plugin}
 
-Tramite \textit{PhoneGap CLI}, interfaccia a linea di comando precedentemente descritta, è possibile aggiungere \textit{plugin} alla configurazione del progetto \textit{PhoneGap}. È sufficiente lanciare la CLI dalla cartella principale del progetto ed eseguire il comando \textit{phonegap plugin add nomePlugin}, dove \textit{nomePlugin} è il nome del \textit{plugin} che si desidera scaricare ed installare (es. \textit{cordova-plugin-whitelist}).
+Tramite \textit{PhoneGap CLI}, interfaccia a linea di comando precedentemente descritta, è possibile aggiungere \textit{plugin} alla configurazione del progetto \textit{PhoneGap}. È sufficiente lanciare la \textit{CLI} dalla cartella principale del progetto ed eseguire il comando \textit{phonegap plugin add nomePlugin}, dove \textit{nomePlugin} è il nome del \textit{plugin} che si desidera scaricare ed installare (es. \textit{cordova-plugin-whitelist}).
 
 \subsection{Premesse all'utilizzo dei plugin}
 
-Per poter utilizzare efficacemente i \textit{plugin} è necessario predisporre il codice \textit{JavaScript} al loro utilizzo. In particolare sono necessari due accorgimenti che vengono di seguito presentati.
+Per poter utilizzare efficacemente i \textit{plugin}, è necessario predisporre il codice \textit{JavaScript} al loro utilizzo. In particolare, sono necessari due accorgimenti che vengono di seguito presentati.
 
 \subsubsection{Inclusione di cordova.js}
 
-Ogni file della logica applicativa di \textit{moviORDER} che utilizza dei \textit{plugin} deve includere il file \textit{cordova.js}. Questo file \textit{JavaScript} permette il funzionamento dei \textit{plugin} utilizzati all'interno della logica. Se si utilizzasse un \textit{plugin} senza aver importato tale file, la console darebbe il seguente errore: ``\textit{Cordova} in not available, Make sure to include cordova.js''.
+Ogni \textit{file} della logica applicativa che utilizza dei \textit{plugin} deve includere il file \textit{cordova.js}. Questo \textit{file} \textit{JavaScript} permette il funzionamento dei \textit{plugin} utilizzati all'interno della logica. Se si utilizzasse un \textit{plugin} senza aver importato tale \textit{file}, la \textit{console} darebbe il seguente errore: ``\textit{Cordova in not available, Make sure to include cordova.js}''.
 
 \subsubsection{Evento deviceready}
 
-L'evento \textit{deviceready} è essenziale in ogni applicazione \textit{PhoneGap} poiché segnala il corretto caricamento delle \textit{API} di \textit{Cordova} sul dispositivo. Se l'evento non venisse atteso prima di utilizzare un \textit{plugin}, si rischierebbe che l'applicazione effettui una chiamata ad una funzione \textit{JavaScript} di \textit{Cordova} prima che il corrispondente codice nativo per il dispositivo diventi disponibile. L'evento \textit{deviceready} viene lanciato nel momento in cui \textit{Cordova} è stato completamente caricato. Quindi dopo aver atteso l'evento, è possibile effettuare chiamate alle \textit{API} di \textit{Cordova} in completa sicurezza. Per attendere l'evento è sufficiente inserire un listener nel codice \textit{JavaScript}. Viene di seguito fornito, a scopo illustrativo, un esempio di codice \textit{JavaScript} che implementa l'attesa di tale evento.
+L'evento \textit{deviceready} è essenziale in ogni applicazione \textit{PhoneGap}, poiché segnala il corretto caricamento delle \textit{API} di \textit{Cordova} sul dispositivo. Se l'evento non venisse atteso prima di utilizzare un \textit{plugin}, si rischierebbe che l'applicazione effettui chiamate a funzioni \textit{JavaScript} di \textit{Cordova} prima che il corrispondente codice nativo per il dispositivo diventi disponibile. L'evento \textit{deviceready} viene lanciato nel momento in cui \textit{Cordova} è stato completamente caricato. Quindi, dopo aver atteso l'evento, è possibile effettuare chiamate alle \textit{API} di \textit{Cordova} in completa sicurezza. Per attendere l'evento è sufficiente inserire un \textit{listener} nel codice \textit{JavaScript}. Viene di seguito fornito, a scopo illustrativo, un esempio di codice \textit{JavaScript} che implementa l'attesa di tale evento.
 
 \begin{figure}[!h] 
     \centering 
@@ -403,31 +403,31 @@ L'evento \textit{deviceready} è essenziale in ogni applicazione \textit{PhoneGa
 
 \subsection{Plugin utilizzati}
 
-In questa sezione vengono presentati i \textit{plugin} \textit{PhoneGap} utilizzati nella realizzazione della logica applicativa di \textit{moviORDER}. Per ogni \textit{plugin} vengono messi in evidenzia vantaggi e svantaggi (se presenti) nell'utilizzo e un esempio di utilizzo.
+In questa sezione vengono presentati i \textit{plugin} \textit{PhoneGap} utilizzati nella realizzazione della logica applicativa di \textit{moviORDER}. Per ogni \textit{plugin} vengono messi in evidenzia vantaggi, svantaggi (se presenti) e un esempio di utilizzo.
 
 \subsubsection{Dialogs plugin}
 
-Il \textit{plugin} \textit{dialogs} fornisce accesso all'interfaccia grafica nativa degli elementi \textit{dialog} tramite l'utilizzo dell'oggetto \textit{navigator.notification}. Questo \textit{plugin} è stato utilizzato per convertire gli \textit{alert box} delle usuali pagine \textit{web} in \textit{dialog} nativi per l'ambiente \textit{mobile}. Sono stati utilizzati i seguenti metodi:
+Il \textit{plugin} \textit{dialogs} fornisce accesso all'interfaccia grafica nativa degli elementi \textit{dialog}, tramite l'utilizzo dell'oggetto \textit{navigator.notification}. Questo \textit{plugin} è stato utilizzato per convertire gli \textit{alert box} delle usuali pagine \textit{web} in \textit{dialog} nativi per l'ambiente \textit{mobile}. Si sono utilizzati i seguenti metodi:
 \begin{itemize}
-	\item \textit{alert()}: visualizza un \textit{dialog} con un messaggio di allerta preimpostato. Il metodo richiede i seguenti parametri:
+	\item \textit{alert()}: visualizza un \textit{dialog} con contente messaggio di allerta preimpostato. Il metodo richiede i seguenti parametri:
 	\begin{itemize}
 		\item \textit{message}: è il messaggio visualizzato nel \textit{dialog};
-		\item \textit{callback}: è una funzione anonima di \textit{callback} da eseguire quando viene premuto il pulsante nel \textit{dialog};
+		\item \textit{callback}: è una \glossaryItem{funzione anonima} di \textit{callback} da eseguire quando viene premuto il pulsante nel \textit{dialog};
 		\item \textit{title}: è il titolo del \textit{dialog};
 		\item \textit{buttonName}: è l'etichetta del pulsante nel \textit{dialog}.
 	\end{itemize}
 	\item \textit{confirm()}: visualizza un \textit{dialog} per chiedere conferma di un'azione. Il metodo richiede i seguenti parametri:
 	\begin{itemize}
 		\item \textit{message}: è il messaggio visualizzato nel \textit{dialog} di conferma;
-		\item \textit{callback}: è una funzione anonima di \textit{callback} da eseguire nel caso in cui il bottone di conferma viene premuto;
+		\item \textit{callback}: è una funzione anonima di \textit{callback} da eseguire se il bottone di conferma viene premuto;
 		\item \textit{title}: è il titolo del \textit{dialog} di conferma;
 		\item \textit{buttonLabels}: sono le etichette dei vari bottoni presenti nel \textit{dialog} di conferma. Solitamente sono ``OK'' e ``Annulla''.
 	\end{itemize}
 \end{itemize}
 
-Senza l'utilizzo di questo \textit{plugin} non sarebbe stato possibile modificare il titolo e i bottoni del \textit{dialog} poiché per motivi di sicurezza \textit{JavaScript} non permette tale modifica. Inoltre la visualizzazione del \textit{dialog} non sarebbe stata quella desiderata, ovvero la visualizzazione nativa. 
+Senza l'utilizzo di questo \textit{plugin} non si sarebbe potuto modificare il titolo e i bottoni del \textit{dialog}, poiché per motivi di sicurezza \textit{JavaScript} non permette tale modifica. Inoltre, la visualizzazione del \textit{dialog} non sarebbe stata quella desiderata, ovvero la visualizzazione nativa. 
 
-Vengono di seguito forniti, a scopo illustrativo, un esempio di codice \textit{JavaScript} che non utilizza il \textit{plugin} e un esempio che lo utilizza. Per ognuno degli esempi viene mostrato uno \textit{screenshot} dell'output risultante che, nel primo caso sarà un comune \textit{alert} e nel secondo un \textit{dialog} nativo.
+Vengono di seguito forniti, a scopo illustrativo, un esempio di codice \textit{JavaScript} che non utilizza il \textit{plugin} e un esempio che lo utilizza. Per ognuno degli esempi viene mostrato uno \textit{screenshot} dell'\textit{output} risultante che, nel primo caso sarà un comune \textit{alert}, mentre nel secondo un \textit{dialog} nativo.
 
 \begin{figure}[!h] 
     \centering 
@@ -440,7 +440,7 @@ Vengono di seguito forniti, a scopo illustrativo, un esempio di codice \textit{J
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=0.4\columnwidth]{codice/imgalert} 
-    \caption{Esempio di visualizzazione scorretta - \textit{alert}}
+    \caption{Esempio di visualizzazione scorretta (\textit{alert})}
 \end{figure}
 
 \begin{figure}[!h] 
@@ -452,12 +452,12 @@ Vengono di seguito forniti, a scopo illustrativo, un esempio di codice \textit{J
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=0.4\columnwidth]{codice/imgDialog} 
-    \caption{Esempio di visualizzazione corretta - \textit{dialog}}
+    \caption{Esempio di visualizzazione corretta (\textit{dialog})}
 \end{figure}
 
 \subsubsection{Network information plugin}
 
-Il \textit{plugin} \textit{network information} fornisce una moderna implementazione della \textit{Network Information API}. Essa fornisce informazioni riguardanti la rete cellulare e Wi-Fi del dispositivo e permette di capire se il dispositivo presenta una connessione ad \textit{Internet}. Più precisamente, il \textit{plugin} fornisce un'interfaccia \textit{JavaScript} che astrae il codice nativo utilizzato per monitorare la rete del dispositivo. \textit{Navigator.connection} è l'oggetto che permette di acquisire le informazioni appena descritte. La proprietà \textit{type} è stata utilizzata per comprendere in modo veloce lo stato della connessione del dispositivo e la tipologia di connessione attiva. Essa può assumere i seguenti valori:
+Il \textit{plugin} \textit{network information} fornisce un'implementazione moderna della \textit{Network Information API}. Questa fornisce informazioni riguardanti la rete cellulare e il \textit{Wi-Fi} del dispositivo e permette di capire se il \textit{device} presenta una connessione ad \textit{Internet}. Più precisamente, il \textit{plugin} fornisce un'interfaccia \textit{JavaScript} che astrae il codice nativo utilizzato per monitorare la rete del dispositivo. \textit{Navigator.connection} è l'oggetto che permette di acquisire le informazioni appena descritte. La proprietà \textit{type} è stata utilizzata per comprendere in modo veloce lo stato della connessione del dispositivo e la tipologia di connessione attiva. Essa può assumere i seguenti valori:
 \begin{itemize}
 	\item \textit{Connection.UNKNOWN}: tipologia di rete sconosciuta;
 	\item \textit{Connection.ETHERNET}: dispositivo connesso alla rete via cavo \textit{ethernet};
@@ -468,16 +468,16 @@ Il \textit{plugin} \textit{network information} fornisce una moderna implementaz
 	\item \textit{Connection.CELL}: dispositivo connesso ad una rete cellulare la cui tipologia non è identificabile;
 	\item \textit{Connection.NONE}: dispositivo non connesso alla rete.
 \end{itemize}
-Un limite di questa proprietà è presente in ambiente \textit{iOS}, infatti non è possibile identificare nessun tipo di rete cellulare alla quale il dispositivo è connesso. Per questo, in ambiente \textit{iOS}, si è dovuta utilizzare la proprietà \textit{onLine} dell'oggetto \textit{navigator}.
+Un limite di questa proprietà è presente in ambiente \textit{iOS}, infatti non è possibile identificare nessun tipo di rete cellulare alla quale il dispositivo è connesso. Per questo, su \textit{iOS}, si è dovuta utilizzare la proprietà \textit{onLine} dell'oggetto \textit{navigator}.
 
 All'oggetto \textit{navigator.connection} sono associate due tipologie di evento:
 \begin{itemize}
-	\item \textit{offline}: evento lanciato quando un dispositivo precedentemente collegato ad \textit{Internet} perde la connessione e l'applicazione non è più in grado di accedere alla rete. In particolare, viene lanciato esattamente quando il valore della proprietà \textit{type} diventa \textit{Connection.NONE};
-	\item \textit{online}: evento lanciato quando un dispositivo precedentemente scollegato dalla rete riceve la connessione permettendo all'applicazione di accedere ad \textit{Internet}. In particolare, viene lanciato esattamente quando il valore della proprietà \textit{type} cambia da \textit{NONE} ad un altro valore.
+	\item \textit{offline}: viene lanciato quando un dispositivo precedentemente collegato ad \textit{Internet} perde la connessione e quindi l'applicazione non è più in grado di accedere alla rete. In particolare, viene lanciato esattamente quando il valore della proprietà \textit{type} diventa \textit{Connection.NONE};
+	\item \textit{online}: viene lanciato quando un dispositivo precedentemente scollegato dalla rete riceve la connessione permettendo all'applicazione di accedere ad \textit{Internet}. In particolare, viene lanciato esattamente quando il valore della proprietà \textit{type} cambia da \textit{NONE} ad un altro valore.
 \end{itemize}
-Il \textit{plugin} \textit{network information} è stato utilizzato per chiudere \textit{moviORDER} nel caso in cui venisse aperta mentre il dispositivo è \textit{offline}. L'evento \textit{offline} ha permesso di visualizzare messaggi relativi allo stato della connessione. Più precisamente, nel caso in cui il dispositivo perdesse la connessione durante l'utilizzo dell'applicazione viene visualizzato un messaggio che notifica all'utente che l'applicazione è inutilizzabile.
+Il \textit{plugin} \textit{network information} è stato utilizzato per chiudere \textit{moviORDER} nel caso in cui venga aperta mentre il dispositivo è \textit{offline}. L'evento \textit{offline} ha permesso di visualizzare messaggi relativi allo stato della connessione. Più precisamente, se il dispositivo perde la connessione durante l'utilizzo dell'applicazione, viene visualizzato un messaggio che notifica l'inutilizzabilità della stessa.
 
-Vengono di seguito forniti, a scopo illustrativo, degli esempi di codice \textit{JavaScript} che utilizzano l'oggetto \textit{network.connection} ed in particolare la proprietà \textit{type} e l'evento \textit{offline}.
+Vengono di seguito forniti, a scopo illustrativo, degli esempi di codice \textit{JavaScript} che utilizzano la proprietà \textit{type} e l'evento \textit{offline} dell'oggetto \textit{network.connection}.
 
 \begin{figure}[!h] 
     \centering 
@@ -490,10 +490,10 @@ Vengono di seguito forniti, a scopo illustrativo, degli esempi di codice \textit
     \includegraphics[width=\columnwidth]{codice/offline} 
     \caption{Esempio di utilizzo dell'evento \textit{offline}}
 \end{figure}
-
+%manca questo
 \subsubsection{Barcode scanner plugin}
 
-Il \textit{plugin} \textit{barcode scanner} fornisce un'interfaccia \textit{JavaScript} che astrae il codice nativo che permette di effettuare la scansione di un codice a barre da un qualsiasi dispositivo dotato di fotocamera. Il \textit{plugin} crea l'oggetto \textit{cordova.plugin.barcodeScanner} che presenta il metodo \textit{scan(success, fail, settings)}. \textit{Success} è una funzione di \textit{callback} che viene eseguita quando la scansione del codice a barre va a buon fine. \textit{Fail} è una funzione di \textit{callback} che viene eseguita quando la scansione del codice a barre non va a buon fine. \textit{Settings} è una variabile contenente un insieme di impostazioni per l'utilizzo del \textit{plugin}, quali:
+Il \textit{plugin} \textit{barcode scanner} fornisce un'interfaccia \textit{JavaScript} che astrae il codice nativo che permette di effettuare la scansione di un codice a barre da qualsiasi dispositivo dotato di fotocamera. Il \textit{plugin} crea l'oggetto \textit{cordova.plugin.barcodeScanner} che presenta il metodo \textit{scan(success, fail, settings)}. \textit{Success} è una funzione di \textit{callback} che viene eseguita quando la scansione del codice a barre va a buon fine. \textit{Fail} è una funzione di \textit{callback} che viene eseguita quando la scansione del codice a barre non va a buon fine. \textit{Settings} è una variabile contenente un insieme di impostazioni per l'utilizzo del \textit{plugin}, quali:
 \begin{itemize}
 	\item \textit{preferFrontCamera}: permette di preferire la fotocamera frontale a quella posteriore per la scansione del codice a barre;
 	\item \textit{showFlipCameraButton}: permette di visualizzare il bottone per il cambio della fotocamera;
@@ -510,7 +510,7 @@ Il \textit{plugin} \textit{barcode scanner} fornisce un'interfaccia \textit{Java
 In ambiente iOS, per poter utilizzare il \textit{plugin}, è necessario aggiungere una \textit{NSCameraUsageDescription} al file \textit{Info.plist}. \textit{NSCameraUsageDescription} descrive la ragione per la quale l'applicazione accede alla fotocamera dell'utente. Quando il sistema operativo richiede all'utente di permettere l'accesso, la stringa inserita nella \textit{NSCameraUsageDescription} viene visualizzata sul \textit{dialog}. Se non viene fornita la descrizione di utilizzo, l'applicazione crescerà prima della visualizzazione del \textit{dialog}. Inoltre, Apple rifiuta le applicazioni che accedono a dati privati senza fornire una descrizione di utilizzo. 
 
 Il \textit{plugin} ha funzionato perfettamente in ambiente \textit{Android} ma ha presentato alcuni problemi in ambiente \textit{iOS}. Nei dispositivi con una fotocamera mediocre le scansioni richiedevano più tempo del previsto, alcune volte anche minuti. Per risolvere il problema si è dovuto modificare il codice nativo della versione \textit{iOS} dell'applicazione. Il problema veniva riscontrato perché il codice differenziava il processo di scansione a seconda della qualità rilevata della fotocamera del dispositivo. Per cellulari con fotocamera mediocre veniva fatta una valutazione troppo ottimistica e per questo si è dovuto modificare il codice in modo da rendere il processo di scansione uguale per tutte le fotocamere. Dopo vari test si è potuto osservare che la soluzione migliore era l'utilizzo del processo di scansione per fotocamere di qualità media. Viene di seguito fornito, a scopo illustrativo, il codice \textit{Objective-C++} che si occupa di settare il processo di scansione.
-
+% fino a qui
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=\columnwidth]{codice/scan} 
@@ -531,7 +531,7 @@ Viene di seguito fornito, a scopo illustrativo, il codice \textit{JavaScript} de
 
 \section{Interfaccia grafica}
 
-In questa sezione vengono presentati gli aspetti più interessanti riguardanti la codifica dell'interfaccia grafica di \textit{moviORDER}. In particolare, vengono presentate le possibili interazioni dell'utente con le interfacce. Nell'ultima sezione vengono fatte delle considerazioni sullo sviluppo dell'interfaccia.
+In questa sezione vengono presentati gli aspetti più interessanti riguardanti la codifica dell'interfaccia grafica di \textit{moviORDER}. In particolare, vengono presentate le possibili interazioni dell'utente con le interfacce. Nell'ultima sezione vengono illustrate delle considerazioni sullo sviluppo dell'interfaccia.
 
 \subsection{Schermata di login}
 
@@ -541,7 +541,7 @@ In questa sezione vengono presentati gli aspetti più interessanti riguardanti l
     \caption{Schermata di login}
 \end{figure}
 
-Tramite la schermata di login, un qualsiasi utente in possesso di credenziali di accesso può accedere a \textit{moviORDER}. Per tentare l'accesso, è necessario inserire \textit{username} e \textit{password} e premere sul pulsante di login. Se l'utente ha inserito credenziali corrette viene aperta la \textit{home page} dell'applicazione, mentre se le credenziali non dovessero essere corrette viene visualizzato un messaggio d'errore. Il messaggio d'errore è esplicativo dell'errore riscontrato e i possibili errori sono:
+Tramite la schermata di \textit{login} un qualsiasi utente in possesso di credenziali di accesso può accedere a \textit{moviORDER}. Per tentare l'accesso è necessario inserire \textit{username} e \textit{password} e, successivamente, premere sul pulsante di \textit{login}. Se l'utente inserisce credenziali corrette verrà aperta la \textit{home page} dell'applicazione, mentre se le credenziali non dovessero essere corrette verrà visualizzato un messaggio d'errore. Quest'ultimo è esplicativo dell'errore riscontrato, che può essere uno dei seguenti:
 \begin{itemize}
 	\item le credenziali non sono state inserite;
 	\item la \textit{username} inserita è inesistente;
@@ -556,7 +556,7 @@ Tramite la schermata di login, un qualsiasi utente in possesso di credenziali di
     \includegraphics[width=0.4\columnwidth]{interfaccia/home} 
     \caption{\textit{Home page}}
 \end{figure}
-
+%da qui
 La \textit{home page} racchiude tutte le funzionalità di \textit{moviORDER}. A partire dall'alto e proseguendo verso il basso, l'interfaccia presenta le seguenti parti:
 \begin{itemize}
 	\item messaggio di benvenuto per l'utente autenticato: questo messaggio visualizza la ragione sociale dell'utente;

@@ -194,7 +194,7 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 		\end{enumerate}
 	\item \textbf{Scenari alternativi}:
 		\begin{itemize}
-			\item Durante l'operazione di aggiunta articolo, l'attore ha inserito un codice articolo non corrispondente a nessun articolo venduto dall'azienda, oppure ha inserito una quantità non permessa per l'articolo, oppure la scansione del codice a barre per la ricerca del codice articolo è fallita: UC2.3.2 - Visualizzazione errore di inserimento articolo;
+			\item Durante l'operazione di aggiunta articolo, l'attore ha inserito un codice non corrispondente a nessun articolo venduto dall'azienda, oppure ha inserito una quantità non permessa per l'articolo, oppure la scansione del codice a barre per la ricerca del codice articolo è fallita: UC2.3.2 - Visualizzazione errore di inserimento articolo;
 			\item Durante l'operazione di modifica articolo, l'attore ha inserito una quantità non permessa per l'articolo: UC2.3.4 - Visualizzazione errore di modifica articolo;
 			\item L'attore ha premuto il bottone di rimozione articoli selezionati senza aver selezionato alcun articolo dal carrello: UC2.3.11 - Visualizzazione errore di mancata selezione di articoli;
 			\item L'attore ha premuto il bottone di invio ordine senza aver selezionato alcun articolo dal carrello: UC2.3.12 - Visualizzazione errore di mancata selezione di articoli.
@@ -244,7 +244,7 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 \begin{itemize}
 	\item \textbf{Attore}: Utente autenticato;
 	\item \textbf{Descrizione}: L'attore deve inserire un codice articolo per l'operazione di aggiunta articolo;
-	\item \textbf{Pre-condizioni}: L'attore ha avviato l'applicazione, è riconosciuto dal sistema, ha richiesto di aggiungere un articolo in carrello e quando il sistema richiede l'inserimento di un codice articolo per l'operazione di aggiunta articolo, l'attore esprime la volontà di voler inserire il codice articolo manualmente;
+	\item \textbf{Pre-condizioni}: L'attore ha avviato l'applicazione, è riconosciuto dal sistema, ha richiesto di aggiungere un articolo in carrello e quando il sistema richiede l'inserimento di un codice articolo per l'operazione di aggiunta articolo, l'attore esprime la volontà di voler inserire il codice manualmente;
 	\item \textbf{Post-condizioni}: L'attore ha inserito il codice articolo manualmente;
 	\item \textbf{Scenario principale}: L'attore inserisce il codice articolo manualmente tramite una \textit{text box};
 	\item \textbf{Generalizzazione}: UC2.3.1.1 - Inserimento codice articolo.
@@ -255,7 +255,7 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 \begin{itemize}
 	\item \textbf{Attore}: Utente autenticato;
 	\item \textbf{Descrizione}: L'attore deve inserire un codice articolo per l'operazione di aggiunta articolo;
-	\item \textbf{Pre-condizioni}: L'attore ha avviato l'applicazione, è riconosciuto dal sistema, ha richiesto di aggiungere un articolo in carrello e quando il sistema richiede l'inserimento di un codice articolo per l'operazione di aggiunta articolo, l'attore esprime la volontà di voler inserire il codice articolo mediante la scansione del codice a barre di un articolo;
+	\item \textbf{Pre-condizioni}: L'attore ha avviato l'applicazione, è riconosciuto dal sistema, ha richiesto di aggiungere un articolo in carrello e quando il sistema richiede l'inserimento di un codice articolo per l'operazione di aggiunta articolo, l'attore esprime la volontà di voler inserire il codice mediante la scansione del codice a barre di un articolo;
 	\item \textbf{Post-condizioni}: L'attore ha inserito il codice articolo mediante la scansione del codice a barre dell'articolo;
 	\item \textbf{Scenario principale}: L'attore inserisce il codice articolo mediante la scansione del codice a barre dell'articolo;
 	\item \textbf{Generalizzazione}: UC2.3.1.1 - Inserimento codice articolo.
@@ -285,8 +285,8 @@ L'accesso all'applicazione è consentito solamente agli utenti provvisti di cred
 
 \begin{itemize}
 	\item \textbf{Attore}: Utente autenticato;
-	\item \textbf{Descrizione}: L'attore inserisce un codice articolo non corrispondente a nessun articolo venduto dall'azienda, oppure inserisce una quantità non permessa per l'articolo, oppure la scansione del codice a barre per la ricerca del codice articolo è fallita;
-	\item \textbf{Pre-condizioni}: L'attore ha avviato l'applicazione, è riconosciuto dal sistema, ha richiesto di aggiungere un articolo in carrello e ha inserito un codice articolo che non corrisponde a nessun articolo venduto dall'azienda, oppure ha inserito una quantità non permessa per l'articolo, oppure la scansione del codice a barre per la ricerca del codice articolo è fallita;
+	\item \textbf{Descrizione}: L'attore inserisce un codice non corrispondente a nessun articolo venduto dall'azienda, oppure inserisce una quantità non permessa per l'articolo, oppure la scansione del codice a barre per la ricerca del codice articolo è fallita;
+	\item \textbf{Pre-condizioni}: L'attore ha avviato l'applicazione, è riconosciuto dal sistema, ha richiesto di aggiungere un articolo in carrello e ha inserito un codice che non corrisponde a nessun articolo venduto dall'azienda, oppure ha inserito una quantità non permessa per l'articolo, oppure la scansione del codice a barre per la ricerca del codice articolo è fallita;
 	\item \textbf{Post-condizioni}: L'attore ha visualizzato un messaggio d'errore relativo all'impossibilità di aggiungere l'articolo in carrello;
 	\item \textbf{Scenario principale}: L'attore visualizza un messaggio d'errore relativo all'impossibilità di aggiungere l'articolo in carrello.
 \end{itemize}
@@ -524,17 +524,17 @@ RFO3.5.3.9 & Se la scansione del codice a barre va a buon fine ma il codice otte
 RFO3.5.3.10 & Se la scansione del codice a barre va a buon fine e il codice ottenuto corrisponde ad un articolo venduto dall'azienda ma l'articolo è già presente in carrello, deve essere visualizzato un messaggio che inviti l'utente autenticato a cambiare la quantità dell'articolo in carrello & UC2.3.2 \\ \hline
 RFO3.5.3.11 & Se la scansione del codice a barre va a buon fine e il codice ottenuto corrisponde ad un articolo venduto dall'azienda, deve essere visualizzata la pagina di aggiunta articolo & Capitolato \\ \hline
 \textbf{RFO3.5.4} & Se l'utente autenticato decide di inserire il codice articolo manualmente, deve essere visualizzata una \textit{text box} per l'inserimento del codice & Capitolato UC2.3.1.2 \\ \hline
-RFO3.5.4.1 & Se l'utente autenticato inserisce un codice articolo che non corrisponde ad un articolo venduto dall'azienda, deve essere visualizzato un messaggio d'errore che notifichi l'utente del problema & UC2.3.2 \\ \hline
-RFO3.5.4.2 & Se l'utente autenticato inserisce un codice articolo che corrisponde ad un articolo venduto dall'azienda ma l'articolo è già presente in carrello, deve essere visualizzato un messaggio che inviti l'utente a cambiare la quantità dell'articolo in carrello & UC2.3.2 \\ \hline
-RFO3.5.4.3 & Se l'utente autenticato inserisce un codice articolo che corrisponde ad un articolo venduto dall'azienda, deve essere visualizzata la pagina di aggiunta articolo & Capitolato \\ \hline
-RFO3.5.5 & Nella pagina di aggiunta articolo l'utente autenticato deve poter visualizzare il codice articolo & Capitolato \\ \hline
-RFO3.5.6 & Nella pagina di aggiunta articolo l'utente autenticato deve poter visualizzare la descrizione dell'articolo & Capitolato \\ \hline
-RFO3.5.7 & Nella pagina di aggiunta articolo l'utente autenticato deve poter visualizzare le informazioni dell'articolo & Capitolato \\ \hline
+RFO3.5.4.1 & Se l'utente autenticato inserisce un codice che non corrisponde ad un articolo venduto dall'azienda, deve essere visualizzato un messaggio d'errore che notifichi l'utente del problema & UC2.3.2 \\ \hline
+RFO3.5.4.2 & Se l'utente autenticato inserisce un codice che corrisponde ad un articolo venduto dall'azienda ma l'articolo è già presente in carrello, deve essere visualizzato un messaggio che inviti l'utente a cambiare la quantità dell'articolo in carrello & UC2.3.2 \\ \hline
+RFO3.5.4.3 & Se l'utente autenticato inserisce un codice che corrisponde ad un articolo venduto dall'azienda, deve essere visualizzata la pagina di aggiunta articolo & Capitolato \\ \hline
+RFO3.5.5 & Nella pagina di aggiunta articolo, l'utente autenticato deve poter visualizzare il codice dell'articolo & Capitolato \\ \hline
+RFO3.5.6 & Nella pagina di aggiunta articolo, l'utente autenticato deve poter visualizzare la descrizione dell'articolo & Capitolato \\ \hline
+RFO3.5.7 & Nella pagina di aggiunta articolo, l'utente autenticato deve poter visualizzare le informazioni dell'articolo & Capitolato \\ \hline
 RFO3.5.8 & La pagina di aggiunta articolo deve proporre all'utente autenticato una quantità minima per l'articolo da ordinare & Capitolato \\ \hline
-RFO3.5.9 & Nella pagina di aggiunta articolo l'utente autenticato deve poter inserire una quantità per l'articolo da ordinare & Capitolato UC2.3.1.4 \\ \hline
-RFO3.5.10 & Nella pagina di aggiunta articolo l'utente autenticato deve poter inserire delle note per l'articolo da ordine & Capitolato UC2.3.1.5\\ \hline
-RFO3.5.11 & Nella pagina di aggiunta articolo l'utente autenticato deve poter annullare l'inserimento dell'articolo & Capitolato \\ \hline
-RFO3.5.12 & Nella pagina di aggiunta articolo l'utente autenticato deve poter confermare l'inserimento dell'articolo & Capitolato \\ \hline
+RFO3.5.9 & Nella pagina di aggiunta articolo, l'utente autenticato deve poter inserire una quantità per l'articolo da ordinare & Capitolato UC2.3.1.4 \\ \hline
+RFO3.5.10 & Nella pagina di aggiunta articolo, l'utente autenticato deve poter inserire delle note per l'articolo da ordine & Capitolato UC2.3.1.5\\ \hline
+RFO3.5.11 & Nella pagina di aggiunta articolo, l'utente autenticato deve poter annullare l'inserimento dell'articolo & Capitolato \\ \hline
+RFO3.5.12 & Nella pagina di aggiunta articolo, l'utente autenticato deve poter confermare l'inserimento dell'articolo & Capitolato \\ \hline
 RFO3.5.13 & Se l'utente autenticato conferma l'inserimento dell'articolo e ha inserito una quantità errata (troppo bassa, troppo alta o che non soddisfa uno step impostato dall'azienda), deve essere visualizzato un messaggio d'errore di errata quantità inserita & UC2.3.2 \\ \hline
 RFO3.5.14 & Se l'utente autenticato conferma l'inserimento dell'articolo e i dati inseriti sono corretti, deve essere visualizzata la \textit{home page} dell'applicazione e il nuovo articolo deve essere presente in carrello & Capitolato \\ \hline
 RFO3.5.15 & Se l'utente autenticato annulla l'inserimento dell'articolo, deve essere visualizzata la \textit{home page} dell'applicazione e il carrello non deve aver subito cambiamenti & Capitolato \\ \hline
@@ -547,15 +547,15 @@ RFO3.9 & L'utente autenticato deve poter deselezionare tutti gli articoli selezi
 RFO3.10.1 & Se l'utente autenticato preme sulla visualizzazione di un articolo in carrello, deve essere richiesta la conferma di modifica tramite la visualizzazione di un \textit{dialog} & Stagista \\ \hline
 RFO3.10.2 & Se l'utente autenticato accetta di modificare l'articolo sul \textit{dialog} di conferma, deve essere aperta la pagina di modifica articolo & Stagista \\ \hline
 RFO3.10.3 & Se l'utente autenticato rifiuta di modificare l'articolo sul \textit{dialog} di conferma, deve essere visualizzata la \textit{home page} senza cambiamenti sugli articoli in carrello & Stagista \\ \hline
-RFO3.10.4 & Nella pagina di modifica articolo l'utente autenticato deve poter visualizzare il codice articolo dell'articolo selezionato & Capitolato \\ \hline
-RFO3.10.5 & Nella pagina di modifica articolo l'utente autenticato deve poter visualizzare la descrizione dell'articolo selezionato & Capitolato \\ \hline
-RFO3.10.6 & Nella pagina di modifica articolo l'utente autenticato deve poter visualizzare le informazioni dell'articolo selezionato & Capitolato \\ \hline
+RFO3.10.4 & Nella pagina di modifica articolo, l'utente autenticato deve poter visualizzare il codice dell'articolo selezionato & Capitolato \\ \hline
+RFO3.10.5 & Nella pagina di modifica articolo, l'utente autenticato deve poter visualizzare la descrizione dell'articolo selezionato & Capitolato \\ \hline
+RFO3.10.6 & Nella pagina di modifica articolo, l'utente autenticato deve poter visualizzare le informazioni dell'articolo selezionato & Capitolato \\ \hline
 RFO3.10.7 & La pagina di modifica articolo deve proporre all'utente autenticato la quantità precedentemente inserita per l'articolo selezionato & Capitolato \\ \hline
-RFO3.10.8 & Nella pagina di modifica articolo l'utente autenticato deve poter cambiare la quantità per l'articolo selezionato & Capitolato UC2.3.3.1 \\ \hline
+RFO3.10.8 & Nella pagina di modifica articolo, l'utente autenticato deve poter cambiare la quantità per l'articolo selezionato & Capitolato UC2.3.3.1 \\ \hline
 RFO3.10.9 & La pagina di modifica articolo deve proporre all'utente autenticato le note precedentemente inserite per l'articolo selezionato & Capitolato \\ \hline
-RFO3.10.10 & Nella pagina di modifica articolo l'utente autenticato deve poter modificare le note per l'articolo selezionato & Capitolato UC2.3.3.1 \\ \hline
-RFO3.10.11 & Nella pagina di modifica articolo l'utente autenticato deve poter annullare la modifica dell'articolo & Capitolato \\ \hline
-RFO3.10.12 & Nella pagina di modifica articolo l'utente autenticato deve poter confermare la modifica dell'articolo & Capitolato \\ \hline
+RFO3.10.10 & Nella pagina di modifica articolo, l'utente autenticato deve poter modificare le note per l'articolo selezionato & Capitolato UC2.3.3.1 \\ \hline
+RFO3.10.11 & Nella pagina di modifica articolo, l'utente autenticato deve poter annullare la modifica dell'articolo & Capitolato \\ \hline
+RFO3.10.12 & Nella pagina di modifica articolo, l'utente autenticato deve poter confermare la modifica dell'articolo & Capitolato \\ \hline
 RFO3.10.13 & Se l'utente autenticato conferma la modifica dell'articolo e ha inserito una quantità errata (troppo bassa, troppo alta o che non soddisfa uno step impostato dall'azienda), deve essere visualizzato un messaggio d'errore di errata quantità inserita & UC2.3.4 \\ \hline
 RFO3.10.14 & Se l'utente autenticato conferma la modifica dell'articolo e i dati modificati sono corretti, deve essere visualizzata la \textit{home page} dell'applicazione e l'articolo modificato deve essere presente in carrello con le modifiche apportate & Capitolato \\ \hline
 RFO3.10.15 & Se l'utente autenticato annulla la modifica dell'articolo, deve essere visualizzata la \textit{home page} dell'applicazione e l'articolo selezionato non deve essere stato modificato & Capitolato \\ \hline
@@ -586,7 +586,7 @@ RFO3.12.14.3 & La \textit{mail} inviata dal sistema al momento dell'invio dell'o
 RFO3.12.14.4 & La \textit{mail} inviata dal sistema al momento dell'invio dell'ordine deve contenere nel corpo il codice cliente del cliente che ha effettuato l'ordine & Capitolato \\ \hline
 RFO3.12.14.5 & La \textit{mail} inviata dal sistema al momento dell'invio dell'ordine deve contenere nel corpo una tabella contenente i dati degli articoli ordinati & Capitolato \\ \hline
 RFO3.12.14.6 & Per ogni articolo in tabella deve essere indicata la quantità ordinata & Capitolato \\ \hline
-RFO3.12.14.7 & Per ogni articolo in tabella deve essere indicato il codice articolo & Capitolato \\ \hline
+RFO3.12.14.7 & Per ogni articolo in tabella deve essere indicato il codice & Capitolato \\ \hline
 RFO3.12.14.8 & Per ogni articolo in tabella deve essere indicata la descrizione dell'articolo & Capitolato \\ \hline
 RFO3.12.14.9 & La \textit{mail} inviata dal sistema al momento dell'invio dell'ordine deve contenere nel corpo l'avviso di non rispondere alla \textit{mail} & Capitolato \\ \hline
 RFO3.12.15 & Se l'utente autenticato conferma l'invio dell'ordine nel \textit{dialog} di conferma e l'ordine non è andato a buon fine, deve essere visualizzato un messaggio d'errore di mancato invio dell'ordine & Capitolato \\ \hline
