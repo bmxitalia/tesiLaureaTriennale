@@ -34,45 +34,45 @@ Viene di seguito fornita, a titolo d'esempio, l'implementazione del metodo \text
     \includegraphics[height=10cm,width=\columnwidth]{codice/servlet} 
     \caption{Metodo \textit{doPost()} del \textit{servlet} che gestisce l'autenticazione}
 \end{figure}
-% sono arrivato qui
+
 \subsubsection{Interrogazione del servizio web}
 
-Nel momento in cui viene implementato un \textit{servlet} concreto, \textit{eclipse} gli associa un \textit{end-point} in automatico. Tramite l'\textit{end-point} è possibile raggiungere il \textit{servlet} sul \textit{server} per effettuare richieste \textit{HTTP}. L'\textit{end-point} associato da \textit{eclipse} è della forma \textit{/NomeClasseServlet} e può essere cambiato dalle impostazioni dell'\textit{IDE}. Per rendere possibile il raggiungimento del servizio \textit{web} da parte della logica applicativa di \textit{moviORDER}, è necessario che venga effettuato il \textit{deploy} del servizio su \textit{Apache Tomcat} e che quest'ultimo venga fatto girare sul \textit{server cloud} di \visione{}. Una volta che il servizio \textit{web} è raggiungibile tramite la rete, è possibile iniziare ad effettuare richieste \textit{HTTP}. In \textit{moviORDER}, la struttura dell'\textit{URL} di una richiesta \textit{HTTP} è la seguente: \textit{http://indirizzo:porta/moviORDER/NomeServlet}, dove:
+Quando si implementa un \textit{servlet} concreto, \textit{eclipse} gli associa un \glossaryItem{end-point} in automatico. Tramite questo è possibile inviare richieste \textit{HTTP} ad uno specifico \textit{servlet} sul \textit{server}. L'\textit{end-point} assegnato da \textit{eclipse} è nella forma \textit{/NomeClasseServlet} e può essere cambiato dalle impostazioni dell'\textit{IDE}. Per rendere il servizio \textit{web} operativo, è necessario che ne venga effettuato il \textit{deploy} su \textit{Apache Tomcat} e che quest'ultimo venga  eseguito sul \textit{server Azure}. Una volta che il servizio \textit{web} diventa raggiungibile tramite la rete, è possibile iniziare ad effettuare richieste \textit{HTTP}. In \textit{moviORDER}, la struttura dell'\textit{URL} di una richiesta \textit{HTTP} è la seguente: \textit{http://indirizzo:porta/moviORDER/NomeServlet}, dove:
 \begin{itemize}
 	\item \textit{indirizzo}: è l'indirizzo del \textit{server} dove il servizio \textit{web} viene fatto girare:
 	\item \textit{porta}: è la porta del \textit{server} dove il servizio \textit{web} viene fatto girare;
 	\item \textit{NomeServlet}: è l'\textit{end-point} (\textit{servlet}) a cui si vuole inviare la richiesta \textit{HTTP}.
 \end{itemize}
 
-\textit{MoviORDER} effettua richieste \textit{HTTP} tramite l'utilizzo di \textit{AJAX} (\textit{Asynchronous JavaScript And XML}). È importante far notare che \textit{AJAX} non è un linguaggio di programmazione, bensì una tecnica per accedere ad un \textit{server web} da una pagina \textit{web}. Tramite \textit{AJAX} è possibile leggere dati da un \textit{server web} dopo che una pagina è stata caricata, aggiornare una pagina \textit{web} senza il bisogno di dover ricaricare la stessa e inviare dati ad un \textit{server web} in maniera del tutto trasparente all'utente. 
+\textit{MoviORDER} effettua richieste \textit{HTTP} tramite \textit{AJAX} (\textit{Asynchronous JavaScript And XML}), ossia una tecnica per accedere ad un \textit{server web} da una pagina \textit{web}. \textit{AJAX} permette di leggere dati da un \textit{server web} dopo che una pagina è stata caricata, aggiornare una pagina \textit{web} senza il bisogno di dover ricaricare la stessa, e inviare dati ad un \textit{server web} in maniera del tutto trasparente all'utente. 
 
-Nel progetto, \textit{AJAX} è stato implementato mediante \textit{JavaScript} con l'utilizzo dell'oggetto \textit{XMLHttpRequest}. Tale oggetto è supportato da tutti i \textit{browser} moderni e può essere utilizzato per scambiare dati con un \textit{server web} in maniera trasparente, ovvero senza il bisogno di dover ricaricare la pagina \textit{web} per cambiarne lo stato. La sintassi per la creazione di un oggetto \textit{XMLHttpRequest} è la seguente:
+Nel progetto, \textit{AJAX} è stato implementato mediante \textit{JavaScript} con l'utilizzo dell'oggetto \textit{XMLHttpRequest}, il quale è supportato da tutti i \textit{browser} moderni e può essere utilizzato per scambiare dati con un \textit{server web} in maniera trasparente, ovvero senza il bisogno di dover ricaricare la pagina per cambiarne lo stato. La sintassi per creare un oggetto \textit{XMLHttpRequest} è la seguente:
 \textit{var xhttp = new XMLHttpRequest();}. 
 
-Per l'invio di richieste \textit{HTTP} al servizio \textit{web} si utilizzano i metodi \textit{open()} e \textit{send()} di \textit{XMLHttpRequest}. In particolare, il metodo \textit{open()} permette di specificare la tipologia di richiesta tramite il passaggio di tre parametri:
+I metodi \textit{open()} e \textit{send()} permettono di inviare richieste \textit{HTTP} al servizio \textit{web}. In particolare, il metodo \textit{open()} permette di specificare la tipologia di richiesta da inviare tramite il passaggio di tre parametri:
 	\begin{itemize}
 		\item \textbf{metodo}: specifica il metodo utilizzato per inviare la richiesta \textit{HTTP}: \textit{GET} o \textit{POST};
-		\item \textbf{url}: specifica l'indirizzo del \textit{server} a cui inviare la richiesta \textit{HTTP}. Nel caso del progetto l'indirizzo comprende l'\textit{end-point} presso il quale la richiesta deve essere gestita;
-		\item \textbf{asincrona/sincrona}: specifica se la richiesta è asincrona (\textit{true}) o sincrona (\textit{false}).
+		\item \textbf{url}: specifica l'indirizzo del \textit{server} a cui inviare la richiesta \textit{HTTP}. Nel caso del progetto, l'indirizzo comprende l'\textit{end-point} presso il quale la richiesta deve essere gestita;
+		\item \textbf{\glossaryItem{asincrona}/\glossaryItem{sincrona}}: specifica se la richiesta è asincrona (\textit{true}) oppure sincrona (\textit{false}).
 	\end{itemize}
-Il metodo \textit{send(string)} permette invece l'invio di una richiesta \textit{HTTP} al servizio \textit{web}. Esso richiede il passaggio di una stringa contenente i parametri da inviare al \textit{server}. Poiché alcuni parametri possono contenere caratteri accentati, è stato necessario utilizzare il metodo \textit{setRequestHeader()} per specificare la codifica dei caratteri, aggiungendo \textit{header HTTP} alla richiesta. Facendo questo, è stato possibile evitare errori di lettura/scrittura di stringhe con caratteri accentati sul \textit{database} di \textit{moviORDER}. 
+Il metodo \textit{send(string)} permette invece l'invio di una richiesta \textit{HTTP} al servizio \textit{web}. Esso richiede il passaggio di una stringa contenente i parametri da inviare al \textit{server}. Poiché alcuni parametri potevano contenere caratteri accentati, è stato necessario utilizzare il metodo \textit{setRequestHeader()} per specificare la codifica dei caratteri. In questo modo si sono evitati errori di lettura/scrittura sul \textit{database} di \textit{moviORDER}. 
 
 È importante far notare che tutte le richieste \textit{HTTP} inviate da \textit{moviORDER} al servizio \textit{web} sono asincrone, questo perché:
 \begin{itemize}
-	\item il codice sincrono non è raccomandato poiché \textit{JavaScript} stopperebbe l'esecuzione fino all'arrivo di una risposta da parte del \textit{server}. Se il \textit{server} è occupato o lento, l'applicazione potrebbe aspettare per un tempo prolungato;
-	\item le richieste \textit{AJAX} di tipo sincrono saranno rimosse dallo standard \textit{web} nei prossimi anni. Scegliendo di utilizzare solamente richieste asincrone si permette a \textit{moviORDER} di essere robusta a questo cambiamento futuro.
+	\item il codice sincrono non è raccomandato poiché \textit{JavaScript} ne stoppa l'esecuzione fino all'arrivo di una risposta da parte del \textit{server}. Inoltre, se quest'ultimo è occupato o lento, l'applicazione potrebbe attendere per un tempo prolungato;
+	\item nei prossimi anni le richieste \textit{AJAX} sincrone saranno rimosse dallo standard \textit{web}. Scegliendo di utilizzare solamente richieste asincrone, si permetterà a \textit{moviORDER} di essere \glossaryItem{robusta} a questo cambiamento futuro.
 \end{itemize} 
 
-Per la gestione della risposta ricevuta dal \textit{server} si sono utilizzate le seguenti proprietà dell'oggetto \textit{XMLHttpRequest}:
+Per la gestione della risposta ricevuta dal \textit{server}, si sono utilizzate le seguenti \glossaryItem{proprietà} dell'oggetto \textit{XMLHttpRequest}:
 \begin{itemize}
 	\item \textit{readyState}: contiene lo stato dell'oggetto. In particolare, per lo scopo del progetto, è interessante sapere che il valore 4 corrisponde ad una richiesta la cui risposta è pronta;
-	\item  \textit{status}: contiene il messaggio sullo stato della richiesta. In particolare, per lo scopo del progetto, è interessante sapere che il valore 200 corrisponde al messaggio \textit{OK}, che nello standard \textit{web} rappresenta una richiesta \textit{HTTP} andata a buon fine;
+	\item  \textit{status}: contiene un messaggio sullo stato della richiesta. In particolare, per lo scopo del progetto, è interessante sapere che il valore 200 corrisponde al messaggio \textit{OK}, che nello standard \textit{web} rappresenta una richiesta \textit{HTTP} andata a buon fine;
 	\item \textit{onreadystatechange}: definisce una funzione che deve essere eseguita quando la proprietà \textit{readyState} cambia valore;
 	\item \textit{responseText}: incapsula la stringa di risposta ricevuta dal servizio \textit{web}. 
 \end{itemize} 
-Poiché la risposta ricevuta dal servizio \textit{web} è una stringa in formato \textit{JSON}, per effettuare il parsing di tale stringa è stato necessario convertirla in un oggetto \textit{JavaScript}, tramite l'utilizzo del metodo \textit{JSON.parse()}.
+Poiché la risposta del servizio \textit{web} è una stringa in formato \textit{JSON}, per effettuarne il \glossaryItem{parsing} si è dovuto convertirla in un oggetto \textit{JavaScript}, tramite l'utilizzo del metodo \textit{JSON.parse()}.
 
-Viene di seguito fornito, a titolo d'esempio, il codice \textit{JavaScript} della logica applicativa di \textit{moviORDER} che effettua una chiamata \textit{HTTP} all'\textit{end-point} (\textit{servlet}) che si occupa di gestire l'autenticazione. Il codice si occupa anche di gestire la risposta ricevuta dal servizio \textit{web}. La funzione \textit{tryLogin()} viene eseguita nel momento in cui l'utente preme sul pulsante di login presente nella schermata di login dell'applicazione.
+Viene di seguito fornito, a titolo d'esempio, il codice \textit{JavaScript} della logica applicativa che effettua una chiamata \textit{HTTP} all'\textit{end-point} che gestisce l'autenticazione. La funzione \textit{tryLogin()} viene eseguita nel momento in cui l'utente preme sul pulsante di \textit{login}, presente nella schermata di autenticazione dell'applicazione.
 
 \newpage
 
@@ -84,12 +84,12 @@ Viene di seguito fornito, a titolo d'esempio, il codice \textit{JavaScript} dell
 
 \subsubsection{API del servizio web} \label{api}
 
-In questa sezione viene presentata la \textit{API} del servizio \textit{web} di \textit{moviORDER}. In particolare, per ogni \textit{end-point} (\textit{servlet}) vengono specificati:
+In questa sezione viene presentata l'\textit{API} del servizio \textit{web}. In particolare, per ogni \textit{end-point} vengono specificati:
 \begin{itemize}
 	\item \textbf{indirizzo}: indirizzo tramite il quale è possibile raggiungere l'\textit{end-point};
-	\item \textbf{input}: costituito dai parametri inviati al servizio \textit{web} tramite una richiesta \textit{HTTP};
+	\item \textbf{input}: costituito dai parametri che vengono inviati al servizio \textit{web} tramite una richiesta \textit{HTTP};
 	\item \textbf{output}: costituito da una stringa in formato \textit{JSON} che presenta struttura diversa a seconda dell'\textit{end-point} che gestisce la richiesta;
-	\item \textbf{descrizione}.
+	\item \textbf{descrizione}: breve descrizione del funzionamento dell'\textit{end-point}.
 \end{itemize}
 
 \myparagraph{Servizio di autenticazione}
@@ -103,12 +103,12 @@ In questa sezione viene presentata la \textit{API} del servizio \textit{web} di 
 		\end{itemize}
 	\item \textbf{Output}: le possibili risposte del \textit{servlet} sono le seguenti:
 		\begin{itemize}
-			\item codice azienda e \textit{username} dell'utente nel caso in cui \textit{username} e \textit{password} passati come parametro corrispondono ad un utente presente in \textit{database};
-			\item un messaggio d'errore nel caso in cui le credenziali sono scorrette o l'utente è stato bloccato. 
+			\item codice azienda e \textit{username} dell'utente se \textit{username} e \textit{password} passati come parametro corrispondono ad un utente presente in \textit{database};
+			\item un messaggio d'errore se le credenziali sono scorrette o l'utente è stato bloccato. 
 		\end{itemize}
-		\item \textbf{Descrizione}: questo \textit{servlet} rappresenta il servizio di autenticazione di \textit{moviORDER}. Ricevuti i parametri, il \textit{servlet} cerca la \textit{username} dell'utente nel \textit{database} e, nel caso in cui questa fosse presente, procede nel cercare la \textit{password} corrispondente. Nel caso in cui \textit{username} e \textit{password} passati siano quelli corretti, il \textit{servlet} restituisce una stringa \textit{JSON} contenente il codice azienda e la \textit{username} dell'utente che ha cercando di loggarsi. Nel caso in cui le credenziali non siano corrette, oppure l'utente è stato bloccato, viene restituito un messaggio d'errore.
+		\item \textbf{Descrizione}: questo \textit{servlet} rappresenta il servizio di autenticazione. Ricevuti i parametri, effettua la ricerca della \textit{username} nel \textit{database} e, nel caso in cui questa fosse presente, procede nel cercare la \textit{password} corrispondente. Se \textit{username} e \textit{password} passati sono corretti, il \textit{servlet} restituisce una stringa in formato \textit{JSON} contenente il codice azienda e la \textit{username} dell'utente che ha cercato di effettuare il \textit{login}. Se le credenziali non sono corrette oppure l'utente è stato bloccato, viene restituito un messaggio d'errore.
 \end{itemize}
-
+% arrivato qui = sostituire tutti i "nel caso" in "se" e mettere tutto al presente
 \myparagraph{Servizio di verifica di connessione con il \textit{database}}
 
 \begin{itemize}
