@@ -31,7 +31,7 @@ Viene di seguito fornita, a titolo d'esempio, l'implementazione del metodo \text
 
 \begin{figure}[!h] 
     \centering 
-    \includegraphics[height=10cm,width=\columnwidth]{codice/servlet} 
+    \includegraphics[height=11cm,width=\columnwidth]{codice/servlet} 
     \caption{Metodo \textit{doPost()} del \textit{servlet} che gestisce l'autenticazione}
 \end{figure}
 
@@ -72,7 +72,7 @@ Per la gestione della risposta ricevuta dal \textit{server}, si sono utilizzate 
 \end{itemize} 
 Poiché la risposta del servizio \textit{web} è una stringa in formato \textit{JSON}, per effettuarne il \glossaryItem{parsing} si è dovuto convertirla in un oggetto \textit{JavaScript}, tramite l'utilizzo del metodo \textit{JSON.parse()}.
 
-Viene di seguito fornito, a titolo d'esempio, il codice \textit{JavaScript} della logica applicativa che effettua una chiamata \textit{HTTP} all'\textit{end-point} che gestisce l'autenticazione. La funzione \textit{tryLogin()} viene eseguita nel momento in cui l'utente preme sul pulsante di \textit{login}, presente nella schermata di autenticazione dell'applicazione.
+Viene di seguito fornito, a titolo d'esempio, il codice \textit{JavaScript} della logica applicativa che effettua una chiamata \textit{HTTP} all'\textit{end-point} che gestisce l'autenticazione. La funzione \textit{tryLogin()} viene eseguita nel momento in cui l'utente preme sul pulsante di \textit{login} presente nella schermata di autenticazione dell'applicazione.
 
 \newpage
 
@@ -282,7 +282,7 @@ In questa sezione viene presentata l'\textit{API} del servizio \textit{web}. In 
 		\end{itemize}
 	\item \textbf{Descrizione}: questo \textit{servlet} si occupa di registrare sul \textit{database} un ordine contenente gli articoli passati come parametro. Il resto dei parametri viene utilizzato per inviare una \textit{mail} di conferma all'utente autenticato e all'azienda presso cui l'utente ha ordinato.
 \end{itemize}
-%qui
+\newpage
 \subsection{JDBC}
 
 In questa sezione viene presentato l'utilizzo della \textit{Java Database Connectivity API} nella realizzazione del servizio \textit{web}.
@@ -310,10 +310,10 @@ Il formato di una stringa di connessione ad un \textit{database} è il seguente:
 	\item \textit{psw}: è la \textit{password} per l'accesso al \textit{database}.
 \end{itemize}
 Viene di seguito presentato, a titolo d'esempio, il codice \textit{Java} che implementa il metodo \textit{public DatabaseConnection(String dbConnectionString)}. Esso si occupa di \textit{splittare} la stringa di connessione passata come parametro per ottenere i dati utili alla costruzione dell'oggetto \textit{DatabaseConnection}.
-
+\newpage
 \begin{figure}[!h] 
     \centering 
-    \includegraphics[height=8cm,width=0.8\columnwidth]{codice/databaseCostruttore} 
+    \includegraphics[height=9cm,width=0.8\columnwidth]{codice/databaseCostruttore} 
     \caption{Metodo costruttore della classe \textit{DatabaseConnection}}
 \end{figure}
 
@@ -326,7 +326,7 @@ Tale metodo si occupa di instaurare la connessione con il \textit{database} desi
     \includegraphics[width=\columnwidth]{codice/connessionedb} 
     \caption{Metodo \textit{connectToDb()} della classe \textit{DatabaseConnection}}
 \end{figure}
-%qui
+\newpage
 \myparagraph{Altri metodi}
 
 La classe \textit{DatabaseConnection} presenta altri metodi di complessità inferiore, per i quali viene presentata solamente una breve descrizione:
@@ -457,7 +457,7 @@ Vengono di seguito forniti, a scopo illustrativo, un esempio di codice \textit{J
 
 \subsubsection{Network information plugin}
 
-Il \textit{plugin} \textit{network information} fornisce un'implementazione moderna della \textit{Network Information API}. Questa fornisce informazioni riguardanti la rete cellulare e il \textit{Wi-Fi} del dispositivo e permette di capire se il \textit{device} presenta una connessione ad \textit{Internet}. Più precisamente, il \textit{plugin} fornisce un'interfaccia \textit{JavaScript} che astrae il codice nativo utilizzato per monitorare la rete del dispositivo. \textit{Navigator.connection} è l'oggetto che permette di acquisire le informazioni appena descritte. La proprietà \textit{type} è stata utilizzata per comprendere in modo veloce lo stato della connessione del dispositivo e la tipologia di connessione attiva. Essa può assumere i seguenti valori:
+Il \textit{plugin} \textit{network information} fornisce un'implementazione moderna della \textit{Network Information API}, la quale consente di ottenere informazioni riguardanti la rete cellulare e il \textit{Wi-Fi} del dispositivo, e permette di capire se il \textit{device} presenta una connessione ad \textit{Internet}. Più precisamente, il \textit{plugin} fornisce un'interfaccia \textit{JavaScript} che astrae il codice nativo utilizzato per monitorare la rete del dispositivo. \textit{Navigator.connection} è l'oggetto che permette di acquisire le informazioni appena descritte. La proprietà \textit{type} è stata utilizzata per comprendere in modo veloce lo stato della connessione del dispositivo e la tipologia di connessione attiva. Essa può assumere i seguenti valori:
 \begin{itemize}
 	\item \textit{Connection.UNKNOWN}: tipologia di rete sconosciuta;
 	\item \textit{Connection.ETHERNET}: dispositivo connesso alla rete via cavo \textit{ethernet};
@@ -490,27 +490,27 @@ Vengono di seguito forniti, a scopo illustrativo, degli esempi di codice \textit
     \includegraphics[width=\columnwidth]{codice/offline} 
     \caption{Esempio di utilizzo dell'evento \textit{offline}}
 \end{figure}
-%manca questo
+
 \subsubsection{Barcode scanner plugin}
 
-Il \textit{plugin} \textit{barcode scanner} fornisce un'interfaccia \textit{JavaScript} che astrae il codice nativo che permette di effettuare la scansione di un codice a barre da qualsiasi dispositivo dotato di fotocamera. Il \textit{plugin} crea l'oggetto \textit{cordova.plugin.barcodeScanner} che presenta il metodo \textit{scan(success, fail, settings)}. \textit{Success} è una funzione di \textit{callback} che viene eseguita quando la scansione del codice a barre va a buon fine. \textit{Fail} è una funzione di \textit{callback} che viene eseguita quando la scansione del codice a barre non va a buon fine. \textit{Settings} è una variabile contenente un insieme di impostazioni per l'utilizzo del \textit{plugin}, quali:
+Il \textit{plugin} \textit{barcode scanner} fornisce un'interfaccia \textit{JavaScript} per effettuare la scansione di un codice a barre da un qualsiasi dispositivo dotato di fotocamera. Per utilizzare il \textit{plugin} è sufficiente invocare il metodo \textit{scan(success, fail, settings)} sull'oggetto \textit{cordova.plugin.barcodeScanner}. \textit{Success} è una funzione di \textit{callback} che viene eseguita quando la scansione del \textit{barcode} va a buon fine, mentre \textit{Fail} viene eseguita quando la scansione fallisce. \textit{Settings} è una variabile contenente le seguenti impostazioni per l'utilizzo del \textit{plugin}:
 \begin{itemize}
-	\item \textit{preferFrontCamera}: permette di preferire la fotocamera frontale a quella posteriore per la scansione del codice a barre;
-	\item \textit{showFlipCameraButton}: permette di visualizzare il bottone per il cambio della fotocamera;
+	\item \textit{preferFrontCamera}: permette di impostare la fotocamera frontale come predefinita per la scansione del codice a barre;
+	\item \textit{showFlipCameraButton}: permette di visualizzare il bottone per cambiare fotocamera;
 	\item \textit{showTorchButton}: permette di visualizzare il bottone per l'attivazione del \textit{flash};
-	\item \textit{torchOn}: permette di attivare il \textit{flash} di \textit{default};
-	\item \textit{saveHistory}: permette il salvataggio della cronologia dei codici scansionati;
-	\item \textit{prompt}: permette la visualizzazione di un messaggio per aiutare l'utente nell'esecuzione della scansione;
-	\item \textit{resultDisplayDuration}: permette la visualizzare di un testo per un determinato numero di secondi nel caso in cui un codice a barre viene captato;
+	\item \textit{torchOn}: permette di attivare il \textit{flash} quando viene effettuata una scansione;
+	\item \textit{saveHistory}: permette di salvare la cronologia dei codici scansionati;
+	\item \textit{prompt}: permette di visualizzare un messaggio per aiutare l'utente ad eseguire la scansione;
+	\item \textit{resultDisplayDuration}: permette di visualizzare il risultato della scansione per un certo periodo di tempo;
 	\item \textit{formats}: permette di impostare la tipologia di codici a barre che devono essere captati;
-	\item \textit{orientation}: permette di impostare l'orientamento del dispositivo durante la scansione del codice a barre;
-	\item \textit{disableAnimations}: permette la disattivazione di ogni tipo di animazione durante la scansione del codice a barre;
-	\item \textit{disableSuccessBeep}: permette di disabilitare l'emissione del suono acustico nel caso in cui un codice a barre viene captato.
+	\item \textit{orientation}: permette di impostare l'orientamento del dispositivo (\glossaryItem{portrait} o \glossaryItem{landscape});
+	\item \textit{disableAnimations}: permette di disabilitare le animazioni visualizzate durante la scansione del codice a barre;
+	\item \textit{disableSuccessBeep}: permette di disabilitare il suono acustico emesso quando un codice viene captato.
 \end{itemize}
-In ambiente iOS, per poter utilizzare il \textit{plugin}, è necessario aggiungere una \textit{NSCameraUsageDescription} al file \textit{Info.plist}. \textit{NSCameraUsageDescription} descrive la ragione per la quale l'applicazione accede alla fotocamera dell'utente. Quando il sistema operativo richiede all'utente di permettere l'accesso, la stringa inserita nella \textit{NSCameraUsageDescription} viene visualizzata sul \textit{dialog}. Se non viene fornita la descrizione di utilizzo, l'applicazione crescerà prima della visualizzazione del \textit{dialog}. Inoltre, Apple rifiuta le applicazioni che accedono a dati privati senza fornire una descrizione di utilizzo. 
+Per poter utilizzare il \textit{plugin} in ambiente \textit{iOS} è necessario aggiungere una \textit{NSCameraUsageDescription} al \textit{file} \textit{Info.plist}, ossia una proprietà descrive la ragione per cui l'applicazione deve accedere alla fotocamera del dispositivo.
 
-Il \textit{plugin} ha funzionato perfettamente in ambiente \textit{Android} ma ha presentato alcuni problemi in ambiente \textit{iOS}. Nei dispositivi con una fotocamera mediocre le scansioni richiedevano più tempo del previsto, alcune volte anche minuti. Per risolvere il problema si è dovuto modificare il codice nativo della versione \textit{iOS} dell'applicazione. Il problema veniva riscontrato perché il codice differenziava il processo di scansione a seconda della qualità rilevata della fotocamera del dispositivo. Per cellulari con fotocamera mediocre veniva fatta una valutazione troppo ottimistica e per questo si è dovuto modificare il codice in modo da rendere il processo di scansione uguale per tutte le fotocamere. Dopo vari test si è potuto osservare che la soluzione migliore era l'utilizzo del processo di scansione per fotocamere di qualità media. Viene di seguito fornito, a scopo illustrativo, il codice \textit{Objective-C++} che si occupa di settare il processo di scansione.
-% fino a qui
+Il \textit{plugin} ha funzionato correttamente in ambiente \textit{Android}, ma ha presentato alcuni problemi su \textit{iOS}. Nei dispositivi dotati di fotocamera mediocre, le scansioni richiedevano più tempo del previsto (alcuni minuti). Per risolvere il problema si è dovuto modificare il codice nativo della versione \textit{iOS} dell'applicazione. Esso differenziava il processo di scansione a seconda della qualità rilevata per la fotocamera del dispositivo. Per cellulari dotati di fotocamera mediocre veniva fatta una valutazione troppo ottimistica, e per questo si è dovuto modificare il codice in modo da rendere il processo di scansione uguale per tutte le fotocamere. Dopo vari test si è potuto osservare che la soluzione migliore stava nell'utilizzo del processo di scansione per fotocamere di qualità media. Viene di seguito fornito, a scopo illustrativo, il codice \glossaryItem{Objective-C++} che si occupa di settare il processo di scansione.
+
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=\columnwidth]{codice/scan} 
@@ -519,7 +519,7 @@ Il \textit{plugin} ha funzionato perfettamente in ambiente \textit{Android} ma h
 
 \newpage
 
-Viene di seguito fornito, a scopo illustrativo, il codice \textit{JavaScript} della logica di \textit{moviORDER} che utilizza il \textit{plugin} \textit{barcode scanner}.
+Viene di seguito fornito, a scopo illustrativo, il codice \textit{JavaScript} della logica applicativa che utilizza il \textit{plugin} \textit{barcode scanner}.
 
 \begin{figure}[!h] 
     \centering 
@@ -541,7 +541,7 @@ In questa sezione vengono presentati gli aspetti più interessanti riguardanti l
     \caption{Schermata di login}
 \end{figure}
 
-Tramite la schermata di \textit{login} un qualsiasi utente in possesso di credenziali di accesso può accedere a \textit{moviORDER}. Per tentare l'accesso è necessario inserire \textit{username} e \textit{password} e, successivamente, premere sul pulsante di \textit{login}. Se l'utente inserisce credenziali corrette verrà aperta la \textit{home page} dell'applicazione, mentre se le credenziali non dovessero essere corrette verrà visualizzato un messaggio d'errore. Quest'ultimo è esplicativo dell'errore riscontrato, che può essere uno dei seguenti:
+Tramite la schermata di \textit{login}, un qualsiasi utente in possesso di credenziali di accesso può accedere a \textit{moviORDER}. Per tentare l'accesso è necessario inserire \textit{username} e \textit{password} e, successivamente, premere sul pulsante di \textit{login}. Se l'utente inserisce credenziali corrette verrà aperta la \textit{home page} dell'applicazione, mentre se le credenziali non dovessero essere corrette verrà visualizzato un messaggio d'errore. Quest'ultimo è esplicativo dell'errore riscontrato, che può essere uno dei seguenti:
 \begin{itemize}
 	\item le credenziali non sono state inserite;
 	\item la \textit{username} inserita è inesistente;
@@ -556,92 +556,88 @@ Tramite la schermata di \textit{login} un qualsiasi utente in possesso di creden
     \includegraphics[width=0.4\columnwidth]{interfaccia/home} 
     \caption{\textit{Home page}}
 \end{figure}
-%da qui
-La \textit{home page} racchiude tutte le funzionalità di \textit{moviORDER}. A partire dall'alto e proseguendo verso il basso, l'interfaccia presenta le seguenti parti:
+
+La \textit{home page} racchiude le funzionalità di \textit{moviORDER} dedicate all'utente autenticato. A partire dall'alto e proseguendo verso il basso, l'interfaccia presenta le seguenti parti:
 \begin{itemize}
-	\item messaggio di benvenuto per l'utente autenticato: questo messaggio visualizza la ragione sociale dell'utente;
-	\item pulsante \textit{tutorial}: premendo su questo pulsante è possibile visualizzare il \textit{tutorial} di \textit{moviORDER};
-	\item pulsante \textit{logout}: premendo su questo pulsante è possibile effettuare il logout da \textit{moviORDER};
-	\item pulsante di aggiunta articolo: premendo su questo pulsante è possibile accedere al \textit{modal} per l'aggiunta di un articolo in carrello; 
-	\item pulsante di selezione/deselezione multipla di articoli: premendo su questo pulsante è possibile selezionare/deselezionare tutti gli articoli in carrello;
-	\item pulsante di eliminazione articoli: premendo su questo pulsante è possibile rimuovere gli articoli selezionati dal carrello;
-	\item pulsante di invio ordine: premendo su questo pulsante è possibile accedere al \textit{modal} di invio ordine;
-	\item carrello: ogni articolo in carrello presenta:
+	\item \textbf{messaggio di benvenuto}: contiene la ragione sociale dell'utente;
+	\item \textbf{pulsante \textit{tutorial}}: permette di visualizzare il \textit{tutorial} dell'applicazione;
+	\item \textbf{pulsante \textit{logout}}: permette di effettuare il \textit{logout} dall'applicazione;
+	\item \textbf{pulsante di aggiunta articolo}: permette di accedere al \textit{modal} per l'aggiunta di un articolo in carrello; 
+	\item \textbf{pulsante di selezione/deselezione multipla di articoli}: permette di selezionare/deselezionare tutti gli articoli in carrello;
+	\item \textbf{pulsante di eliminazione articoli}: permette di rimuovere dal carrello gli articoli selezionati;
+	\item \textbf{pulsante di invio ordine}: permette di accedere al \textit{modal} per l'invio di un ordine;
+	\item \textbf{carrello}: ogni articolo in carrello presenta:
 	\begin{itemize}
-		\item una check-box per la selezione/deselezione dell'articolo;
+		\item una \textit{checkbox} per selezionare/deselezionare l'articolo;
 		\item un'indicazione sulla quantità di pezzi ordinati;
 		\item il codice dell'articolo;
 		\item una breve descrizione dell'articolo.
 	\end{itemize}
 \end{itemize}
 
-\subsection{Modal di aggiunta articolo}
+\subsection{Modal per l'aggiunta di un articolo}
 
 \begin{figure}[!h] 
     \centering 
     	\subfloat{\includegraphics[width=0.33\columnwidth]{interfaccia/modalAggiunta}}
     	\subfloat{\includegraphics[width=0.33\columnwidth]{interfaccia/scansione}} 
     	\subfloat{\includegraphics[width=0.33\columnwidth]{interfaccia/manuale}} 
-    \caption{\textit{Modal} di aggiunta articolo e modalità di aggiunta (scansione o inserimento manuale)}
+    \caption{\textit{Modal} per l'aggiunta di un articolo e modalità di aggiunta (scansione o inserimento manuale)}
 \end{figure}
 
-Il \textit{modal} di aggiunta articolo permette di decidere la modalità di inserimento dell'articolo in carrello. Il \textit{modal} presenta i seguenti pulsanti:
+Il \textit{modal} per l'aggiunta di un articolo permette di decidere la modalità di inserimento dello stesso in carrello. Esso presenta i seguenti pulsanti:
 \begin{itemize}
-	\item annullamento aggiunta: premendo su questo pulsante è possibile tornare alla \textit{home page} di \textit{moviORDER};
-	\item scansione codice a barre: premendo su questo pulsante è possibile aggiungere un nuovo articolo scansionando il codice a barre dello stesso. Per la scansione del codice a barre viene aperta la fotocamera del dispositivo;
-	\item inserimento manuale: premendo su questo pulsante è possibile aggiungere un nuovo articolo inserendo manualmente il codice dello stesso.
+	\item \textbf{annullamento aggiunta}: permette di tornare alla \textit{home page} dell'applicazione;
+	\item \textbf{scansione codice a barre}: permette di aggiungere un nuovo articolo scansionando il codice a barre dello stesso. Per effettuare la scansione viene aperta la fotocamera del dispositivo;
+	\item \textbf{inserimento manuale}: permette di aggiungere un nuovo articolo inserendo manualmente il codice dello stesso.
 \end{itemize}
-Se la scansione del codice a barre o l'inserimento del codice articolo vanno a buon fine, viene aperta la pagina per l'aggiunta dell'articolo corrispondente.
+Se la scansione del \textit{barcode} o l'inserimento del codice vanno a buon fine, viene aperta la pagina per l'aggiunta dell'articolo corrispondente.
 
-\subsection{Pagina di aggiunta articolo}
+\newpage
+
+\subsection{Pagina per l'aggiunta di un articolo}
 
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=0.4\columnwidth]{interfaccia/aggiunta} 
-    \caption{Pagina di aggiunta articolo}
+    \caption{Pagina per l'aggiunta di un articolo}
 \end{figure}
 
-La pagina di aggiunta articolo permette di aggiungere un nuovo articolo al carrello e presenta le seguenti parti:
+La pagina per l'aggiunta di un articolo permette di aggiungere un nuovo articolo al carrello ed è composta dalle seguenti parti:
 \begin{itemize}
-	\item codice e nome articolo: in base al codice precedentemente scansionato o inserito, vengono visualizzate le informazioni relative al codice articolo e al nome dell'articolo;
-	\item pulsante di visualizzazione informazioni dell'articolo: premendo questo pulsante è possibile visualizzare le informazioni dell'articolo che si sta aggiungendo al carrello. Se il pulsante presenta bordo rosso significa che per l'articolo non sono presenti informazioni. Questo permette all'utente di evitare di pressare inutilmente sul pulsante;
-	\item \textit{text-box} per l'inserimento della quantità: tramite questa \textit{text-box} è possibile inserire la quantità da ordinare per l'articolo che si sta aggiungendo al carrello;
-	\item \textit{text-area} per l'inserimento delle note: tramite questa \textit{text-area} è possibile inserire delle note facoltative per l'articolo che si sta aggiungendo al carrello;
-	\item pulsante di conferma: tramite questo pulsante è possibile confermare l'aggiunta dell'articolo in carrello;
-	\item pulsante di annullamento: tramite questo pulsante è possibile annullare l'aggiunta dell'articolo in carrello e tornare alla \textit{home page} di \textit{moviORDER}.
+	\item \textbf{codice e nome dell'articolo}: in base al codice precedentemente scansionato o inserito, vengono visualizzate le informazioni relative al codice e al nome dell'articolo;
+	\item \textbf{pulsante di visualizzazione informazioni}: permette di visualizzare le informazioni dell'articolo che si sta aggiungendo al carrello. Per evitare pressioni inutili, il pulsante presenta bordo rosso se per l'articolo non esistono informazioni;
+	\item \textbf{\textit{text box} per l'inserimento della quantità}: permette di inserire la quantità dell'articolo che si sta aggiungendo al carrello;
+	\item \textbf{\textit{text area} per l'inserimento delle note}: permette di inserire delle note facoltative per l'articolo che si sta aggiungendo al carrello;
+	\item \textbf{pulsante di conferma}: permette di confermare l'aggiunta dell'articolo;
+	\item \textbf{pulsante di annullamento}: permette di annullare l'aggiunta dell'articolo e di tornare alla \textit{home page} dell'applicazione.
 \end{itemize}
 
-\subsection{Pagina di modifica articolo}
+\subsection{Pagina per la modifica di un articolo}
 
-Dalla \textit{home page} di \textit{moviORDER}, premendo su un qualsiasi articolo in carrello, è possibile modificare i dati d'ordine di tale articolo. Alla pressione dell'articolo viene aperta la pagina di modifica articolo. Questa pagina è identica alla pagina di aggiunta articolo ma contiene i dati inseriti nel momento in cui si è aggiunto l'articolo in carrello. È possibile modificare tali dati eseguendo le stesse interazioni previste per la pagina di aggiunta articolo.
+Premendo su un qualsiasi articolo in carrello viene aperta una pagina per modificare i dati d'ordine dello stesso. Questa funziona allo stesso modo della pagina per l'aggiunta di un articolo, ma differisce da quest'ultima perché permette invece di modificare l'articolo.
 
-\subsection{Modal di invio ordine}
+\subsection{Modal per l'invio di un ordine}
 
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=0.4\columnwidth]{interfaccia/modalInvio} 
-    \caption{\textit{Modal} di invio ordine}
+    \caption{\textit{Modal} per l'invio di un ordine}
 \end{figure}
 
-Il \textit{modal} di invio ordine permette di inviare un ordine alla propria azienda. Tale ordine contiene tutti gli articoli precedentemente selezionati dal carrello. Il \textit{modal} presenta le seguenti parti:
+Il \textit{modal} per l'invio di un ordine permette di inviare un ordine all'azienda dell'utente autenticato, contenente tutti gli articoli che lo stesso ha precedentemente selezionato dal carrello. Il \textit{modal} è composto dalle seguenti parti:
 \begin{itemize}
-	\item pulsante di annullamento: premendo questo pulsante è possibile annullare l'invio dell'ordine e tornare alla \textit{home page} di \textit{moviORDER};
-	\item pulsante di conferma: premendo su questo pulsante è possibile confermare l'invio dell'ordine;
-	\item informazioni sul cliente: \textit{text-box} contenente il codice e la ragione sociale del cliente che sta effettuando l'ordine;
-	\item informazioni sul documento: \textit{text-box} contenente il codice e la descrizione del documento che deve essere generato una volta inviato l'ordine;
-	\item \textit{select} per l'inserimento della data: questa \textit{select} permette l'inserimento della data d'ordine. Di \textit{default} viene proposta la data corrente;
-	\item \textit{text-area} per l'inserimento delle note: questa \textit{text-area} permette di inserire delle note facoltative per l'ordine che si sta inviando.
+	\item \textbf{pulsante di annullamento}: permette di annullare l'invio dell'ordine e di tornare alla \textit{home page} dell'applicazione;
+	\item \textbf{pulsante di conferma}: permette di confermare l'invio dell'ordine;
+	\item \textbf{informazioni sul cliente}: \textit{text box} contenente il codice e la ragione sociale del cliente che sta effettuando l'ordine;
+	\item \textbf{informazioni sul documento}: \textit{text box} contenente il codice e la descrizione del documento che deve essere generato quando viene inviato l'ordine;
+	\item \textbf{\glossaryItem{select} per l'inserimento della data}: permette di inserire la data dell'ordine. Di \textit{default} viene proposta la data corrente;
+	\item \textbf{\textit{text area} per l'inserimento delle note}: permette di inserire delle note facoltative per l'ordine che si sta inviando.
 \end{itemize}
-
-\begin{figure}[!h] 
-    \centering 
-    \includegraphics[width=0.4\columnwidth]{interfaccia/modalInvio} 
-    \caption{\textit{Modal} di invio ordine}
-\end{figure}
 
 \subsection{Considerazioni sullo sviluppo}
 
-L'applicazione \textit{moviORDER} è stata realizzata tramite un framework cross-platform e quindi tramite la realizzazione di un'applicazione \textit{web}. Per rendere l'applicazione usabile su tutti gli smartphone è stato necessario progettare l'interfaccia dell'applicazione con un approccio \glossaryItem{mobile first} e quindi cercando di realizzare un'interfaccia grafica che fosse più responsive possibile. Per raggiungere questo obiettivo ogni pagina di \textit{moviORDER} presenta un layout elastico che utilizza unità di misura relative (\textit{em} e \textit{\%}) le quali dipendono dalle preferenze dell'utente. Grazie a questo layout, le pagine si adattano correttamente ad ogni dimensione di schermo. Viene di seguito fornito, a scopo illustrativo, un esempio di codice \textit{css} che utilizza unità di misura relative per la rappresentazione degli elementi dell'interfaccia.
+L'applicazione è stata realizzata con un \textit{framework cross-platform}, quindi tramite la realizzazione di un'applicazione \textit{web}. Per rendere l'applicazione usabile su tutti gli \textit{smartphone} è stato necessario progettare l'interfaccia con un approccio \glossaryItem{mobile first}, ossia cercando di renderla più \textit{responsive} possibile. Per raggiungere questo obiettivo è stato utilizzato un \glossaryItem{layout elastico}, ossia un \textit{layout} che utilizza unità di misura relative (\textit{em} e \textit{\%}), le quali dipendono dalle preferenze dell'utente. In questo modo le pagine possono adattarsi correttamente ad ogni dimensione di schermo. Viene di seguito fornito, a scopo illustrativo, un esempio di codice \textit{css} che utilizza unità di misura relative.
 
 \begin{figure}[!h] 
     \centering 
