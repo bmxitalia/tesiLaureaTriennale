@@ -27,7 +27,7 @@ L'applicazione comunica con il \textit{server} tramite l'invio di richieste \tex
 \end{itemize}
 Una descrizione più approfondita dei dati contenuti in questi \textit{database} è presente in sezione §\ref{progdb}.
 
-\subsection{Architettura front end}
+\subsection{Architettura \textit{front end}}
 
 Sul \textit{client}, ovvero l'applicazione installata sul dispositivo dell'utente utilizzatore, è presente il \textit{pattern} architetturale \glossaryItem{MVP} (\textit{Model View Presenter}). Tale \textit{pattern} presenta componenti distribuite, infatti la \glossaryItem{view} e il \glossaryItem{presenter} si trovano sul dispositivo, mentre il \glossaryItem{model} si trova sul \textit{server Azure} di \visione{} o sul \textit{server cloud} di un'azienda cliente. Nello specifico, la \textit{view} è la \glossaryItem{GUI} (\textit{Graphical User Interface}) dell'applicazione, il \textit{presenter} è la logica applicativa della stessa, mentre il \textit{model} è il \textit{database} contenente i dati utili alla gestione degli ordini. È stato scelto un \textit{MVP} in quanto il \textit{model} interagisce solamente con il \textit{presenter}, e non può modificare la \textit{view} come invece accade per il \textit{pattern} \glossaryItem{MVC} (\textit{Model View Controller}). Nella seguente figura è possibile notare le differenze concettuali tra i due \textit{pattern}.
 
@@ -66,7 +66,7 @@ Importanti vantaggi nell'utilizzo del \textit{pattern} \textit{MVP} sono:
 	\item semplicità nell'aggiunta di nuovi tipi di \textit{client}: è sufficiente scrivere un \textit{presenter} e una \textit{view} per ognuna delle nuove applicazioni. Il \textit{pattern} permette quindi un disaccoppiamento tra logica applicativa e \textit{database} sottostante.
 \end{itemize}
 
-\subsection{Architettura back end}
+\subsection{Architettura \textit{back end}}
 
 Il \textit{server} presenta un'\glossaryItem{architettura a strati} dove i componenti sono organizzati in strati orizzontali, ed ognuno di questi possiede specifici ruoli e responsabilità nel contesto dell'applicazione. Nel contesto del progetto il \textit{pattern} è stato diviso nei seguenti strati:
 \begin{itemize}
@@ -89,7 +89,7 @@ Uno dei vantaggi dell'architettura a strati è la separazione delle responsabili
 
 \newpage
 
-\section{Progettazione servizio web}
+\section{Progettazione servizio \textit{web}}
 
 Il seguente diagramma dei \textit{package} rappresenta la struttura del servizio \textit{web} di \textit{moviORDER}.
 
@@ -107,7 +107,7 @@ Come si può vedere dal diagramma, il servizio è costituito da tre \textit{pack
 \end{itemize}
 Una descrizione più approfondita di come tali \textit{package} sono stati utilizzati nella codifica del servizio \textit{web} è presente in sezione §\ref{codificaservizio}.
 
-\subsection{Package servlet}
+\subsection{\textit{Package servlet}}
 
 Essendo il \textit{package} \textit{servlet} il più articolato, merita una descrizione più approfondita. Il seguente diagramma delle classi rappresenta la struttura del \textit{package} \textit{servlet}.
 
@@ -119,7 +119,7 @@ Essendo il \textit{package} \textit{servlet} il più articolato, merita una desc
 
 Come si può vedere dal diagramma, ogni classe \textit{servlet} concreta eredita dalla classe astratta \textit{HttpServlet}. Inoltre, ogni \textit{servlet} concreto definisce il metodo \textit{doPost()}, il quale permette di definire il comportamento del \textit{servlet} alla ricezione di richieste \textit{HTTP POST}. Una descrizione di come queste classi sono state implementate nella pratica è presente in sezione §\ref{codificaservizio}.
 
-\section{Progettazione database} \label{progdb}
+\section{Progettazione \textit{database}} \label{progdb}
 
 Come detto precedentemente, i dati di \textit{moviORDER} sono raggruppati all'interno di due \textit{database}. Il \textit{database} \textit{CommonDb} contiene i dati di autenticazione degli utenti di \textit{moviORDER} e le stringhe di connessione ai rispettivi \textit{database} aziendali (ogni azienda possiede un proprio \textit{database}), mentre il \textit{database} \textit{mvo\_aziendaNomeAzienda} contiene tutti i dati utili alla gestione degli ordini presso l'azienda \textit{NomeAzienda}. In fase di autenticazione, le credenziali dell'utente vengono cercate all'interno del \textit{CommonDb} e, in caso di corrispondenza, viene prelevata la stringa di connessione al \textit{database} dell'azienda presso cui l'utente è cliente. Successivamente, questa viene utilizzata per collegare l'applicazione al \textit{database} corretto, permettendo all'utente di visualizzare solamente i dati sugli articoli venduti dalla propria azienda.
 Il \textit{database} \textit{CommonDb} presenta le seguenti tabelle:

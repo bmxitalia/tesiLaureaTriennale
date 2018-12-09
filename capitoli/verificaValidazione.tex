@@ -19,7 +19,7 @@ L'analisi statica è una forma di verifica che studia le caratteristiche del cod
 
 \subsubsection{Analisi statica del codice}
 
-\myparagraph{Code reading}
+\myparagraph{\textit{Code reading}}
 
 Per la logica applicativa dell'applicazione, essendo scritta in \textit{JavaScript} e quindi non compilata, si è utilizzata la tecnica del \textit{code reading}. Essa consiste nell'esecuzione di un'attenta lettura individuale del codice per l'individuazione di errori e/o discrepanze con il progetto. Il lettore effettua mentalmente una pseudo-esecuzione del codice, che lo conduce a verificarne la correttezza rispetto alle specifiche e agli standard adottati. Questa tecnica è risultata utile nell'analisi della sintassi \textit{JavaScript} non conosciuta, ad esempio la sintassi dei \textit{plugin PhoneGap} e quella per l'utilizzo di \textit{AJAX}.
 
@@ -44,7 +44,7 @@ L'analisi dinamica è una forma di verifica che consiste nell'effettuare test su
 
 Per il test della logica applicativa si è utilizzata la tecnica del \textit{debugging}. Essa consiste nella ricerca e nella correzione di difetti che sono causa di malfunzionamenti rilevati a \textit{run-time}. Per il \textit{debugging} del codice \textit{JavaScript} si è dovuta utilizzare la \textit{forza bruta}, ossia disseminare il codice di istruzioni di stampa per estrapolare quante più informazioni possibili sulla semantica del codice eseguito. Poiché \textit{JavaScript} risulta essere un linguaggio difficilmente \textit{debuggabile}, il \textit{debugging} della logica applicativa è stato inefficiente e dispendioso in termini di tempo.
 
-\subsubsection{Test dell'API}
+\subsubsection{Test dell'\textit{API}}
 
 Per il test dell'\textit{API} di \textit{moviORDER} si è utilizzato il \textit{software} \textit{Postman}, già precedentemente menzionato in sezione §\ref{postman}. Tale \textit{software} permette di costruire una richiesta \textit{HTTP}, di inviarla ad un \textit{server} e di analizzare la risposta ricevuta. Nel caso del progetto sono state create richieste \textit{HTTP POST} con i parametri richiesti dall'\textit{API} e si sono successivamente analizzate le risposte in formato \textit{JSON} ricevute dal \textit{server}.
 Quindi \textit{Postman} ha permesso di testare il comportamento del servizio \textit{web} alla ricezione di richieste \textit{HTTP} corrette e scorrette.
@@ -64,6 +64,6 @@ Per il test del \textit{layout responsive} dell'applicazione si sono utilizzati 
 La validazione è il processo che si occupa di confermare, mediante esame e fornitura di prove oggettive, che le specifiche del \textit{software} siano conformi alle esigenze dell'utente e all'uso previsto, e che i requisiti implementati siano soddisfatti in maniera consistente.
 La validazione, a differenza della verifica, viene eseguita al termine del progetto e, affinché il prodotto venga accettato, è necessario eseguire continue verifiche durante il ciclo di vita dello stesso.
 
-\subsection{Validazione di moviORDER}
+\subsection{Validazione di \textit{moviORDER}}
 
 La validazione di \textit{moviORDER} è stata eseguita dal titolare tramite test dell'applicazione stessa sul proprio \textit{smartphone}. Il \textit{tutor} ha analizzato i requisiti e verificato che fossero tutti soddisfatti.

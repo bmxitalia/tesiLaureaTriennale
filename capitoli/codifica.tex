@@ -7,15 +7,15 @@ In questo capitolo vengono trattati gli aspetti più interessanti della codifica
 	\item \textbf{interfaccia grafica}.
 \end{enumerate}
 
-\section{Servizio web} \label{codificaservizio}
+\section{Servizio \textit{web}} \label{codificaservizio}
 
 Per lo sviluppo del servizio \textit{web} si è utilizzato il linguaggio \textit{Java} e, nello specifico, gli oggetti \textit{servlet}. Per permettere a questi di interagire con il \textit{database}, si sono dovuti utilizzare i \textit{driver} \glossaryItem{JDBC} (\textit{Java Database Connectivity API}) per \textit{SQL Server}, in quanto \textit{moviORDER} utilizza tale tipologia di \textit{database}. 
 
-\subsection{Servlet}
+\subsection{\textit{Servlet}}
 
 In questa sezione viene presentato l'utilizzo degli oggetti \textit{servlet} nella realizzazione del servizio \textit{web}. Le classi che implementano i tali oggetti appartengono al \textit{package} \textit{servlet}.
 
-\subsubsection{Struttura di un oggetto servlet}
+\subsubsection{Struttura di un oggetto \textit{servlet}}
 
 Un oggetto \textit{servlet} è una classe \textit{Java} che eredita da \textit{HttpServlet}, la quale appartiene al \textit{package} \textit{javax.servlet.http}. \textit{HttpServlet} è una classe astratta che può essere estesa per creare un \textit{servlet} \textit{HTTP} utilizzabile per un sito \textit{web}. Nel progetto realizzato, il \textit{servlet} è stato utilizzato per acquisire richieste \textit{HTTP POST}, per elaborarle interrogando il \textit{database} sul \textit{server Azure}, e per rispondere ad esse tramite stringhe in formato \textit{JSON}. Ogni \textit{servlet} del servizio implementa il metodo \textit{protected void doPost(HttpServletRequest req, HttpServletResponse resp)}. Questo metodo viene chiamato dal \textit{server} per permettere all'oggetto \textit{servlet} di acquisire una richiesta \textit{HTTP POST} proveniente da un \textit{client}. Nel caso del progetto, il \textit{client} è la logica applicativa di \textit{moviORDER}, mentre il \textit{server} è \textit{Apache Tomcat}.
 
@@ -35,7 +35,7 @@ Viene di seguito fornita, a titolo d'esempio, l'implementazione del metodo \text
     \caption{Metodo \textit{doPost()} del \textit{servlet} che gestisce l'autenticazione}
 \end{figure}
 
-\subsubsection{Interrogazione del servizio web}
+\subsubsection{Interrogazione del servizio \textit{web}}
 
 Quando si implementa un \textit{servlet} concreto, \textit{eclipse} gli associa un \glossaryItem{end-point} in automatico. Tramite questo è possibile inviare richieste \textit{HTTP} ad uno specifico \textit{servlet} sul \textit{server}. L'\textit{end-point} assegnato da \textit{eclipse} è nella forma \textit{/NomeClasseServlet} e può essere cambiato dalle impostazioni dell'\textit{IDE}. Per rendere il servizio \textit{web} operativo, è necessario che ne venga effettuato il \textit{deploy} su \textit{Apache Tomcat} e che quest'ultimo venga  eseguito sul \textit{server Azure}. Una volta che il servizio \textit{web} diventa raggiungibile tramite la rete, è possibile iniziare ad effettuare richieste \textit{HTTP}. In \textit{moviORDER}, la struttura dell'\textit{URL} di una richiesta \textit{HTTP} è la seguente: \textit{http://indirizzo:porta/moviORDER/NomeServlet}, dove:
 \begin{itemize}
@@ -82,7 +82,7 @@ Viene di seguito fornito, a titolo d'esempio, il codice \textit{JavaScript} dell
     \caption{Esempio di invio di una richiesta \textit{HTTP} tramite \textit{AJAX}}
 \end{figure}
 
-\subsubsection{API del servizio web} \label{api}
+\subsubsection{\textit{API} del servizio \textit{web}} \label{api}
 
 In questa sezione viene presentata l'\textit{API} del servizio \textit{web}. In particolare, per ogni \textit{end-point} vengono specificati:
 \begin{itemize}
@@ -283,15 +283,15 @@ In questa sezione viene presentata l'\textit{API} del servizio \textit{web}. In 
 	\item \textbf{Descrizione}: questo \textit{servlet} si occupa di registrare sul \textit{database} un ordine contenente gli articoli passati come parametro. Il resto dei parametri viene utilizzato per inviare una \textit{mail} di conferma all'utente autenticato e all'azienda presso cui l'utente ha ordinato.
 \end{itemize}
 \newpage
-\subsection{JDBC}
+\subsection{\textit{JDBC}}
 
 In questa sezione viene presentato l'utilizzo della \textit{Java Database Connectivity API} nella realizzazione del servizio \textit{web}.
 
-\subsubsection{Driver JDBC}
+\subsubsection{\textit{Driver JDBC}}
 
 Un \textit{driver} \textit{JDBC} è una componente \textit{software} che permette ad un'applicazione \textit{Java} di interagire con un \textit{database}. Per supportare la connessione a singoli \textit{database}, \textit{JDBC} richiede i \textit{driver} per ogni \textit{database}. Il \textit{driver} permette la connessione con il \textit{database} e implementa il protocollo di trasferimento di \textit{query} e risultati tra \textit{client} e \textit{database}. Poiché nel progetto si è utilizzato \textit{SQL Server}, si sono dovuti utilizzare i \textit{driver} \textit{JDBC} per tale \textit{database}.
 
-\subsubsection{Classe DatabaseConnection} \label{dbconnect}
+\subsubsection{Classe \textit{DatabaseConnection}} \label{dbconnect}
 
 Per lo sviluppo del servizio \textit{web} è stata realizzata la classe \textit{DatabaseConnection}, appartenente al \textit{package} \textit{dbConnection}. Questa fornisce un'interfaccia utilizzabile per gestire l'interazione con un \textit{database} di tipo \textit{SQL Server}. In questa sezione vengono presentati i metodi di \textit{DatabaseConnection}.
 
@@ -340,11 +340,11 @@ La classe \textit{DatabaseConnection} presenta altri metodi di complessità infe
 
 Per lo sviluppo del servizio \textit{web} è stato necessario scrivere due classi utilità, che appartengono al \textit{package} \textit{utility}. Viene di seguito fornita una breve descrizione della loro implementazione.
 
-\subsubsection{Classe GetParam}
+\subsubsection{Classe \textit{GetParam}}
 
 La classe \textit{GetParam} si occupa di restituire un \glossaryItem{campo statico} contenente la stringa di connessione al \textit{database} \textit{CommonDb}. Questa viene frequentemente utilizzata all'interno del servizio \textit{web}, quindi si è deciso di inserirla in un unico punto del codice, in modo da evitare la modifica di più \textit{file} nel caso in cui venga modificata.
 
-\subsubsection{Classe MailUtility}
+\subsubsection{Classe \textit{MailUtility}}
 
 La classe \textit{MailUtility} fornisce un'interfaccia per l'invio di \textit{e-mail}. È stata implementata per inviare una \textit{mail} di conferma all'utente autenticato e alla sua azienda quando un ordine viene registrato. La classe presenta un costruttore che richiede i parametri per la configurazione di un \glossaryItem{server SMTP}:
 \begin{itemize}
@@ -375,23 +375,23 @@ Viene di seguito fornito, a titolo d'esempio, il codice \textit{Java} che implem
 
 In questa sezione vengono presentati gli aspetti più interessanti riguardanti la codifica della logica applicativa di \textit{moviORDER}. La sezione si incentra sui meccanismi di integrazione dei \textit{plugin} \textit{PhoneGap} con il codice \textit{Javascript} della logica applicativa.
 
-\subsection{Plugin di PhoneGap}
+\subsection{\textit{Plugin} di \textit{PhoneGap}}
 
 Un \textit{plugin} è un pacchetto di codice che permette al visualizzatore \textit{web} di \textit{Cordova}, il quale renderizza l'applicazione, di comunicare con la piattaforma nativa sulla quale viene eseguito. I \textit{plugin} forniscono accesso alle funzionalità del dispositivo che normalmente non sono disponibili per le applicazioni \textit{web-based}. Tutte le \textit{API} di \textit{Cordova} sono implementate tramite \textit{plugin}. Essi sono composti da un'unica interfaccia \textit{JavaScript} che astrae le differenti implementazioni in codice nativo delle funzionalità fornite dal \textit{plugin}. In fase di \textit{build} dell'applicazione, il codice \textit{JavaScript} dei \textit{plugin} viene convertito nel codice nativo della piattaforma sulla quale si sta distribuendo l'applicazione.
 
-\subsection{Installazione dei plugin}
+\subsection{Installazione dei \textit{plugin}}
 
 Tramite \textit{PhoneGap CLI}, interfaccia a linea di comando precedentemente descritta, è possibile aggiungere \textit{plugin} alla configurazione del progetto \textit{PhoneGap}. È sufficiente lanciare la \textit{CLI} dalla cartella principale del progetto ed eseguire il comando \textit{phonegap plugin add nomePlugin}, dove \textit{nomePlugin} è il nome del \textit{plugin} che si desidera scaricare ed installare (es. \textit{cordova-plugin-whitelist}).
 
-\subsection{Premesse all'utilizzo dei plugin}
+\subsection{Premesse all'utilizzo dei \textit{plugin}}
 
 Per poter utilizzare efficacemente i \textit{plugin}, è necessario predisporre il codice \textit{JavaScript} al loro utilizzo. In particolare, sono necessari due accorgimenti che vengono di seguito presentati.
 
-\subsubsection{Inclusione di cordova.js}
+\subsubsection{Inclusione di \textit{cordova.js}}
 
 Ogni \textit{file} della logica applicativa che utilizza dei \textit{plugin} deve includere il file \textit{cordova.js}. Questo \textit{file} \textit{JavaScript} permette il funzionamento dei \textit{plugin} utilizzati all'interno della logica. Se si utilizzasse un \textit{plugin} senza aver importato tale \textit{file}, la \textit{console} darebbe il seguente errore: ``\textit{Cordova in not available, Make sure to include cordova.js}''.
 
-\subsubsection{Evento deviceready}
+\subsubsection{Evento \textit{deviceready}}
 
 L'evento \textit{deviceready} è essenziale in ogni applicazione \textit{PhoneGap}, poiché segnala il corretto caricamento delle \textit{API} di \textit{Cordova} sul dispositivo. Se l'evento non venisse atteso prima di utilizzare un \textit{plugin}, si rischierebbe che l'applicazione effettui chiamate a funzioni \textit{JavaScript} di \textit{Cordova} prima che il corrispondente codice nativo per il dispositivo diventi disponibile. L'evento \textit{deviceready} viene lanciato nel momento in cui \textit{Cordova} è stato completamente caricato. Quindi, dopo aver atteso l'evento, è possibile effettuare chiamate alle \textit{API} di \textit{Cordova} in completa sicurezza. Per attendere l'evento è sufficiente inserire un \textit{listener} nel codice \textit{JavaScript}. Viene di seguito fornito, a scopo illustrativo, un esempio di codice \textit{JavaScript} che implementa l'attesa di tale evento.
 
@@ -405,7 +405,7 @@ L'evento \textit{deviceready} è essenziale in ogni applicazione \textit{PhoneGa
 
 In questa sezione vengono presentati i \textit{plugin} \textit{PhoneGap} utilizzati nella realizzazione della logica applicativa di \textit{moviORDER}. Per ogni \textit{plugin} vengono messi in evidenzia vantaggi, svantaggi (se presenti) e un esempio di utilizzo.
 
-\subsubsection{Dialogs plugin}
+\subsubsection{\textit{Dialogs plugin}}
 
 Il \textit{plugin} \textit{dialogs} fornisce accesso all'interfaccia grafica nativa degli elementi \textit{dialog}, tramite l'utilizzo dell'oggetto \textit{navigator.notification}. Questo \textit{plugin} è stato utilizzato per convertire gli \textit{alert box} delle usuali pagine \textit{web} in \textit{dialog} nativi per l'ambiente \textit{mobile}. Si sono utilizzati i seguenti metodi:
 \begin{itemize}
@@ -455,7 +455,7 @@ Vengono di seguito forniti, a scopo illustrativo, un esempio di codice \textit{J
     \caption{Esempio di visualizzazione corretta (\textit{dialog})}
 \end{figure}
 
-\subsubsection{Network information plugin}
+\subsubsection{\textit{Network information plugin}}
 
 Il \textit{plugin} \textit{network information} fornisce un'implementazione moderna della \textit{Network Information API}, la quale consente di ottenere informazioni riguardanti la rete cellulare e il \textit{Wi-Fi} del dispositivo, e permette di capire se il \textit{device} presenta una connessione ad \textit{Internet}. Più precisamente, il \textit{plugin} fornisce un'interfaccia \textit{JavaScript} che astrae il codice nativo utilizzato per monitorare la rete del dispositivo. \textit{Navigator.connection} è l'oggetto che permette di acquisire le informazioni appena descritte. La proprietà \textit{type} è stata utilizzata per comprendere in modo veloce lo stato della connessione del dispositivo e la tipologia di connessione attiva. Essa può assumere i seguenti valori:
 \begin{itemize}
@@ -491,7 +491,7 @@ Vengono di seguito forniti, a scopo illustrativo, degli esempi di codice \textit
     \caption{Esempio di utilizzo dell'evento \textit{offline}}
 \end{figure}
 
-\subsubsection{Barcode scanner plugin}
+\subsubsection{\textit{Barcode scanner plugin}}
 
 Il \textit{plugin} \textit{barcode scanner} fornisce un'interfaccia \textit{JavaScript} per effettuare la scansione di un codice a barre da un qualsiasi dispositivo dotato di fotocamera. Per utilizzare il \textit{plugin} è sufficiente invocare il metodo \textit{scan(success, fail, settings)} sull'oggetto \textit{cordova.plugin.barcodeScanner}. \textit{Success} è una funzione di \textit{callback} che viene eseguita quando la scansione del \textit{barcode} va a buon fine, mentre \textit{Fail} viene eseguita quando la scansione fallisce. \textit{Settings} è una variabile contenente le seguenti impostazioni per l'utilizzo del \textit{plugin}:
 \begin{itemize}
@@ -533,7 +533,7 @@ Viene di seguito fornito, a scopo illustrativo, il codice \textit{JavaScript} de
 
 In questa sezione vengono presentati gli aspetti più interessanti riguardanti la codifica dell'interfaccia grafica di \textit{moviORDER}. In particolare, vengono presentate le possibili interazioni dell'utente con le interfacce. Nell'ultima sezione vengono illustrate delle considerazioni sullo sviluppo dell'interfaccia.
 
-\subsection{Schermata di login}
+\subsection{Schermata di \textit{login}}
 
 \begin{figure}[!h] 
     \centering 
@@ -549,7 +549,7 @@ Tramite la schermata di \textit{login}, un qualsiasi utente in possesso di crede
 	\item le credenziali inserite sono corrette ma l'utente è stato bloccato dall'azienda.
 \end{itemize}
 
-\subsection{Home page}
+\subsection{\textit{Home page}}
 
 \begin{figure}[!h] 
     \centering 
@@ -575,7 +575,7 @@ La \textit{home page} racchiude le funzionalità di \textit{moviORDER} dedicate 
 	\end{itemize}
 \end{itemize}
 
-\subsection{Modal per l'aggiunta di un articolo}
+\subsection{\textit{Modal} per l'aggiunta di un articolo}
 
 \begin{figure}[!h] 
     \centering 
@@ -617,7 +617,7 @@ La pagina per l'aggiunta di un articolo permette di aggiungere un nuovo articolo
 
 Premendo su un qualsiasi articolo in carrello viene aperta una pagina per modificare i dati d'ordine dello stesso. Questa funziona allo stesso modo della pagina per l'aggiunta di un articolo, ma differisce da quest'ultima perché permette invece di modificare l'articolo.
 
-\subsection{Modal per l'invio di un ordine}
+\subsection{\textit{Modal} per l'invio di un ordine}
 
 \begin{figure}[!h] 
     \centering 
