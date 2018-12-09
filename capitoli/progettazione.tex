@@ -29,7 +29,7 @@ Una descrizione più approfondita dei dati contenuti in questi \textit{database}
 
 \subsection{Architettura \textit{front end}}
 
-Sul \textit{client}, ovvero l'applicazione installata sul dispositivo dell'utente utilizzatore, è presente il \textit{pattern} architetturale \glossaryItem{MVP} (\textit{Model View Presenter}). Tale \textit{pattern} presenta componenti distribuite, infatti la \glossaryItem{view} e il \glossaryItem{presenter} si trovano sul dispositivo, mentre il \glossaryItem{model} si trova sul \textit{server Azure} di \visione{} o sul \textit{server cloud} di un'azienda cliente. Nello specifico, la \textit{view} è la \glossaryItem{GUI} (\textit{Graphical User Interface}) dell'applicazione, il \textit{presenter} è la logica applicativa della stessa, mentre il \textit{model} è il \textit{database} contenente i dati utili alla gestione degli ordini. È stato scelto un \textit{MVP} in quanto il \textit{model} interagisce solamente con il \textit{presenter}, e non può modificare la \textit{view} come invece accade per il \textit{pattern} \glossaryItem{MVC} (\textit{Model View Controller}). Nella seguente figura è possibile notare le differenze concettuali tra i due \textit{pattern}.
+Sul \textit{client}, ovvero l'applicazione installata sul dispositivo dell'utente utilizzatore, è presente il \textit{pattern} architetturale \glossaryItem{MVP} (\textit{Model View Presenter}). Tale \textit{pattern} presenta componenti distribuite, infatti la \glossaryItem{view} e il \glossaryItem{presenter} si trovano sul dispositivo, mentre il \glossaryItem{model} si trova sul \textit{server Azure} di \visione{} o sul \textit{server cloud} di un'azienda cliente. Nello specifico, la \textit{view} è la \textit{GUI} (\textit{Graphical User Interface}) dell'applicazione, il \textit{presenter} è la logica applicativa della stessa, mentre il \textit{model} è il \textit{database} contenente i dati utili alla gestione degli ordini. È stato scelto un \textit{MVP} in quanto il \textit{model} interagisce solamente con il \textit{presenter}, e non può modificare la \textit{view} come invece accade per il \textit{pattern} \glossaryItem{MVC} (\textit{Model View Controller}). Nella seguente figura è possibile notare le differenze concettuali tra i due \textit{pattern}.
 
 \begin{figure}[!h] 
     \centering 
@@ -126,9 +126,9 @@ Il \textit{database} \textit{CommonDb} presenta le seguenti tabelle:
 \begin{itemize}
 	\item \textbf{Users}: tabella contenente i dati di autenticazione degli utenti di \textit{moviORDER}. La tabella presenta i seguenti campi:
 		\begin{itemize}
-			\item \textit{UserName} (\glossaryItem{chiave primaria}): è il nome utente per accedere all'applicazione. Viene reso univoco poiché costituito dalla concatenazione della partita IVA dell'azienda con un codice auto-incrementante assegnato al cliente quando gli viene consegnata l'applicazione;
+			\item \textit{UserName} (chiave primaria): è il nome utente per accedere all'applicazione. Viene reso univoco poiché costituito dalla concatenazione della partita IVA dell'azienda con un codice auto-incrementante assegnato al cliente quando gli viene consegnata l'applicazione;
 			\item \textit{Password}: è la \textit{password} per accedere all'applicazione. La coppia \textit{username}/\textit{password} viene assegnata all'utente quando gli viene consegnata l'applicazione;
-			\item \textit{CodAzienda} (\glossaryItem{chiave esterna}): è l'identificativo univoco dell'azienda presso cui l'utente è cliente. Questo campo presenta un vincolo d'integrità referenziale con il campo \textit{CodAzienda} della tabella \textbf{Aziende};
+			\item \textit{CodAzienda} (chiave esterna): è l'identificativo univoco dell'azienda presso cui l'utente è cliente. Questo campo presenta un vincolo d'integrità referenziale con il campo \textit{CodAzienda} della tabella \textbf{Aziende};
 			\item \textit{EmailU}: è l'indirizzo \textit{e-mail} dell'utente;
 			\item \textit{Bloccato}: è un \textit{flag} che vale 1 se l'utente è stato bloccato dall'azienda, oppure 0 se il suo \textit{account} è attivo.
 		\end{itemize}

@@ -53,7 +53,7 @@ I metodi \textit{open()} e \textit{send()} permettono di inviare richieste \text
 	\begin{itemize}
 		\item \textbf{metodo}: specifica il metodo utilizzato per inviare la richiesta \textit{HTTP}: \textit{GET} o \textit{POST};
 		\item \textbf{url}: specifica l'indirizzo del \textit{server} a cui inviare la richiesta \textit{HTTP}. Nel caso del progetto, l'indirizzo comprende l'\textit{end-point} presso il quale la richiesta deve essere gestita;
-		\item \textbf{\glossaryItem{asincrona}/\glossaryItem{sincrona}}: specifica se la richiesta è asincrona (\textit{true}) oppure sincrona (\textit{false}).
+		\item \textbf{asincrona/sincrona}: specifica se la richiesta è asincrona (\textit{true}) oppure sincrona (\textit{false}).
 	\end{itemize}
 Il metodo \textit{send(string)} permette invece l'invio di una richiesta \textit{HTTP} al servizio \textit{web}. Esso richiede il passaggio di una stringa contenente i parametri da inviare al \textit{server}. Poiché alcuni parametri potevano contenere caratteri accentati, è stato necessario utilizzare il metodo \textit{setRequestHeader()} per specificare la codifica dei caratteri. In questo modo si sono evitati errori di lettura/scrittura sul \textit{database} di \textit{moviORDER}. 
 
@@ -63,7 +63,7 @@ Il metodo \textit{send(string)} permette invece l'invio di una richiesta \textit
 	\item nei prossimi anni le richieste \textit{AJAX} sincrone saranno rimosse dallo standard \textit{web}. Scegliendo di utilizzare solamente richieste asincrone, si permetterà a \textit{moviORDER} di essere \glossaryItem{robusta} a questo cambiamento futuro.
 \end{itemize} 
 
-Per la gestione della risposta ricevuta dal \textit{server}, si sono utilizzate le seguenti \glossaryItem{proprietà} dell'oggetto \textit{XMLHttpRequest}:
+Per la gestione della risposta ricevuta dal \textit{server}, si sono utilizzate le seguenti proprietà dell'oggetto \textit{XMLHttpRequest}:
 \begin{itemize}
 	\item \textit{readyState}: contiene lo stato dell'oggetto. In particolare, per lo scopo del progetto, è interessante sapere che il valore 4 corrisponde ad una richiesta la cui risposta è pronta;
 	\item  \textit{status}: contiene un messaggio sullo stato della richiesta. In particolare, per lo scopo del progetto, è interessante sapere che il valore 200 corrisponde al messaggio \textit{OK}, che nello standard \textit{web} rappresenta una richiesta \textit{HTTP} andata a buon fine;
@@ -297,7 +297,7 @@ Per lo sviluppo del servizio \textit{web} è stata realizzata la classe \textit{
 
 \myparagraph{Costruttori}
 
-La classe presenta i seguenti \glossaryItem{costruttori}:
+La classe presenta i seguenti metodi costruttori:
 \begin{itemize}
 	\item \textit{public DatabaseConnection(String u, String user, String psw, String db)}: costruisce un oggetto \textit{DatabaseConnection} a partire dall'\textit{URL} del \textit{server} in cui è presente il \textit{database}, la \textit{username} e la \textit{password} di accesso, e il nome del \textit{database} al quale ci si desidera connettere;
 	\item \textit{public DatabaseConnection(String dbConnectionString)}: costruisce un oggetto \textit{DatabaseConnection} a partire dalla stringa di connessione al \textit{database}.
@@ -342,7 +342,7 @@ Per lo sviluppo del servizio \textit{web} è stato necessario scrivere due class
 
 \subsubsection{Classe \textit{GetParam}}
 
-La classe \textit{GetParam} si occupa di restituire un \glossaryItem{campo statico} contenente la stringa di connessione al \textit{database} \textit{CommonDb}. Questa viene frequentemente utilizzata all'interno del servizio \textit{web}, quindi si è deciso di inserirla in un unico punto del codice, in modo da evitare la modifica di più \textit{file} nel caso in cui venga modificata.
+La classe \textit{GetParam} si occupa di restituire un campo statico contenente la stringa di connessione al \textit{database} \textit{CommonDb}. Questa viene frequentemente utilizzata all'interno del servizio \textit{web}, quindi si è deciso di inserirla in un unico punto del codice, in modo da evitare la modifica di più \textit{file} nel caso in cui venga modificata.
 
 \subsubsection{Classe \textit{MailUtility}}
 
@@ -503,7 +503,7 @@ Il \textit{plugin} \textit{barcode scanner} fornisce un'interfaccia \textit{Java
 	\item \textit{prompt}: permette di visualizzare un messaggio per aiutare l'utente ad eseguire la scansione;
 	\item \textit{resultDisplayDuration}: permette di visualizzare il risultato della scansione per un certo periodo di tempo;
 	\item \textit{formats}: permette di impostare la tipologia di codici a barre che devono essere captati;
-	\item \textit{orientation}: permette di impostare l'orientamento del dispositivo (\glossaryItem{portrait} o \glossaryItem{landscape});
+	\item \textit{orientation}: permette di impostare l'orientamento del dispositivo (\textit{portrait} o \textit{landscape});
 	\item \textit{disableAnimations}: permette di disabilitare le animazioni visualizzate durante la scansione del codice a barre;
 	\item \textit{disableSuccessBeep}: permette di disabilitare il suono acustico emesso quando un codice viene captato.
 \end{itemize}
@@ -631,7 +631,7 @@ Il \textit{modal} per l'invio di un ordine permette di inviare un ordine all'azi
 	\item \textbf{pulsante di conferma}: permette di confermare l'invio dell'ordine;
 	\item \textbf{informazioni sul cliente}: \textit{text box} contenente il codice e la ragione sociale del cliente che sta effettuando l'ordine;
 	\item \textbf{informazioni sul documento}: \textit{text box} contenente il codice e la descrizione del documento che deve essere generato quando viene inviato l'ordine;
-	\item \textbf{\glossaryItem{select} per l'inserimento della data}: permette di inserire la data dell'ordine. Di \textit{default} viene proposta la data corrente;
+	\item \textbf{\textit{select} per l'inserimento della data}: permette di inserire la data dell'ordine. Di \textit{default} viene proposta la data corrente;
 	\item \textbf{\textit{text area} per l'inserimento delle note}: permette di inserire delle note facoltative per l'ordine che si sta inviando.
 \end{itemize}
 
