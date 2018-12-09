@@ -7,3 +7,10 @@ docs di cordova per i plugin
 sito web di visione impresa
 
 web app def https://en.wikipedia.org/wiki/Web_application
+
+agile https://en.wikipedia.org/wiki/Agile_software_development
+
+ajax https://en.wikipedia.org/wiki/Ajax_(programming)
+
+https://en.wikipedia.org/wiki/Application_programming_interface
+

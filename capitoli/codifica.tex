@@ -346,7 +346,7 @@ La classe \textit{GetParam} si occupa di restituire un campo statico contenente 
 
 \subsubsection{Classe \textit{MailUtility}}
 
-La classe \textit{MailUtility} fornisce un'interfaccia per l'invio di \textit{e-mail}. È stata implementata per inviare una \textit{mail} di conferma all'utente autenticato e alla sua azienda quando un ordine viene registrato. La classe presenta un costruttore che richiede i parametri per la configurazione di un \glossaryItem{server SMTP}:
+La classe \textit{MailUtility} fornisce un'interfaccia per l'invio di \textit{e-mail}. È stata implementata per inviare una \textit{mail} di conferma all'utente autenticato e alla sua azienda quando un ordine viene registrato. La classe presenta un costruttore che richiede i parametri per la configurazione di un \textit{server SMTP}:
 \begin{itemize}
 	\item \textbf{host}: è l'indirizzo dell'\textit{host} su cui è installato il \textit{server SMTP};
 	\item \textbf{post}: è la porta dell'\textit{host} su cui è installato il \textit{server SMTP};
@@ -637,7 +637,7 @@ Il \textit{modal} per l'invio di un ordine permette di inviare un ordine all'azi
 
 \subsection{Considerazioni sullo sviluppo}
 
-L'applicazione è stata realizzata con un \textit{framework cross-platform}, quindi tramite la realizzazione di un'applicazione \textit{web}. Per rendere l'applicazione usabile su tutti gli \textit{smartphone} è stato necessario progettare l'interfaccia con un approccio \glossaryItem{mobile first}, ossia cercando di renderla più \textit{responsive} possibile. Per raggiungere questo obiettivo è stato utilizzato un \glossaryItem{layout elastico}, ossia un \textit{layout} che utilizza unità di misura relative (\textit{em} e \textit{\%}), le quali dipendono dalle preferenze dell'utente. In questo modo le pagine possono adattarsi correttamente ad ogni dimensione di schermo. Viene di seguito fornito, a scopo illustrativo, un esempio di codice \textit{css} che utilizza unità di misura relative.
+L'applicazione è stata realizzata con un \textit{framework cross-platform}, quindi tramite la realizzazione di un'applicazione \textit{web}. Per rendere l'applicazione usabile su tutti gli \textit{smartphone} è stato necessario progettare l'interfaccia con un approccio \glossaryItem{mobile first}, ossia cercando di renderla più \textit{responsive} possibile. Per raggiungere questo obiettivo è stato utilizzato un \textit{layout} elastico, ossia un \textit{layout} che utilizza unità di misura relative (\textit{em} e \textit{\%}), le quali dipendono dalle preferenze dell'utente. In questo modo le pagine possono adattarsi correttamente ad ogni dimensione di schermo. Viene di seguito fornito, a scopo illustrativo, un esempio di codice \textit{css} che utilizza unità di misura relative.
 
 \begin{figure}[!h] 
     \centering 
