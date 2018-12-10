@@ -297,7 +297,7 @@ Per lo sviluppo del servizio \textit{web} è stata realizzata la classe \textit{
 
 \myparagraph{Costruttori}
 
-La classe presenta i seguenti metodi costruttori:
+\hspace{-15pt}La classe presenta i seguenti metodi costruttori:
 \begin{itemize}
 	\item \textit{public DatabaseConnection(String u, String user, String psw, String db)}: costruisce un oggetto \textit{DatabaseConnection} a partire dall'\textit{URL} del \textit{server} in cui è presente il \textit{database}, la \textit{username} e la \textit{password} di accesso, e il nome del \textit{database} al quale ci si desidera connettere;
 	\item \textit{public DatabaseConnection(String dbConnectionString)}: costruisce un oggetto \textit{DatabaseConnection} a partire dalla stringa di connessione al \textit{database}.
@@ -470,7 +470,7 @@ Il \textit{plugin} \textit{network information} fornisce un'implementazione mode
 \end{itemize}
 Un limite di questa proprietà è presente in ambiente \textit{iOS}, infatti non è possibile identificare nessun tipo di rete cellulare alla quale il dispositivo è connesso. Per questo, su \textit{iOS}, si è dovuta utilizzare la proprietà \textit{onLine} dell'oggetto \textit{navigator}.
 
-All'oggetto \textit{navigator.connection} sono associate due tipologie di evento:
+\hspace{-15pt}All'oggetto \textit{navigator.connection} sono associate due tipologie di evento:
 \begin{itemize}
 	\item \textit{offline}: viene lanciato quando un dispositivo precedentemente collegato ad \textit{Internet} perde la connessione e quindi l'applicazione non è più in grado di accedere alla rete. In particolare, viene lanciato esattamente quando il valore della proprietà \textit{type} diventa \textit{Connection.NONE};
 	\item \textit{online}: viene lanciato quando un dispositivo precedentemente scollegato dalla rete riceve la connessione permettendo all'applicazione di accedere ad \textit{Internet}. In particolare, viene lanciato esattamente quando il valore della proprietà \textit{type} cambia da \textit{NONE} ad un altro valore.

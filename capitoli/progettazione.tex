@@ -45,7 +45,7 @@ Viene di seguito presentata una figura illustrativa di come il design \textit{pa
     \caption{Architettura \textit{front end}}
 \end{figure}
 
-Nello specifico, il flusso del \textit{pattern} è il seguente:
+\hspace{-15pt}Nello specifico, il flusso del \textit{pattern} è il seguente:
 \begin{itemize}
 	\item l'utente interagisce con la \textit{view} eseguendo delle operazioni sull'interfaccia dell'applicazione;
 	\item il \textit{presenter} capta le interazioni e, sulla base di queste, richiede la lettura/scrittura di dati sul \textit{model} tramite l'invio di richieste \textit{HTTP} ad un servizio \textit{web};
@@ -60,7 +60,7 @@ Viene di seguito presentato un diagramma di sequenza che illustra il flusso appe
     \caption{Diagramma di sequenza del \textit{pattern} \textit{MVP}}
 \end{figure}
 
-Importanti vantaggi nell'utilizzo del \textit{pattern} \textit{MVP} sono:
+\hspace{-15pt}Importanti vantaggi nell'utilizzo del \textit{pattern} \textit{MVP} sono:
 \begin{itemize}
 	\item possibilità di utilizzare lo stesso \textit{model} da parte di \textit{view} differenti;
 	\item semplicità nell'aggiunta di nuovi tipi di \textit{client}: è sufficiente scrivere un \textit{presenter} e una \textit{view} per ognuna delle nuove applicazioni. Il \textit{pattern} permette quindi un disaccoppiamento tra logica applicativa e \textit{database} sottostante.
@@ -99,7 +99,7 @@ Il seguente diagramma dei \textit{package} rappresenta la struttura del servizio
     \caption{Diagramma dei \textit{package} del servizio \textit{web}}
 \end{figure}
 
-Come si può vedere dal diagramma, il servizio è costituito da tre \textit{package}:
+\hspace{-15pt}Come si può vedere dal diagramma, il servizio è costituito da tre \textit{package}:
 \begin{itemize}
 	\item \textit{dbConnection}: contiene classi atte alla gestione della connessione con un \textit{database}. Il \textit{package} viene utilizzato per permettere agli oggetti \textit{servlet} di connettersi a \textit{database} \textit{SQL Server} locali o remoti;
 	\item \textit{servlet}: contiene le classi che definiscono gli oggetti \textit{servlet} del servizio. Essi si occupano di captare le richieste \textit{HTTP} provenienti dal \textit{client} e di rispondere a queste tramite stringhe in formato \textit{JSON};
@@ -153,7 +153,7 @@ Viene di seguito presentato il diagramma \textit{ER} del \textit{database} \text
 
 \newpage
 
-Il \textit{database} \textit{mvo\_aziendaNomeAzienda} presenta le seguenti tabelle:
+\hspace{-15pt}Il \textit{database} \textit{mvo\_aziendaNomeAzienda} presenta le seguenti tabelle:
 \begin{itemize}
 	\item \textbf{Art}: tabella contenente i dati sugli articoli venduti dall'azienda \textit{NomeAzienda}. La tabella presenta i seguenti campi:
 		\begin{itemize}
